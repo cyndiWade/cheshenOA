@@ -10,7 +10,8 @@ class AppBaseAction extends Action {
 	 */
 	public function __construct() {
 		parent:: __construct();			//重写父类构造方法
-
+		echo 123;
+		exit;
 		$this->loading();
 	}
 
