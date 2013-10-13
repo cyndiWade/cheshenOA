@@ -110,7 +110,7 @@ $system  = array(
 		'STATUS_RBAC' => '3001',					//RBAC权限
 );
 
-return array_merge($DB,$system);
+return array_merge($DBm$system);
 
 
 /*		系统常量 (手册附录)
