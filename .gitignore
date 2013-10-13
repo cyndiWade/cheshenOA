@@ -1,4 +1,5 @@
 App/Runtime
+APP/Conf/config.php
 config.inc.php
 data
 .settings
