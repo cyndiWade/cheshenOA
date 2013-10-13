@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">	<include file="Public:header" />	
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">			<!-- 左侧导航 -->		<include file="Public:sidebar" />				<!-- BEGIN PAGE -->  
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">	
+						<h3 class="page-title">
+							{$MODULE_NAME}
+							 <small>{$ACTION_NAME}</small>
+						</h3>
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="tabbable tabbable-custom boxless">
+							<ul class="nav nav-tabs" id="wade_tab">
+								<li data-action="staff_base_look" class="active"><a href="#tab_1" data-toggle="tab">基本信息</a></li>
+								<li data-action="staff_vitae_look"><a class="" href="#tab_2" data-toggle="tab">履历</a></li>
+								<li data-action="staff_contract_look"><a href="#tab_3" data-toggle="tab">合同</a></li>
+								<li data-action="staff_salary_look"><a class="" href="#tab_4" data-toggle="tab">薪资</a></li>							</ul>
+							<div class="tab-content">
+								<div class="tab-pane" id="tab_1">
+									<div class="portlet box blue">
+										<div class="portlet-title">
+											<div class="caption"><i class="icon-reorder"></i>基本信息</div>
+											<div class="tools">
+												<a href="javascript:;" class="collapse"></a>
+												<a href="#portlet-config" data-toggle="modal" class="config"></a>
+												<a href="javascript:;" class="reload"></a>
+												<a href="javascript:;" class="remove"></a>
+											</div>
+										</div>
+										<div class="portlet-body form">
+											<!-- BEGIN FORM-->
+											<form action="#" class="horizontal-form">
+												<h3 class="form-section">Person Info</h3>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" for="firstName">First Name</label>
+															<div class="controls">
+																<input type="text" id="firstName" class="m-wrap span12" placeholder="Chee Kin">
+																<span class="help-block">This is inline help</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group error">
+															<label class="control-label" for="lastName">Last Name</label>
+															<div class="controls">
+																<input type="text" id="lastName" class="m-wrap span12" placeholder="Lim">
+																<span class="help-block">This field has error.</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Gender</label>
+															<div class="controls">
+																<select  class="m-wrap span12">
+																	<option value="">Male</option>
+																	<option value="">Female</option>
+																</select>
+																<span class="help-block">Select your gender.</span>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Date of Birth</label>
+															<div class="controls">
+																<input type="text" class="m-wrap span12"  placeholder="dd/mm/yyyy">
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->        
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Category</label>
+															<div class="controls">
+																<select class="span12 select2_category" data-placeholder="Choose a Category" tabindex="1">
+																	<option value=""></option>
+																	<option value="Category 1">Category 1</option>
+																	<option value="Category 2">Category 2</option>
+																	<option value="Category 3">Category 5</option>
+																	<option value="Category 4">Category 4</option>
+																</select>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Membership</label>
+															<div class="controls">                                                
+																<label class="radio">
+																<input type="radio" name="optionsRadios2" value="option1" />
+																Free
+																</label>
+																<label class="radio">
+																<input type="radio" name="optionsRadios2" value="option2" checked />
+																Professional
+																</label>  
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row--> 
+												<h3 class="form-section">Address</h3>
+												<div class="row-fluid">
+													<div class="span12 ">
+														<div class="control-group">
+															<label class="control-label" >Street</label>
+															<div class="controls">
+																<input type="text" class="m-wrap span12" >
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >City</label>
+															<div class="controls">
+																<input type="text"  class="m-wrap span12"> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >State</label>
+															<div class="controls">
+																<input type="text"  class="m-wrap span12"> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<!--/row-->           
+												<div class="row-fluid">
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Post Code</label>
+															<div class="controls">
+																<input type="text" class="m-wrap span12"> 
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+													<div class="span6 ">
+														<div class="control-group">
+															<label class="control-label" >Country</label>
+															<div class="controls">
+																<select  class="m-wrap span12"></select>
+															</div>
+														</div>
+													</div>
+													<!--/span-->
+												</div>
+												<div class="form-actions">
+													<button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>
+													<button type="button" class="btn">Cancel</button>
+												</div>
+											</form>
+											<!-- END FORM--> 
+										</div>
+									</div>
+								</div>								<div class="tab-pane" id="tab_2">									<div class="portlet box blue">										<div class="portlet-title">											<div class="caption"><i class="icon-reorder"></i>履历</div>											<div class="tools">												<a href="javascript:;" class="collapse"></a>												<a href="#portlet-config" data-toggle="modal" class="config"></a>												<a href="javascript:;" class="reload"></a>												<a href="javascript:;" class="remove"></a>											</div>										</div>										<div class="portlet-body form">											<!-- BEGIN FORM-->											<form action="#" class="horizontal-form">												<h3 class="form-section">Person Info</h3>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" for="firstName">First Name</label>															<div class="controls">																<input type="text" id="firstName" class="m-wrap span12" placeholder="Chee Kin">																<span class="help-block">This is inline help</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group error">															<label class="control-label" for="lastName">Last Name</label>															<div class="controls">																<input type="text" id="lastName" class="m-wrap span12" placeholder="Lim">																<span class="help-block">This field has error.</span>															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Gender</label>															<div class="controls">																<select  class="m-wrap span12">																	<option value="">Male</option>																	<option value="">Female</option>																</select>																<span class="help-block">Select your gender.</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Date of Birth</label>															<div class="controls">																<input type="text" class="m-wrap span12"  placeholder="dd/mm/yyyy">															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->        												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Category</label>															<div class="controls">																<select class="span12 select2_category" data-placeholder="Choose a Category" tabindex="1">																	<option value=""></option>																	<option value="Category 1">Category 1</option>																	<option value="Category 2">Category 2</option>																	<option value="Category 3">Category 5</option>																	<option value="Category 4">Category 4</option>																</select>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Membership</label>															<div class="controls">                                                																<label class="radio">																<input type="radio" name="optionsRadios2" value="option1" />																Free																</label>																<label class="radio">																<input type="radio" name="optionsRadios2" value="option2" checked />																Professional																</label>  															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row--> 												<h3 class="form-section">Address</h3>												<div class="row-fluid">													<div class="span12 ">														<div class="control-group">															<label class="control-label" >Street</label>															<div class="controls">																<input type="text" class="m-wrap span12" >															</div>														</div>													</div>												</div>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >City</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >State</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->           												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Post Code</label>															<div class="controls">																<input type="text" class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Country</label>															<div class="controls">																<select  class="m-wrap span12"></select>															</div>														</div>													</div>													<!--/span-->												</div>												<div class="form-actions">													<button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>													<button type="button" class="btn">Cancel</button>												</div>											</form>											<!-- END FORM--> 										</div>									</div>								</div>								<div class="tab-pane" id="tab_3">									<div class="portlet box blue">										<div class="portlet-title">											<div class="caption"><i class="icon-reorder"></i>合同</div>											<div class="tools">												<a href="javascript:;" class="collapse"></a>												<a href="#portlet-config" data-toggle="modal" class="config"></a>												<a href="javascript:;" class="reload"></a>												<a href="javascript:;" class="remove"></a>											</div>										</div>										<div class="portlet-body form">											<!-- BEGIN FORM-->											<form action="#" class="horizontal-form">												<h3 class="form-section">Person Info</h3>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" for="firstName">First Name</label>															<div class="controls">																<input type="text" id="firstName" class="m-wrap span12" placeholder="Chee Kin">																<span class="help-block">This is inline help</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group error">															<label class="control-label" for="lastName">Last Name</label>															<div class="controls">																<input type="text" id="lastName" class="m-wrap span12" placeholder="Lim">																<span class="help-block">This field has error.</span>															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Gender</label>															<div class="controls">																<select  class="m-wrap span12">																	<option value="">Male</option>																	<option value="">Female</option>																</select>																<span class="help-block">Select your gender.</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Date of Birth</label>															<div class="controls">																<input type="text" class="m-wrap span12"  placeholder="dd/mm/yyyy">															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->        												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Category</label>															<div class="controls">																<select class="span12 select2_category" data-placeholder="Choose a Category" tabindex="1">																	<option value=""></option>																	<option value="Category 1">Category 1</option>																	<option value="Category 2">Category 2</option>																	<option value="Category 3">Category 5</option>																	<option value="Category 4">Category 4</option>																</select>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Membership</label>															<div class="controls">                                                																<label class="radio">																<input type="radio" name="optionsRadios2" value="option1" />																Free																</label>																<label class="radio">																<input type="radio" name="optionsRadios2" value="option2" checked />																Professional																</label>  															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row--> 												<h3 class="form-section">Address</h3>												<div class="row-fluid">													<div class="span12 ">														<div class="control-group">															<label class="control-label" >Street</label>															<div class="controls">																<input type="text" class="m-wrap span12" >															</div>														</div>													</div>												</div>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >City</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >State</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->           												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Post Code</label>															<div class="controls">																<input type="text" class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Country</label>															<div class="controls">																<select  class="m-wrap span12"></select>															</div>														</div>													</div>													<!--/span-->												</div>												<div class="form-actions">													<button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>													<button type="button" class="btn">Cancel</button>												</div>											</form>											<!-- END FORM--> 										</div>									</div>								</div>								<div class="tab-pane" id="tab_4">									<div class="portlet box blue">										<div class="portlet-title">											<div class="caption"><i class="icon-reorder"></i>薪资</div>											<div class="tools">												<a href="javascript:;" class="collapse"></a>												<a href="#portlet-config" data-toggle="modal" class="config"></a>												<a href="javascript:;" class="reload"></a>												<a href="javascript:;" class="remove"></a>											</div>										</div>										<div class="portlet-body form">											<!-- BEGIN FORM-->											<form action="#" class="horizontal-form">												<h3 class="form-section">Person Info</h3>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" for="firstName">First Name</label>															<div class="controls">																<input type="text" id="firstName" class="m-wrap span12" placeholder="Chee Kin">																<span class="help-block">This is inline help</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group error">															<label class="control-label" for="lastName">Last Name</label>															<div class="controls">																<input type="text" id="lastName" class="m-wrap span12" placeholder="Lim">																<span class="help-block">This field has error.</span>															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Gender</label>															<div class="controls">																<select  class="m-wrap span12">																	<option value="">Male</option>																	<option value="">Female</option>																</select>																<span class="help-block">Select your gender.</span>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Date of Birth</label>															<div class="controls">																<input type="text" class="m-wrap span12"  placeholder="dd/mm/yyyy">															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->        												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Category</label>															<div class="controls">																<select class="span12 select2_category" data-placeholder="Choose a Category" tabindex="1">																	<option value=""></option>																	<option value="Category 1">Category 1</option>																	<option value="Category 2">Category 2</option>																	<option value="Category 3">Category 5</option>																	<option value="Category 4">Category 4</option>																</select>															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Membership</label>															<div class="controls">                                                																<label class="radio">																<input type="radio" name="optionsRadios2" value="option1" />																Free																</label>																<label class="radio">																<input type="radio" name="optionsRadios2" value="option2" checked />																Professional																</label>  															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row--> 												<h3 class="form-section">Address</h3>												<div class="row-fluid">													<div class="span12 ">														<div class="control-group">															<label class="control-label" >Street</label>															<div class="controls">																<input type="text" class="m-wrap span12" >															</div>														</div>													</div>												</div>												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >City</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >State</label>															<div class="controls">																<input type="text"  class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->												</div>												<!--/row-->           												<div class="row-fluid">													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Post Code</label>															<div class="controls">																<input type="text" class="m-wrap span12"> 															</div>														</div>													</div>													<!--/span-->													<div class="span6 ">														<div class="control-group">															<label class="control-label" >Country</label>															<div class="controls">																<select  class="m-wrap span12"></select>															</div>														</div>													</div>													<!--/span-->												</div>												<div class="form-actions">													<button type="submit" class="btn blue"><i class="icon-ok"></i> Save</button>													<button type="button" class="btn">Cancel</button>												</div>											</form>											<!-- END FORM--> 										</div>									</div>								</div>															</div>
+						</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- END CONTAINER -->	<!-- 页脚 -->	<include file="Public:foot" />	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->	<!-- 核心插件 -->	<include file="Public:bottom" />	
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>
+	<script src="{$Think.const.APP_PATH}Public/media/js/form-samples.js"></script>   
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {    
+		   // initiate layout and plugins
+		   App.init();
+		   FormSamples.init();
+		});
+	</script>
+
+<!-- END BODY -->
+</html>
