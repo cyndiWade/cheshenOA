@@ -85,7 +85,7 @@ class RbacAction extends AdminBaseAction {
 	 * 组与节点关系
 	 */
 	public function group_node () {
-		
+
 		//初始化数据
 		$group_id = $this->_get('group_id');	//当前组ID
 		empty($group_id)  ? $group_id = 1 : $group_id ;
@@ -131,8 +131,9 @@ class RbacAction extends AdminBaseAction {
 			
 			if (empty($data)) parent::callback(C('STATUS_OTHER'),'请求的节点为空');
 			if (empty($group_id)) parent::callback(C('STATUS_OTHER'),'请求组为空');
-				
+
 			/* 请求的节点数据处理 */
+			$data = stripslashes($data);					//还原转义后的字符
 			$data_tmp = json_decode($data);		//转化为数组格式
 			$auto_node = array();		//保存请求的节点ID
 			foreach ($data_tmp As $key =>$val) {
