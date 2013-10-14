@@ -32,26 +32,35 @@ class StaffAction extends AdminBaseAction {
 	 * 编辑员工信息页面
 	 */
 	public function staff_edit() {
-		$id = $this->_get('id');
-		if (empty($id)) $this->error('非法操作');
-		
+		$id = $this->_get('id');	
+		$act = $this->_get('act');
 		$Department = D('Department');		//部门模型表
+		$StaffBase = D('StaffBase');			//员工模型表
 		
 		//部门数据
 		$department_list = $Department->seek_child_data(0);
 
+		//员工基本数据
+		$staff_base_info = $StaffBase->where(array('id'=>$id))->find();
+	
 		
-		$this->assign('id',$id);
-		
-		
+		$this->assign('staff_base_info',$staff_base_info);
 		$this->assign('department_list',$department_list);
+		$this->assign('id',$id);
+		$this->assign('act',$act);
 		$this->assign('ACTION_NAME','编辑员工信息');
-		$this->display('staff_edit');
+		
+		if ($act == 'add') {
+			$this->display('staff_add');
+		} elseif ($act == 'update') {
+			$this->display('staff_edit');
+		}
+		
 	}
 	
     
 	/**
-	 * 获取部门信息
+	 * 获取部门信息-AJAX
 	 */
 	public function ajax_get_occupation () {
 		if ($this->isPost()) {
@@ -72,8 +81,6 @@ class StaffAction extends AdminBaseAction {
 	
 	/* 一、员工基本信息查看 */
 	public function staff_base_look () {
-		
-		
 		parent::callback(C('STATUS_RBAC'),'获取成功');
 	}
 	/* 员工基本信息编辑 */
@@ -81,13 +88,32 @@ class StaffAction extends AdminBaseAction {
 		$StaffBase = D('StaffBase');			//员工模型表
 		$act = $this->_get('act');				//动作
 		$id = $this->_get('id');					//员工id
-
-		if ($this->isPost()) {
-			$StaffBase->create();
-			$StaffBase->serial = array('exp','id+1000');	
-			$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功') : $this->error('修改失败');
-			exit;
+		
+		if ($act == 'add') {
+			if ($this->isPost()) {
+				$StaffBase->create();
+				$id = $StaffBase->add();
+				if ($id) {
+					$serial = $id + 1000;
+					$StaffBase->serial = $serial;
+					$StaffBase->where(array('id'=>$id))->save();
+					$this->success('添加成功');
+				} else {
+					$this->error('添加失败，请重新尝试');
+				}
+				exit;
+			}
+			
+		} elseif (act == 'update') {
+			if ($this->isPost()) {
+				$StaffBase->create();
+				$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功') : $this->error('修改失败');
+				exit;
+			}
+			
 		}
+		
+		
 
 	}
  	

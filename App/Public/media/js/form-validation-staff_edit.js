@@ -5,13 +5,15 @@ var FormValidation = function () {
         //main function to initiate the module
         init: function () {
 
+        	
+        	$.ajaxSetup({
+    			async: false,//async:false 同步请求  true为异步请求
+            });
         	  /**
              * 权限验证
              */
             (function () {
-            	$.ajaxSetup({
-        			async: false,//async:false 同步请求  true为异步请求
-                });
+            	
                 /* AJAX请求 */
                 var ajax_post = function ($url,$parameter) {
                 	var result = 0;
