@@ -41,7 +41,7 @@ var UINestable = function () {
             	
             	
             } else {
-              //  output.val('暂不支持！.');	//JSON浏览器支持需要这个演示
+                output.val('暂不支持！.');	//JSON浏览器支持需要这个演示
             }
     }
 
