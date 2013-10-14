@@ -110,7 +110,6 @@ class RbacAction extends AdminBaseAction {
 		if (!empty($node_ids)) $map['id'] = array('not in',$node_ids);	//当组中一个权限都没有时，容错处理
 		$allot_list  = $Node->where($map)->order('pid ASC,level ASC')->select();			//还未分配的节点
 
-		
 		$this->assign('group_id',$group_id);
 		$this->assign('group_list',$group_list);
 		$this->assign('group_auto',$group_auto);
@@ -133,11 +132,8 @@ class RbacAction extends AdminBaseAction {
 			if (empty($group_id)) parent::callback(C('STATUS_OTHER'),'请求组为空');
 
 			/* 请求的节点数据处理 */
-<<<<<<< HEAD
-			
-=======
 			$data = stripslashes($data);					//还原转义后的字符
->>>>>>> 74896b9f2e5d92d8b723949f750c8a5297a75103
+
 			$data_tmp = json_decode($data);		//转化为数组格式
 	
 			$auto_node = array();		//保存请求的节点ID

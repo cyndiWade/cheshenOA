@@ -34,19 +34,13 @@ var UINestable = function () {
             		data : json,
             		group_id : group_id
             	},function(obj){
-            		alert(obj);
             		if (obj.status != 0) {
             			alert(obj.msg);
             		}
-            	},'text');
-            	
+            	},'json');            	
             	
             } else {
-<<<<<<< HEAD
                 output.val('暂不支持！.');	//JSON浏览器支持需要这个演示
-=======
-               output.val('暂不支持！.');	//JSON浏览器支持需要这个演示
->>>>>>> 74896b9f2e5d92d8b723949f750c8a5297a75103
             }
     }
 
