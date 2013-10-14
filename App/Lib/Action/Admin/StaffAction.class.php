@@ -19,26 +19,51 @@ class StaffAction extends AdminBaseAction {
 	/* 员工列表 */
 	public function index () {
 		
-		$Staff = D('Staff');	//员工模型表
-		$staff_list = $Staff->seek_data_list();
-	
-		
+		$StaffBase = D('StaffBase');	//员工模型表
+		$staff_list = $StaffBase->seek_data_list();
+
 		$this->assign('staff_list',$staff_list);
 		$this->assign('ACTION_NAME','员工管理');
 		$this->display();
 	}
      
+	
 	/**
 	 * 编辑员工信息页面
 	 */
 	public function staff_edit() {
+		$id = $this->_get('id');
+		if (empty($id)) $this->error('非法操作');
 		
+		$Department = D('Department');		//部门模型表
+		
+		//部门数据
+		$department_list = $Department->seek_child_data(0);
+
+		
+		$this->assign('id',$id);
+		
+		
+		$this->assign('department_list',$department_list);
 		$this->assign('ACTION_NAME','编辑员工信息');
-		$this->display();
+		$this->display('staff_edit');
 	}
 	
     
-	
+	/**
+	 * 获取部门信息
+	 */
+	public function ajax_get_occupation () {
+		if ($this->isPost()) {
+			$department_id = $this->_post('department_id');
+			$Occupation = D('Occupation');		//职位模型表
+			$occupation_list = $Occupation->seek_child_data($department_id);
+			empty($occupation_list) ? parent::callback(C('STATUS_NOT_DATA'),'此部门没有添加相应职位') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$occupation_list);
+		} else {
+			parent::callback(C('STATUS_OTHER'),'非法访问');
+		}
+		 
+	}
 	
 	
 	/**
@@ -53,7 +78,17 @@ class StaffAction extends AdminBaseAction {
 	}
 	/* 员工基本信息编辑 */
 	public function staff_base_edit () {
-		parent::callback(C('STATUS_RBAC'),'获取成功');
+		$StaffBase = D('StaffBase');			//员工模型表
+		$act = $this->_get('act');				//动作
+		$id = $this->_get('id');					//员工id
+
+		if ($this->isPost()) {
+			$StaffBase->create();
+			$StaffBase->serial = array('exp','id+1000');	
+			$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功') : $this->error('修改失败');
+			exit;
+		}
+
 	}
  	
 	
