@@ -43,11 +43,10 @@ var FormSamples = function () {
             });
             
             
-            //表单验证
+            //表单验证第一个
             var form1 = $('#wade-validate-from1');
             var error1 = $('.alert-error', form1);
             var success1 = $('.alert-success', form1);
-
             form1.validate({
                 errorElement: 'span', //default input error message container
                 errorClass: 'help-inline', // default input error message class
@@ -96,7 +95,7 @@ var FormSamples = function () {
             });
             
             
-            //表单验证
+            //表单验证第二个
             var form2 = $('#wade-validate-from2');
             var error2 = $('.alert-error', form2);
             var success2 = $('.alert-success', form2);

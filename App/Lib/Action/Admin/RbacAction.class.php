@@ -131,9 +131,13 @@ class RbacAction extends AdminBaseAction {
 			
 			if (empty($data)) parent::callback(C('STATUS_OTHER'),'请求的节点为空');
 			if (empty($group_id)) parent::callback(C('STATUS_OTHER'),'请求组为空');
-				
+
 			/* 请求的节点数据处理 */
+<<<<<<< HEAD
 			
+=======
+			$data = stripslashes($data);					//还原转义后的字符
+>>>>>>> 74896b9f2e5d92d8b723949f750c8a5297a75103
 			$data_tmp = json_decode($data);		//转化为数组格式
 	
 			$auto_node = array();		//保存请求的节点ID
