@@ -79,14 +79,20 @@ class PersonnelAction extends AdminBaseAction {
     	$department_id = $this->_get('department_id');	//部门id
     	$Department = D('Department');		//部门模型表
     	$Occupation = D('Occupation');		//职位模型表
+    	$StaffBase = D('StaffBase');				//人员基本信息表
 		
     	//当前部门
     	$Department_info = $Department->seek_one_data(array('status'=>0,'id'=>$department_id));
     	if (empty($Department_info)) $this->error('此部门不存在！');
-   
+  
     	//当前部门下职位数据列表
     	$occupation_list = $Occupation->seek_child_data($department_id);
+		//查看职位下的人数
+		foreach ($occupation_list AS $key=>$val) {
+			$occupation_list[$key]['num'] = $StaffBase->where(array('occupation_id'=>$val['id'],'status'=>0))->count();
+		}
 
+    	
     	$this->assign('Department_info',$Department_info);
     	$this->assign('occupation_list',$occupation_list);
     	$this->assign('ACTION_NAME','职位管理');
