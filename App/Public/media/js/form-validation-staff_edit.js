@@ -9,6 +9,7 @@ var FormValidation = function () {
         	$.ajaxSetup({
     			async: false,//async:false 同步请求  true为异步请求
             });
+        	
         	  /**
              * 权限验证
              */
@@ -52,6 +53,7 @@ var FormValidation = function () {
             	var occupation = $('#occupation');
             	var url = '?s=/Admin/Staff/ajax_get_occupation/';		//请求URL
             	
+            	
             	department.change(function () {     	
             		occupation.empty();	//清空多余节点
             		$.post(url,{
@@ -63,7 +65,7 @@ var FormValidation = function () {
             					occupation.append("<option value="+obj.data[i].id+">"+obj.data[i].name+"</option>");
             				});
             			} else {
-            				alert(obj.msg);
+            				//alert(obj.msg);
             			}
                 	},'json');
             	});
@@ -83,24 +85,33 @@ var FormValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
+                	jobs: {
+                    	required: true,
+                        minlength: 2,
+                        maxlength:20
+                    },
                     name: {
                     	required: true,
                         minlength: 2,
-                        maxlength:5   
+                        maxlength:50   
+                    },
+                    name_en: {
+                    	required: true,
+                        minlength: 2,
+                        maxlength:50   
                     },
                     identity: {
-                        minlength: 2,
-                        required: true
+                    	required: true,
+                    	minlength:15, 
+                    	maxlength:18
+                    },
+                    birthday: {
+                    	dateISO:true
+                    },
+                    email: {
+                    	email:true 
                     },
                     
-                    principal: {
-                        minlength: 2,
-                        required: true
-                    },
-                    remarks: {
-                    	minlength: 2,
-                        required: true
-                    },
                 },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit              
@@ -134,6 +145,33 @@ var FormValidation = function () {
                     form.submit();		//提交表单
                 }
             });
+            
+            /**
+             * 身份证件号码提取生日
+             */
+            (function () {
+            	var ipt_identity = $('input[name=identity]');			//证件号码
+            	var ipt_birthday = $('input[name=birthday]');		//生日
+            	ipt_identity.blur(function () {
+            		var str_lenght = this.value.length;
+            		
+            		if (str_lenght == 18) {
+            			var year = this.value.substr(6,4);
+            			var month = this.value.substr(10,2);
+            			var day = this.value.substr(12,2);
+            			var birthday = year+'-'+month+'-'+day;
+            			ipt_birthday.val(birthday);
+            		} else if (str_lenght == 15) {
+            			var year = this.value.substr(6,2);
+            			var month = this.value.substr(8,2);
+            			var day = this.value.substr(10,2);
+            			var birthday = '19' + year+'-'+month+'-'+day;
+            			ipt_birthday.val(birthday);
+            		} 
+            	});
+            })();
+            
+            
 
             //Sample 2
             $('#form_2_select2').select2({

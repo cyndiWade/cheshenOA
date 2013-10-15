@@ -80,9 +80,11 @@ class PersonnelAction extends AdminBaseAction {
     	$Department = D('Department');		//部门模型表
     	$Occupation = D('Occupation');		//职位模型表
 		
+    	//当前部门
     	$Department_info = $Department->seek_one_data(array('status'=>0,'id'=>$department_id));
     	if (empty($Department_info)) $this->error('此部门不存在！');
    
+    	//当前部门下职位数据列表
     	$occupation_list = $Occupation->seek_child_data($department_id);
 
     	$this->assign('Department_info',$Department_info);

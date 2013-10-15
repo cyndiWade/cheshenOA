@@ -19,12 +19,22 @@ class StaffBaseModel extends AdminBaseModel {
 		return $data;
 	}
 	
+	//获取详细数据
+	public function seek_detail_data () {
+		$PREFIX = C('DB_PREFIX');
+
+	}
+	
+	
+	
 	
 	//插入数据
 	public function add_one_data () {
 		$this->create_time = time();
 		return $this->add();
 	}
+	
+	
 }
 
 ?>
