@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">	<include file="Public:header" />	
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">			<!-- 左侧导航 -->		<include file="Public:sidebar" />				<!-- BEGIN PAGE -->  
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">	
+						<h3 class="page-title">
+							{$MODULE_NAME}
+							 <small>{$ACTION_NAME}</small>
+						</h3>
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="tabbable tabbable-custom boxless">
+							<ul class="nav nav-tabs" id="wade_tab">								<!-- class="active" -->
+								<li data-action="staff_base_look" class="active"><a href="#tab_1" data-toggle="tab">基本信息</a></li>							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab_1">																		<div class="portlet box blue">													<div class="portlet-title"> 初始信息														<div class="caption"><i class="icon-reorder"></i></div>														<div class="tools">															<a class="collapse" href="javascript:;"></a>															<a class="reload" href="javascript:;"></a>																		</div>													</div>													<div class="portlet-body form">														<!-- BEGIN FORM-->														<form class="form-horizontal" method="post" action="?s=/Admin/Staff/staff_base_edit/act/{$act}/id/{$id}" id="form_sample_1"  novalidate="novalidate">			                     												<div class="alert alert-error hide">																<button data-dismiss="alert" class="close"></button>																请在文本框输入相应内容.															</div>															<div class="alert alert-success hide">																<button data-dismiss="alert" class="close"></button>																验证成功															</div>																	<div class="control-group">																<label class="control-label">应聘岗位<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="jobs"  value="{$staff_base_info.jobs}" >																</div>															</div>																								<div class="control-group">																<label class="control-label">姓名<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="name"  value="{$staff_base_info.name}" >																</div>															</div>																								<div class="control-group">																<label class="control-label">英文姓名<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="name_en"  value="{$staff_base_info.name_en}" >																</div>															</div>																								<div class="control-group">																<label class="control-label">所属部门</label>																<div class="controls">																	<select name="department_id" id="department" class="small m-wrap" tabindex="1">															<option value="-1">--请选择部门--</option>															<volist name="department_list" id="vo">																												<option value="{$vo.id}">{$vo.name}</option>															</volist>														</select>																</div>															</div>																								<div class="control-group">																<label class="control-label">所属职位</label>																<div class="controls">																	<select name="occupation_id" id="occupation" class="small m-wrap" tabindex="1">															<option value="-1">--请选择职位--</option>														</select>																</div>															</div>																					<div class="control-group">																																							<label class="control-label">性别</label>																<div class="controls">																	<label class="radio">																	<div class="radio"><span><input type="radio" name="sex" value="男" checked=checked ></span></div>																	男																	</label>																	<label class="radio">																	<div class="radio"><span class="checked"><input type="radio" name="sex" value="女" ></span></div>																女														</label>  																</div>															</div>																										<div class="form-actions">																										<button class="btn purple" type="submit">编辑</button>																<a href="?s=/Admin/Staff/index"><button class="btn" type="button">返回</button></a>															</div>														</form>														<!-- END FORM-->													</div>												</div>										</div>																</div>
+						</div>
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- END CONTAINER -->	<!-- 页脚 -->	<include file="Public:foot" />	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->	<!-- 核心插件 -->	<include file="Public:bottom" />	
+	<!-- BEGIN PAGE LEVEL PLUGINS -->	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/additional-methods.min.js"></script>		<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/chosen.jquery.min.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>		<script src="{$Think.const.APP_PATH}Public/media/js/form-validation-staff_edit.js"></script>																								
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {    
+		   // initiate layout and plugins
+		   App.init();
+		 //  FormSamples.init();			FormValidation.init();
+		});
+	</script>
+
+<!-- END BODY -->
+</html>
