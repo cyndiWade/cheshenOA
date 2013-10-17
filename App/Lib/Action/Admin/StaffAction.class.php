@@ -34,11 +34,11 @@ class StaffAction extends AdminBaseAction {
 	 * 编辑员工信息页面
 	 */
 	public function staff_edit() {
-		$id = $this->_get('id');	
-		$act = $this->_get('act');
-		$Department = D('Department');		//部门模型表
-		$Occupation = D('Occupation');		//职位模型表
-		$StaffBase = D('StaffBase');			//员工模型表
+		$id = $this->_get('id');								//员工基本信息表id
+		$act = $this->_get('act');							//当前动作
+		$Department = D('Department');				//部门模型表
+		$Occupation = D('Occupation');				//职位模型表
+		$StaffBase = D('StaffBase');						//员工模型表
 		$StaffEducation = D('StaffEducation');		//员工教育经历表
 		$StaffWork = D('StaffWork');					//员工工作经历表
 		$StaffFamily = D('StaffFamily');				//员工家庭成员表
@@ -85,9 +85,9 @@ class StaffAction extends AdminBaseAction {
 		$this->assign('staff_alteration_list',$staff_alteration_list);
 		
 		if ($act == 'add') {
-			$this->display('staff_add');
-		} elseif ($act == 'update') {
-			$this->display('staff_edit');
+			$this->display('staff_add');		//添加的模板
+		} elseif ($act == 'update') {	
+			$this->display('staff_edit');		//完善信息的模板
 		}
 		
 	}
@@ -245,7 +245,7 @@ class StaffAction extends AdminBaseAction {
 		$act = $this->_get('act');							//动作
 		$base_id = $this->_get('base_id');			//员工id
 		$id = $this->_get('id');								//工作经历id
-		$StaffFamily = D('StaffFamily');					//员工工作经历表
+		$StaffFamily = D('StaffFamily');				//员工家庭状态表
 	
 		switch ($act) {
 			case 'add' :
@@ -288,7 +288,7 @@ class StaffAction extends AdminBaseAction {
 		$act = $this->_get('act');							//动作
 		$base_id = $this->_get('base_id');			//员工id
 		$id = $this->_get('id');								//工作经历id
-		$StaffContract = D('StaffContract');					//员工工作经历表
+		$StaffContract = D('StaffContract');			//员工合同表
 		
 		switch ($act) {
 			case 'add' :
@@ -332,7 +332,7 @@ class StaffAction extends AdminBaseAction {
 		$act = $this->_get('act');							//动作
 		$base_id = $this->_get('base_id');			//员工id
 		$id = $this->_get('id');								//工作经历id
-		$StaffSalary = D('StaffSalary');				//薪资表
+		$StaffSalary = D('StaffSalary');					//薪资表
 		
 		switch ($act) {
 			case 'add' :
@@ -376,7 +376,7 @@ class StaffAction extends AdminBaseAction {
 		$act = $this->_get('act');							//动作
 		$base_id = $this->_get('base_id');			//员工id
 		$id = $this->_get('id');								//工作经历id
-		$StaffAlteration = D('StaffAlteration');				//薪资表
+		$StaffAlteration = D('StaffAlteration');		// 异动事件表
 		
 		switch ($act) {
 			case 'add' :

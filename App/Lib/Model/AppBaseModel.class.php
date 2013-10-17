@@ -12,6 +12,26 @@ class AppBaseModel extends Model {
 		return $this->where($condition)->data(array('status'=>-2))->save();
 	}
 	
+	//获取所有数据 
+	public function get_all_data () {
+		return $this->select();
+	}
+	
+	//获取指定数据
+	public function get_spe_data ($condition) {
+		return $this->where($condition)->select();
+	}
+	
+	//获取一条数据
+	public function get_one_data ($condition) {
+		return $this->where($condition)->find();
+	}
+	
+	//修改一条数据
+	public function save_one_data ($condition) {
+		return $this->where($condition)->save();
+	}
+	
 	
 	/**
 	 * 格式化日期

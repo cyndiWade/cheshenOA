@@ -20,7 +20,7 @@ class PersonnelAction extends AdminBaseAction {
 	 * 部门管理-数据列表
 	 */
 	public function department(){		
-		$pid = 0;							//父id
+		$pid = 0;												//父id
 		$Department = D('Department');		//部门模型表
 		
 		//部门数据
