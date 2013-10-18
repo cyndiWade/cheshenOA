@@ -109,7 +109,6 @@ $system  = array(
 		'ACCOUNT_TYPE' => array (
 				'ADMIN' => 0,			//管理员
 				'USER' => 1,			//普通用户
-				'Director' => 2,		//经理
 		),
 		
 		//短信平台账号

@@ -20,12 +20,26 @@ class PersonnelAction extends AdminBaseAction {
 	 * 部门管理-数据列表
 	 */
 	public function department(){		
-		$pid = 0;												//父id
-		$Department = D('Department');		//部门模型表
 		
+		$Department = D('Department');		//部门模型表
+		$Company = D('Company');				//区域模型表
+		$get_company_id =  $this->_get('company_id');	//区域id
+		
+		$map['status'] = 0;		//数据存在时
+		if ($get_company_id == '') {	//为空时
+			$map['company_id'] = $this->oUser->company_id;
+		} else {									//通过区域连接过来的
+			$map['company_id'] = $get_company_id;
+		}
+
+		//获取部门所在区域数据
+		$company_info = $Company->get_one_data(array('id'=>$map['company_id']),'name');
+
 		//部门数据
-		$department_list = $Department->seek_child_data($pid);
-	
+		$department_list = $Department->seek_child_data($map);
+
+		$this->assign('company_name',$company_info['name']);
+		$this->assign('company_id',$map['company_id']);
 		$this->assign('department_list',$department_list);
 		$this->assign('ACTION_NAME','部门管理');
 		$this->display();
@@ -36,9 +50,11 @@ class PersonnelAction extends AdminBaseAction {
      *	部门管理-部门编辑
      */
     public function department_edit () {
-    	$id = $this->_get('id');			//id
-    	$act = $this->_get('act');			//动作
-    	$Department = D('Department');		//部门模型表
+    	$act = $this->_get('act');									//动作
+    	$id = $this->_get('id');										//id
+    	$company_id = $this->_get('company_id');		//区域ID
+    	$Department = D('Department');						//部门模型表
+    	
     	switch ($act) {
     		case 'update' :
     			if ($this->isPost()) {
@@ -53,7 +69,8 @@ class PersonnelAction extends AdminBaseAction {
     		case 'add' :
     			 if ($this->isPost()) {
     			 	$Department->create();
-    			 	$Department->add_one_data() ? $this->success('添加成功！','?s=/Admin/Personnel/department') : $this->error('添加失败，请重新尝试！');
+    			 	$Department->company_id = $company_id;
+    			 	$Department->add_one_data() ? $this->success('添加成功！','?s=/Admin/Personnel/department/company_id/'.$company_id) : $this->error('添加失败，请重新尝试！');
 					exit;
     			 }
     			break;
@@ -65,6 +82,7 @@ class PersonnelAction extends AdminBaseAction {
     			$this->error('非法操作');					
     	}	
     	
+    	$this->assign('company_id',$company_id);
     	$this->assign('ACTION_NAME','编辑部门');
     	$this->display();
  

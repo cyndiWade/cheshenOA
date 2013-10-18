@@ -18,6 +18,9 @@ class AdminBaseAction extends AppBaseAction {
 		
 		//初始化
 		$this->_init();
+		
+		//全局模板变量
+		$this->global_tpl_view();
 	}
 	
 	
@@ -26,6 +29,7 @@ class AdminBaseAction extends AppBaseAction {
 		
 		/* SESSION信息验证 */
 		$this->oUser = $_SESSION['user_info'];			//保存用户信息
+		
 		if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {
 			
 			$this->error('请先登录','?s=/Admin/Login/login');
@@ -45,6 +49,14 @@ class AdminBaseAction extends AppBaseAction {
 		}
 
 
+	}
+	
+	
+	/**
+	 * 全局模板变量
+	 */
+	private function global_tpl_view () {
+		$this->assign('nickname',$this->oUser->nickname);
 	}
 	
 

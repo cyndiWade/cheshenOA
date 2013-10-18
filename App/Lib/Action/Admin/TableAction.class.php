@@ -7,12 +7,6 @@
 class TableAction extends AdminBaseAction {
     
 	
-	//需要验证的模块
-	protected $aVerify = array(
-		
-	);
-	
-	
 	public function index() {
 	
 	}

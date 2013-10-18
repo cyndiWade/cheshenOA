@@ -10,7 +10,7 @@ class CompanyModel extends AdminBaseModel {
 		return $this->where(array('id'=>$id,'status'=>0))->find();
 	}
 	
-	
+	//区域数据列表
 	public function company_region_view () {
 		$DB_PREFIX  = C('DB_PREFIX');
 		$data = $this->field('c.*,r.region_name')
@@ -20,6 +20,9 @@ class CompanyModel extends AdminBaseModel {
 		->select();
 		return $data;
 	}
+	
+	
+	
 }
 
 ?>

@@ -5,10 +5,6 @@
  */
 class RbacAction extends AdminBaseAction {
    
-	protected $aVerify = array(
-		
-	);
-	
 	/**
 	 * 节点管理
 	 */

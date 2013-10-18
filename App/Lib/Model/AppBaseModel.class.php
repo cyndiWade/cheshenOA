@@ -13,18 +13,18 @@ class AppBaseModel extends Model {
 	}
 	
 	//获取所有数据 
-	public function get_all_data () {
-		return $this->select();
+	public function get_all_data ($field = '*') {
+		return $this->field($field)->select();
 	}
 	
 	//获取指定数据
-	public function get_spe_data ($condition) {
-		return $this->where($condition)->select();
+	public function get_spe_data ($condition,$field = '*') {
+		return $this->field($field)->where($condition)->select();
 	}
 	
 	//获取一条数据
-	public function get_one_data ($condition) {
-		return $this->where($condition)->find();
+	public function get_one_data ($condition,$field = '*') {
+		return $this->field($field)->where($condition)->find();
 	}
 	
 	//修改一条数据

@@ -49,26 +49,42 @@ var FormValidation = function () {
              * 联动菜单
              */
             (function () {
-            	var department = $('#department');
-            	var occupation = $('#occupation');
-            	var url = '?s=/Admin/Staff/ajax_get_occupation/';		//请求URL
+            	var company = $('#company');		//区域
+            	var department = $('#department');	//部门
+            	var occupation = $('#occupation');	//职位
+            	var url = '?s=/Admin/Staff/ajax_get_info/';		//请求URL
             	
-            	
-            	department.change(function () {     	
-            		occupation.empty();	//清空多余节点
+            	/**
+            	 * 根据不同的请求获取相应的表数据
+            	 */
+            	var change_fn = function ($obj,$this) {     
+            		var _this = $this;
             		$.post(url,{
-            			'department_id' : this.value
+            			'table' : _this.data('table'),
+            			'id' : _this.val()
             		},function(obj){
-            			occupation.append("<option value=-1>--请选择职位--</option>");
+            			$obj.append("<option value=''>--请选择--</option>");
             			if (obj.status == 0) {
             				$.each(obj.data,function (i) {
-            					occupation.append("<option value="+obj.data[i].id+">"+obj.data[i].name+"</option>");
+            					$obj.append("<option value="+obj.data[i].id+">"+obj.data[i].name+"</option>");
             				});
             			} else {
-            				//alert(obj.msg);
+            				alert(obj.msg);
             			}
                 	},'json');
+            	}
+            	
+            	
+            	company.change(function () {
+            		department.empty();	//清空多余节点
+            		change_fn(department,$(this));
             	});
+            	
+            	department.change(function () {
+            		occupation.empty();	//清空多余节点
+            		change_fn(occupation,$(this));
+            	});
+            	
             })();
             
         	

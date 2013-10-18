@@ -19,11 +19,13 @@ class LoginAction extends AdminBaseAction {
     public function check_login() {
     	
     	if ($this->isPost()) {
-    		$Users = D('Users');									//用户表模型
+    		$Users = D('Users');									//系统用户表模型
+    		$StaffBase = D('StaffBase');						//员工基本信息模型表
+    		
     		import("@.Tool.Validate");							//验证类
     			
     		$account = $_POST['account'];					//用户账号
-    		$password = $_POST['password'];	//用户密码
+    		$password = $_POST['password'];				//用户密码
     			
     		//数据过滤
     		if (Validate::checkNull($account)) $this->error('账号不得为空');
@@ -37,23 +39,34 @@ class LoginAction extends AdminBaseAction {
     		if (empty($user_info)) {
     			$this->error('此用户不存在！');
     		} else {
+    			//验证密码
     			if (md5($password) != $user_info['password']) {
     				$this->error('密码错误！');
     			} else {
+		
+    				//查找对应的员工信息
+    				$user_base = $StaffBase->seek_detail_data($user_info['base_id'],'serial,jobs,name,name_en,company_id,department_id,occupation_id');	
+					if (empty($user_base)) $this->error('对不起，找不到此员工信息，请联系人事部是否已删除此用户');
+    					
     				$tmp_arr = array(
     						'id' =>$user_info['id'],
     						'account' => $user_info['account'],
-    						'nickname' => $user_info['nickname'],
     						'type'=>$user_info['type'],
+    						
+    						//员工属性
+    						'nickname' => $user_base['name'],							//用户名称
+    						'serial' => $user_base['serial'],									//员工编号
+    						'jobs' => $user_base['jobs'],										//职位
+    						'company_id' => $user_base['company_id'],			//区域ID
+    						'department_id' => $user_base['department_id'],	//部门ID
+    						'occupation_id' => $user_base['occupation_id'],	//职位ID
     				);
-    				
-   				
-    				$_SESSION['user_info'] = (object) $tmp_arr;		//保存用户信息
-    
-    				//更新用户信息
-    				$Users->up_login_info($user_info['id']);
-    				$this->redirect('/Admin/Index/index');
     			}
+    				
+    			$_SESSION['user_info'] = (object) $tmp_arr;		//写入session
+    			//更新用户信息
+    			$Users->up_login_info($user_info['id']);
+    			$this->redirect('/Admin/Index/index');
     		}
     	} else {
     		$this->redirect('/Admin/Login/login');

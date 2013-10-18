@@ -20,9 +20,8 @@ class StaffBaseModel extends AdminBaseModel {
 	}
 	
 	//获取详细数据
-	public function seek_detail_data () {
-		$PREFIX = C('DB_PREFIX');
-
+	public function seek_detail_data ($id,$field) {
+		return $this->field($field)->where(array('id'=>$id))->find();
 	}
 	
 	

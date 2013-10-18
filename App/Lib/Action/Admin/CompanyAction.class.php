@@ -16,11 +16,9 @@ class CompanyAction extends AdminBaseAction {
 	
 	public function index() {
 		$Company = D('Company');		//公司区域表
+		
 		$company_list = $Company->company_region_view();
 
-		//dump($company_list);
-	//	exit;
-		
 		$this->assign('ACTION_NAME','区域管理');
 		$this->assign('company_list',$company_list);
 		$this->display();

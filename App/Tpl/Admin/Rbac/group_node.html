@@ -50,7 +50,7 @@
 					<div class="span6">
 						<div class="portlet box blue">
 							<div class="portlet-title">
-								<div class="caption"><i class="icon-comments"></i>已有权限</div>
+								<div class="caption"><i class="icon-comments"></i>组已有节点</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse"></a>
 									<a href="javascript:;" class="reload"></a>
@@ -58,10 +58,10 @@
 							</div>							
 							<div class="portlet-body ">
 								<div class="dd" id="nestable_list_1">									
-									<ol class="dd-list">																				<if condition="$group_auto">											<volist name="group_auto" id="vo">
+									<ol class="dd-list">																				<if condition="$group_auto">											<volist name="group_auto" id="vo">												
 											<li class="dd-item" data-id="{$vo.id}">
 												<div class="dd-handle">{$vo.title}：[节点id：{$vo.id}]--[父ID：{$vo.pid}]</div>
-											</li>													</volist>										<else />											<li class="dd-item" data-id="">												<div class="dd-handle">已有组权限</div>											</li>												</if>										
+											</li>																								</volist>										<else />											<li class="dd-item" data-id="">												<div class="dd-handle">已有组权限</div>											</li>												</if>										
 									</ol>
 								</div>
 							</div>
@@ -70,7 +70,7 @@
 					<div class="span6">
 						<div class="portlet box green">
 							<div class="portlet-title">
-								<div class="caption"><i class="icon-comments"></i>节点</div>
+								<div class="caption"><i class="icon-comments"></i>待分配节点</div>
 								<div class="tools">
 									<a href="javascript:;" class="collapse"></a>
 									<a href="javascript:;" class="reload"></a>

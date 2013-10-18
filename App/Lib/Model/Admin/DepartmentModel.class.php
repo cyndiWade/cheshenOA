@@ -8,8 +8,8 @@ class DepartmentModel extends AdminBaseModel {
 	
 	
 	//获取部门数据
-	public function seek_child_data ($pid) {
-		$data = $this->where(array('status'=>0,'pid'=>$pid))->select();
+	public function seek_child_data ($where) {
+		$data = $this->where($where)->select();
 		parent::set_all_time($data, array('create_time'));
 		parent::set_str_len($data, array('remarks'), 10);
 		return $data;

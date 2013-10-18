@@ -36,6 +36,7 @@ class StaffAction extends AdminBaseAction {
 	public function staff_edit() {
 		$id = $this->_get('id');								//员工基本信息表id
 		$act = $this->_get('act');							//当前动作
+		$Company= D('Company');						//公司区域模型表
 		$Department = D('Department');				//部门模型表
 		$Occupation = D('Occupation');				//职位模型表
 		$StaffBase = D('StaffBase');						//员工模型表
@@ -46,11 +47,12 @@ class StaffAction extends AdminBaseAction {
 		$StaffSalary = D('StaffSalary');					//员工薪资数据
 		$StaffAlteration = D('StaffAlteration');		//异动事件表
 		
-		//部门数据
-		$department_list = $Department->seek_child_data(0);
-
+		//区域列表
+		$company_list =  $Company->get_spe_data(array('status'=>0),'id,name');
+		
 		//员工基本数据
 		$staff_base_info = $StaffBase->where(array('id'=>$id))->find();
+		$staff_base_info['company_name'] = $Company->where(array('id'=>$staff_base_info['company_id']))->getField('name');
 		$staff_base_info['department_name'] = $Department->where(array('id'=>$staff_base_info['department_id']))->getField('name');
 		$staff_base_info['occupation_name'] = $Occupation->where(array('id'=>$staff_base_info['occupation_id']))->getField('name');
 
@@ -76,7 +78,7 @@ class StaffAction extends AdminBaseAction {
 		$this->assign('act',$act);
 		$this->assign('ACTION_NAME','编辑员工信息');
 		$this->assign('staff_base_info',$staff_base_info);
-		$this->assign('department_list',$department_list);
+		$this->assign('company_list',$company_list);
 		$this->assign('staff_education_list',$staff_education_list);
 		$this->assign('staff_work_list',$staff_work_list);
 		$this->assign('staff_family_list',$staff_family_list);
@@ -96,12 +98,23 @@ class StaffAction extends AdminBaseAction {
 	/**
 	 * 获取部门信息-AJAX
 	 */
-	public function ajax_get_occupation () {
+	public function ajax_get_info () {
+
 		if ($this->isPost()) {
-			$department_id = $this->_post('department_id');
-			$Occupation = D('Occupation');		//职位模型表
-			$occupation_list = $Occupation->seek_child_data($department_id);
-			empty($occupation_list) ? parent::callback(C('STATUS_NOT_DATA'),'此部门没有添加相应职位') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$occupation_list);
+			$fiels = array(
+				'Department' => 'company_id',
+				'Occupation' => 'department_id',	
+			);
+			
+			/* 初始化请求参数 */
+
+			$table = $this->_post('table');				//请求的数据表名
+			$id = $this->_post('id');							//请求的id
+			$DB = D($table);									//实例请求的模型表
+			
+			//获取数据
+			$data_list = $DB->get_spe_data(array($fiels[$table]=>$id),'id,name');
+			empty($data_list) ? parent::callback(C('STATUS_NOT_DATA'),'无数据') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$data_list);
 		} else {
 			parent::callback(C('STATUS_OTHER'),'非法访问');
 		}
@@ -141,12 +154,16 @@ class StaffAction extends AdminBaseAction {
 		} elseif ($act == 'update') {
 			if ($this->isPost()) {
 				$StaffBase->create();
-				if ($_POST['department_id_one'] != -1) {
-					$StaffBase->department_id = $_POST['department_id_one'];
-				} 
-				if ($_POST['occupation_id_two'] != -1) {
-					$StaffBase->occupation_id = $_POST['occupation_id_two'];
-				}
+				
+				/* 区域数据处理，不选择，则不修改 */
+				$company_id_tmp = $this->_post('company_id_tmp');
+				$department_id_tmp = $this->_post('department_id_tmp');
+				$occupation_id_tmp = $this->_post('occupation_id_tmp');
+ 				if (!empty($company_id_tmp)) $StaffBase->company_id = $company_id_tmp;
+				if (!empty($department_id_tmp)) $StaffBase->department_id = $department_id_tmp;
+				if (!empty($occupation_id_tmp)) $StaffBase->occupation_id = $occupation_id_tmp;
+				
+				/* 修改数据 */
 				$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功') : $this->error('没有数据被修改');
 				exit;  
 			}
