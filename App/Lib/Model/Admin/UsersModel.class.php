@@ -3,8 +3,6 @@
 //用户数据模型
 class UsersModel extends AdminBaseModel {
 	
-	private $user_type;
-	
 	//添加账号
 	public function add_account($type) {
 		//写入数据库
@@ -43,6 +41,14 @@ class UsersModel extends AdminBaseModel {
 	}
 	
 	
+	public function seek_all_data () {
+		$data = $this->field('u.id,u.base_id,u.account,u.last_login_time,u.last_login_ip,u.type,u.status,s.serial,s.name')
+		->table($this->prefix.'users AS u')
+		->join($this->prefix.'staff_base AS s ON u.base_id = s.id')
+		->select();
+		parent::set_all_time($data, array('last_login_time'));
+		return $data;
+	}
 
 	
 	

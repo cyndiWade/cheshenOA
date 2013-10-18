@@ -133,17 +133,25 @@ class StaffAction extends AdminBaseAction {
 	/* 员工基本信息编辑 */
 	public function staff_base_edit () {
 		$StaffBase = D('StaffBase');			//员工模型表
+		$Users = D('Users');						//用户表
 		$act = $this->_get('act');				//动作
 		$id = $this->_get('id');					//员工id
 		
 		if ($act == 'add') {
 			if ($this->isPost()) {
 				$StaffBase->create();
-				$id = $StaffBase->add();
-				if ($id) {
-					$serial = $id + 1000;		//生成员工编号
+				$add_id = $StaffBase->add();
+				if ($add_id) {
+					$serial = $add_id + 10000;		//生成员工编号
 					$StaffBase->serial = $serial;
-					$StaffBase->where(array('id'=>$id))->save();
+					$StaffBase->where(array('id'=>$add_id))->save();
+					
+					//生成一条待审核，系统用户数据
+					$Users->base_id = $add_id;
+					$Users->account = $serial;
+					$Users->password = 123456;
+					$Users->status = 1;
+					$Users->add_account(1);
 					$this->success('添加成功');
 				} else {
 					$this->error('添加失败，请重新尝试');

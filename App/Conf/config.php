@@ -110,6 +110,12 @@ $system  = array(
 				'ADMIN' => 0,			//管理员
 				'USER' => 1,			//普通用户
 		),
+		'ACCOUNT_STATUS' => array (
+			-2 => '删除',
+			0 => '正常',
+			1 => '禁用',		
+		),
+		
 		
 		//短信平台账号
 		'SHP' => array(

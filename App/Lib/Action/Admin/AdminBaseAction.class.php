@@ -17,7 +17,7 @@ class AdminBaseAction extends AppBaseAction {
 		parent:: __construct();			//重写父类构造方法
 		
 		//初始化
-		$this->_init();
+		$this->admin_base_init();
 		
 		//全局模板变量
 		$this->global_tpl_view();
@@ -25,7 +25,7 @@ class AdminBaseAction extends AppBaseAction {
 	
 	
 	//初始化用户数据
-	private function _init() {
+	private function admin_base_init() {
 		
 		/* SESSION信息验证 */
 		$this->oUser = $_SESSION['user_info'];			//保存用户信息

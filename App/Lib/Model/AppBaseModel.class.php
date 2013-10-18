@@ -6,6 +6,9 @@
 
 class AppBaseModel extends Model {
 	
+	public function __construct() {
+		parent::__construct();
+	}
 
 	//删除方法
 	public  function del($condition) {
