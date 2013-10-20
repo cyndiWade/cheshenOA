@@ -4,17 +4,7 @@
  *
  */
 class RbacAction extends AdminBaseAction {
-	
-	private $MODULE = '系统管理';
-	
-	/**
-	 * 构造方法
-	 */
-	public function __construct() {
-		parent::__construct();
-		$this->assign('MODULE_NAME',$this->MODULE);
-	}
-	
+   
 	/**
 	 * 节点管理
 	 */
@@ -178,94 +168,6 @@ class RbacAction extends AdminBaseAction {
 		}
 
 	}
-	
-	
-	//第二种，checkbox格式
-	public function group_node_two () {
-		//初始化数据
-		$group_id = $this->_get('group_id');				//组id
-		$module_pid = $this->_get('module_pid');		//模块pid
-		$action_pid = $this->_get('action_pid');			//动作pid
-		
-		$Group = D('Group');								//组表
-		$Node = D('Node');								//节点表
-		$GroupNode = D('GroupNode');			//组与节点关系表
-
-		/* 获取当前组名 */
-		$group_name = $Group->get_one_data(array('id'=>$group_id),'name,title');
-		
-		/* 节点列表-按等级划分 */
-		$node_group = $Node->get_spe_data(array('status'=>0,'level'=>1)); 												//一级节点(分组节点)
-		$node_module = $Node->get_spe_data(array('status'=>0,'level'=>2,'pid'=>$module_pid)); 			//二级节点	(模块节点)
-		$node_action = $Node->get_spe_data(array('status'=>0,'level'=>3,'pid'=>$action_pid)); 				//三级节点	(方法节点)
-
-		/* 当前组下已有的节点数据 */
-		$node_list = $GroupNode->get_spe_data(array('group_id'=>$group_id));		//当前组下所有的节点数据
-		$have_node = getArrayByField($node_list,'node_id');		//获取所有节点ID
-
-		/* 给当前组下已有的节点加上首选 */
-		foreach ($node_group as $key=>$val) {
-			if (in_array($val['id'],$have_node)) {
-				$node_group[$key]['checked'] ='checked="checked"';
-			}
-		}
-		foreach ($node_module as $key=>$val) {
-			if (in_array($val['id'],$have_node)) {
-				$node_module[$key]['checked'] ='checked="checked"';
-			}
-		}
-		foreach ($node_action as $key=>$val) {
-			if (in_array($val['id'],$have_node)) {
-				$node_action[$key]['checked'] ='checked="checked"';
-			}
-		}
-		
-		/* 模板变量 */
-		$this->assign('group_id',$group_id);
-		$this->assign('module_pid',$module_pid);
-		$this->assign('group_name',$group_name);
-		
-		$this->assign('node_group',$node_group);
-		$this->assign('node_module',$node_module);
-		$this->assign('node_action',$node_action);
-		
-		$this->assign('ACTION_NAME','分配权限');
-		$this->display();
-	}
-	
-	/**
-	 * 组与节点关系编辑-第二种编辑
-	 */
-	public function group_node_update () {
-		$group_id = $this->_post('group_id');				//组ID
-		$auto_node = $this->_post('node');					//请求的节点
-		$have_node = $this->_post('have_node');		//已有的节点数据
-			
-		$GroupNode = D('GroupNode');				//组与节点关系表
-	
-		/* 计算需要插入与删除的节点ID */
-		$action = arrar_insert_delete($auto_node,$have_node);
-
-		//插入节点
-		$insert = $action['insert'];
-		if ($insert) {
-			foreach ($insert AS $key=>$val) {
-				$GroupNode->add(array('group_id'=>$group_id,'node_id'=>$val));
-			}
-		}
-			
-		//删除节点
-		$delete = $action['delete'];
-		if ($delete) {
-			foreach ($delete AS $key=>$val) {
-				$GroupNode->where(array('group_id'=>$group_id,'node_id'=>$val))->delete();
-			}
-		}
-		
-		$this->success('已更新');
-	}
-	
-	
 	
 	
 	/**

@@ -97,7 +97,7 @@ function getArrayByField(&$arr,$field, $key = '') {
 function regroupKey(&$arr,$k) {
 	$aRet = array();
 	foreach ($arr AS $key=>$val) {
-		$aRet[$val[$k]][] = $val;	
+		$aRet[$val[$k]] = $val;	
 	}
 	return $aRet;
 }

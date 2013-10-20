@@ -7,7 +7,7 @@
 class NodeModel extends AdminBaseModel {
 	
 	//获取获取子集数据
-	public function seek_pid_list ($pid) {
+	public function seek_pid_list (&$pid) {
 		return $this->where(array('pid'=>$pid))->select();
 	}
 	
