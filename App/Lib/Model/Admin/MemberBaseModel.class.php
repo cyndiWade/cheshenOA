@@ -12,8 +12,8 @@ class MemberBaseModel extends AdminBaseModel {
 		return $this->where(array('rank'=>$rank,'status'=>0))->select();
 	}
 	
-	public function add_one_data ($type) {
-		$this->type = $type;
+	public function add_one_data ($rank_type) {
+		$this->rank_type = $rank_type;
 		return $this->add();
 	}
 	

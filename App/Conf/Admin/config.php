@@ -16,22 +16,5 @@ return array(
 		'NOT_AUTH_ACTION' => '', 						// 默认无需认证方法，多个用,号分割
 		
 		
-		//用户类型
-		'ACCOUNT_TYPE' => array (
-				'ADMIN' => 0,			//管理员
-				'USER' => 1,			//普通用户
-		),
-		'ACCOUNT_STATUS' => array (
-				-2 => '删除',
-				0 => '正常',
-				1 => '禁用',
-		),
-		
-		'MEMBER_TYPE' => array(
-			'member'=>0	,		//会员
-			'shareholder' =>1,	//股东
-			
-					
-		),
 );
 ?>

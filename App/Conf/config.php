@@ -85,27 +85,47 @@ $system  = array(
 		
 		/* 时区设置 */
 		'DEFAULT_TIMEZONE'=>'Asia/Shanghai', 	// 设置默认时区
-		
 		'DEFAULT_AJAX_RETURN' => '',		//默认AJAX返回值
 		
+);
+
+
+/* 自定设置 */
+$custom= array (
+			
+		//用户类型
+		'ACCOUNT_TYPE' => array (
+				'ADMIN' => 0,			//管理员
+				'USER' => 1,			//普通用户
+		),
+		'ACCOUNT_STATUS' => array (
+				-2 => '删除',
+				0 => '正常',
+				1 => '禁用',
+		),
 		
-		/* 自定设置 */
+		/* 会员类型 */
+		'MEMBER_TYPE' => array(
+				'member'=>0	,		//会员
+				'shareholder' =>1,	//股东
+		),
+		
 		//上传文件目录
 		'UPLOAD_DIR' => array(
-			'IMAGES' => '/files/lehuo/images/',		//图片地址
+				'IMAGES' => '/files/lehuo/images/',		//图片地址
 		),
 		
 		//外部文件访问地址(用来填写专用的文件服务器)
 		'PUBLIC_VISIT' => array(
-			'DOMAIN' =>	$_SERVER['SERVER_NAME'],
-			'DIR' => '/files/xingtuo/',							//项目文件目录
+				'DOMAIN' =>	$_SERVER['SERVER_NAME'],
+				'DIR' => '/files/xingtuo/',							//项目文件目录
 		),
 		
 		//短信平台账号
 		'SHP' => array(
 				'NAME'=>'kevin_shp',
 				'PWD'=>'kevin818'
-		),	
+		),
 		/* 错误类型 */
 		'STATUS_SUCCESS' => '0',					//没有错误
 		'STATUS_NOT_LOGIN'	=> '1002',			//未登录
@@ -114,9 +134,10 @@ $system  = array(
 		'STATUS_RBAC' => '3001',					//RBAC权限
 		'STATUS_ACCESS' => '4001',				//非法访问
 		'STATUS_OTHER' => '9999',					//其他错误
+		
 );
 
-return array_merge($system);
+return array_merge($system,$custom);
 
 
 /*		系统常量 (手册附录)
