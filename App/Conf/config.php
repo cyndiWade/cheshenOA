@@ -23,7 +23,6 @@ $system  = array(
 	    'DB_SQL_BUILD_QUEUE'    => 'file',   // SQL缓存队列的缓存方式 支持 file xcache和apc
 	    'DB_SQL_BUILD_LENGTH'   => 20, // SQL缓存的队列长度
 	    'DB_SQL_LOG'            => false, // SQL执行日志记录
-		
 		'SESSION_AUTO_START'    => true,
 
 		/* URL配置 */
@@ -36,7 +35,6 @@ $system  = array(
 		),
 		'PREV_URL' => $_SERVER["HTTP_REFERER"],
 		
-
 		/* 模板引擎设置 */
 		//'DEFAULT_THEME' => 'default',
 		//'TMPL_ACTION_SUCCESS' => 'public:success',
@@ -44,7 +42,6 @@ $system  = array(
 		'TMPL_EXCEPTION_FILE'   => THINK_PATH.'Tpl/think_exception.tpl',// 异常页面的模板文件
 		'TMPL_DETECT_THEME'     => false,       // 自动侦测模板主题
 		'OUTPUT_ENCODE'         =>  false, 			// 页面压缩输出
-
 
 		//项目分组
 		'APP_GROUP_LIST'        => 'Home,Admin,Api',  	// 项目分组设定,多个组之间用逗号分隔,例如'Home,Admin'
@@ -63,13 +60,11 @@ $system  = array(
 		'LANG_LIST'        => 'zh-cn,en-us',			 //允许切换的语言列表 用逗号分隔
 		'VAR_LANGUAGE'     => '1',					 // 默认语言切换变量
 		
-		
 		//表单安全配置
-		//'TOKEN_ON'=>true,  						// 是否开启令牌验证
+		//'TOKEN_ON'=>true,  							// 是否开启令牌验证
 		//'TOKEN_NAME'=>'__hash__',    		// 令牌验证的表单隐藏字段名称		
 		//'TOKEN_TYPE'=>'md5',  					//令牌哈希验证规则 默认为MD5	
 		//'TOKEN_RESET'=>true,  					//令牌验证出错后是否重置令牌 默认为true
-		
 		
 		//缓存配置
 		'DATA_CACHE_TYPE' =>'File',										//缓存类型
@@ -91,9 +86,10 @@ $system  = array(
 		/* 时区设置 */
 		'DEFAULT_TIMEZONE'=>'Asia/Shanghai', 	// 设置默认时区
 		
+		'DEFAULT_AJAX_RETURN' => '',		//默认AJAX返回值
+		
 		
 		/* 自定设置 */
-		
 		//上传文件目录
 		'UPLOAD_DIR' => array(
 			'IMAGES' => '/files/lehuo/images/',		//图片地址
@@ -105,32 +101,19 @@ $system  = array(
 			'DIR' => '/files/xingtuo/',							//项目文件目录
 		),
 		
-		//用户类型
-		'ACCOUNT_TYPE' => array (
-				'ADMIN' => 0,			//管理员
-				'USER' => 1,			//普通用户
-		),
-		'ACCOUNT_STATUS' => array (
-			-2 => '删除',
-			0 => '正常',
-			1 => '禁用',		
-		),
-		
-		
 		//短信平台账号
 		'SHP' => array(
 				'NAME'=>'kevin_shp',
 				'PWD'=>'kevin818'
-		),
-		
-		
+		),	
 		/* 错误类型 */
 		'STATUS_SUCCESS' => '0',					//没有错误
-		'STATUS_NOT_LOGIN'	=> '1002',		//未登录
-		'STATUS_UPDATE_DATA'	=> '2001',	//没有成功修改数据
+		'STATUS_NOT_LOGIN'	=> '1002',			//未登录
+		'STATUS_UPDATE_DATA'	=> '2001',		//没有成功修改数据
 		'STATUS_NOT_DATA'	=> '2004',			//没有没有数据
-		'STATUS_OTHER' => '9999',					//其他错误
 		'STATUS_RBAC' => '3001',					//RBAC权限
+		'STATUS_ACCESS' => '4001',				//非法访问
+		'STATUS_OTHER' => '9999',					//其他错误
 );
 
 return array_merge($system);

@@ -59,10 +59,7 @@ class CompanyAction extends AdminBaseAction {
 		}
 		
 		
-	
-		
-		
-		$city_list = $Region->seek_level_data('1');
+		$city_list = $Region->seek_level_data('1');		//获取城市区域数据
 
 		$this->assign('ACTION_NAME','编辑区域');
 		$this->assign('city_list',$city_list);

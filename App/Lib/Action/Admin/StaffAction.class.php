@@ -21,9 +21,14 @@ class StaffAction extends AdminBaseAction {
 	public function index () {
 		
 		$StaffBase = D('StaffBase');	//员工模型表
+		$occupation_id = $this->_get('occupation_id');	//部门ID
 		
-		$staff_list = $StaffBase->seek_data_list();
-
+		if (empty($occupation_id)) {
+			$staff_list = $StaffBase->seek_data_list();
+		} else {
+			$staff_list = $StaffBase->seek_spe_list(array('s.status'=>0,'s.occupation_id'=>$occupation_id));
+		}
+		
 		$this->assign('staff_list',$staff_list);
 		$this->assign('ACTION_NAME','员工管理');
 		$this->display();

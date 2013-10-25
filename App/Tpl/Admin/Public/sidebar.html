@@ -163,6 +163,7 @@
 					</a>
 
 					<ul class="sub-menu">
+						<!-- 
 						<li >
 							<a href="#page_timeline.html">
 
@@ -171,7 +172,7 @@
 							我的档案</a>
 
 						</li>
-						
+						-->
 						<li >
 							<a href="?s=/Admin/Company/index">
 
@@ -249,37 +250,40 @@
 					</a>
 
 					<ul class="sub-menu">
-
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Member/member_list')}">
+							新注册用户</a>
+						</li>
+						<li >
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>5))}">
 							5万级别会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>10))}">
 							10万级别会员</a>
 						</li>				
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>20))}">
 							20万级别会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>40))}">
 							40万级别会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>80))}">
 							80万级别会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>other))}">
 							车神优选会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>other))}">
 							临时租车会员</a>
 						</li>
 						<li >
-							<a href="#login.html">
+							<a href="{:U('Admin/Rank/rank_list',array('rank'=>other))}">
 							试驾系统会员</a>
 						</li>
 					</ul>
