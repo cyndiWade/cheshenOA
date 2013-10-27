@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/chosen.css" />		
+	<!-- END PAGE LEVEL STYLES -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	<include file="Public:header" />
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<!-- 左侧导航 -->		<include file="Public:sidebar" />
+		<!-- BEGIN PAGE -->  
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER -->						<!-- END BEGIN STYLE CUSTOMIZER -->     
+						<h3 class="page-title">
+							{$MODULE_NAME}
+							 <small>{$ACTION_NAME}</small>
+						</h3>		
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN VALIDATION STATES-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>{$TITILE_NAME}</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="javascript:;" class="reload"></a>				
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->
+								<form action="" id="form_sample_1" method="post" class="form-horizontal">					 				<input type="hidden" name="id" value="{$life_info.id}" />									
+									<div class="alert alert-error hide">
+										<button class="close" data-dismiss="alert"></button>
+										请在文本框输入相应内容.
+									</div>
+									<div class="alert alert-success hide">
+										<button class="close" data-dismiss="alert"></button>
+										验证成功
+									</div>																		<div class="control-group">										<label class="control-label">喜爱的食物<span class="required">*</span></label>										<div class="controls">											<input type="text" name="like_food" value="{$life_info.like_food}"  class="span6 m-wrap"/>										</div>									</div>																				<div class="control-group">										<label class="control-label">忌口的食物<span class="required">*</span></label>										<div class="controls">											<input type="text" name="not_like_food" value="{$life_info.not_like_food}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																			<div class="control-group">										<label class="control-label">个人爱好<span class="required">*</span></label>										<div class="controls">											<input type="text" name="hobby" value="{$life_info.hobby}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																		<div class="control-group">										<label class="control-label">菜品偏重口味</label>										<input type="hidden" value="{$life_info.taste_select}" id="ipt_check_have" />																				<div class="controls">														<label class="checkbox">												<input type="checkbox" name="taste[qd]" value="清淡" class="ipt_check"/> 清淡											</label>											<label class="checkbox">												<input type="checkbox" name="taste[d]" value="淡" class="ipt_check"/> 淡											</label>											<label class="checkbox">												<input type="checkbox" name="taste[sz]" value="适中" class="ipt_check"/> 适中											</label>											<label class="checkbox">												<input type="checkbox" name="taste[x]" value="咸" class="ipt_check"/> 咸											</label>													</div>										<div class="controls">											<label class="checkbox">												<input type="checkbox" name="taste[px]" value="偏咸" class="ipt_check"/> 偏咸											</label>											<label class="checkbox">												<input type="checkbox" name="taste[s]" value="酸" class="ipt_check"/> 酸											</label>											<label class="checkbox">												<input type="checkbox" name="taste[t]" value="甜" class="ipt_check"/> 甜											</label>											<label class="checkbox">												<input type="checkbox" name="taste[l]" value="辣" class="ipt_check"/> 辣											</label>										</div>																				<div class="controls">											<label class="text">												其他：												<input type="text" name="taste[qt]"  value="{$life_info['taste']->qt}" class="span2 m-wrap">											</label>										</div>									</div>																					<div class="control-group">										<label class="control-label">喜欢的汤品：</label>										<div class="controls">											<input type="text" name="like_broth" value="{$life_info.like_broth}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																<div class="control-group">										<label class="control-label">喜欢的水果：</label>										<div class="controls">											<input type="text" name="like_fruits" value="{$life_info.like_fruits}" data-required="1" class="span6 m-wrap"/>										</div>									</div>															<div class="control-group">										<label class="control-label">喜欢的饮品：</label>										<div class="controls">											<input type="text" name="like_drink" value="{$life_info.like_drink}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																		<div class="control-group">										<label class="control-label">喜欢的鲜花：</label>										<div class="controls">											<input type="text" name="liek_flower" value="{$life_info.liek_flower}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																		<div class="control-group">										<label class="control-label">喜欢的酒类品牌：</label>										<div class="controls">											<input type="text" name="like_liquor_brand" value="{$life_info.like_liquor_brand}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																		<div class="control-group">										<label class="control-label">喜欢的颜色：</label>										<div class="controls">											<input type="text" name="like_color" value="{$life_info.like_color}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																					<div class="control-group">										<label class="control-label">是否有室内运动的习惯：</label>										<div class="controls">											<input type="text" name="exercise" value="{$life_info.exercise}" data-required="1" class="span6 m-wrap"/>										</div>									</div>																		<div class="control-group">										<label class="control-label">其他说明：</label>										<div class="controls">											<textarea rows="3" name="other" class="span6 m-wrap">{$life_info.other}</textarea>										</div>									</div>
+									<div class="form-actions">										
+										<button type="submit" class="btn purple">编辑</button>
+										<a href="?s=/Admin/Rank/rank_list/rank/{$rank}"><button type="button" class="btn">返回</button></a>
+									</div>
+								</form>
+								<!-- END FORM-->
+							</div>
+						</div>
+						<!-- END VALIDATION STATES-->
+					</div>
+				</div>				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- 页脚 -->	<include file="Public:foot" />
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- 核心插件 -->	<include file="Public:bottom" />
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/chosen.jquery.min.js"></script>
+		<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<script src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>	<script src="{$Think.const.APP_PATH}Public/media/js/form-validation_member_life.js"></script> 
+	<!-- END PAGE LEVEL STYLES -->    
+	<script>
+		jQuery(document).ready(function() {   
+		   // initiate layout and plugins
+		   App.init();
+		   FormValidation.init();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->   
+
+<!-- END BODY -->
+</html>

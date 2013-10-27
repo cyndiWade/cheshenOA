@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/chosen.css" />		<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/flick/jquery-ui-1.10.3.custom.css" />	
+	<!-- END PAGE LEVEL STYLES -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	<include file="Public:header" />
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<!-- 左侧导航 -->		<include file="Public:sidebar" />
+		<!-- BEGIN PAGE -->  
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER -->						<!-- END BEGIN STYLE CUSTOMIZER -->     
+						<h3 class="page-title">
+							{$MODULE_NAME}
+							 <small>{$ACTION_NAME}</small>
+						</h3>		
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN VALIDATION STATES-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>{$TITILE_NAME}</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="javascript:;" class="reload"></a>				
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->
+								<form action="" id="form_sample_1" method="post" class="form-horizontal">					 				<input type="hidden" name="id" value="{$credit_info.id}" />									
+									<div class="alert alert-error hide">
+										<button class="close" data-dismiss="alert"></button>
+										请在文本框输入相应内容.
+									</div>
+									<div class="alert alert-success hide">
+										<button class="close" data-dismiss="alert"></button>
+										验证成功
+									</div>																											<div class="control-group">										<label class="control-label">信用卡最高金额<span class="required">*</span></label>										<div class="controls">											<div class="input-prepend input-append">												<span class="add-on">$</span>												<input type="text" class="m-wrap" name="credit_card" value="{$credit_info.credit_card}">												<span class="add-on">.00</span>											</div>										</div>									</div>										<div class="control-group">										<label class="control-label">所属银行<span class="required">*</span></label>										<div class="controls">											<input type="text" name="bank" value="{$credit_info.bank}" data-required="1" class="span6 m-wrap"/>										</div>									</div>									<div class="control-group">																	<label class="control-label">最高级别车</label>										<div class="controls">											<div class="row-fluid">												<div class="span3">													<label class="checkbox line">													<div>														<span>品　　牌：<input type="text" name="car[brand]" value="{$credit_info['car']->brand}" data-required="1" class="span6 m-wrap"/></span>													</div> 													</label>																										<label class="checkbox line">													<div>														<span>车牌号码：<input type="text" name="car[number]" value="{$credit_info['car']->number}" data-required="1" class="span6 m-wrap"/></span>													</div> 													</label>												</div>																								<div class="span3">													<label class="checkbox line">													<div>														<span>型　　号：<input type="text" name="car[model]" value="{$credit_info['car']->model}" data-required="1" class="span6 m-wrap"/></span>													</div> 													</label>																										<label class="checkbox line">													<div>																												<span>															购车时间：<input type="text" name="car[time]" value="{$credit_info['car']->time}"  readonly="" class="span6 wade_date"><span class="add-on"><i class="icon-calendar"></i></span>														</span>																								</div> 													</label>												</div>																							</div>										</div>									</div>									<div class="control-group">										<label class="control-label">房（现居住）</label>																				<div class="controls">											<label class="checkbox line">											<div >												<span >详细地址：<input type="text" name="house[site]" value="{$credit_info['house']->site}" class="span5 m-wrap"/></span>											</div>											</label>											<label class="checkbox line">											<div>												<span>面　　积：<input type="text" name="house[area]" value="{$credit_info['house']->area}" class="span2 m-wrap"/></span>											</div>											</label>										</div>									</div>																														<div class="control-group">										<label class="control-label">其他：</label>										<div class="controls">											<textarea rows="3" name="other" class="span6 m-wrap">{$credit_info.other}</textarea>										</div>									</div>									<div class="control-group">										<label class="control-label">需要哪些资源给予支持：</label>										<div class="controls">											<textarea rows="3" name="help" class="span6 m-wrap">{$credit_info.help}</textarea>										</div>									</div>																		<div class="control-group">										<label class="control-label">您有哪些资源可以共享：</label>										<div class="controls">											<textarea rows="3" name="share" class="span6 m-wrap">{$credit_info.share}</textarea>										</div>									</div>
+									<div class="form-actions">										
+										<button type="submit" class="btn purple">编辑</button>
+										<a href="?s=/Admin/Rank/rank_list/rank/{$rank}"><button type="button" class="btn">返回</button></a>
+									</div>
+								</form>
+								<!-- END FORM-->
+							</div>
+						</div>
+						<!-- END VALIDATION STATES-->
+					</div>
+				</div>				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- 页脚 -->	<include file="Public:foot" />
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- 核心插件 -->	<include file="Public:bottom" />
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/chosen.jquery.min.js"></script>
+		<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<script src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>	<script src="{$Think.const.APP_PATH}Public/media/js/form-validation_member_credit.js"></script> 
+	<!-- END PAGE LEVEL STYLES -->    
+	<script>
+		jQuery(document).ready(function() {   
+		   // initiate layout and plugins
+		   App.init();
+		   FormValidation.init();		   		   wade_jquery_date().init();	
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->   
+
+<!-- END BODY -->
+</html>

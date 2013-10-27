@@ -75,7 +75,7 @@
 											<td class="hidden-480">{$vo.name}</a></td>
 											<td class="hidden-480">{$vo.sex}</td>											<td class="center hidden-480">{$vo.rank}</td>											<td class="center hidden-480">{$vo.rank_type_name}</td>
 											<td class="center hidden-480">{$vo.mobile_phone}</td>											<td class="center hidden-480">{$vo.phone}</td>
-											<td class="center">												<a href="?s=/Admin/Rank/member_base_edit/id/{$vo.id}/rank_type/{$vo.rank_type}.html">基本资料</a>												| <a href="#">行程信息</a>												| <a href="#">生活信息</a>												| <a href="#">证件复印件</a>											</td>
+											<td class="center">												<a href="?s=/Admin/Rank/member_base_edit/id/{$vo.id}/rank_type/{$vo.rank_type}.html">基本资料</a>												| <a href="?s=/Admin/Rank/member_credit/rank/{$rank}/member_base_id/{$vo.id}.html">信用信息</a>												| <a href="?s=/Admin/Rank/member_life/rank/{$rank}/member_base_id/{$vo.id}.html">生活信息</a>												| <a href="?s=/Admin/Rank/member_photo/rank/{$rank}/member_base_id/{$vo.id}.html">证件复印件</a>											</td>
 										</tr>										</volist>
 									</tbody>
 								</table>
@@ -101,9 +101,9 @@
 	<script type="text/javascript">
 		jQuery(document).ready(function() {       
 		   App.init();
-		   TableManaged.init();
+		   TableManaged.init();
 		});
-	</script>	</body>
+	</script>				</body>
 
 <!-- END BODY -->
 </html>

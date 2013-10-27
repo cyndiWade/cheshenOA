@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost:3306
--- 生成日期: 2013 年 10 月 24 日 15:35
+-- 生成日期: 2013 年 10 月 27 日 15:43
 -- 服务器版本: 5.5.24-log
 -- PHP 版本: 5.3.13
 
@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `app_member` (
   `login_count` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '登陆次数',
   `create_time` int(11) unsigned NOT NULL,
   `update_time` int(11) unsigned NOT NULL,
+  `is_rank` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为会员：0不是，1是',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0正常、1待审核、-2删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
@@ -229,10 +230,10 @@ CREATE TABLE IF NOT EXISTS `app_member` (
 -- 转存表中的数据 `app_member`
 --
 
-INSERT INTO `app_member` (`id`, `account`, `nickname`, `password`, `last_login_time`, `last_login_ip`, `login_count`, `create_time`, `update_time`, `status`) VALUES
-(1, 'user1', '测试用户一', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0),
-(2, 'user2', '测试用户二', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0),
-(3, 'user3', 'dsfsf', '4297f44b13955235245b2497399d7a93', 1382514687, '192.168.1.102', 0, 1382514687, 1382516829, 0);
+INSERT INTO `app_member` (`id`, `account`, `nickname`, `password`, `last_login_time`, `last_login_ip`, `login_count`, `create_time`, `update_time`, `is_rank`, `status`) VALUES
+(1, 'user1', '测试用户一', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0, 0),
+(2, 'user2', '测试用户二', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0, 0),
+(3, 'user3', 'dsfsf', '4297f44b13955235245b2497399d7a93', 1382514687, '192.168.1.102', 0, 1382514687, 1382516829, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -260,10 +261,10 @@ CREATE TABLE IF NOT EXISTS `app_member_base` (
   `email` char(20) DEFAULT NULL COMMENT '电子邮箱地址',
   `enterprise_name` char(30) DEFAULT NULL COMMENT '企业名称',
   `property` char(60) DEFAULT NULL COMMENT '性质',
-  `registered_fund` decimal(9,2) DEFAULT NULL COMMENT '注册资金',
+  `registered_fund` decimal(9,0) DEFAULT NULL COMMENT '注册资金',
   `legal_person` char(20) DEFAULT NULL COMMENT '法人',
   `member_group` char(50) DEFAULT NULL COMMENT '会员组成员',
-  `turnover` decimal(9,2) DEFAULT NULL COMMENT '近3年营业额',
+  `turnover` decimal(9,0) DEFAULT NULL COMMENT '近3年营业额',
   `website` varchar(50) DEFAULT NULL COMMENT '企业网站',
   `address` varchar(50) DEFAULT NULL COMMENT '通讯地址',
   `enterprise_address` varchar(50) DEFAULT NULL COMMENT '企业所处行业位置',
@@ -276,21 +277,128 @@ CREATE TABLE IF NOT EXISTS `app_member_base` (
   `contacts` char(20) DEFAULT NULL COMMENT '紧急联系人',
   `relation` char(20) DEFAULT NULL COMMENT '关系',
   `contacts_phone` char(20) DEFAULT NULL COMMENT '手机号码',
-  `type` tinyint(1) unsigned NOT NULL COMMENT '类型：0会员，1股东',
+  `rank_type` tinyint(1) unsigned NOT NULL COMMENT '类型：0会员，1股东',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态0正常，1删除',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员基本资料' AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员基本资料' AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `app_member_base`
 --
 
-INSERT INTO `app_member_base` (`id`, `member_id`, `area`, `source`, `source_content`, `name`, `sex`, `mobile_phone`, `phone`, `fax`, `qq`, `rank`, `identity_number`, `passport_number`, `driving_number`, `travel_number`, `email`, `enterprise_name`, `property`, `registered_fund`, `legal_person`, `member_group`, `turnover`, `website`, `address`, `enterprise_address`, `introduce`, `collaborate`, `product`, `distribution`, `occupancy`, `direction`, `contacts`, `relation`, `contacts_phone`, `type`, `status`) VALUES
-(1, 1, NULL, 0, '', '测试会员一', '男', '13712345678', '021-123456', NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
-(2, 1, NULL, 0, '', '测试会员二', '男', '13712345678', '021-123456', NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
-(6, 1, 'qweqwe', 2, 'qweqw', 'weqwe', '男', '11111111111', 'asdasd', '234234', '498798', '5', '456456465465465', '', '56456', 'sdfsfsfsdf', '', '', '', '0.00', '', '', '0.00', '', '', NULL, '', '', '', NULL, '', '', '', '', '', 0, 0),
-(7, 1, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '5', '235659456456456456', '', '45646', '45645', '', '', '{"1":"股份公司","2"', '0.00', '', '', '0.00', '', '', NULL, '', '', '', NULL, '', '', '', '', '', 0, 0),
-(8, 1, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '5', '235659456456456456', '', '45646', '45645', '', '', '{"1":"股份公司","2":"个人经营","3":"有限公司","4":"有限责任公司","5":"合资公司"}', '0.00', '', '', '0.00', '', '', NULL, '', '', '', NULL, '', '', '', '', '', 0, 0);
+INSERT INTO `app_member_base` (`id`, `member_id`, `area`, `source`, `source_content`, `name`, `sex`, `mobile_phone`, `phone`, `fax`, `qq`, `rank`, `identity_number`, `passport_number`, `driving_number`, `travel_number`, `email`, `enterprise_name`, `property`, `registered_fund`, `legal_person`, `member_group`, `turnover`, `website`, `address`, `enterprise_address`, `introduce`, `collaborate`, `product`, `distribution`, `occupancy`, `direction`, `contacts`, `relation`, `contacts_phone`, `rank_type`, `status`) VALUES
+(6, 3, 'qweqwe', 3, 'qweqw', 'weqwe', '男', '11111111111', 'asdasd', '234234', '498798', '5', '456456465465465', '', '56456', 'sdfsfsfsdf', '', '', '股份公司,个人经营,有限公司', '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0),
+(7, 1, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '5', '235659456456456456', '', '45646', '45645', '', '', '股份公司,有限公司,有限责任公司', '0', '', '', '0', '', '', NULL, '', '', '', NULL, '', '', '', '', '', 0, 0),
+(8, 1, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '5', '235659456456456456', '', '45646', '45645', '', '', '股份公司,有限公司,有限责任公司', '0', '', '', '0', '', '', NULL, '', '', '', NULL, '', '', '', '', '', 0, 0),
+(9, 2, '投资区域', 3, '自主', '会员姓名', '女', '11111111111', '123456', '234234', '498798', '5', '456456465465465', 'qweqweqw', '123123123123', 'qweqw', 'aa@qq.com', '企业名称', '股份公司,有限公司,有限责任公司', '100000000', '法人', '会员组成成员', '200000000', 'http://www.baidu.com', '通讯地址', '企业所处行业位置', '个人介绍及社会身份', '企业主要合作方', '主要经营产品', '产品产地分布', '市场占有率', '业务发展规划', '紧急联系人', '关 系', '手机号码', 0, 0),
+(10, 2, 'ada', 2, 'adasd', 'sdfsdf', '女', '11111111111', 'asdasd', '234234', '123123123123', '40', '456456465465465', 'qweqweqw', '123123123123', 'qweqw', 'asd252392785@163.com', '', '个人经营,有限责任公司', '100', 'sdfsd', 'sdfs', '200', 'http://www.baidu.com', 'gdfg', 'dgdf', '个人介绍及社会身份', '企业主要合作方', '主要经营产品', '产品产地分布', '市场占有率', '业务发展规划', '紧急联系人', ' 系', '手机号码', 1, 0),
+(11, 1, 'aaaa', 3, 'bbbb', '123', '男', '12312312313', '12312312', '12321321', '213123', 'shijia', '235659456456456456', '4', '45646', '45645', '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_credit`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_credit` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `credit_card` decimal(9,0) NOT NULL COMMENT '信用卡最高金额',
+  `bank` char(50) NOT NULL COMMENT '银行',
+  `car` char(255) DEFAULT NULL COMMENT '最高级别车辆信息',
+  `house` char(255) DEFAULT NULL COMMENT '房子信息',
+  `other` char(255) DEFAULT NULL COMMENT '其他信息',
+  `help` text COMMENT '资源信息',
+  `share` text COMMENT '共享资源',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员信用信息' AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `app_member_credit`
+--
+
+INSERT INTO `app_member_credit` (`id`, `member_base_id`, `credit_card`, `bank`, `car`, `house`, `other`, `help`, `share`, `status`) VALUES
+(2, 6, '123', '所属银行', '{"brand":"werwe","number":"werewr","model":"ertert","time":"2013-10-29"}', '{"site":"eqwe","area":"rwer"}', 'tryrty', 'rtyrt', 'yrtyrty1', 0),
+(4, 7, '12321323', 'rwer', '{"brand":"werwe","number":"werwer","model":"rew","time":"2013-10-29"}', '{"site":"sfdsd","area":"fsdf"}', 'sdfs', 'ffgdf', 'gdfg', 0),
+(5, 8, '132', 'sdfsdf', '{"brand":"fsdf","number":"","model":"sdfsdf","time":"2013-10-28"}', '{"site":"","area":""}', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_life`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_life` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `like_food` char(50) DEFAULT NULL COMMENT '喜欢的食物',
+  `not_like_food` char(50) DEFAULT NULL COMMENT '不喜欢的食物',
+  `hobby` char(50) DEFAULT NULL COMMENT '爱好',
+  `taste` char(255) DEFAULT NULL COMMENT '口味',
+  `like_broth` char(50) DEFAULT NULL COMMENT '喜欢的汤品',
+  `like_fruits` char(50) DEFAULT NULL COMMENT '喜欢的水果',
+  `like_drink` char(50) DEFAULT NULL COMMENT '喜欢的饮品',
+  `liek_flower` char(50) DEFAULT NULL COMMENT '喜欢的鲜花',
+  `like_liquor_brand` char(50) DEFAULT NULL COMMENT '喜欢的酒类品牌',
+  `like_color` char(50) DEFAULT NULL COMMENT '喜欢的颜色',
+  `exercise` char(50) DEFAULT NULL COMMENT '是否有室内 运动的习惯',
+  `other` text COMMENT '其他说明：',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员生活信息' AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `app_member_life`
+--
+
+INSERT INTO `app_member_life` (`id`, `member_base_id`, `like_food`, `not_like_food`, `hobby`, `taste`, `like_broth`, `like_fruits`, `like_drink`, `liek_flower`, `like_liquor_brand`, `like_color`, `exercise`, `other`, `status`) VALUES
+(5, 10, '喜爱的食物', '忌口的食物', '个人爱好', '{"qd":"清淡","x":"咸","s":"酸","qt":"其他"}', '喜欢的汤品', '喜欢的水果', '喜欢的饮品', '喜欢的鲜花', '喜欢的酒类品牌', '喜欢的颜色', '是否有室内运动的习惯', '其他说明其他说明其他说明其他说明', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_photo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `type` tinyint(2) unsigned NOT NULL COMMENT '图片类型',
+  `url` char(50) NOT NULL COMMENT '图片地址',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员生活信息' AUTO_INCREMENT=55 ;
+
+--
+-- 转存表中的数据 `app_member_photo`
+--
+
+INSERT INTO `app_member_photo` (`id`, `member_base_id`, `type`, `url`, `status`) VALUES
+(39, 6, 3, '20131027/526d250e43ee1.png', 0),
+(38, 6, 3, '20131027/526d250e3b4b2.png', 0),
+(37, 6, 2, '20131027/526d24f6a65b9.png', -2),
+(36, 6, 2, '20131027/526d24f69dfba.png', 0),
+(35, 6, 2, '20131027/526d24f69578c.png', 0),
+(34, 6, 2, '20131027/526d24f68f566.png', 0),
+(33, 6, 1, '20131027/526d24e297715.jpg', 0),
+(32, 6, 1, '20131027/526d24e28f266.jpg', 0),
+(31, 6, 1, '20131027/526d24e288985.jpg', 0),
+(30, 6, 1, '20131027/526d24e27ff07.jpg', 0),
+(40, 6, 3, '20131027/526d250e4a531.png', 0),
+(41, 6, 4, '20131027/526d251ea16c9.png', 0),
+(42, 6, 4, '20131027/526d251ea9dab.jpg', 0),
+(43, 6, 4, '20131027/526d251eb28b3.png', 0),
+(44, 6, 5, '20131027/526d2527d0f3b.png', 0),
+(45, 6, 5, '20131027/526d2527d93be.png', 0),
+(46, 6, 5, '20131027/526d2527df94c.jpg', 0),
+(47, 6, 6, '20131027/526d2530c28ac.png', 0),
+(48, 6, 6, '20131027/526d2530cb3cf.jpg', 0),
+(49, 6, 6, '20131027/526d2530d41b3.png', 0),
+(51, 8, 2, '20131027/526d31723ceb8.jpg', 0),
+(52, 8, 2, '20131027/526d317246919.jpg', 0),
+(53, 8, 2, '20131027/526d317250073.jpg', 0),
+(54, 8, 2, '20131027/526d31725949f.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -4050,7 +4158,7 @@ CREATE TABLE IF NOT EXISTS `app_users` (
 --
 
 INSERT INTO `app_users` (`id`, `base_id`, `account`, `nickname`, `password`, `last_login_time`, `last_login_ip`, `login_count`, `create_time`, `update_time`, `type`, `status`) VALUES
-(1, 1, 'admin', '管理员', 'e10adc3949ba59abbe56e057f20f883e', 1382584808, '192.168.1.102', 176, 1376561926, 1376561926, 0, 0),
+(1, 1, 'admin', '管理员', 'e10adc3949ba59abbe56e057f20f883e', 1382867792, '192.168.1.100', 180, 1376561926, 1376561926, 0, 0),
 (2, 5, 'zhuguan', 'wade', 'e10adc3949ba59abbe56e057f20f883e', 1382111689, '192.168.1.100', 30, 1377506459, 1377506459, 1, 0),
 (3, 6, 'siyou', '', 'e10adc3949ba59abbe56e057f20f883e', 1382111825, '192.168.1.100', 13, 1377590474, 1377590474, 1, 0),
 (5, 7, 'jiben', '', 'e10adc3949ba59abbe56e057f20f883e', 1382111778, '192.168.1.100', 5, 1377847312, 1377847312, 1, 0),

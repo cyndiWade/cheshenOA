@@ -68,8 +68,7 @@ class AppBaseAction extends Action {
 	 * @param String $dir_type						//目录类型  如：/images
 	 */
 	protected function public_file_dir (Array &$arr,$field,$dir_type) {
-		$public_file_dir =  C('PUBLIC_VISIT.DOMAIN').C('PUBLIC_VISIT.DIR').$dir_type;			//域名、文件目录
-	
+		$public_file_dir =  C('PUBLIC_VISIT.domain').C('PUBLIC_VISIT.dir').$dir_type;			//域名、文件目录
 		//递归
 		if (is_array($field)) {
 			for ($i=0;$i<count($field);$i++) {

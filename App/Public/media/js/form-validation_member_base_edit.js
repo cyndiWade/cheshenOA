@@ -1,5 +1,34 @@
 var FormValidation = function () {
 
+	/* 性别加首选 */
+	(function ($) {
+		var ipt_sex = $('.ipt_sex');
+		var ipt_check_sex = $('#ipt_check_sex');
+		
+		ipt_sex.each(function () {
+			var _this = $(this);
+			if (_this.val() == ipt_check_sex.val()) {
+				_this.prop("checked", true);	//选中
+			}
+		});
+	})(jQuery);
+
+	/* 经营组织/在职公司类型 加首选 */
+	(function ($) {
+		var ipt_check_have = $('#ipt_check_have');
+		var ipt_check = $('.ipt_check');
+
+		//转换为数组	
+		var arr_check = ipt_check_have.val().split(',');
+		
+		ipt_check.each(function () {
+			var _this = $(this);
+			if (in_array(_this.val(),arr_check)) {
+				_this.prop("checked", true);
+			}
+		});
+	})(jQuery);
+
     return {
         //main function to initiate the module
         init: function () {

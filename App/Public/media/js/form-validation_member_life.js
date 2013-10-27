@@ -1,5 +1,21 @@
 var FormValidation = function () {
 
+	/* 菜品偏重口味 加首选 */
+	(function ($) {
+		var ipt_check_have = $('#ipt_check_have');
+		var ipt_check = $('.ipt_check');
+
+		//转换为数组	
+		var arr_check = ipt_check_have.val().split(',');
+
+		ipt_check.each(function () {
+			var _this = $(this);
+			if (in_array(_this.val(),arr_check)) {
+				_this.prop("checked", true);
+			}
+		});
+	})(jQuery);
+
     return {
         //main function to initiate the module
         init: function () {
@@ -17,75 +33,42 @@ var FormValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
-					member_id : {
-						 required: true
+                	like_food : {
+                		 required: true,
+                         minlength: 2,
+                         maxlength:50
 					},
-                    area: {
+					not_like_food: {
                         minlength: 2,
-						maxlength:30,
+                        maxlength:50,
                         required: true	
                     },
-                    source_content: {
+                    hobby: {
                         minlength: 2,
-						maxlength:32,
-                        required: true
+                        maxlength:50,
+                        required: true	
                     },
-					 name: {
-						minlength: 2,
-						maxlength:20,
-                        required: true
+                    like_broth: {
+                        maxlength:50,
                     },
-                    mobile_phone: {
-                        required: true,
-                       	minlength: 11,
-						maxlength:11,
-					  	digits:true
+                    like_fruits: {
+                        maxlength:50,
                     },
-					phone: {
-                        required: true,
-                       	minlength: 6,
-						maxlength:15,
+                    like_drink: {
+                        maxlength:50,
                     },
-					fax : {
-                        required: true,
-                       	minlength: 6,
-						maxlength:15,
+                    liek_flower: {
+                        maxlength:50,
                     },
-					qq : {
-                        required: true,
-                       	minlength: 4,
-						maxlength:15,
-						digits:true
+                    like_liquor_brand: {
+                        maxlength:50,
                     },
-					identity_number : {
-                        required: true,
-                       	minlength: 15,
-						maxlength:18,
+                    like_color: {
+                    	maxlength:50,
                     },
-					passport_number : {
-						maxlength:10,
-					},
-					driving_number : {
-						required: true,
-						maxlength:20,
-					},
-					travel_number	: {
-						required: true,
-						maxlength:20,
-					},
-					email : {
-						email:true
-					},
-					registered_fund :{
-						digits:true
-					},
-					turnover :{
-						digits:true
-					},
-					website : {
-						url:true
-					}
-					
+                    exercise: {
+                        maxlength:50
+                    }
 
                 },
 
@@ -143,37 +126,7 @@ var FormValidation = function () {
             });
 			
 			
-			//搜索用户
-			(function ($) {
-				var btn_search = $('#btn_search');					//搜索账号
-				var select_member  = $('#select_member');		//用户选择框
-				var ipt_content = $('#ipt_content');					//搜索框内容
-				
-				//查找用户数据
-				btn_search.click(function () {
-					var val = ipt_content.val();
-					if (val == '') {
-						alert('查询内容不得为空！');
-						return false;
-					}
-					
-					$.post('?s=/Admin/Rank/ajax_search_account',{
-						account:val	
-					},function(result){
-						select_member.empty();	//清空
-						select_member.append('<option value="">--请选择用户--</option>');
-						if (result.status == 0) {	
-							alert('找到'+result.data.length+'条相似数据');
-							for(var key in result.data){
-								select_member.append("<option value="+result.data[key].id+">"+result.data[key].account+"--"+result.data[key].nickname+"</option>");
-							}
-						} else {
-							alert('没有查找到指定数据！');
-						}						
-					},'json');	
-					
-				});
-			})(jQuery);
+			
 
         }
 		

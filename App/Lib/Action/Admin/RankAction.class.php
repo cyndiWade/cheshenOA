@@ -13,6 +13,9 @@ class RankAction extends AdminBaseAction {
 		20 => '20万级别会员',
 		40 => '40万级别会员',
 		80 => '80万级别会员',
+		'youxuan' => '优选会员',	
+		'linshi' => '临时会员',
+		'shijia' => '试驾会员',
 	);
 	
 	/* 会员来源 */
@@ -27,6 +30,17 @@ class RankAction extends AdminBaseAction {
 	
 	/* 会员类型 */
 	private $rank_type;
+	
+	
+	/* 会员证件照类型 */
+	private $member_photo = array(
+		1 => '个人生活照及艺术照'	,
+		2 => '身份证正反复印件'	,
+		3 => '护照复印件'	,
+		4 => '驾驶证复印件'	,
+		5 => '行车本复印件'	,
+		6 => '信用卡复印件'	,		
+	);
 	
 	/**
 	 * 构造方法
@@ -184,7 +198,161 @@ class RankAction extends AdminBaseAction {
 	
 	
 	
+	/**
+	 * 会员信用信息
+	 */
+	public function member_credit () {
+		$member_base_id = $this->_get('member_base_id');		//基本信息ID
+		if(empty($member_base_id)) $this->error('非法操作！');
+		
+		$rank = $this->_get('rank');				//会员等级
+		$this->check_rank($rank);					//验证会员级别
+		
+		$MemberCredit = D('MemberCredit');		//会员信息表
+		
+		if ($this->isPost()) {
+			$id = $this->_post('id');		
+			$MemberCredit->create();
+			$MemberCredit->member_base_id = $member_base_id;
+			$MemberCredit->car = JSON($this->_post('car'));
+			$MemberCredit->house = JSON($this->_post('house'));
+			if (empty($id)) {
+				$MemberCredit->add() ? $this->success('添加成功！') : $this->error('添加失败,请重新尝试！');
+			} else {
+				$MemberCredit->save() ? $this->success('修改成功！') : $this->error('没有数据被修改！');
+			}
+			exit;
+		}
+		
+		/* 获取数据信息 */
+		$credit_info = $MemberCredit->seek_one_data(array('member_base_id'=>$member_base_id));
+		
+		$this->assign('credit_info',$credit_info);
+		$this->assign('ACTION_NAME','信用信息');
+		$this->assign('TITILE_NAME','信用信息');
+		$this->display();
+	}
 	
+	
+	/**
+	 * 会员生活信息
+	 */
+	public function member_life () {
+		$member_base_id = $this->_get('member_base_id');		//基本信息ID
+		if(empty($member_base_id)) $this->error('非法操作！');
+		
+		$rank = $this->_get('rank');				//会员等级
+		$this->check_rank($rank);					//验证会员级别
+		
+		$MemberLife = D('MemberLife');		//会员生活表信息
+		
+		if ($this->isPost()) {
+			$id = $this->_post('id');		
+			
+			$MemberLife->create();
+			$MemberLife->member_base_id = $member_base_id;
+			$MemberLife->taste = JSON($this->_post('taste'));
+			if (empty($id)) {
+				$MemberLife->add() ? $this->success('添加成功！') : $this->error('添加失败,请重新尝试！');
+			} else {
+				$MemberLife->save() ? $this->success('修改成功！') : $this->error('没有数据被修改！');
+			}
+			exit;
+		}
+		
+		/* 获取数据信息 */
+		$life_info = $MemberLife->seek_one_data(array('member_base_id'=>$member_base_id));
+		$life_info['taste_select'] = implode(',',(array) $life_info['taste']);		//组合字符串
+		
+		$this->assign('life_info',$life_info);
+		$this->assign('ACTION_NAME','生活信息');
+		$this->assign('TITILE_NAME','生活信息');
+		$this->display();
+	}
+	
+	
+	/**
+	 * 会员证件整照片
+	 */
+	public function member_photo () {
+		$member_base_id = $this->_get('member_base_id');		//基本信息ID
+		if(empty($member_base_id)) $this->error('非法操作！');
+		
+		$rank = $this->_get('rank');				//会员等级
+		$this->check_rank($rank);					//验证会员级别
+		
+		$MemberPhoto = D('MemberPhoto');
+		
+		$photo_list = $MemberPhoto->get_spe_data(array('status'=>0,'member_base_id'=>$member_base_id));
+		if (!empty($photo_list)) {
+			parent::public_file_dir($photo_list, array('url'), 'images/');		//组合访问地址
+			$photo_type_list = regroupKey($photo_list,'type');						//按照图片类似分类
+		}
 
+		$this->assign('ACTION_NAME','证件照片');
+		$this->assign('TITILE_NAME','证件照片');
+		$this->assign('member_base_id',$member_base_id);
+		$this->assign('member_photo_select',$this->member_photo);
+		$this->assign('photo_type_list',$photo_type_list);
+		$this->display();
+	}
+	
+	
+	/* 处理上传文件 */
+	public function ajax_photo_upload() {
+		header('Content-Type:text/html;charset=utf-8');
+		
+		if ($this->isPost()) {
+			/* 上传文件目录 */
+			$upload_dir = C('UPLOAD_DIR');
+			$dir = $upload_dir['web_dir'].$upload_dir['image'];
+			
+			/* 执行上传 */
+			$file = $_FILES['member_photo'];			//上传的文件
+			$member_base_id = $this->_post('member_base_id');
+			$type = $this->_post('type');
+
+			$result = parent::upload_file($file, $dir,5120000);		//执行上传。
+			
+			if ($result['status'] == true) {
+				$MemberPhoto = D('MemberPhoto');
+				$MemberPhoto->member_base_id = $member_base_id;
+				$MemberPhoto->type = $type;
+				$MemberPhoto->url = $result['info'][0]['savename'];
+				$status = $MemberPhoto->add();		//写入数据库
+				
+				if ($status) {
+					$return['success'] = true;
+					$return['info'] = '保存成功';
+					echo json_encode($return);
+				} else {
+					$return['success'] = false;
+					$return['info'] = '保存失败';
+					echo json_encode($return);
+				}
+			} else {
+				$return['success'] = false;
+				$return['info'] = '上传失败';
+				echo json_encode($return);
+			}
+			
+		} else {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+
+	}
+	
+	/**
+	 * 删除图片
+	 */
+	public function ajax_photo_remove () {
+		if ($this->isPost()) {
+			$id = $this->_post('id');
+			$MemberPhoto = D('MemberPhoto');
+			$MemberPhoto->del(array('id'=>$id)) ? parent::callback(C('STATUS_SUCCESS'),'删除成功') : parent::callback(C('STATUS_UPDATE_DATA'),'删除失败') ; 
+		} else {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+	}
 	
 }

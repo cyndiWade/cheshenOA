@@ -112,15 +112,16 @@ $custom= array (
 		
 		//上传文件目录
 		'UPLOAD_DIR' => array(
-				'IMAGES' => '/files/lehuo/images/',		//图片地址
+				'web_dir' => $_SERVER['DOCUMENT_ROOT'],
+				'image' => 'files/cheshenOA/images/',		//图片地址
 		),
 		
 		//外部文件访问地址(用来填写专用的文件服务器)
 		'PUBLIC_VISIT' => array(
-				'DOMAIN' =>	$_SERVER['SERVER_NAME'],
-				'DIR' => '/files/xingtuo/',							//项目文件目录
+				'domain' =>	'http://'.$_SERVER['SERVER_NAME'].'/',
+				'dir' => 'files/cheshenOA/',							//项目文件目录
 		),
-		
+
 		//短信平台账号
 		'SHP' => array(
 				'NAME'=>'kevin_shp',
