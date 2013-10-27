@@ -113,13 +113,13 @@ $custom= array (
 		//上传文件目录
 		'UPLOAD_DIR' => array(
 				'web_dir' => $_SERVER['DOCUMENT_ROOT'],
-				'image' => 'files/cheshenOA/images/',		//图片地址
+				'image' => '/files/cheshenOA/images/',		//图片地址
 		),
 		
 		//外部文件访问地址(用来填写专用的文件服务器)
 		'PUBLIC_VISIT' => array(
-				'domain' =>	'http://'.$_SERVER['SERVER_NAME'].'/',
-				'dir' => 'files/cheshenOA/',							//项目文件目录
+				'domain' =>	'http://'.$_SERVER['SERVER_NAME'],
+				'dir' => '/files/cheshenOA/',							//项目文件目录
 		),
 
 		//短信平台账号
