@@ -61,7 +61,7 @@ class AppBaseModel extends Model {
 	
 	/**
 	 * 字符长度限制
-	 * @param Array $all			//
+	 * @param Array $all				//
 	 * @param Array $fields			//字段如：array('create_time','update_time');
 	 */
 	protected function set_str_len(&$all,$fields,$length) {

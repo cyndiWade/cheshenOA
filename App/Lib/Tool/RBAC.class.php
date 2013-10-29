@@ -14,23 +14,24 @@ class RBAC {
 	/**
 	 * 初始化
 	 */
-	static public function init($Combination) {
+	static public function init($parameter) {
 		
 		/* 当前动作 */
 		self::$action = array(
-				1 => $Combination->group,
-				2 => $Combination->module,
-				3 => $Combination->action
+				1 => $parameter->group,
+				2 => $parameter->module,
+				3 => $parameter->action
 		);		
 		
 		/* 认证的表前缀 */
-		self::$table_prefix = $Combination->table_prefix;
+		self::$table_prefix = $parameter->table_prefix;
 		
 		/* 无需认证过滤 */
-		self::$not_auth_group =  explode(',', $Combination->not_auth_group);				//无需认证分组
-		self::$not_auth_module = explode(',', $Combination->not_auth_module);			//无需认证模块
-		self::$not_auth_action = explode(',', $Combination->not_auth_action);				//无需认证操作
-
+		self::$not_auth_group =  explode(',', $parameter->not_auth_group);				//无需认证分组
+		self::$not_auth_module = explode(',', $parameter->not_auth_module);			//无需认证模块
+		self::$not_auth_action = explode(',', $parameter->not_auth_action);				//无需认证操作
+		
+		$parameter = null;	//清除对象引用，释放资源
 	}
 	
 	/**
@@ -85,7 +86,6 @@ class RBAC {
 		/* 拿已有的权限与URL的动作进行对比 */
 		foreach ($have_jurisdiction AS $key=>$val) {
 			$tmp = array_diff(self::$action,$val);	//计算URL动作与已有权限的差集
-			
 		
 			/* 如果没有差集，则表示有权限访问 */
 			if (empty($tmp)) {

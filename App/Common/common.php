@@ -91,13 +91,21 @@ function getArrayByField(&$arr,$field, $key = '') {
 
 /**
  * 根据Val值，重新排序数组
- * @param Array $arr
- * @param unknown_type $k
+ * @param Array $arr			//排序的数组
+ * @param String $k				//排序的字段
+ * @param Boole $old			//是否按照原数组的排序
+ * @return Array
  */
-function regroupKey(&$arr,$k) {
+function regroupKey(&$arr,$k,$old = false) {
 	$aRet = array();
-	foreach ($arr AS $key=>$val) {
-		$aRet[$val[$k]][] = $val;	
+	if ($old == true) {
+		foreach ($arr AS $key=>$val) {
+			$aRet[$val[$k]] = $val;
+		}
+	} else {
+		foreach ($arr AS $key=>$val) {
+			$aRet[$val[$k]][] = $val;
+		}
 	}
 	return $aRet;
 }

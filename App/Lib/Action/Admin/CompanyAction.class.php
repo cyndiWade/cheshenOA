@@ -20,6 +20,7 @@ class CompanyAction extends AdminBaseAction {
 		$company_list = $Company->company_region_view();
 
 		$this->assign('ACTION_NAME','区域管理');
+		$this->assign('TITILE_NAME','请慎重编辑公司区域数据，这关乎到整个系统！');
 		$this->assign('company_list',$company_list);
 		$this->display();
 	}

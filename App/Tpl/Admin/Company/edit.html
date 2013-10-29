@@ -73,7 +73,7 @@
 									</div>																		<div class="control-group">													<label class="control-label">地理位置<span class="required">*</span></label>																				<div class="controls">													<select tabindex="1" class="small m-wrap"  name="region_id">													<option value="">--地理位置--</option>													<volist name="city_list" id="vo">														<if condition="($vo['region_id'] eq $company_info['region_id'])"> value1															<option value="{$vo.region_id}" selected=selected >{$vo.region_name}</option>														<else />															<option value="{$vo.region_id}" >{$vo.region_name}</option>														</if>													</volist>																									</select>										</div>												</div>																		<div class="control-group">										<label class="control-label">备注</label>													<div class="controls">														<textarea name="remarks" class="span6 m-wrap" rows="3">{$company_info.remarks}</textarea>													</div>												</div>
 									<div class="form-actions">										
 										<button type="submit" class="btn purple">编辑</button>
-										<a href="?s=/Admin/Personnel/department"><button type="button" class="btn">返回</button></a>
+										<a href="?s=/Admin/Company/index"><button type="button" class="btn">返回</button></a>
 									</div>
 								</form>
 								<!-- END FORM-->

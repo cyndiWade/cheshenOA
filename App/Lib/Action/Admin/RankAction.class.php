@@ -6,17 +6,8 @@ class RankAction extends AdminBaseAction {
 	
 	private $MODULE = '会员管理';
 	
-	/* 会员种类 */
-	private $rank = array(
-		5 => '5万级别会员',
-		10 => '10万级别会员',
-		20 => '20万级别会员',
-		40 => '40万级别会员',
-		80 => '80万级别会员',
-		'youxuan' => '优选会员',	
-		'linshi' => '临时会员',
-		'shijia' => '试驾会员',
-	);
+	/* 会员类型 */
+	private $rank = array();
 	
 	/* 会员来源 */
 	private $source_select = array(
@@ -27,10 +18,6 @@ class RankAction extends AdminBaseAction {
 	
 	/* 当前会员等级 */
 	private $rank_level;	
-	
-	/* 会员类型 */
-	private $rank_type;
-	
 	
 	/* 会员证件照类型 */
 	private $member_photo = array(
@@ -51,7 +38,11 @@ class RankAction extends AdminBaseAction {
 		
 		$this->assign('MODULE_NAME',$this->MODULE);
 
-		$this->rank_type = C('MEMBER_TYPE');
+		/* 组合会员类型 */
+		$MemberRankInfo =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
+		foreach ($MemberRankInfo AS $key=>$val) {
+			$this->rank[$val['identifying']] = $val['name'];
+		}
 
 	}
 	
@@ -60,22 +51,13 @@ class RankAction extends AdminBaseAction {
 	private function check_rank($rank) {
 		/* 全局保持会员属性 */
 		$rank_level = $this->rank[$rank];		//会员名称
-		if (empty($rank_level)) $this->error('此模块开发中');
+		if (empty($rank_level)) $this->error('此类型的会员不存在！');
 		
 		$this->rank_level = $rank_level;
 		$this->assign('rank',$rank);
 	}
 	
-	
-	/* 验证会员类型信息 */
-	private function check_rank_type ($rank_type) {
-		/* 防止会员类型误操作 */
-		if(!in_array($rank_type,$this->rank_type))  {
-			$this->error('非法操作！');
-		}
-	}
-	
-	
+
 	/* AJAX查询用户数据 */
 	public function ajax_search_account () {
 	
@@ -108,8 +90,7 @@ class RankAction extends AdminBaseAction {
 		$member_base_list = $MemberBase->seek_rank_data($rank);
 		if ($member_base_list) {
 			foreach ($member_base_list AS $key=>$val) {
-				if ($val['rank_type'] == 0) $member_base_list[$key]['rank_type_name'] = '会员';
-				if ($val['rank_type'] == 1) $member_base_list[$key]['rank_type_name'] = '股东会员';
+				$member_base_list[$key]['rank_type_name'] = $this->rank[$val['rank']];		//会员类型
 			}
 		}
 		
@@ -128,7 +109,6 @@ class RankAction extends AdminBaseAction {
 		$rank = $this->_get('rank');						//会员等级
 		$rank_type = $this->_get('rank_type');		//会员类型
 		$this->check_rank($rank);							//验证会员等级信息
-		$this->check_rank_type($rank_type);		//验证会员类型信息
 		
 		if ($this->isPost()) {
 			$MemberBase = D('MemberBase');			//会员基本信息表
@@ -138,10 +118,15 @@ class RankAction extends AdminBaseAction {
 			exit;
 		}
 
+		
+		/* 区别会员类型 */
+		$this->assign('ACTION_NAME','添加会员基本信息');
+		$this->assign('TITILE_NAME','添加会员基本信息');
 		$this->assign('rank_select',$this->rank);						//会员等级列表
 		$this->assign('source_select',$this->source_select);		//会员来源列表
-
-		/* 区别会员类型 */
+		$this->display('member_base_add');
+		
+		/**
 		if ($rank_type == $this->rank_type['member']) {		//普通会员
 			$this->assign('ACTION_NAME','添加会员基本信息');
 			$this->assign('TITILE_NAME','添加会员基本信息');
@@ -151,6 +136,7 @@ class RankAction extends AdminBaseAction {
 			$this->assign('TITILE_NAME','添加股东会员基本信息');
 			$this->display('member_base_add_shareholder');
 		}	
+		*/
 	}
 
 	
@@ -160,7 +146,7 @@ class RankAction extends AdminBaseAction {
 	public function member_base_edit () {
 		$id = $this->_get('id');								//基本信息id
 		$rank_type = $this->_get('rank_type');		//会员类型	
-		$this->check_rank_type($rank_type);		//验证会员类型信息	
+
 		$MemberBase = D('MemberBase');			//会员基本信息表
 		$Member = D('Member');							//账户信息表
 		
@@ -184,6 +170,11 @@ class RankAction extends AdminBaseAction {
 		$this->assign('base_info',$base_info);
 		
 		/* 区别会员类型 */
+		$this->assign('ACTION_NAME','编辑会员基本信息');
+		$this->assign('TITILE_NAME','编辑会员基本信息');
+		$this->display('member_base_edit');
+		
+		/**
 		if ($rank_type == $this->rank_type['member']) {				//普通会员
 			$this->assign('ACTION_NAME','编辑会员基本信息');
 			$this->assign('TITILE_NAME','编辑会员基本信息');
@@ -193,7 +184,7 @@ class RankAction extends AdminBaseAction {
 			$this->assign('TITILE_NAME','编辑股东基本信息');
 			$this->display('member_base_edit_shareholder');
 		}
-
+		**/
 	}
 	
 	
@@ -298,7 +289,9 @@ class RankAction extends AdminBaseAction {
 	}
 	
 	
-	/* 处理上传文件 */
+	/**
+	 * AJAX处理上传会员照片
+	 */
 	public function ajax_photo_upload() {
 		header('Content-Type:text/html;charset=utf-8');
 		
@@ -309,11 +302,16 @@ class RankAction extends AdminBaseAction {
 			
 			/* 执行上传 */
 			$file = $_FILES['member_photo'];			//上传的文件
-			$member_base_id = $this->_post('member_base_id');
-			$type = $this->_post('type');
-
-			$result = parent::upload_file($file, $dir,5120000);		//执行上传。
+			$member_base_id = $this->_post('member_base_id');	//会员基本信息ID
+			$type = $this->_post('type');					//图片类型
 			
+			/* 参数验证 */
+			if (empty($member_base_id) || empty($type)) parent::callback(C('STATUS_DATA_LOST'),'参数错误！');
+			
+			/* 执行上传 */
+			$result = parent::upload_file($file, $dir,5120000);		
+			
+			/* 上传结果处理 */
 			if ($result['status'] == true) {
 				$MemberPhoto = D('MemberPhoto');
 				$MemberPhoto->member_base_id = $member_base_id;
@@ -342,8 +340,9 @@ class RankAction extends AdminBaseAction {
 
 	}
 	
+	
 	/**
-	 * 删除图片
+	 * AJAX会员删除图片
 	 */
 	public function ajax_photo_remove () {
 		if ($this->isPost()) {

@@ -9,7 +9,7 @@ class IndexAction extends AdminBaseAction {
 
 	//获取首页信息
 	public function index(){
-
+	
 		
 		$this->display();
 	

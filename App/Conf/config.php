@@ -103,13 +103,7 @@ $custom= array (
 				0 => '正常',
 				1 => '禁用',
 		),
-		
-		/* 会员类型 */
-		'MEMBER_TYPE' => array(
-				'member'=>0	,		//会员
-				'shareholder' =>1,	//股东
-		),
-		
+			
 		//上传文件目录
 		'UPLOAD_DIR' => array(
 				'web_dir' => $_SERVER['DOCUMENT_ROOT'],
@@ -134,8 +128,9 @@ $custom= array (
 		'STATUS_NOT_DATA'	=> '2004',			//没有没有数据
 		'STATUS_RBAC' => '3001',					//RBAC权限
 		'STATUS_ACCESS' => '4001',				//非法访问
+		'STATUS_DATA_LOST' => '5001',			//上传数据丢失
 		'STATUS_OTHER' => '9999',					//其他错误
-		
+	
 );
 
 return array_merge($system,$custom);
