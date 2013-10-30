@@ -249,11 +249,18 @@
 
 					</a>
 
-					<ul class="sub-menu">
+					<ul class="sub-menu">	
 						<li >
 							<a href="{:U('Admin/Member/member_list')}">
 							新注册用户</a>
 						</li>
+						<volist name="global_tpl_view['sidebar']['cars']" id="vo">
+						<li >
+							<a href="?s=/Admin/Rank/rank_list/member_rank_id/{$vo.id}.html">
+							{$vo.name}</a>
+						</li>
+						</volist>
+						<!--
 						<li >
 							<a href="{:U('Admin/Rank/rank_list',array('rank'=>5))}">
 							5万级别会员</a>
@@ -290,6 +297,7 @@
 							<a href="{:U('Admin/Rank/rank_list',array('rank'=>shijia))}">
 							试驾系统会员</a>
 						</li>
+						 -->
 					</ul>
 
 				</li>

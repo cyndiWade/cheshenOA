@@ -4,10 +4,11 @@
  * 后台核心类
  */
 class AdminBaseAction extends AppBaseAction {
-	/**
-	 * 保存用户信息，供全局调用
-	 */
+	
+	/* 保存用户信息，供全局调用 */
 	protected $oUser;						//用户数据
+	
+	protected $global_tpl_view;			//全局模板变量
 	
 
 	/**
@@ -22,6 +23,7 @@ class AdminBaseAction extends AppBaseAction {
 		//全局模板变量
 		$this->global_tpl_view();
 	}
+	
 	
 	
 	//初始化用户数据
@@ -97,7 +99,15 @@ class AdminBaseAction extends AppBaseAction {
 	 * 全局模板变量
 	 */
 	private function global_tpl_view () {
-		$this->assign('nickname',$this->oUser->nickname);
+
+		/*用户信息global_tpl_view['user_info'] */
+		$this->global_tpl_view['user_info']['nickname'] = $this->oUser->nickname;		
+		
+		/* 车辆导航$this->global_tpl_view['sidebar']['cars'] */
+		$member_rank =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
+		$this->global_tpl_view['sidebar']['cars'] = $member_rank;
+		
+		$this->assign('global_tpl_view',$this->global_tpl_view);
 	}
 	
 
@@ -115,7 +125,7 @@ class AdminBaseAction extends AppBaseAction {
 		$upload->allowExts  = $type;				// 上传文件的(后缀)（留空为不限制），，
 		//上传保存
 		$upload->savePath =  $dir;					// 设置附件上传目录
-		$upload->autoSub = true;						// 是否使用子目录保存上传文件
+		$upload->autoSub = true;					// 是否使用子目录保存上传文件
 		$upload->subType = 'date';					// 子目录创建方式，默认为hash，可以设置为hash或者date日期格式的文件夹名
 		$upload->saveRule =  'uniqid';				// 上传文件的保存规则，必须是一个无需任何参数的函数名
 

@@ -17,7 +17,6 @@ var TableManaged = function () {
                	  { "bSortable": true },
                   { "bSortable": true },
 				  { "bSortable": true },
-				  { "bSortable": true },
 				   { "bSortable": true },
 				   { "bSortable": false }
                 ],

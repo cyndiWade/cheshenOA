@@ -17,6 +17,16 @@ var FormValidation = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 ignore: "",
                 rules: {
+                	card_number : {
+                		required: true,
+                		minlength: 10
+                	},
+					card_number_over : {
+						minlength: 6,
+						maxlength:6,
+						digits:true,
+                        required: true	
+					},
 					member_id : {
 						 required: true
 					},
@@ -84,7 +94,11 @@ var FormValidation = function () {
 					},
 					website : {
 						url:true
-					}
+					},
+					date : {
+	                       required: true,
+	                       dateISO:true
+	                  }
 					
 
                 },

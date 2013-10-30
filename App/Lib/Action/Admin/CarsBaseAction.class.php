@@ -39,7 +39,7 @@ class CarsBaseAction extends AdminBaseAction {
 		/* 组合车辆级别 */
 		$CarsGradeInfo = D('CarsGrade')->seek_all_data(); 	//获取车辆级别数据
 		foreach ($CarsGradeInfo AS $key=>$val) {
-			$this->car_grade[$val['identifying']] = $val['name'];
+			$this->car_grade[$val['id']] = $val['name'];
 		}
 	}
 	

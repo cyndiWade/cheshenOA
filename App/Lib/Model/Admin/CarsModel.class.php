@@ -11,7 +11,7 @@ class CarsModel extends AdminBaseModel {
 	 * @param INT	 $company_id		//区域ID
 	 */
 	public function seek_car_info ($company_id) {
-		return  $this->field('id,company_id,grade,brand,car_num,type,car_status')->where(array('company_id'=>$company_id,'status'=>0))->select();
+		return  $this->field('id,company_id,cars_grade_id,brand,car_num,type,car_status')->where(array('company_id'=>$company_id,'status'=>0))->select();
 	}
 	
 }

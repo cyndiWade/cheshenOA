@@ -6,8 +6,15 @@ class RankAction extends AdminBaseAction {
 	
 	private $MODULE = '会员管理';
 	
+	/* 会员级别ID */
+	private $member_rank_id;
+	
 	/* 会员类型 */
-	private $rank = array();
+	private $member_rank = array();
+	
+	/* 会员类型说明(俱乐部) */
+	private $member_content = array();
+	
 	
 	/* 会员来源 */
 	private $source_select = array(
@@ -16,8 +23,9 @@ class RankAction extends AdminBaseAction {
 			3 => '自主报名（信息来源）',
 	);
 	
-	/* 当前会员等级 */
-	private $rank_level;	
+	/* 当前会员级别说明 */
+	private $member_rank_name;	
+	
 	
 	/* 会员证件照类型 */
 	private $member_photo = array(
@@ -38,23 +46,26 @@ class RankAction extends AdminBaseAction {
 		
 		$this->assign('MODULE_NAME',$this->MODULE);
 
-		/* 组合会员类型 */
-		$MemberRankInfo =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
-		foreach ($MemberRankInfo AS $key=>$val) {
-			$this->rank[$val['identifying']] = $val['name'];
-		}
-
+		$this->member_rank_id = $this->_get('member_rank_id');	//初始化会员级别ID
+		
 	}
 	
 	
-	/* 验证会员级别信息 */
-	private function check_rank($rank) {
-		/* 全局保持会员属性 */
-		$rank_level = $this->rank[$rank];		//会员名称
-		if (empty($rank_level)) $this->error('此类型的会员不存在！');
+	/* 初始化与验证会员信息 */
+	private function check_rank() {
 		
-		$this->rank_level = $rank_level;
-		$this->assign('rank',$rank);
+		/* 组合会员类型 */
+		$MemberRankInfo =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
+		foreach ($MemberRankInfo AS $key=>$val) {
+			$this->member_rank[$val['id']] = $val['name'];
+			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
+		}
+
+		/* 全局保持会员属性 */
+		$this->member_rank_name = $this->member_rank[$this->member_rank_id];		//会员名称
+		if (empty($this->member_rank_name)) $this->error('此类型的会员不存在！');
+		
+		$this->assign('member_rank_id',$this->member_rank_id);
 	}
 	
 
@@ -81,49 +92,78 @@ class RankAction extends AdminBaseAction {
 	 * 会员列表
 	 */
 	public function rank_list () {
-		$rank = $this->_get('rank');				//会员等级
-		$this->check_rank($rank);					//验证会员等级信息
+		$this->check_rank();					//验证会员等级信息
 		
 		$MemberBase = D('MemberBase');	//会员基本信息表
 
 		/* 获取相应会员数据 */
-		$member_base_list = $MemberBase->seek_rank_data($rank);
+		$member_base_list = $MemberBase->seek_rank_data($this->member_rank_id);
 		if ($member_base_list) {
 			foreach ($member_base_list AS $key=>$val) {
-				$member_base_list[$key]['rank_type_name'] = $this->rank[$val['rank']];		//会员类型
+				$member_base_list[$key]['rank_name'] = $this->member_rank[$val['member_rank_id']];		//会员类型
 			}
 		}
-		
+
+		/**
+		 * CN 0755 2013 B H 100001		会员
+		 * CN 0755 2013 D H 123456
+		 * CN 0755 20130716 B G 0001 - 900001
+		 * 
+		 */
 		$this->assign('ACTION_NAME','会员列表');
-		$this->assign('rank_level',$this->rank_level);				//会员等级名称
-		$this->assign('rank_type',$this->rank_type);				//会员类型
+		$this->assign('member_rank_name',$this->member_rank_name);				//会员等级名称
 		$this->assign('member_base_list',$member_base_list);
 		$this->display();
 	}
 	
 	
 	/**
-	 * 添加会员指定级别的会员
+	 * 添加指定级别的会员
 	 */
 	public function member_base_add () {
-		$rank = $this->_get('rank');						//会员等级
-		$rank_type = $this->_get('rank_type');		//会员类型
-		$this->check_rank($rank);							//验证会员等级信息
+
+		$this->check_rank();											//验证会员等级信息
+		
 		
 		if ($this->isPost()) {
+			
+			$Card = D('Card');			//会员卡片
+			/* 验证会员卡是否存在 */
+			
+			if ($this->member_rank_id == 9) {	//股东会员处理
+				$card_number = $this->_post('card_number');
+				$Card->type = 'G';
+			} else {
+				$card_number = implode('',$_POST['card_number']).$_POST['card_number_over'];
+				$Card->type = $_POST['card_number']['type'];
+			}
+			
+			$is_have=$Card->seek_card_one($card_number);
+			if ($is_have) $this->error('此会员卡已存在！');
+			
 			$MemberBase = D('MemberBase');			//会员基本信息表
 			$MemberBase->create();
 			$MemberBase->property = implode(',',$MemberBase->property);
-			$MemberBase->add_one_data($rank_type) ? $this->success('添加成功！') : $this->error('添加失败！');
+			$member_base_id = $MemberBase->add();
+			
+			if ($member_base_id) {
+				$Card->member_base_id = $member_base_id;
+				$Card->card_number = $card_number;	
+				$Card->add();
+				 $this->success('添加成功！') ;
+			} else {
+				$this->error('添加失败！');
+			}
+			
 			exit;
 		}
 
-		
 		/* 区别会员类型 */
-		$this->assign('ACTION_NAME','添加会员基本信息');
-		$this->assign('TITILE_NAME','添加会员基本信息');
-		$this->assign('rank_select',$this->rank);						//会员等级列表
+		$this->assign('ACTION_NAME','添加基本信息');
+		$this->assign('TITILE_NAME','添加'.$this->member_rank_name.'基本信息');
+		$this->assign('rank_select',$this->member_rank);						//会员等级列表
 		$this->assign('source_select',$this->source_select);		//会员来源列表
+		$this->assign('rank_content_select',$this->member_content);		//会员类型级别说明
 		$this->display('member_base_add');
 		
 		/**
@@ -146,11 +186,15 @@ class RankAction extends AdminBaseAction {
 	public function member_base_edit () {
 		$id = $this->_get('id');								//基本信息id
 		$rank_type = $this->_get('rank_type');		//会员类型	
-
+		$this->check_rank();
+		
 		$MemberBase = D('MemberBase');			//会员基本信息表
 		$Member = D('Member');							//账户信息表
+		$Card = D('Card');										//会员卡片
 		
 		if ($this->isPost()) {
+			
+			$Card->where(array('member_base_id'=>$id))->data(array('card_number',$_POST['card_number']))->save();
 			$MemberBase->create();
 			$MemberBase->property = implode(',',$MemberBase->property);
 			$MemberBase->save_one_data(array('id'=>$id)) ? $this->success('更新成功！') : $this->error('没有数据被修改！');
@@ -160,18 +204,24 @@ class RankAction extends AdminBaseAction {
 		/* 获取基本数据 */
 		$base_info = $MemberBase->get_one_data(array('status'=>0,'id'=>$id));
 		if (empty($base_info)) $this->error('此会员不存在！');
-		
+
 		/* 获取用户账号数据 */
 		$base_info['member_info'] = $Member->get_one_data(array('id'=>$base_info['member_id']),'account,nickname');
-	
-		$this->assign('rank',$base_info['rank']);				//当前数据会员等级
-		$this->assign('source_select',$this->source_select);
-		$this->assign('rank_select',$this->rank);
-		$this->assign('base_info',$base_info);
-		
+
+		/* 获取会员卡号 */
+		$card_number = $Card->get_one_data(array('member_base_id'=>$base_info['id']),'card_number');
+		$base_info['card_number'] = $card_number['card_number'];
+
+
 		/* 区别会员类型 */
-		$this->assign('ACTION_NAME','编辑会员基本信息');
-		$this->assign('TITILE_NAME','编辑会员基本信息');
+		$this->assign('ACTION_NAME','编辑基本信息');
+		$this->assign('TITILE_NAME','编辑'.$this->member_rank_name.'信息');
+		
+		$this->assign('member_rank_id',$base_info['member_rank_id']);				//当前数据会员等级
+		$this->assign('source_select',$this->source_select);
+		$this->assign('rank_select',$this->member_rank);						//会员等级列表
+		$this->assign('rank_content_select',$this->member_content);		//会员类型级别说明	
+		$this->assign('base_info',$base_info);
 		$this->display('member_base_edit');
 		
 		/**
@@ -196,8 +246,7 @@ class RankAction extends AdminBaseAction {
 		$member_base_id = $this->_get('member_base_id');		//基本信息ID
 		if(empty($member_base_id)) $this->error('非法操作！');
 		
-		$rank = $this->_get('rank');				//会员等级
-		$this->check_rank($rank);					//验证会员级别
+		$this->check_rank();					//验证会员级别
 		
 		$MemberCredit = D('MemberCredit');		//会员信息表
 		
@@ -232,8 +281,7 @@ class RankAction extends AdminBaseAction {
 		$member_base_id = $this->_get('member_base_id');		//基本信息ID
 		if(empty($member_base_id)) $this->error('非法操作！');
 		
-		$rank = $this->_get('rank');				//会员等级
-		$this->check_rank($rank);					//验证会员级别
+		$this->check_rank();					//验证会员级别
 		
 		$MemberLife = D('MemberLife');		//会员生活表信息
 		
@@ -267,13 +315,10 @@ class RankAction extends AdminBaseAction {
 	 */
 	public function member_photo () {
 		$member_base_id = $this->_get('member_base_id');		//基本信息ID
-		if(empty($member_base_id)) $this->error('非法操作！');
-		
-		$rank = $this->_get('rank');				//会员等级
-		$this->check_rank($rank);					//验证会员级别
+		if(empty($member_base_id)) $this->error('非法操作！');	
+		$this->check_rank();					//验证会员级别
 		
 		$MemberPhoto = D('MemberPhoto');
-		
 		$photo_list = $MemberPhoto->get_spe_data(array('status'=>0,'member_base_id'=>$member_base_id));
 		if (!empty($photo_list)) {
 			parent::public_file_dir($photo_list, array('url'), 'images/');		//组合访问地址
