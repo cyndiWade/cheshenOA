@@ -50,6 +50,7 @@ class StaffAction extends AdminBaseAction {
 		$StaffFamily = D('StaffFamily');				//员工家庭成员表
 		$StaffContract = D('StaffContract');			//员工合同信息表
 		$StaffSalary = D('StaffSalary');					//员工薪资数据
+		$StaffAchievements = D('StaffAchievements');				//员工政绩表
 		$StaffAlteration = D('StaffAlteration');		//异动事件表
 		
 		//区域列表
@@ -76,6 +77,9 @@ class StaffAction extends AdminBaseAction {
 		//薪资数据
 		$staff_salary_list = $StaffSalary->seek_all_data($id);
 		
+		//政绩数据
+		$staff_achievements_list = $StaffAchievements->seek_all_data($id);
+		
 		//异动事件数据
 		$staff_alteration_list = $StaffAlteration->seek_all_data($id);
 		
@@ -89,6 +93,7 @@ class StaffAction extends AdminBaseAction {
 		$this->assign('staff_family_list',$staff_family_list);
 		$this->assign('staff_contract_list',$staff_contract_list);
 		$this->assign('staff_salary_list',$staff_salary_list);
+		$this->assign('staff_achievements_list',$staff_achievements_list);
 		$this->assign('staff_alteration_list',$staff_alteration_list);
 		
 		if ($act == 'add') {
@@ -390,11 +395,55 @@ class StaffAction extends AdminBaseAction {
 		}
 		
 		$this->assign('base_id',$base_id);
-		$this->assign('ACTION_NAME','编辑合同信息');
+		$this->assign('ACTION_NAME','编辑薪资信息');
 		$this->display();
-		
-		
+
 	}
+	
+	
+	/**
+	 * 每月政绩、以及工资栏
+	 */
+	public function staff_achievements () {
+		$act = $this->_get('act');							//动作
+		$base_id = $this->_get('base_id');			//员工id
+		$id = $this->_get('id');								//工作经历id
+		$StaffAchievements = D('StaffAchievements');				//员工政绩表
+		
+		switch ($act) {
+			case 'add' :
+				if ($this->isPost()) {
+					$StaffAchievements->create();
+					$StaffAchievements->base_id = $base_id;	
+					$StaffAchievements->users_id = $this->oUser->id;		//用户ID
+					$StaffAchievements->add ()  ? $this->success('添加成功') : $this->error('添加失败，请重新尝试');
+					exit;
+				}
+				break;
+			case 'update':
+				if ($this->isPost()) {
+					$StaffAchievements->create();
+					$StaffAchievements->where(array('id'=>$id))->save ()  ? $this->success('修改成功') : $this->error('没有数据被修改');
+					exit;
+				}
+				$html_info = $StaffAchievements->seek_one_data($id);
+				
+				$this->assign('html_info',$html_info);
+				break;
+			case 'delete':
+				$StaffAchievements->del(array('id'=>$id)) ? $this->success('删除成功') : $this->error('删除失败');
+				exit;
+			default :
+				$this->error('非法操作');
+		}
+		
+		$this->assign('base_id',$base_id);
+		$this->assign('ACTION_NAME','编辑政绩');
+		$this->assign('TITLE_NAME','编辑政绩信息');
+		$this->display();
+	}
+	
+	
 	
 	
 	/* 五、员工异动事件查看 */

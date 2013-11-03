@@ -4,9 +4,7 @@
  */
 class CarsCompanyAction extends CarsBaseAction {
 	
-	private $MODULE = '车辆管理';
 
-	
 	/* 照片类型 */
 	private $cars_photo = array(
 			1 => '车辆照片',

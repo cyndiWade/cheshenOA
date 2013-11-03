@@ -1,14 +1,17 @@
 <?php
 
 /**
- * 后台核心类
+ * 后台核心类--所有后台方法必须继承此类
  */
 class AdminBaseAction extends AppBaseAction {
 	
 	/* 保存用户信息，供全局调用 */
-	protected $oUser;						//用户数据
+	protected $global_system;			//全局系统变量
 	
-	protected $global_tpl_view;			//全局模板变量
+	protected $oUser;						//全局身份数据
+	
+	protected $global_tpl_view;		//全局模板变量
+	
 	
 
 	/**
@@ -19,6 +22,9 @@ class AdminBaseAction extends AppBaseAction {
 		
 		//初始化
 		$this->admin_base_init();
+		
+		//全局系统变量
+		$this->global_system();
 		
 		//全局模板变量
 		$this->global_tpl_view();
@@ -94,6 +100,14 @@ class AdminBaseAction extends AppBaseAction {
 
 	}
 	
+	
+	/**
+	 * 全局系统用到的数据
+	 */
+	private function global_system () {
+		$this->global_system['member_rank'] = D('MemberRank')->seek_all_data();
+	}
+	
 
 	/**
 	 * 全局模板变量
@@ -104,8 +118,7 @@ class AdminBaseAction extends AppBaseAction {
 		$this->global_tpl_view['user_info']['nickname'] = $this->oUser->nickname;		
 		
 		/* 车辆导航$this->global_tpl_view['sidebar']['cars'] */
-		$member_rank =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
-		$this->global_tpl_view['sidebar']['cars'] = $member_rank;
+		$this->global_tpl_view['sidebar']['cars'] =  $this->global_system['member_rank']; 	//获取所有会员级别信息
 		
 		$this->assign('global_tpl_view',$this->global_tpl_view);
 	}
@@ -139,6 +152,7 @@ class AdminBaseAction extends AppBaseAction {
 		}
 	}
 
+	
 	
 	
 }

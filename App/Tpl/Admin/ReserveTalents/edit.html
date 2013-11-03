@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/chosen.css" />		
+	<!-- END PAGE LEVEL STYLES -->
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	<include file="Public:header" />
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<!-- 左侧导航 -->		<include file="Public:sidebar" />
+		<!-- BEGIN PAGE -->  
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER -->						<!-- END BEGIN STYLE CUSTOMIZER -->     
+						<h3 class="page-title">
+							{$MODULE_NAME}
+							 <small>{$ACTION_NAME}</small>
+						</h3>		
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN VALIDATION STATES-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>{$TITLE_NAME}</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="javascript:;" class="reload"></a>				
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->
+								<form action="" id="form_sample_1" method="post" class="form-horizontal">		
+									<div class="alert alert-error hide">
+										<button class="close" data-dismiss="alert"></button>
+										请在文本框输入相应内容.
+									</div>
+									<div class="alert alert-success hide">
+										<button class="close" data-dismiss="alert"></button>
+										验证成功
+									</div>																																	<div class="control-group">																<label class="control-label">应聘岗位<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="jobs"  value="{$html_info.jobs}" >																</div>															</div>																								<div class="control-group">																<label class="control-label">姓名<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="name"  value="{$html_info.name}" >																</div>															</div>																								<div class="control-group">																<label class="control-label">英文姓名<span class="required">*</span></label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"name="name_en"  value="{$html_info.name_en}" >																</div>															</div>																	<div class="control-group">																<label class="control-label">民族</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1" value="{$html_info.ethnic}" name="ethnic">																</div>															</div>																								<div class="control-group">																<label class="control-label">身份证号码</label>																<div class="controls">																	<input type="text" class="span6 m-wrap"   name="identity" value="{$html_info.identity}">																</div>															</div>																																				<div class="control-group">																<label class="control-label">身份证地址</label>																<div class="controls">																	<input type="text" class="span6 m-wrap"   name="identity_address" value="{$html_info.identity_address}">																</div>															</div>																								<div class="control-group">																<label class="control-label">居住地址</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1" value="{$html_info.dwell_address}" name="dwell_address">																</div>															</div>																								<div class="control-group">													<if condition="($html_info['sex'] eq '男') ">														<assign name="sex_man" value="checked=checked" />													<else />														<assign name="sex_woman" value="checked=checked" />														</if>																										<label class="control-label">性别</label>																<div class="controls">																	<label class="radio">																	<div class="radio"><span><input type="radio" name="sex" value="男" {$sex_man}></span></div>																	男																	</label>																	<label class="radio">																	<div class="radio"><span class="checked"><input type="radio" name="sex" value="女"  {$sex_woman}></span></div>																女														</label>  																</div>															</div>																								<div class="control-group">																<label class="control-label">血型</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="blood" value="{$html_info.blood}">																</div>															</div>																								<div class="control-group">																<label class="control-label">身高</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="height" value="{$html_info.height}">																</div>															</div>														<div class="control-group">																<label class="control-label">生日</label>																<div class="controls">																	<input type="text" class="span6 m-wrap"   name="birthday" value="{$html_info.birthday}">																</div>															</div>																								<div class="control-group">																<label class="control-label">年龄</label>																<div class="controls">																	<input type="text" class="span6 m-wrap"   name="age" value="{$html_info.age}">																</div>															</div>																								<div class="control-group">																<label class="control-label">学历</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="education" value="{$html_info.education}">																</div>															</div>																								<div class="control-group">																<label class="control-label">专业</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="major" value="{$html_info.major}">																</div>															</div>																								<div class="control-group">																<label class="control-label">祖籍</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="ancestral" value="{$html_info.ancestral}">																</div>															</div>																								<div class="control-group">																<label class="control-label">政治面貌</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="politics" value="{$html_info.politics}">																</div>															</div>																								<div class="control-group">																<label class="control-label">电子邮箱</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="email" value="{$html_info.email}">																</div>															</div>																								<div class="control-group">																<label class="control-label">电话号码</label>																<div class="controls">																	<input type="text" class="span6 m-wrap" data-required="1"  name="phone" value="{$html_info.phone}">																</div>															</div>												<div class="control-group">													<label class="control-label">备注</label>																<div class="controls">																	<textarea rows="3" class="span6 m-wrap" name="remarks">{$html_info.remarks}</textarea>																</div>															</div>															<div class="form-actions">																										<button class="btn purple" type="submit">编辑</button>																<a href="?s=/Admin/ReserveTalents/index.html"><button class="btn" type="button">返回</button></a>															</div>
+								</form>
+								<!-- END FORM-->
+							</div>
+						</div>
+						<!-- END VALIDATION STATES-->
+					</div>
+				</div>				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- 页脚 -->	<include file="Public:foot" />
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- 核心插件 -->	<include file="Public:bottom" />
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/additional-methods.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/chosen.jquery.min.js"></script>
+		<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<script src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>	<script type="text/javascript"  src="{$Think.const.APP_PATH}Public/media/js/form-validation-ReserveTalents-edit.js"></script>	<!-- END PAGE LEVEL STYLES -->    
+	<script type="text/javascript">		jQuery(document).ready(function() {    		   // initiate layout and plugins		   App.init();		 //  FormSamples.init();			FormValidation.init();		});	</script>
+	<!-- END JAVASCRIPTS -->   
+
+<!-- END BODY -->
+</html>

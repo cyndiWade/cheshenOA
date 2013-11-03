@@ -4,8 +4,6 @@
  */
 class CarsAllAction extends CarsBaseAction {
 	
-	private $MODULE = '车辆管理';
-	
 	
 	/**
 	 * 构造方法
@@ -13,9 +11,6 @@ class CarsAllAction extends CarsBaseAction {
 	public function __construct() {
 		
 		parent::__construct();
-		
-		
-		$this->assign('MODULE_NAME',$this->MODULE);
 		
 	}
 	

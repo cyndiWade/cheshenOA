@@ -1,7 +1,8 @@
 <?php
 
 /**
- * 	项目--核心类
+ * 	项目---核心类
+ *	 所有此项目分组的基础类，都必须继承此类
  */
 class AppBaseAction extends Action {
 	
@@ -36,6 +37,22 @@ class AppBaseAction extends Action {
 		
 		RBAC::init($Combination);		//初始化数据
 		
+	}
+	
+	
+	/**
+	 * 短信发送类
+	 * @param String $telephone
+	 * @param String $msg
+	 */
+	protected function send_shp ($telephone,$msg) {
+		//执行发送短信
+		import("@.Tool.SHP");	//SHP短信发送类
+		$SHP = new SHP(C('SHP.NAME'),C('SHP.PWD'));			//账号信息
+		$send = $SHP->send($telephone,$msg);		//执行发送
+		$send_status = explode('=',$send[0]);		//对回馈内容处理
+		$send_status = $send_status[1];
+		return $send_status;
 	}
 	
 	
@@ -81,6 +98,10 @@ class AppBaseAction extends Action {
 			}
 		}
 	}
+	
+	
+	
+	
 	
 	
 }

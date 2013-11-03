@@ -104,12 +104,6 @@ class RankAction extends AdminBaseAction {
 			}
 		}
 
-		/**
-		 * CN 0755 2013 B H 100001		会员
-		 * CN 0755 2013 D H 123456
-		 * CN 0755 20130716 B G 0001 - 900001
-		 * 
-		 */
 		$this->assign('ACTION_NAME','会员列表');
 		$this->assign('member_rank_name',$this->member_rank_name);				//会员等级名称
 		$this->assign('member_base_list',$member_base_list);

@@ -1,8 +1,10 @@
 <?php
 /**
- * 车辆管理控制器父类
+ * 车辆管理基础类
  */
 class CarsBaseAction extends AdminBaseAction {
+	
+	protected $MODULE = '车辆管理';
 	
 	protected  $company;						//分公司区域数据列表
 	
@@ -10,13 +12,20 @@ class CarsBaseAction extends AdminBaseAction {
 	
 	protected $company_id;					//当前区域ID
 	
-	protected $car_grade= array();		//车辆级别
+	//车辆级别
+	protected $car_grade= array();		
 	
-	protected $car_status = array(			//车辆状态
+	//车辆状态
+	protected $car_status = array(			
 		0 => '正常',
 		1 => '维修中',
 		2 => '报废',
 		3 => '租用中',		
+	);	
+	
+	//不可使用车辆级别
+	protected $cars_disabled = array(
+		1,2,3		
 	);		
 	
 
@@ -29,6 +38,8 @@ class CarsBaseAction extends AdminBaseAction {
 		parent::__construct();
 		
 		$this->init_car_grade();	//初始化车辆级别数据
+		
+		$this->assign('MODULE_NAME',$this->MODULE);
 	}
 	
 	

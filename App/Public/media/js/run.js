@@ -33,37 +33,9 @@
 
 	})(jQuery);
 	
-	
-	/* 日期控件 */
-	var wade_jquery_date = function () {
-			
-		var options = {
-				//attr 属性 ，更多格式参加书本
-			//	altField:'#otherField',			//同步元素日期到其他元素上
-				dateFormat:'yy-mm-dd',		//日期格式设置
-			//	minDate: new Date(),		//最小选择日期为今天
-				showButtonPanel:true,		//开启今天标示
-				changeYear:true,				//显示年份
-				changeMonth:true,				//显示月份
-				showMonthAfterYear:true,	//互换位置
-				
-				
-				//fn 执行函数
-				onSelect : function () {			//选择日期执行函数
-				},
-				onClose : function () {			//关闭窗口执行函数
-					
-				},
-				
-		};	
-		
-		return  {
-			init : function () {
-				$('.wade_date').datepicker(options);
-			}
-		};
 
-	};
+	wade_jquery_date().init();
+	
 	
 	
 	

@@ -74,7 +74,7 @@
 											<td>{$vo.id}</td>
 											<td class="hidden-480">{$vo.brand}</a></td>
 											<td class="hidden-480">{$vo.type}</td>											<td class="center hidden-480">{$vo.car_num}</td>
-											<td class="center hidden-480">{$vo.car_status}</td>											<td class="center hidden-480">												<a href="?s=/Admin/CarsCompany/cars_photo/company_id/{$vo.company_id}/cars_id/{$vo.id}.html">上传图片</a>											</td>
+											<td class="center hidden-480">{$vo.car_status}</td>											<td class="center">												<a href="?s=/Admin/CarsCompany/cars_photo/company_id/{$vo.company_id}/cars_id/{$vo.id}.html">上传图片</a>												| <a href="?s=/Admin/CarsAudit/index/cars_id/{$vo.id}.html">年检情况</a>												| <a href="?s=/Admin/CarsInsurance/index/cars_id/{$vo.id}.html">保险情况</a>											</td>
 											<td >												<a href="?s=/Admin/CarsCompany/car_info/act/update/company_id/{$vo.company_id}/id/{$vo.id}.html">编辑</a>												| <a href="?s=/Admin/CarsCompany/car_info/act/delete/company_id/{$vo.company_id}/id/{$vo.id}.html" class="check">删除</a>											</td>
 										</tr>										</volist>
 									</tbody>
@@ -97,7 +97,7 @@
 	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/DT_bootstrap.js"></script>
 	<!-- END PAGE LEVEL PLUGINS -->
 	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/table-managed-Member-user_list.js"></script>   	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/table-managed-CarsCompany-car_index.js"></script>   
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>		<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/table-managed-CarsCompany-car_index.js"></script>   
 	<script type="text/javascript">
 		jQuery(document).ready(function() {       
 		   App.init();

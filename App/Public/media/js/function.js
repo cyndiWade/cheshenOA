@@ -1,5 +1,7 @@
-//cookie操作
-//两个参数，一个是cookie的名子，一个是值
+/**
+ * cookie操作类
+ * @returns {Cookie}
+ */
 function Cookie() {
 	//this.name = name;
 	//this.val = val;
@@ -23,7 +25,9 @@ Cookie.prototype.delCookie = function(name) {//删除cookie
 	if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
 
-
+/**
+ * 获取数据类型
+ */
 function getTypeof(obj) {
 		var type =null;
 		if (obj instanceof Array) {
@@ -47,11 +51,65 @@ function getTypeof(obj) {
 		return type;
 	}
 	
-	function in_array(value,arr) {
-		for (var i in arr) {
-			if (value == arr[i]) {
-				return true;
-			}
+/**
+ * 判断值是否在顺组中
+ * @param value
+ * @param arr
+ * @returns {Boolean}
+ */
+function in_array(value,arr) {
+	for (var i in arr) {
+		if (value == arr[i]) {
+			return true;
 		}
-		return false;
-	}	
+	}
+	return false;
+}	
+
+
+/* 日期控件 */
+var wade_jquery_date = function () {
+		
+	var options = {
+			//attr 属性 ，更多格式参加书本
+		//	altField:'#otherField',			//同步元素日期到其他元素上
+			dateFormat:'yy-mm-dd',		//日期格式设置
+		//	minDate: new Date(),		//最小选择日期为今天
+			showButtonPanel:true,		//开启今天标示
+			changeYear:true,				//显示年份
+			changeMonth:true,				//显示月份
+			showMonthAfterYear:true,	//互换位置
+			
+			
+			//fn 执行函数
+			onSelect : function () {			//选择日期执行函数
+			},
+			onClose : function () {			//关闭窗口执行函数
+				
+			},
+			
+	};	
+	
+	return  {
+		init : function () {
+			$('.wade_date').datepicker(options);
+		}
+	};
+
+};
+
+/*得到2个日期间的差值*/
+function daysBetween(DateOne,DateTwo)
+{    
+    var OneMonth = DateOne.substring(5,DateOne.lastIndexOf ('-'));   
+    var OneDay = DateOne.substring(DateOne.length,DateOne.lastIndexOf ('-')+1);   
+    var OneYear = DateOne.substring(0,DateOne.indexOf ('-'));   
+   
+    var TwoMonth = DateTwo.substring(5,DateTwo.lastIndexOf ('-'));   
+    var TwoDay = DateTwo.substring(DateTwo.length,DateTwo.lastIndexOf ('-')+1);   
+    var TwoYear = DateTwo.substring(0,DateTwo.indexOf ('-'));   
+   
+    var cha=((Date.parse(TwoMonth+'/'+TwoDay+'/'+TwoYear) - Date.parse(OneMonth+'/'+OneDay+'/'+OneYear))/86400000);    
+    return cha;
+}	
+

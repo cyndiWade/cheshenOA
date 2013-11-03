@@ -118,9 +118,10 @@ $custom= array (
 
 		//短信平台账号
 		'SHP' => array(
-				'NAME'=>'kevin_shp',
-				'PWD'=>'kevin818'
+			'NAME'=>'cheshen_gd',
+			'PWD'=>'cheshen801'
 		),
+		
 		/* 错误类型 */
 		'STATUS_SUCCESS' => '0',					//没有错误
 		'STATUS_NOT_LOGIN'	=> '1002',			//未登录

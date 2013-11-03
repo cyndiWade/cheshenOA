@@ -297,37 +297,78 @@ var App = function () {
     }
 
     var handleSidebarToggler = function () {
+    	var cookie = new Cookie();	
+    	var body = $('body');
+        var sidebar = $('.page-sidebar');
+    	var sidebar_state = cookie.getCookie('sidebar_state') || 'show';				//设置COOkie
+    
+    	if (sidebar_state == 'show') {
+    		body.removeClass('page-sidebar-closed');
+    	} else {
+    		body.addClass("page-sidebar-closed");
+    	}
+    	
+    	$('.sidebar-toggler').click(function () {
+    		
+    		if (sidebar_state == 'show') {
+    			cookie.setCookie('sidebar_state','hidden');				//
+    		} else if (sidebar_state == 'hidden'){
+    			cookie.setCookie('sidebar_state','show');				//
+    		}
+    		
+	         if ((body.hasClass("page-sidebar-hover-on") && body.hasClass('page-sidebar-fixed')) || sidebar.hasClass('page-sidebar-hovering')) {
+	              body.removeClass('page-sidebar-hover-on');
+	              sidebar.css('width', '').hide().show();
+	              e.stopPropagation();
+	              runResponsiveHandlers();
+	              return;
+	          }
+	
+	          $(".sidebar-search", sidebar).removeClass("open");
+	
+	          if (body.hasClass("page-sidebar-closed")) {
+	              body.removeClass("page-sidebar-closed");
+	              if (body.hasClass('page-sidebar-fixed')) {
+	                  sidebar.css('width', '');
+	              }
+	          } else {
+	              body.addClass("page-sidebar-closed");
+	          }
+    		
+    	});
+    	
+    	
         // handle sidebar show/hide
-        $('.page-sidebar').on('click', '.sidebar-toggler', function (e) {            
-            var body = $('body');
-            var sidebar = $('.page-sidebar');
-
-            if ((body.hasClass("page-sidebar-hover-on") && body.hasClass('page-sidebar-fixed')) || sidebar.hasClass('page-sidebar-hovering')) {
-                body.removeClass('page-sidebar-hover-on');
-                sidebar.css('width', '').hide().show();
-                e.stopPropagation();
-                runResponsiveHandlers();
-                return;
-            }
-
-            $(".sidebar-search", sidebar).removeClass("open");
-
-            if (body.hasClass("page-sidebar-closed")) {
-                body.removeClass("page-sidebar-closed");
-                if (body.hasClass('page-sidebar-fixed')) {
-                    sidebar.css('width', '');
-                }
-            } else {
-                body.addClass("page-sidebar-closed");
-            }
-            runResponsiveHandlers();
-        });
+//        $('.page-sidebar').on('click', '.sidebar-toggler', function (e) {            
+//            var body = $('body');
+//            var sidebar = $('.page-sidebar');
+//
+//            if ((body.hasClass("page-sidebar-hover-on") && body.hasClass('page-sidebar-fixed')) || sidebar.hasClass('page-sidebar-hovering')) {
+//                body.removeClass('page-sidebar-hover-on');
+//                sidebar.css('width', '').hide().show();
+//                e.stopPropagation();
+//                runResponsiveHandlers();
+//                return;
+//            }
+//
+//            $(".sidebar-search", sidebar).removeClass("open");
+//
+//            if (body.hasClass("page-sidebar-closed")) {
+//                body.removeClass("page-sidebar-closed");
+//                if (body.hasClass('page-sidebar-fixed')) {
+//                    sidebar.css('width', '');
+//                }
+//            } else {
+//                body.addClass("page-sidebar-closed");
+//            }
+         //   runResponsiveHandlers();
+     //   });
 
         // handle the search bar close
-        $('.page-sidebar').on('click', '.sidebar-search .remove', function (e) {
-            e.preventDefault();
-            $('.sidebar-search').removeClass("open");
-        });
+//        $('.page-sidebar').on('click', '.sidebar-search .remove', function (e) {
+//            e.preventDefault();
+//            $('.sidebar-search').removeClass("open");
+//        });
 
         // handle the search query submit on enter press
         $('.page-sidebar').on('keypress', '.sidebar-search input', function (e) {

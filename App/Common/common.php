@@ -17,6 +17,18 @@ function isPost($value) {
 
 }
 
+
+function array_add_to (&$old,&$new) {
+	if (is_array($old) && is_array($new)) {
+		foreach ($new AS $key=>$val) {
+			$old[$key] = $val;
+		}
+	} else {
+		return false;
+	}
+}
+
+
 /**
  * 对象转换为字符串
  * @param unknown_type $_object
@@ -32,6 +44,7 @@ function objArrOfstr ($_object,$_fild) {
 	return substr($_html,0,strlen($_html)-1) ;//去掉最后的逗号
 }
 
+
 /**
  * 计算天数，返回日期函数
  * @param num or string $month		月
@@ -45,19 +58,6 @@ function getDateNum($day,$month,$year,$type = 't') {
 }
 
 
-
-//二个提交的数据是否一致
-function checkEquals ($_data,$_otherdate) {
-	if (trim($_data) != trim($_otherdate)) return false;
-	return true;
-}
-
-
-//判断提交数据是否为空
-function dataIsNull ($data) {
-	if (trim($data) == '') return true;
-	return false;
-}
 //时间数据转换
 function time_conversion($data){
 	$arr=explode("/",$data);
@@ -113,7 +113,7 @@ function regroupKey(&$arr,$k,$old = false) {
 
 
 /**
- * 2.预防SQL注入，转义非法字符
+ * 预防SQL注入，转义非法字符
  * @param unknown_type $str
  * @return Ambigous <unknown, string>
  */
@@ -121,7 +121,7 @@ function setString($str) {
 	return get_magic_quotes_gpc() ? $str : addslashes($str);
 }
 /**
- * 3.把转译的字符返回没有转义前的样子
+ * 把转译的字符返回没有转义前的样子
  * @param string $str
  * @return string
  */

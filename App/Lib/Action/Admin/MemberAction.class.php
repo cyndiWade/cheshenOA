@@ -17,6 +17,26 @@ class MemberAction extends AdminBaseAction {
 
 	}
 	
+	//验证提交数据
+	private function check_data($act) {
+		import("@.Tool.Validate");							//验证类
+	
+		if ($act == 'add') {
+			/* 账号验证 */
+			if (Validate::checkNull($_POST['account'])) $this->error('账号不得为空');
+			if (!Validate::checkAccount($_POST['account'])) $this->error('账号必须以字母开头,只能是字符与数字组成,不得超过30位');
+				
+			if (Validate::checkNull($_POST['password'])) $this->error('昵称不得为空');
+			if (!Validate::checkEquals($_POST['password'],$_POST['password_affirm'])) $this->error('二次输入的密码不相同');
+		} elseif ($act == 'update') {
+			if (!Validate::checkNull($_POST['password_old'])) {
+				if (!Validate::checkEquals($_POST['password_old'],$_POST['password_affirm'])) $this->error('二次输入的密码不相同');
+			}
+				
+		}
+	
+	}
+	
 
 	/* 注册用户列表 */
 	public function member_list () {
@@ -28,6 +48,7 @@ class MemberAction extends AdminBaseAction {
 		$this->assign('ACTION_NAME','注册用户');
 		$this->display();
 	}
+	
 	
 	
 	/* 注册用户编辑 */
@@ -86,25 +107,34 @@ class MemberAction extends AdminBaseAction {
 	}
 	
 	
-	//验证提交数据
-	private function check_data($act) {
-		import("@.Tool.Validate");							//验证类
+	
+	/**
+	 * 所有会员信息--用于客服查看
+	 */
+	public function all_user_info () {
+		$MemberBase = D('MemberBase');	//会员基本信息表
 		
-		if ($act == 'add') {
-			/* 账号验证 */
-			if (Validate::checkNull($_POST['account'])) $this->error('账号不得为空');
-			if (!Validate::checkAccount($_POST['account'])) $this->error('账号必须以字母开头,只能是字符与数字组成,不得超过30位');
-			
-			if (Validate::checkNull($_POST['password'])) $this->error('昵称不得为空');
-			if (!Validate::checkEquals($_POST['password'],$_POST['password_affirm'])) $this->error('二次输入的密码不相同');
-		} elseif ($act == 'update') {
-			if (!Validate::checkNull($_POST['password_old'])) {
-				if (!Validate::checkEquals($_POST['password_old'],$_POST['password_affirm'])) $this->error('二次输入的密码不相同');
-			}
-			
-		}
+		/* 获取相应会员数据 */
+		$member_base_list = $MemberBase->get_spe_data(array('status'=>0));
 
+		$tmp_rank_leve = array();
+		foreach ($this->global_system['member_rank'] AS $key=>$val) {
+			$tmp_rank_leve[$val['id']] = $val['name'];
+		}
+		
+		if ($member_base_list) {
+			foreach ($member_base_list AS $key=>$val) {
+				$member_base_list[$key]['rank_name'] = $tmp_rank_leve[$val['member_rank_id']];		//会员类型
+			}
+		}
+		//dump($member_base_list);
+
+		$this->assign('ACTION_NAME','查询所有会员');
+		$this->assign('TITLE_NAME','查询所有会员');
+		$this->assign('member_base_list',$member_base_list);				//会员等级名称
+		$this->display();
 	}
+	
      
 	
 	
