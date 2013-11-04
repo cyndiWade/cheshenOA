@@ -27,7 +27,7 @@ $system  = array(
 
 		/* URL配置 */
 		'URL_MODEL'             => 3,
-		'URL_ROUTER_ON'   => true, 	//开启路由
+		'URL_ROUTER_ON'   => false, 	//开启路由
 		'URL_ROUTE_RULES' => array(
 				'join' => array('/Public/register'),    		 	 //注册
 				'index'=>array('?s=/Index/index'),			//功能介绍
@@ -48,8 +48,12 @@ $system  = array(
 		'DEFAULT_GROUP'         => 'Admin',  					// 默认分组
 		'DEFAULT_ACTION'        => 'index', 						// 默认操作名称
 		'APP_GROUP_MODE'        =>  0, 							 // 分组模式 0 普通分组 1 独立分组
+		
 		'APP_SUB_DOMAIN_DEPLOY' => false,  			 // 是否开启子域名部署
-		'APP_SUB_DOMAIN_RULES'  => array(), 			// 子域名部署规则
+		'APP_SUB_DOMAIN_RULES'  => array(
+			// 子域名部署规则
+			//'192.168.1.100'    => array('Api/'),	//指向对应的分组。
+		), 			
 		'APP_SUB_DOMAIN_DENY'   => array(), 			//  子域名禁用列表
 		
 

@@ -12,7 +12,7 @@ return array(
 		'USER_AUTH_ON' => true,						//是否开启用户权限验证
 		'ADMIN_AUTH_KEY' => 'admin',				//管理员账号标识，不用认证的账号
 		//'NOT_AUTH_GROUP'=> '',						//无需认证分组，多个用,号分割
-		'NOT_AUTH_MODULE' => 'Login,Index', 	// 默认无需认证模块，多个用,号分割
+		'NOT_AUTH_MODULE' => 'Login', 	// 默认无需认证模块，多个用,号分割
 		'NOT_AUTH_ACTION' => '', 						// 默认无需认证方法，多个用,号分割
 		
 		
