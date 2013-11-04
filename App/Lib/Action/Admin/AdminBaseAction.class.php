@@ -10,7 +10,7 @@ class AdminBaseAction extends AppBaseAction {
 	
 	protected $oUser;						//全局身份数据
 	
-	protected $global_tpl_view;		//全局模板变量
+	protected $global_tpl_view;			//全局模板变量
 	
 	
 

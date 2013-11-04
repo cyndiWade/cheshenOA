@@ -29,6 +29,9 @@ class UserAction extends AdminBaseAction {
 		$this->display();
 	}
 	
+	/**
+	 * 修改用户账号状态
+	 */
 	public function user_status () {
 		$Users = D('Users');
 		$id = $this->_get('id');
@@ -36,6 +39,16 @@ class UserAction extends AdminBaseAction {
 		$Users->status = $status;
 		$Users->save_one_data(array('id'=>$id)) ? $this->success('已修改') : $this->error('没有做出修改');
 	}
+	
+	
+	
+	/**
+	 * 个人中心模块
+	 */
+	public function personal () {
+		$this->display();
+	}
+
 	
 
 }

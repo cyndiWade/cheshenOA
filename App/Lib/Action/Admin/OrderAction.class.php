@@ -35,7 +35,7 @@ class OrderAction extends OrderBaseAction {
 
 		if ($html_list) {
 			foreach ($html_list AS $key=>$val) {
-				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];
+				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];		//获取订单来源
 				$html_list[$key]['order_explain'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
 				$html_list[$key]['driver'] = $this->driver[$val['driver']]['name'];		//司机
 			}
