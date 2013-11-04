@@ -97,6 +97,7 @@ function getArrayByField(&$arr,$field, $key = '') {
  * @return Array
  */
 function regroupKey(&$arr,$k,$old = false) {
+	if (empty($arr)) return false;
 	$aRet = array();
 	if ($old == true) {
 		foreach ($arr AS $key=>$val) {

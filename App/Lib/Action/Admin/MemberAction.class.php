@@ -117,17 +117,15 @@ class MemberAction extends AdminBaseAction {
 		/* 获取相应会员数据 */
 		$member_base_list = $MemberBase->get_spe_data(array('status'=>0));
 
-		$tmp_rank_leve = array();
-		foreach ($this->global_system['member_rank'] AS $key=>$val) {
-			$tmp_rank_leve[$val['id']] = $val['name'];
-		}
-		
+		$tmp_rank_leve = regroupKey($this->global_system['member_rank'],'id',true);
+
 		if ($member_base_list) {
 			foreach ($member_base_list AS $key=>$val) {
-				$member_base_list[$key]['rank_name'] = $tmp_rank_leve[$val['member_rank_id']];		//会员类型
+				$tmp_content = $tmp_rank_leve[$val['member_rank_id']]['content'];
+				empty($tmp_content) ? $tmp_content = '' : $tmp_content = '-('.$tmp_content.')';
+				$member_base_list[$key]['rank_name'] = $tmp_rank_leve[$val['member_rank_id']]['name'].$tmp_content;		//会员类型
 			}
 		}
-		//dump($member_base_list);
 
 		$this->assign('ACTION_NAME','查询所有会员');
 		$this->assign('TITLE_NAME','查询所有会员');

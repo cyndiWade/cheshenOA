@@ -27,9 +27,7 @@ class OrderBaseAction extends CarsBaseAction {
 		)
 	);
 	
-	/**
-	 * 订单状态
-	 */
+	/* 订单提交状态 */
 	protected $order_state = array(
 		0 => array(
 			'order_status'	=>0,							
@@ -48,6 +46,24 @@ class OrderBaseAction extends CarsBaseAction {
 			'order_explain' => '派车申请拒绝'
 		)
 	);
+	
+	/* 订单车辆归还状态 */
+	protected $give_back_state = array(
+		0 => array(
+			'status_num'	=>0,							
+			'status_explain' => '未归还'
+		),
+		1 => array(
+			'status_num'	=>1,
+			'status_explain' => '已归还'
+		),				
+		2 => array(
+			'status_num'	=>2,
+			'status_explain' => '已归还,超出'
+		),					
+	);
+	
+	
 
 	/**
 	 * 构造方法

@@ -4,6 +4,7 @@
  */
 class OrderAction extends OrderBaseAction {
 	
+	/* 资源类型 */
 	private $resource_type = array(
 		'1' => 1 ,		//表示车辆资源
 	//	 '2' => 2,		
@@ -270,6 +271,37 @@ class OrderAction extends OrderBaseAction {
 		$this->assign('html_info',$html_info);
 		$this->assign('order_state',$this->order_state);
 		$this->display();
+	}
+	
+	
+	/**
+	 * 还车管理
+	 */
+	public function give_back_car () {
+		$Order = D('Order');													//车辆资源表
+		
+		/* 获取对应订单状态 */
+		$map['o.order_state']  = array('in',
+				array(
+					$this->order_state[2]['order_status'],	//派车申请通过
+				)
+		);
+		$html_list = $Order->seek_user_order($map);
+
+		if ($html_list) {
+			foreach ($html_list AS $key=>$val) {
+				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];
+				$html_list[$key]['status_explain'] = $this->give_back_state[$val['give_back_state']]['status_explain'];		//订单状态
+				$html_list[$key]['driver'] = $this->driver[$val['driver']]['name'];		//司机
+			}
+		}
+		
+		$this->assign('ACTION_NAME','派车申请');
+		$this->assign('TITILE_NAME','派车申请列表');
+		$this->assign('html_list',$html_list);
+		$this->assign('give_back_state',$this->give_back_state);
+		$this->display();
+
 	}
 	
 	
