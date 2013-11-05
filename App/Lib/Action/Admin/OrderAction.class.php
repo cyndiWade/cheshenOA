@@ -16,10 +16,11 @@ class OrderAction extends OrderBaseAction {
 	public function __construct() {
 		
 		parent::__construct();
+		
+		import("@.Tool.Validate");							//验证类
 	}
 	
 	private function data_check() {
-		import("@.Tool.Validate");							//验证类
 		//数据过滤
 		if (Validate::checkNull($_POST['cars_id'])) $this->error('车辆资源为空');
 		if (Validate::checkNull($_POST['start'])) $this->error('用车开始时间为空');
@@ -110,7 +111,6 @@ class OrderAction extends OrderBaseAction {
 						$this->error('用车日期不得大于会员的截止日期');
 					}
 					
-					exit;
 					$Order->create();
 					if ($Order->save_one_data(array('id'=>$id))) {
 						parent::order_history($id,'修改订单');
@@ -318,32 +318,53 @@ class OrderAction extends OrderBaseAction {
 		$Order = D('Order');													//订单表
 		$MemberBase = D('MemberBase');							//会员基本信息表
 		$id = $this->_get('id');												//订单ID
-				
-
+			
+		/* 获取订单数据 */
+		$html_info = $Order->get_one_data(array('id'=>$id,'status'=>0));
+		if (empty($html_info)) $this->error('此订单不存在！');
+		
+		/* 通过订单，查找会员信息 */
+		$member_info = $MemberBase->get_one_data(array('status'=>0,'id'=>$html_info['member_base_id']),'use_car_number');
+		if (empty($member_info)) $this->error('订单会员不存在！');
+		
 		if ($this->isPost()) {
+			
+			$over = $this->_post('over');		//归还日期
+			if(Validate::check_date_differ($html_info['start'],$over)) {
+				$this->error('归还日期不得小于开始用车日期');
+			}
+			
+			$count_days = Validate::count_days($html_info['start'],$over);	//计算开始用车日期与归还日期之间的相差天数
+			if ($count_days >= 0) {
+				$length = $count_days + 1;		//计算用车日期
+			} else {
+				$this->error('日期格式错误！');
+			}
+			
+			dump($member_info);
+			exit;
 			$Order->create();
-			$save_status = $Order->where(array('id'=>$id))->save();		//修改订单状态
+			$Order->length = $length;	//用车日期
+			//$Order->
+			//$save_status = $Order->where(array('id'=>$id))->save();		//修改订单状态
 			if ($save_status) {
-				$state_content =  $this->order_state[$_POST['order_state']]['order_explain'];		//操作状态
-				parent::order_history($id,$state_content);
-				$this->success('提交成功,请填写短息内容',U('Admin/Order/order_send_msg',array('id'=>$id)));
+echo  'ok';
+				//parent::order_history($id,$state_content);
+			//	$this->success('提交成功,请填写短息内容',U('Admin/Order/order_send_msg',array('id'=>$id)));
 			} else {
 				$this->error('提交失败,请重新尝试');
 			}
 			exit;
 		}
 		
-		//获取订单数据
-		$html_info = $Order->get_one_data(array('id'=>$id,'status'=>0));
-		if (empty($html_info)) $this->error('此订单不存在');
-		$mobile_phone = $MemberBase->get_one_data(array('id'=>$html_info['member_base_id']),'mobile_phone');
-		$html_info['mobile_phone'] = $mobile_phone['mobile_phone'];
+		
 
 		
+
 		$this->assign('ACTION_NAME','还车信息');
-		$this->assign('TITILE_NAME','还车信息填写');
+		$this->assign('TITILE_NAME','订单号：'.$html_info['order_num']);
+		$this->assign('TITILE_NAME','还车信息填写。'.'订单号：'.$html_info['order_num']);
 		$this->assign('html_info',$html_info);
-		$this->assign('order_state',$this->order_state);
 		$this->display();
 	}
 	
