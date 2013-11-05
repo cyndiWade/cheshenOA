@@ -74,6 +74,41 @@ class Validate { //表单验证
 		}
 	}
 	
+	/**
+	 * 验证
+	 * @param String $start		
+	 * @param String $over
+	 * @param Int $type		true日期：2013-10-15    false时间戳
+	 */
+	static public function count_days ($start,$over,$type = true) {	//传入时间戳、或者字符类型日期
+		if ($type == true) {	
+			//转换为时间戳
+			$d1=strtotime($start);
+			$d2=strtotime($over);
+			//计算二个时间戳之差,获取相差天数
+			$Days = round(($d2 - $d1)/3600/24);	
+		} else {
+			$Days = round(($over - $start)/3600/24);
+		}
+		return $Days;
+	}
+	
+
+	/**
+ 	 * 验证 开始日期 是否大于 结束日期
+	 * @param String $start_date		日期，如2010-10-12
+	 * @param String $over_date		日期，如2010-10-24
+	 * @return boolean						
+	 */
+	public function check_date_differ ($start_date,$over_date) {
+
+		if (strtotime($start_date) > strtotime($over_date)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
 
 	
 }

@@ -248,27 +248,6 @@ function passport_key($txt, $encrypt_key) {
 
 
 /**
- * 计算二个日期之间相差的天数
- * @param str $start		开始时间 	如:2013-02-10
- * @param str $over		结束时间		2013-02-12
- * @param num $type	类型		1为字符串  0为时间戳
- * @return number
- */
-function countDays ($start,$over,$type) {	//传入时间戳、或者字符类型日期
-	if ($type == 1) {
-		//转换为时间戳
-		$d1=strtotime($start);
-		$d2=strtotime($over);
-		//计算二个时间戳之差,获取相差天数
-		$Days = round(($d2 - $d1)/3600/24);
-	} elseif ($type == 0) {
-		$Days = round(($over - $start)/3600/24);
-	}
-	return $Days;
-}
-
-
-/**
  * 搜素字符串
  * @param STRING $find		//搜索源
  * @param STRING $str		//要搜索的字符串

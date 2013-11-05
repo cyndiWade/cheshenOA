@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 会员可用资源表
+ * 会员等级对应可用资源表
  */
 
 class MemberResourceModel extends AdminBaseModel {

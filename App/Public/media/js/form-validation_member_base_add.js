@@ -98,6 +98,10 @@ var FormValidation = function () {
 					date : {
 	                       required: true,
 	                       dateISO:true
+	                  },
+					 over_date : {
+	                       required: true,
+	                       dateISO:true
 	                  }
 					
 
