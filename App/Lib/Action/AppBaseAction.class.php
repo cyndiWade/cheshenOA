@@ -50,9 +50,7 @@ class AppBaseAction extends Action {
 		import("@.Tool.SHP");	//SHP短信发送类
 		$SHP = new SHP(C('SHP.NAME'),C('SHP.PWD'));			//账号信息
 		$send = $SHP->send($telephone,$msg);		//执行发送
-		$send_status = explode('=',$send[0]);		//对回馈内容处理
-		$send_status = $send_status[1];
-		return $send_status;
+		return $send;
 	}
 	
 	

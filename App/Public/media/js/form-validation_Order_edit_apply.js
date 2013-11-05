@@ -36,26 +36,19 @@ var FormValidation = function () {
                           required: true,
                           digits:true
                        },	
-                    
-                    
-					year_audit_date : {
+                                       
+					mobile_phone : {
                        required: true,
-                        dateISO:true
+                        digits:true,
+						minlength:11,
+						maxlength:11
                     },	
-					year_audit_item : {
-                        required: true,
-						minlength: 1,
-                        maxlength:30
-                    },	
-					year_audit_state : {
-                        required: true,
-						minlength: 1,
-                        maxlength:30
-                    },
-					year_audit_next : {
-                        required: true,
-                        dateISO:true
-                    }
+					mobile_phone_message : {
+						 required: true,
+						minlength:2,
+						maxlength:50
+					}
+
                 },
 
                 invalidHandler: function (event, validator) { //display error alert on form submit              
@@ -126,44 +119,27 @@ var FormValidation = function () {
             
             (function () {
 				/* 日期选择 */
-				var arr_date = $('.wade_date_custom');
-				var start = arr_date.eq(0);
-				var over = arr_date.eq(1);
+				var arr_date = $('.wade_date_custom');	
+				var start_date = arr_date.eq(0);						//日期
+				var over_date = $('#over_date');						//会员到期日期
 				
-				/* 日期天数 */
-				var arr_ipt = $('.length');
-				var ipt_length = arr_ipt.eq(0);
-				var ipt_length_disabled = arr_ipt.eq(1);
-				
-				/* 剩余天数 */
-				var span_residue = $('.residue');
 				
 				/* 计算函数 */
 				var count = function (start,over) {
-					days = daysBetween(start.val(),over.val());	//计算相差 天数
-				
-					var empty_val = function (message) {
-						alert(message);
-						start.val('');	
-						over.val('');	
-						ipt_length.val('');
-						ipt_length_disabled.val('');
+
+					var start_timestamp = Date.parse(start.val());
+					var over_timestamp = Date.parse(over.text());
+					
+					var empty_val = function (mes) {
+						alert(mes);
+						start.val('');
 					}
-						
-					//天数容错处理
-					if (days == 0 || days < 0) {
-						empty_val('选择的日期出错')
+					
+					//用车日期大于会员过期日期
+					if (start_timestamp > over_timestamp) {
+						empty_val('用车日期不得大于会员的截止日期')
 						return false;	
-					} else if (days > span_residue.text()){
-						empty_val('你剩余的天数不足');
-						start.val('');	
-						over.val('');	
-						ipt_length.val('');
-						ipt_length_disabled.val('');
-					} else {
-						ipt_length.val(days);
-						ipt_length_disabled.val(days);
-					}
+					} 
 					
 				}
 				
@@ -182,7 +158,7 @@ var FormValidation = function () {
 						onSelect : function () {			//选择日期执行函数
 						},
 						onClose : function () {			//关闭窗口执行函数
-							count(start,over);
+							count(start_date,over_date);
 						},
 				};	
 				arr_date.datepicker(options);

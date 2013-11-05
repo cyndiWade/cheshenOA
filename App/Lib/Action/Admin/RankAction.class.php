@@ -87,6 +87,20 @@ class RankAction extends AdminBaseAction {
 		}
 	}
 
+	/**
+	 * 验证提交日期
+	 */
+	private function check_post_data () {
+		import("@.Tool.Validate");							//验证类
+		$result = array();
+		$count_days = Validate::count_days($_POST['date'],$_POST['over_date']);
+		if ($count_days <= 0 ) {
+			$result['count_days']['status'] = false;
+			$result['count_days']['info'] = '到期日期不得小于入会日期';
+		}
+		return $result;
+	}	
+	
 	
 	/**
 	 * 会员列表
@@ -118,9 +132,19 @@ class RankAction extends AdminBaseAction {
 
 		$this->check_rank();											//验证会员等级信息
 		
-		
 		if ($this->isPost()) {
 			
+			/* 数据验证 */
+			$check_result = $this->check_post_data();
+			if (!empty($check_result)) {
+				foreach ($check_result AS $key=>$val) {
+					if ($val['status'] == false) {
+						$this->error($val['info']);
+						break;
+					}	
+				}
+			}
+
 			$Card = D('Card');			//会员卡片
 			/* 验证会员卡是否存在 */
 			
@@ -187,6 +211,16 @@ class RankAction extends AdminBaseAction {
 		$Card = D('Card');										//会员卡片
 		
 		if ($this->isPost()) {
+			/* 数据验证 */
+			$check_result = $this->check_post_data();
+			if (!empty($check_result)) {
+				foreach ($check_result AS $key=>$val) {
+					if ($val['status'] == false) {
+						$this->error($val['info']);
+						break;
+					}
+				}
+			}
 			
 			$Card->where(array('member_base_id'=>$id))->data(array('card_number',$_POST['card_number']))->save();
 			$MemberBase->create();
