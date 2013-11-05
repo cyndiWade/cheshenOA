@@ -40,13 +40,56 @@ class UserAction extends AdminBaseAction {
 		$Users->save_one_data(array('id'=>$id)) ? $this->success('已修改') : $this->error('没有做出修改');
 	}
 	
-	
+	/**
+	 * 修改用户账号状态
+	 */
+	public function modifi_password () {
+		$password = $this->_post('password');
+		$new_password = $this->_post('new_password');
+		$re_new_password = $this->_post('re_new_password');
+		import("@.Tool.Validate");
+		$Users = D('Users');
+		//数据过滤
+		if (Validate::checkNull($password)) $this->error('密码不得为空');
+		if (Validate::checkNull($new_password)) $this->error('新密码不得为空');
+		if (Validate::checkNull($re_new_password)) $this->error('重复密码不得为空');
+		if (!Validate::checkEquals($new_password,$re_new_password)) $this->error('新密码不一致');
+		//读取用户数据
+		$user_info = $Users->get_user_info(array('account'=>$_SESSION['user_info']['account'],'status'=>0));
+		//验证密码
+		if (md5($password) != $user_info['password']) {
+			$this->error('密码错误！');
+			
+			
+		} else {//密码修改
+			
+			$mes=$Users->modifi_user_password($user_info['id'],md5($new_password));
+			if($mes){ $this->success('密码修改成功！新密码为 '.$new_password);
+			}else {$this->success('密码修改失败！');
+			}
+		} 
+	}
 	
 	/**
 	 * 个人中心模块
 	 */
 	public function personal () {
-		$this->display();
+		$Users = D('Users');
+		$StaffBase = D('StaffBase');
+		$Department=D('Department');
+		$Occupation=D('Occupation');
+								
+		$user_info = $Users->get_user_info(array('account'=>$_SESSION['user_info']['account'],'status'=>0));
+		dump($user_info);
+		//查找对应的员工信息
+    	$user_base = $StaffBase->seek_detail_data($user_info['base_id'],'serial,name,name_en,sex,department_id,occupation_id,email,phone,dwell_address,contact_phone,remarks');
+    	$department=$Department->seek_name($user_base['department_id']);
+    	$occupation=$Occupation->seek_name($user_base['occupation_id']);
+    	$user_base['department']=$department;
+    	$user_base['occupation']=$occupation;
+    	
+    	dump($user_base);
+		//$this->display();
 	}
 
 	

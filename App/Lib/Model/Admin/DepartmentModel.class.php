@@ -5,7 +5,12 @@
  */
 
 class DepartmentModel extends AdminBaseModel {
-	
+	//获取部门名称
+	public function seek_name ($id) {
+		$data = $this->where(array('id'=>$id))->getField('name');
+		return $data;
+		
+	}
 	
 	//获取部门数据
 	public function seek_child_data ($where) {

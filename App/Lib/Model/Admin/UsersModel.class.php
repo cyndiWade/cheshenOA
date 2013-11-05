@@ -28,6 +28,11 @@ class UsersModel extends AdminBaseModel {
 		return $this->where($condition)->find();
 	}
 	
+	//获取账号数据
+	public function modifi_user_password ($id,$password) {
+		return $this->where(array('id'=>$id))->save(array('password'=>$password));
+	}
+	
 	
 	//更新登录信息
 	public function up_login_info ($uid) {

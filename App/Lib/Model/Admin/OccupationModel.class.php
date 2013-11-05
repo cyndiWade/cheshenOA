@@ -5,7 +5,12 @@
  */
 
 class OccupationModel extends AdminBaseModel {
+	//获取职位名称
+	public function seek_name ($id) {
+		$data = $this->where(array('id'=>$id))->getField('name');
+		return $data;
 	
+	}
 	
 	//获取职位数据
 	public function seek_child_data ($department_id) {

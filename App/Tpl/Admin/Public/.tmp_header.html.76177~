@@ -451,7 +451,7 @@
 							<li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
 							-->
 							<li><a href="{:U('Admin/Login/logout')}"><i class="icon-key"></i>退出登陆</a></li>
-							
+							<li><a href="{:U('Admin/Login/logout')}"><i class="icon-key"></i>修改密码</a></li>
 
 						</ul>
 

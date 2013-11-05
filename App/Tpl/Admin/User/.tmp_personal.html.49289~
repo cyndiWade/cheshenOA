@@ -83,19 +83,19 @@
 						<!-- END BEGIN STYLE CUSTOMIZER --> 
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 						<h3 class="page-title">
-							用户信息 <small>用户信息显示</small>
+							User Profile <small>user profile sample</small>
 						</h3>
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home"></i>
-								<a href="__APP__/Admin/Index/index">首页</a> 
+								<a href="index.html">Home</a> 
 								<i class="icon-angle-right"></i>
 							</li>
-							<!--<li>
+							<li>
 								<a href="#">Extra</a>
 								<i class="icon-angle-right"></i>
-							</li>-->
-							<li><a href="#">用户信息</a></li>
+							</li>
+							<li><a href="#">User Profile</a></li>
 						</ul>
 						<!-- END PAGE TITLE & BREADCRUMB-->
 					</div>
@@ -107,14 +107,14 @@
 						<!--BEGIN TABS-->
 						<div class="tabbable tabbable-custom tabbable-full-width">
 							<ul class="nav nav-tabs">
-								<!-- <li class="active"><a href="#tab_1_1" data-toggle="tab">Overview</a></li> -->
-								<li><a href="#tab_1_1" data-toggle="tab">个人信息</a></li>
-								<li><a href="#tab_1_3" data-toggle="tab">信息设置</a></li>
-								<!-- <li><a href="#tab_1_4" data-toggle="tab">Projects</a></li>
-								<li><a href="#tab_1_6" data-toggle="tab">Help</a></li> -->
+								<li class="active"><a href="#tab_1_1" data-toggle="tab">Overview</a></li>
+								<li><a href="#tab_1_2" data-toggle="tab">Profile Info</a></li>
+								<li><a href="#tab_1_3" data-toggle="tab">Account</a></li>
+								<li><a href="#tab_1_4" data-toggle="tab">Projects</a></li>
+								<li><a href="#tab_1_6" data-toggle="tab">Help</a></li>
 							</ul>
 							<div class="tab-content">
-								<div class="tab-pane row-fluid " id="tab_1_2">
+								<div class="tab-pane row-fluid active" id="tab_1_1">
 									<ul class="unstyled profile-nav span3">
 										<li><img src="{$Think.const.APP_PATH}Public/media/image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></li>
 										<li><a href="#">Projects</a></li>
@@ -653,20 +653,20 @@
 									<!--end span9-->
 								</div>
 								<!--end tab-pane-->
-								<div class="tab-pane   profile-classic row-fluid  active" id="tab_1_1">
+								<div class="tab-pane profile-classic row-fluid" id="tab_1_2">
 									<div class="span2"><img src="{$Think.const.APP_PATH}Public/media/image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></div>
-									<ul class="unstyled span10">										<li><span>编号:</span> JDuser</li>
-										<li><span>用户名:</span> JDuser</li>
-										<li><span>英文名称:</span> John</li>																				<li><span>性别:</span> 男</li>
-										<!--<li><span>Last Name:</span> Doe</li>
-										<li><span>Counrty:</span> Spain</li>-->
-										<li><span>部门:</span> 18 Jan 1982</li>
-										<li><span>职位:</span> Web Developer</li>
+									<ul class="unstyled span10">
+										<li><span>User Name:</span> JDuser</li>
+										<li><span>First Name:</span> John</li>
+										<li><span>Last Name:</span> Doe</li>
+										<li><span>Counrty:</span> Spain</li>
+										<li><span>Birthday:</span> 18 Jan 1982</li>
+										<li><span>Occupation:</span> Web Developer</li>
 										<li><span>Email:</span> <a href="#">john@mywebsite.com</a></li>
-										<li><span>电话:</span> 11111111</li>
-										<li><span>居住地:</span> ######</li>
-										<li><span>紧急联系电话:</span> +1 646 580 DEMO (6284)</li>
-										<li><span>备注:</span> ######.</li>
+										<li><span>Interests:</span> Design, Web etc.</li>
+										<li><span>Website Url:</span> <a href="#">http://www.mywebsite.com</a></li>
+										<li><span>Mobile Number:</span> +1 646 580 DEMO (6284)</li>
+										<li><span>About:</span> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</li>
 									</ul>
 								</div>
 								<!--tab_1_2-->
@@ -678,13 +678,13 @@
 													<li class="active">
 														<a data-toggle="tab" href="#tab_1-1">
 														<i class="icon-cog"></i> 
-														个人信息
+														Personal info
 														</a> 
 														<span class="after"></span>                                    
 													</li>
-													<li class=""><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> 更换头像</a></li>
-													<li class=""><a data-toggle="tab" href="#tab_3-3"><i class="icon-lock"></i> 修改密码</a></li>
-													<!-- <li class=""><a data-toggle="tab" href="#tab_4-4"><i class="icon-eye-open"></i> Privacity Settings</a></li> -->
+													<li class=""><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> Change Avatar</a></li>
+													<li class=""><a data-toggle="tab" href="#tab_3-3"><i class="icon-lock"></i> Change Password</a></li>
+													<li class=""><a data-toggle="tab" href="#tab_4-4"><i class="icon-eye-open"></i> Privacity Settings</a></li>
 												</ul>
 											</div>
 											<div class="span9">
@@ -692,21 +692,28 @@
 													<div id="tab_1-1" class="tab-pane active">
 														<div style="height: auto;" id="accordion1-1" class="accordion collapse">
 															<form action="#">
-																<label class="control-label">用户名</label>
+																<label class="control-label">First Name</label>
 																<input type="text" placeholder="John" class="m-wrap span8" />
-																<label class="control-label">英文名</label>
+																<label class="control-label">Last Name</label>
 																<input type="text" placeholder="Doe" class="m-wrap span8" />
-																<label class="control-label">性别</label>
+																<label class="control-label">Mobile Number</label>
 																<input type="text" placeholder="+1 646 580 DEMO (6284)" class="m-wrap span8" />
-																<label class="control-label">部门</label>
+																<label class="control-label">Interests</label>
 																<input type="text" placeholder="Design, Web etc." class="m-wrap span8" />
-																<label class="control-label">Email</label>
-																<input type="text" placeholder="Web Developer" class="m-wrap span8" />																<label class="control-label">电话</label>																<input type="text" placeholder="Web Developer" class="m-wrap span8" />																<label class="control-label">居住地</label>																<input type="text" placeholder="Web Developer" class="m-wrap span8" />																<label class="control-label">紧急联系电话</label>																<input type="text" placeholder="Web Developer" class="m-wrap span8" />
-																<label class="control-label">备注</label>
+																<label class="control-label">Occupation</label>
+																<input type="text" placeholder="Web Developer" class="m-wrap span8" />
+																<label class="control-label">Counrty</label>
+																<div class="controls">
+																	<input type="text" class="span8 m-wrap" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source="[&quot;Alabama&quot;,&quot;Alaska&quot;,&quot;Arizona&quot;,&quot;Arkansas&quot;,&quot;US&quot;,&quot;Colorado&quot;,&quot;Connecticut&quot;,&quot;Delaware&quot;,&quot;Florida&quot;,&quot;Georgia&quot;,&quot;Hawaii&quot;,&quot;Idaho&quot;,&quot;Illinois&quot;,&quot;Indiana&quot;,&quot;Iowa&quot;,&quot;Kansas&quot;,&quot;Kentucky&quot;,&quot;Louisiana&quot;,&quot;Maine&quot;,&quot;Maryland&quot;,&quot;Massachusetts&quot;,&quot;Michigan&quot;,&quot;Minnesota&quot;,&quot;Mississippi&quot;,&quot;Missouri&quot;,&quot;Montana&quot;,&quot;Nebraska&quot;,&quot;Nevada&quot;,&quot;New Hampshire&quot;,&quot;New Jersey&quot;,&quot;New Mexico&quot;,&quot;New York&quot;,&quot;North Dakota&quot;,&quot;North Carolina&quot;,&quot;Ohio&quot;,&quot;Oklahoma&quot;,&quot;Oregon&quot;,&quot;Pennsylvania&quot;,&quot;Rhode Island&quot;,&quot;South Carolina&quot;,&quot;South Dakota&quot;,&quot;Tennessee&quot;,&quot;Texas&quot;,&quot;Utah&quot;,&quot;Vermont&quot;,&quot;Virginia&quot;,&quot;Washington&quot;,&quot;West Virginia&quot;,&quot;Wisconsin&quot;,&quot;Wyoming&quot;]" />
+																	<p class="help-block"><span class="muted">Start typing to auto complete!. E.g: US</span></p>
+																</div>
+																<label class="control-label">About</label>
 																<textarea class="span8 m-wrap" rows="3"></textarea>
+																<label class="control-label">Website Url</label>
+																<input type="text" placeholder="http://www.mywebsite.com" class="m-wrap span8" />
 																<div class="submit-btn">
-																	<a href="#" class="btn green">保存修改</a>
-																	<a href="#" class="btn">取消</a>
+																	<a href="#" class="btn green">Save Changes</a>
+																	<a href="#" class="btn">Cancel</a>
 																</div>
 															</form>
 														</div>
@@ -714,7 +721,7 @@
 													<div id="tab_2-2" class="tab-pane">
 														<div style="height: auto;" id="accordion2-2" class="accordion collapse">
 															<form action="#">
-																<!--<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>-->
+																<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
 																<br />
 																<div class="controls">
 																	<div class="thumbnail" style="width: 291px; height: 170px;">
@@ -729,38 +736,38 @@
 																			<span class="fileupload-preview"></span>
 																		</div>
 																		<span class="btn btn-file">
-																		<span class="fileupload-new">查找</span>
-																		<span class="fileupload-exists">更换</span>
+																		<span class="fileupload-new">Select file</span>
+																		<span class="fileupload-exists">Change</span>
 																		<input type="file" class="default" />
 																		</span>
-																		<!--<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>-->
+																		<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
 																	</div>
 																</div>
 																<div class="clearfix"></div>
-																<!--<div class="controls">
+																<div class="controls">
 																	<span class="label label-important">NOTE!</span>
 																	<span>You can write some information here..</span>
-																</div>-->
+																</div>
 																<div class="space10"></div>
 																<div class="submit-btn">
-																	<a href="#" class="btn green">提交</a>
-																	<a href="#" class="btn">重置</a>
+																	<a href="#" class="btn green">Submit</a>
+																	<a href="#" class="btn">Cancel</a>
 																</div>
 															</form>
 														</div>
 													</div>
 													<div id="tab_3-3" class="tab-pane">
 														<div style="height: auto;" id="accordion3-3" class="accordion collapse">
-															<form method="post" name="passwordform" action="__APP__/Admin/User/modifi_password">
-																<label class="control-label">原密码</label>
-																<input type="password" class="m-wrap span8" name="password"/>
-																<label class="control-label">新密码</label>
-																<input type="password" class="m-wrap span8" name="new_password"/>
-																<label class="control-label">重复密码</label>
-																<input type="password" class="m-wrap span8" name="re_new_password"/>
+															<form action="#">
+																<label class="control-label">Current Password</label>
+																<input type="password" class="m-wrap span8" />
+																<label class="control-label">New Password</label>
+																<input type="password" class="m-wrap span8" />
+																<label class="control-label">Re-type New Password</label>
+																<input type="password" class="m-wrap span8" />
 																<div class="submit-btn">
-																	<a href="javascript:document.passwordform.submit();" class="btn green">修改密码</a>
-																	<a href="javascript:document.passwordform.reset();" class="btn">取消</a>
+																	<a href="#" class="btn green">Change Password</a>
+																	<a href="#" class="btn">Cancel</a>
 																</div>
 															</form>
 														</div>

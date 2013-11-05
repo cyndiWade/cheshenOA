@@ -1,0 +1,500 @@
+[ 2013-10-25T19:21:57+08:00 ] 127.0.0.1 /cheshenoa/
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000869s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000906s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002058s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 837 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 841 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 845 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.061247s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061439s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.002378s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001159s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000748s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001215s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006039s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001157s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001321s ]
+
+[ 2013-10-25T19:22:12+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/logout.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.015431s ]
+INFO: [ route_check ] --END-- [ RunTime:0.015619s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001463s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001146s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002893s ]
+NOTIC: [8] A session had already been started - ignoring session_start() E:\wamp\www\cheshenOA\App\Lib\Action\Admin\LoginAction.class.php 第 79 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012198s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012407s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000797s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000747s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000555s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000854s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003394s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001058s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001229s ]
+
+[ 2013-10-25T19:22:13+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001174s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001366s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000906s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000813s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002015s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.029079s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029283s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000761s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000714s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000576s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000958s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003499s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001101s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001283s ]
+
+[ 2013-10-25T19:22:42+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/check_login/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001155s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001343s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000860s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000818s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001936s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+NOTIC: [2] mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: YES) E:\wamp\www\ThinkPHP\ThinkPHP3.1.3\Lib\Driver\Db\DbMysql.class.php 第 55 行.
+ERR: Access denied for user 'root'@'localhost' (using password: YES)
+
+[ 2013-10-25T19:24:34+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/check_login/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001262s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001445s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000854s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002008s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+SQL: SHOW COLUMNS FROM `app_users` [ RunTime:0.003523s ]
+SQL: SHOW COLUMNS FROM `app_staff_base` [ RunTime:0.004371s ]
+SQL: SELECT * FROM `app_users` WHERE ( `account` = 'admin' ) AND ( `status` = 0 ) LIMIT 1   [ RunTime:0.000468s ]
+SQL: SELECT `serial`,`jobs`,`name`,`name_en`,`company_id`,`department_id`,`occupation_id` FROM `app_staff_base` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.000246s ]
+SQL: UPDATE `app_users` SET `id`=1,`base_id`=1,`account`='admin',`nickname`='管理员',`password`='e10adc3949ba59abbe56e057f20f883e',`last_login_time`=1382700274,`last_login_ip`='127.0.0.1',`login_count`=178,`create_time`=1376561926,`update_time`=1376561926,`type`=0,`status`=0 WHERE ( `id` = 1 ) [ RunTime:0.016814s ]
+
+[ 2013-10-25T19:24:34+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Index/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001112s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001290s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000903s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000822s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001984s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 837 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 841 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 845 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.041202s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041383s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001135s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000881s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000573s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000935s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003973s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000896s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001060s ]
+
+[ 2013-10-25T19:24:38+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/logout.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001237s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001423s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000788s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000945s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] A session had already been started - ignoring session_start() E:\wamp\www\cheshenOA\App\Lib\Action\Admin\LoginAction.class.php 第 79 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.009037s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009233s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000661s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001112s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000537s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000785s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003558s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000799s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000963s ]
+
+[ 2013-10-25T19:24:40+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/login.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001159s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001345s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000775s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000830s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001855s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.014010s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014214s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000662s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000619s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000465s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000777s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002998s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000805s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000969s ]
+
+[ 2013-10-25T19:24:44+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/check_login/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001031s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001208s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000758s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001108s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002254s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+SQL: SHOW COLUMNS FROM `app_users` [ RunTime:0.003883s ]
+SQL: SHOW COLUMNS FROM `app_staff_base` [ RunTime:0.004055s ]
+SQL: SELECT * FROM `app_users` WHERE ( `account` = 'admin' ) AND ( `status` = 0 ) LIMIT 1   [ RunTime:0.000391s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.009426s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009620s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000736s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000654s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000471s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000768s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003077s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000791s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000950s ]
+
+[ 2013-10-25T19:24:54+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Login/check_login/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001077s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001276s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000926s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001425s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002665s ]
+NOTIC: [8] Undefined index: user_info E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 31 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 43 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 46 行.
+NOTIC: [8] Trying to get property of non-object E:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 59 行.
+SQL: SHOW COLUMNS FROM `app_users` [ RunTime:0.003297s ]
+SQL: SHOW COLUMNS FROM `app_staff_base` [ RunTime:0.004083s ]
+SQL: SELECT * FROM `app_users` WHERE ( `account` = 'admin' ) AND ( `status` = 0 ) LIMIT 1   [ RunTime:0.000567s ]
+SQL: SELECT `serial`,`jobs`,`name`,`name_en`,`company_id`,`department_id`,`occupation_id` FROM `app_staff_base` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.000451s ]
+SQL: UPDATE `app_users` SET `id`=1,`base_id`=1,`account`='admin',`nickname`='管理员',`password`='e10adc3949ba59abbe56e057f20f883e',`last_login_time`=1382700294,`last_login_ip`='127.0.0.1',`login_count`=179,`create_time`=1376561926,`update_time`=1376561926,`type`=0,`status`=0 WHERE ( `id` = 1 ) [ RunTime:0.055456s ]
+
+[ 2013-10-25T19:24:54+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Index/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001374s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001593s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000808s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000840s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001917s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 837 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 841 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\e56598b64fd766e2ca706d75d6785b6f.php 第 845 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.043658s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.043838s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001149s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000733s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000494s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001175s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004042s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000899s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001057s ]
+
+[ 2013-10-25T19:24:57+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Member/member_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001225s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001421s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000827s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000980s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002080s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.004176s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000387s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.031310s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031485s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000919s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000715s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000535s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001032s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003686s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001033s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001629s ]
+
+[ 2013-10-25T19:25:13+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/40.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001172s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001354s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000831s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000962s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002042s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.005026s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `rank` = '40' ) AND ( `status` = 0 )  [ RunTime:0.000455s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.030137s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030322s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001208s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000751s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000581s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000804s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003800s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000796s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000953s ]
+
+[ 2013-10-25T19:25:18+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/5.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001034s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001219s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000765s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000915s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001928s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003975s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `rank` = '5' ) AND ( `status` = 0 )  [ RunTime:0.000469s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.030102s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030276s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000797s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000640s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000472s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000802s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003153s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000818s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000974s ]
+
+[ 2013-10-25T19:25:21+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/80.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001041s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001220s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000767s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000925s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001941s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004761s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `rank` = '80' ) AND ( `status` = 0 )  [ RunTime:0.000634s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.038742s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038948s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001018s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000864s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000655s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000959s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004014s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001064s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001244s ]
+
+[ 2013-10-25T19:25:23+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/other.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001034s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001212s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000770s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000927s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001948s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [8] Undefined index: other E:\wamp\www\cheshenOA\App\Lib\Action\Admin\RankAction.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.009270s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009468s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000623s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000621s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000478s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000804s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002974s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000839s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2013-10-25T19:25:26+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/other.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001898s ]
+INFO: [ route_check ] --END-- [ RunTime:0.002099s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000954s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001128s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002390s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: [8] Undefined index: other E:\wamp\www\cheshenOA\App\Lib\Action\Admin\RankAction.class.php 第 48 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.009116s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009304s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001058s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000787s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000549s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000768s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003637s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000792s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000950s ]
+
+[ 2013-10-25T19:25:29+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Member/member_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001043s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001223s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000967s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001021s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002265s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.003286s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000382s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.028577s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028755s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000847s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000665s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000480s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000783s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003221s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000818s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000973s ]
+
+[ 2013-10-25T19:25:32+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Rank/rank_list/rank/10.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001308s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001516s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000840s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000927s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002086s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004196s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `rank` = '10' ) AND ( `status` = 0 )  [ RunTime:0.000443s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\2aeda946fdee4d8a87b2ee4f6c197368.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.030517s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030687s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000787s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000650s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000475s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000792s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003138s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000831s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000987s ]
+
+[ 2013-10-25T19:25:38+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Member/member_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001042s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001221s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000764s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000923s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001935s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.003272s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000335s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.028782s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028962s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000912s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000682s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000481s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000795s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003307s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000802s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000957s ]
+
+[ 2013-10-25T19:26:54+08:00 ] 127.0.0.1 /cheshenoa/index.php?s=/Admin/Member/member_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001218s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001423s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000857s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001005s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002136s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.003406s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000349s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 813 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 817 行.
+NOTIC: [8] Use of undefined constant other - assumed 'other' E:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\6319479325fff1cc620d4c1ee3891438.php 第 821 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.028782s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028953s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000803s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000664s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000473s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000787s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003164s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000802s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000956s ]
+
