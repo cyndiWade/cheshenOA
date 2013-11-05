@@ -74,13 +74,13 @@ class UserAction extends AdminBaseAction {
 	 * 个人中心模块
 	 */
 	public function personal () {
-		$Users = D('Users');
+		/**$Users = D('Users');
 		$StaffBase = D('StaffBase');
 		$Department=D('Department');
 		$Occupation=D('Occupation');
 								
 		$user_info = $Users->get_user_info(array('account'=>$_SESSION['user_info']['account'],'status'=>0));
-		dump($user_info);
+		
 		//查找对应的员工信息
     	$user_base = $StaffBase->seek_detail_data($user_info['base_id'],'serial,name,name_en,sex,department_id,occupation_id,email,phone,dwell_address,contact_phone,remarks');
     	$department=$Department->seek_name($user_base['department_id']);
@@ -88,8 +88,8 @@ class UserAction extends AdminBaseAction {
     	$user_base['department']=$department;
     	$user_base['occupation']=$occupation;
     	
-    	dump($user_base);
-		//$this->display();
+    	*/
+		$this->display();
 	}
 
 	
