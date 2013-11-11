@@ -26,8 +26,15 @@ class OrderModel extends AdminBaseModel {
 		->where($condition)
 		->order('o.time DESC')
 		->select();
-		parent::set_all_time($data, array('time'));
+		parent::set_all_time($data, array('time','start','over'),'Y-m-d H:i');
 		parent::set_str_len($data, array('remarks'), 10);
+		return $data;
+	}
+	
+	
+	public function seek_one_data($id) {
+		$data = parent::get_one_data(array('id'=>$id,'status'=>0));
+		parent::set_all_time($data, array('time','start','over'),'Y-m-d H:i');
 		return $data;
 	}
 	

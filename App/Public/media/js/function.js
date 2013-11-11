@@ -113,3 +113,62 @@ function daysBetween(DateOne,DateTwo)
     return cha;
 }	
 
+/**
+ * 格式化日期，成时间戳
+ * @param {Object} $date_string 2013-10-10 12:13
+ * return 111111111111
+ */
+function fomat_date ($date_string) {
+	return Date.parse($date_string.replace(/-/ig,'/'));
+}
+
+
+/**
+ * 日期控件
+ */
+var  wade_bootstrap_date = function (object) {
+	//object = object || '.wade_bootstrap_date';	//默认都是无触发函数的。
+
+	return {
+		/* 有触发函数的 */
+		bootstrap_date_fn : function (fn) {	
+			var options = {
+			    format: 'yyyy-mm-dd HH:ii',
+				language:  'zh-CN',
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+		        showMeridian: 1
+			};
+			$(object).datetimepicker(options).on('changeDate', function(ev){
+			    fn();
+			});
+		},
+		
+		/* 无触发函数的。 */
+		bootstrap_date : function ()	{
+			var options = {
+			    format: 'yyyy-mm-dd hh:ii',
+				language:  'zh-CN',
+		        weekStart: 1,
+		        todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+		        showMeridian: 1
+			};
+			$(object).datetimepicker(options);
+		}
+		
+		
+		
+	};
+	
+};
+
+
+

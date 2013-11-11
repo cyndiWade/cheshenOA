@@ -2,8 +2,8 @@
 -- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- 主机: localhost:3306
--- 生成日期: 2013 年 10 月 18 日 08:06
+-- 主机: localhost
+-- 生成日期: 2013 年 11 月 05 日 10:48
 -- 服务器版本: 5.5.24-log
 -- PHP 版本: 5.3.13
 
@@ -23,14 +23,195 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `app_card`
+--
+
+CREATE TABLE IF NOT EXISTS `app_card` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '隶属会员ID',
+  `card_number` char(30) NOT NULL COMMENT '会员卡号',
+  `type` char(10) NOT NULL COMMENT '卡号类型',
+  `start_date` date DEFAULT NULL COMMENT '开始日期',
+  `stop_date` date DEFAULT NULL COMMENT '结束日期',
+  `is_used` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否使用：0未使用，1已使用，2已过期',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `card_number` (`card_number`),
+  KEY `card_number_2` (`card_number`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='会员卡片记录' AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `app_card`
+--
+
+INSERT INTO `app_card` (`id`, `member_base_id`, `card_number`, `type`, `start_date`, `stop_date`, `is_used`, `status`) VALUES
+(4, 14, 'CN07552013EH123456', 'H', NULL, NULL, 0, 0),
+(5, 15, 'QEWQEWQEWQEWQEWQE', 'G', NULL, NULL, 0, 0),
+(6, 16, 'CN07552013EH1234561', 'G', NULL, NULL, 0, 0),
+(7, 17, 'CN07552013EH123123', 'H', NULL, NULL, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_cars`
+--
+
+CREATE TABLE IF NOT EXISTS `app_cars` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '车辆ID',
+  `company_id` smallint(5) unsigned NOT NULL COMMENT '公司区域id',
+  `cars_grade_id` smallint(5) unsigned NOT NULL COMMENT '车辆级别ID',
+  `brand` varchar(20) NOT NULL COMMENT '车辆品牌',
+  `car_num` varchar(20) DEFAULT NULL COMMENT '车牌号码',
+  `type` varchar(20) NOT NULL COMMENT '车辆类型',
+  `color` varchar(10) NOT NULL COMMENT '车辆颜色',
+  `master` varchar(20) NOT NULL COMMENT '车辆主人',
+  `buy_data` date NOT NULL COMMENT '购买日期',
+  `buy_num` smallint(5) unsigned NOT NULL COMMENT '购买单位',
+  `buy_cost` int(10) unsigned NOT NULL COMMENT '购买价格',
+  `initial_km` varchar(10) NOT NULL COMMENT '初始公里数',
+  `department` varchar(30) NOT NULL COMMENT '所属部门(与系统部门无关系)',
+  `engine_num` varchar(30) NOT NULL COMMENT '发动机型号',
+  `frame_num` varchar(30) NOT NULL COMMENT '车架号',
+  `seat_num` tinyint(2) unsigned NOT NULL COMMENT '座位数',
+  `remarks` text COMMENT '备注',
+  `car_status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '车辆状况(0123，依次类推)：正常、维修中、报废、租用中',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='车辆信息表' AUTO_INCREMENT=10006 ;
+
+--
+-- 转存表中的数据 `app_cars`
+--
+
+INSERT INTO `app_cars` (`id`, `company_id`, `cars_grade_id`, `brand`, `car_num`, `type`, `color`, `master`, `buy_data`, `buy_num`, `buy_cost`, `initial_km`, `department`, `engine_num`, `frame_num`, `seat_num`, `remarks`, `car_status`, `status`) VALUES
+(10000, 1, 4, '玛莎拉蒂', '车牌号码', '车辆类型', '车辆颜色', '车辆所有人', '2013-10-02', 2, 2, '初始公里数', '所属部门', '发动机号', '车架号', 0, 'aa', 0, 0),
+(10001, 1, 4, '兰博基尼', '车牌号码*', '车辆类型', '车辆颜色*', '车辆所有人', '2013-10-09', 12, 10, '初始公里数', '所属部门', '发动机号', '车架号', 4, 'ada', 0, 0),
+(10003, 1, 1, '车辆品牌', '车牌号码', '车辆类型', '车辆颜色', '车辆所有人', '2013-10-10', 2, 123, '初始公里数', '所属部门', '发动机号', '车架号', 92, 'asdasda', 1, 0),
+(10004, 1, 1, '劳斯莱斯', '车牌号码', '车辆类型', '车辆颜色', '车辆所有人', '2013-10-29', 2, 2, '初始公里数', '所属部门', '发动机号', '车架号', 2, '备注', 2, 0),
+(10005, 1, 1, '车辆品牌', '车牌号码', '车辆类型', '车辆颜色', 'wqe', '2013-11-22', 2, 3, '初始公里数', '所属部门', '发动机号', '车架号', 2, '备注', 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_cars_audit`
+--
+
+CREATE TABLE IF NOT EXISTS `app_cars_audit` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cars_id` smallint(6) unsigned NOT NULL COMMENT '车辆ID',
+  `year_audit_date` date NOT NULL COMMENT '年审日期',
+  `year_audit_item` varchar(30) NOT NULL COMMENT '年审项目',
+  `year_audit_state` varchar(10) NOT NULL COMMENT '年审状态',
+  `year_audit_next` date NOT NULL COMMENT '下次年审日期',
+  `remarks` text COMMENT '备注',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='车辆年审表' AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `app_cars_audit`
+--
+
+INSERT INTO `app_cars_audit` (`id`, `cars_id`, `year_audit_date`, `year_audit_item`, `year_audit_state`, `year_audit_next`, `remarks`, `status`) VALUES
+(1, 10000, '2013-11-14', '是否', '年审情况', '2013-11-22', 'qwewqe1111111', 0),
+(2, 10000, '2013-11-03', '项目二', '通过', '2013-11-22', 'wqqweqwe', 0),
+(3, 10000, '2013-11-27', '年审项目', '年审情况', '2013-11-26', 'aaa', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_cars_grade`
+--
+
+CREATE TABLE IF NOT EXISTS `app_cars_grade` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `identifying` char(20) NOT NULL COMMENT '标识',
+  `name` varchar(30) NOT NULL COMMENT '名称',
+  `car_number` tinyint(3) unsigned NOT NULL COMMENT '允许使用天数',
+  `content` varchar(255) DEFAULT NULL COMMENT '内容',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='车辆级别表' AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `app_cars_grade`
+--
+
+INSERT INTO `app_cars_grade` (`id`, `identifying`, `name`, `car_number`, `content`, `status`) VALUES
+(1, '50', '50万级别豪车', 80, '', 0),
+(2, '100', '100万级别豪车', 80, '', 0),
+(3, '200', '200万级别豪车', 80, '', 0),
+(4, '400', '400万级别豪车', 80, '', 0),
+(5, '800', '800万级别豪车', 80, '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_cars_insurance`
+--
+
+CREATE TABLE IF NOT EXISTS `app_cars_insurance` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cars_id` smallint(6) unsigned NOT NULL COMMENT '车辆ID',
+  `insurance_start_date` date NOT NULL COMMENT '入保时间',
+  `insurance_company` varchar(30) NOT NULL COMMENT '保险公司',
+  `insurance_state` varchar(10) NOT NULL COMMENT '投保状态',
+  `insurance_item` varchar(30) NOT NULL COMMENT '投保项目',
+  `insurance_stop` date NOT NULL COMMENT '出保日期',
+  `remarks` text COMMENT '备注',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='车辆保险报' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `app_cars_insurance`
+--
+
+INSERT INTO `app_cars_insurance` (`id`, `cars_id`, `insurance_start_date`, `insurance_company`, `insurance_state`, `insurance_item`, `insurance_stop`, `remarks`, `status`) VALUES
+(1, 10000, '2013-11-20', 'werwer', 'qwe', '投保项目', '2013-11-26', 'sdfsdf', 0),
+(2, 10000, '2013-11-28', '保险公司', '投保情况', '投保项目', '2013-11-26', 'sfsdfd', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_cars_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `app_cars_photo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `cars_id` smallint(6) unsigned NOT NULL COMMENT '基本信息ID',
+  `type` tinyint(2) unsigned NOT NULL COMMENT '图片类型',
+  `url` varchar(30) NOT NULL COMMENT '图片地址',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='车辆照片' AUTO_INCREMENT=10 ;
+
+--
+-- 转存表中的数据 `app_cars_photo`
+--
+
+INSERT INTO `app_cars_photo` (`id`, `cars_id`, `type`, `url`, `status`) VALUES
+(1, 10000, 1, '20131029/526f7f71ec42b.jpg', 0),
+(2, 10000, 1, '20131029/526f7f72125b6.jpg', 0),
+(3, 10000, 2, '20131029/526f7fa21066a.png', 0),
+(4, 10000, 2, '20131029/526f7fa2193ee.png', 0),
+(5, 10001, 1, '20131029/526f86bd94ac9.png', 0),
+(6, 10001, 2, '20131029/526f86cd31d49.png', 0),
+(7, 10004, 1, '20131031/52714e31ac780.jpg', 0),
+(8, 10004, 2, '20131031/52714e373932e.jpg', 0),
+(9, 10004, 2, '20131031/52714e4abe7b5.png', 0);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `app_company`
 --
 
 CREATE TABLE IF NOT EXISTS `app_company` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `name` char(20) NOT NULL COMMENT '区域名称',
+  `name` varchar(20) NOT NULL COMMENT '区域名称',
   `region_id` smallint(5) NOT NULL COMMENT '地理位置',
-  `remarks` char(255) NOT NULL COMMENT '备注',
+  `remarks` varchar(255) NOT NULL COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='公司区域表' AUTO_INCREMENT=4 ;
@@ -52,13 +233,13 @@ INSERT INTO `app_company` (`id`, `name`, `region_id`, `remarks`, `status`) VALUE
 CREATE TABLE IF NOT EXISTS `app_department` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '人事管理',
   `company_id` tinyint(3) NOT NULL COMMENT '区域id',
-  `name` char(50) NOT NULL COMMENT '名称',
-  `principal` char(50) NOT NULL COMMENT '负责人',
+  `name` varchar(20) NOT NULL COMMENT '名称',
+  `principal` varchar(15) NOT NULL COMMENT '负责人',
   `remarks` text COMMENT '备注',
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态：-2删除。0启用',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='部门管理表' AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='部门管理表' AUTO_INCREMENT=20 ;
 
 --
 -- 转存表中的数据 `app_department`
@@ -75,7 +256,8 @@ INSERT INTO `app_department` (`id`, `company_id`, `name`, `principal`, `remarks`
 (8, 1, '客服部', '王兆辉', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaasdfffffffffffffffffffffffffffffffffffffffffffffffffffffafdsfsf', 1381461275, 0),
 (9, 1, '资产运营部', '沈君', NULL, 1381461275, 0),
 (10, 1, '营销中心', '蒋明', NULL, 1381461275, 0),
-(11, 1, '车神集团', '车神集团', NULL, 1381461275, 0);
+(11, 1, '车神集团', '车神集团', NULL, 1381461275, 0),
+(19, 2, 'aa', 'aaa', 'aaa', 1382584829, 0);
 
 -- --------------------------------------------------------
 
@@ -87,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `app_group` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(6) unsigned NOT NULL COMMENT '父id',
   `name` char(20) NOT NULL COMMENT '组名',
-  `title` char(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `create_time` int(11) unsigned NOT NULL,
   `update_time` int(11) unsigned NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0启用1禁用',
@@ -103,7 +285,6 @@ INSERT INTO `app_group` (`id`, `pid`, `name`, `title`, `create_time`, `update_ti
 (2, 0, 'Home', '前台系统', 1380957553, 1380957553, 0),
 (3, 0, 'Api', '接口系统', 1380957569, 1380957569, 0),
 (15, 1, '人力资源部', '人力资源部', 1381493027, 1381493027, 0),
-(25, 20, '懂事成员1', '懂事成员1', 1381493171, 1381493171, -2),
 (24, 1, '车神集团', '车神集团', 1381493083, 1381493083, 0),
 (23, 1, '资产运营部', '资产运营部', 1381493077, 1381493077, 0),
 (22, 1, '财务部', '财务部', 1381493070, 1381493070, 0),
@@ -113,7 +294,6 @@ INSERT INTO `app_group` (`id`, `pid`, `name`, `title`, `create_time`, `update_ti
 (18, 1, '秘书处', '秘书处', 1381493047, 1381493047, 0),
 (17, 1, '客服部', '客服部', 1381493040, 1381493040, 0),
 (16, 1, '企划部', '企划部', 1381493033, 1381493033, 0),
-(26, 20, '懂事成员2', '懂事成员2', 1381493182, 1381493182, -2),
 (27, 15, '人力员工部主管', '人力员工部主管', 1381493452, 1381493452, 0),
 (28, 15, '私有信息组', '私有信息组', 1381493465, 1381493465, 0),
 (29, 15, '基本信息组', '基本信息组', 1381493475, 1381493475, 0),
@@ -132,41 +312,31 @@ CREATE TABLE IF NOT EXISTS `app_group_node` (
   PRIMARY KEY (`id`),
   KEY `groupId` (`group_id`),
   KEY `nodeId` (`node_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='组与节点关系表' AUTO_INCREMENT=121 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='组与节点关系表' AUTO_INCREMENT=155 ;
 
 --
 -- 转存表中的数据 `app_group_node`
 --
 
 INSERT INTO `app_group_node` (`id`, `group_id`, `node_id`) VALUES
-(81, 27, 23),
-(77, 27, 25),
-(91, 27, 34),
-(80, 27, 22),
 (74, 27, 1),
-(88, 27, 28),
 (70, 15, 1),
 (99, 28, 25),
-(79, 27, 21),
 (48, 30, 19),
 (69, 15, 20),
 (47, 30, 17),
-(78, 27, 20),
-(83, 27, 33),
 (42, 30, 1),
-(85, 27, 31),
 (46, 30, 18),
-(89, 27, 27),
+(134, 27, 9),
 (68, 15, 25),
 (45, 30, 15),
 (43, 30, 14),
 (44, 30, 16),
-(84, 27, 32),
-(82, 27, 24),
-(87, 27, 29),
-(86, 27, 30),
-(90, 27, 26),
-(92, 27, 35),
+(133, 27, 8),
+(132, 27, 7),
+(131, 27, 6),
+(130, 27, 5),
+(127, 27, 4),
 (95, 28, 1),
 (113, 28, 26),
 (98, 28, 35),
@@ -182,7 +352,25 @@ INSERT INTO `app_group_node` (`id`, `group_id`, `node_id`) VALUES
 (110, 29, 30),
 (111, 29, 28),
 (112, 29, 27),
-(120, 1, 1);
+(120, 1, 1),
+(137, 27, 14),
+(138, 27, 16),
+(139, 27, 20),
+(140, 27, 25),
+(141, 27, 10),
+(142, 27, 11),
+(143, 27, 12),
+(144, 27, 13),
+(145, 27, 36),
+(146, 27, 37),
+(147, 27, 38),
+(148, 27, 39),
+(149, 27, 40),
+(150, 29, 14),
+(151, 29, 15),
+(152, 29, 36),
+(153, 29, 37),
+(154, 29, 38);
 
 -- --------------------------------------------------------
 
@@ -197,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `app_group_user` (
   PRIMARY KEY (`id`),
   KEY `group_id` (`group_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='组与用户关系表' AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='组与用户关系表' AUTO_INCREMENT=26 ;
 
 --
 -- 转存表中的数据 `app_group_user`
@@ -212,7 +400,277 @@ INSERT INTO `app_group_user` (`id`, `group_id`, `user_id`) VALUES
 (20, 30, 5),
 (24, 15, 5),
 (22, 15, 2),
-(23, 15, 3);
+(23, 15, 3),
+(25, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `account` char(32) NOT NULL,
+  `nickname` varchar(20) DEFAULT NULL COMMENT '称呢',
+  `password` char(32) NOT NULL,
+  `last_login_time` int(11) unsigned NOT NULL DEFAULT '0',
+  `last_login_ip` char(20) DEFAULT NULL,
+  `login_count` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '登陆次数',
+  `create_time` int(11) unsigned NOT NULL,
+  `update_time` int(11) unsigned NOT NULL,
+  `is_rank` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否为会员：0不是，1是',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0正常、1待审核、-2删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `account` (`account`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='注册用户表' AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `app_member`
+--
+
+INSERT INTO `app_member` (`id`, `account`, `nickname`, `password`, `last_login_time`, `last_login_ip`, `login_count`, `create_time`, `update_time`, `is_rank`, `status`) VALUES
+(1, 'user1', '测试用户一', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0, 0),
+(2, 'user2', '测试用户二', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 0, 0, 0, 0, 0),
+(3, 'user3', 'dsfsf', '4297f44b13955235245b2497399d7a93', 1382514687, '192.168.1.102', 0, 1382514687, 1382516829, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_base`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_base` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_id` int(10) unsigned NOT NULL COMMENT '注册用户id',
+  `member_rank_id` smallint(5) unsigned NOT NULL COMMENT '会员等级ID',
+  `area` varchar(20) DEFAULT NULL COMMENT '投资区域',
+  `source` tinyint(2) unsigned NOT NULL COMMENT '会员来源',
+  `source_content` varchar(30) NOT NULL COMMENT '来源内容',
+  `name` varchar(20) NOT NULL COMMENT '会员姓名',
+  `sex` char(1) DEFAULT NULL COMMENT '性别',
+  `mobile_phone` char(11) DEFAULT NULL COMMENT '手机号码',
+  `phone` varchar(15) DEFAULT NULL COMMENT '电话号码',
+  `fax` varchar(15) DEFAULT NULL COMMENT '传真号码',
+  `qq` varchar(15) DEFAULT NULL COMMENT 'QQ号码',
+  `identity_number` varchar(18) DEFAULT NULL COMMENT '证件号码',
+  `passport_number` varchar(10) DEFAULT NULL COMMENT '护照号码',
+  `driving_number` varchar(20) DEFAULT NULL COMMENT '驾驶证',
+  `travel_number` varchar(20) DEFAULT NULL COMMENT '行驶证号码',
+  `driving_years` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '驾龄',
+  `email` varchar(20) DEFAULT NULL COMMENT '电子邮箱地址',
+  `enterprise_name` varchar(30) DEFAULT NULL COMMENT '企业名称',
+  `property` varchar(60) DEFAULT NULL COMMENT '性质',
+  `registered_fund` decimal(9,0) DEFAULT NULL COMMENT '注册资金',
+  `legal_person` varchar(20) DEFAULT NULL COMMENT '法人',
+  `member_group` varchar(50) DEFAULT NULL COMMENT '会员组成员',
+  `turnover` decimal(9,0) DEFAULT NULL COMMENT '近3年营业额',
+  `website` varchar(50) DEFAULT NULL COMMENT '企业网站',
+  `address` varchar(50) DEFAULT NULL COMMENT '通讯地址',
+  `enterprise_address` varchar(50) DEFAULT NULL COMMENT '企业所处行业位置',
+  `introduce` text COMMENT '个人介绍及 社会身份',
+  `collaborate` varchar(255) DEFAULT NULL COMMENT '企业主要 合作方',
+  `product` varchar(255) DEFAULT NULL COMMENT '主要经营产品',
+  `distribution` varchar(255) DEFAULT NULL COMMENT '产品产地分布',
+  `occupancy` varchar(20) DEFAULT NULL COMMENT '市场占有率',
+  `direction` text COMMENT '业务发展规划',
+  `contacts` varchar(20) DEFAULT NULL COMMENT '紧急联系人',
+  `relation` varchar(20) DEFAULT NULL COMMENT '关系',
+  `contacts_phone` varchar(20) DEFAULT NULL COMMENT '手机号码',
+  `date` date NOT NULL COMMENT '入会日期',
+  `over_date` date NOT NULL COMMENT '会员结束日期',
+  `use_car_number` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '已使用天数',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态0正常，1删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员基本资料' AUTO_INCREMENT=18 ;
+
+--
+-- 转存表中的数据 `app_member_base`
+--
+
+INSERT INTO `app_member_base` (`id`, `member_id`, `member_rank_id`, `area`, `source`, `source_content`, `name`, `sex`, `mobile_phone`, `phone`, `fax`, `qq`, `identity_number`, `passport_number`, `driving_number`, `travel_number`, `driving_years`, `email`, `enterprise_name`, `property`, `registered_fund`, `legal_person`, `member_group`, `turnover`, `website`, `address`, `enterprise_address`, `introduce`, `collaborate`, `product`, `distribution`, `occupancy`, `direction`, `contacts`, `relation`, `contacts_phone`, `date`, `over_date`, `use_car_number`, `status`) VALUES
+(6, 3, 1, 'qweqwe', 3, 'qweqw', '康熙来了', '男', '11111111111', 'asdasd', '234234', '498798', '456456465465465', '', '56456', 'sdfsfsfsdf', 5, '', '', '股份公司,个人经营,有限公司', '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 50, 0),
+(7, 1, 2, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '235659456456456456', '', '45646', '45645', 2, '', '', '股份公司,有限公司,有限责任公司', '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(8, 1, 3, 'sdfsdf', 2, 'sdfdsf', 'sdfsdfsdf', '男', '12312312313', '12312312', '12321321', '213123', '235659456456456456', '', '45646', '45645', 1, '', '', '股份公司,有限公司,有限责任公司', '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(9, 2, 4, '投资区域', 3, '自主', '会员姓名', '女', '11111111111', '123456', '234234', '498798', '456456465465465', 'qweqweqw', '123123123123', 'qweqw', 2, 'aa@qq.com', '企业名称', '股份公司,有限公司,有限责任公司', '100000000', '法人', '会员组成成员', '200000000', 'http://www.baidu.com', '通讯地址', '企业所处行业位置', '个人介绍及社会身份', '企业主要合作方', '主要经营产品', '产品产地分布', '市场占有率', '业务发展规划', '紧急联系人', '关 系', '手机号码', '2013-11-05', '2014-11-05', 0, 0),
+(10, 2, 5, 'ada', 2, 'adasd', 'sdfsdf', '女', '11111111111', 'asdasd', '234234', '123123123123', '456456465465465', 'qweqweqw', '123123123123', 'qweqw', 4, 'asd252392785@163.com', '', '个人经营,有限责任公司', '100', 'sdfsd', 'sdfs', '200', 'http://www.baidu.com', 'gdfg', 'dgdf', '个人介绍及社会身份', '企业主要合作方', '主要经营产品', '产品产地分布', '市场占有率', '业务发展规划', '紧急联系人', ' 系', '手机号码', '2013-11-05', '2014-11-05', 0, 0),
+(11, 1, 9, 'aaaa', 3, 'bbbb', '123', '男', '13761951734', '12312312', '12321321', '213123', '235659456456456456', '4', '45646', '45645', 5, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(12, 1, 7, 'sfsdf', 2, 'sfsdf', '123456', '女', '12345678991', '123123', '123123123', '49456564', '456456465465465', 'fghfghf', '123123123123', 'qweqw', 6, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(13, 1, 4, 'sdfsdf', 2, 'sdfdsf', 'qwe', '女', '12312312313', '12312312', '12321321', '213123', '235659456456456456', '', '45646', '45645', 7, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(14, 1, 1, 'adasd', 2, 'sdfdsf', 'qeww', '男', '12312312313', '13712345678', '12321321', '213123', '235659456456456456', '', '45646', '45645', 3, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(15, 1, 9, '投资区域', 3, 'SDFSDF', 'qeww', '男', '12312312313', '12312312', '12321321', '213123', '235659456456456456', '', '45646', '45645', 4, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-05', 0, 0),
+(16, 1, 9, 'adasd', 2, 'aaa', 'qweqwe', '男', '12312312313', '12312312', '12321321', '213123', '235659456456456456', '', '45646', '45645', 1, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-10-30', '2014-11-05', 0, 0),
+(17, 2, 1, '投资区域', 2, 'aaaa', '会员姓名', '女', '12345678991', 'asdasd', '234234', '49456564', 'werwerwerwerewrew', 'aaa', '123123123123', 'qweqw', 10, '', '', NULL, '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '2013-11-05', '2014-11-25', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_credit`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_credit` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `credit_card` decimal(9,0) NOT NULL COMMENT '信用卡最高金额',
+  `bank` varchar(50) NOT NULL COMMENT '银行',
+  `car` varchar(255) DEFAULT NULL COMMENT '最高级别车辆信息',
+  `house` varchar(255) DEFAULT NULL COMMENT '房子信息',
+  `other` varchar(255) DEFAULT NULL COMMENT '其他信息',
+  `help` text COMMENT '资源信息',
+  `share` text COMMENT '共享资源',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员信用信息' AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `app_member_credit`
+--
+
+INSERT INTO `app_member_credit` (`id`, `member_base_id`, `credit_card`, `bank`, `car`, `house`, `other`, `help`, `share`, `status`) VALUES
+(2, 6, '123', '所属银行', '{"brand":"werwe","number":"werewr","model":"ertert","time":"2013-10-29"}', '{"site":"eqwe","area":"rwer"}', 'tryrty', 'rtyrt', 'yrtyrty1', 0),
+(4, 7, '12321323', 'rwer', '{"brand":"werwe","number":"werwer","model":"rew","time":"2013-10-29"}', '{"site":"sfdsd","area":"fsdf"}', 'sdfs', 'ffgdf', 'gdfg', 0),
+(5, 8, '132', 'sdfsdf', '{"brand":"fsdf","number":"","model":"sdfsdf","time":"2013-10-28"}', '{"site":"","area":""}', '', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_life`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_life` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `like_food` varchar(50) DEFAULT NULL COMMENT '喜欢的食物',
+  `not_like_food` varchar(50) DEFAULT NULL COMMENT '不喜欢的食物',
+  `hobby` varchar(50) DEFAULT NULL COMMENT '爱好',
+  `taste` varchar(255) DEFAULT NULL COMMENT '口味',
+  `like_broth` varchar(50) DEFAULT NULL COMMENT '喜欢的汤品',
+  `like_fruits` varchar(50) DEFAULT NULL COMMENT '喜欢的水果',
+  `like_drink` varchar(50) DEFAULT NULL COMMENT '喜欢的饮品',
+  `liek_flower` varchar(50) DEFAULT NULL COMMENT '喜欢的鲜花',
+  `like_liquor_brand` varchar(50) DEFAULT NULL COMMENT '喜欢的酒类品牌',
+  `like_color` varchar(50) DEFAULT NULL COMMENT '喜欢的颜色',
+  `exercise` varchar(50) DEFAULT NULL COMMENT '是否有室内 运动的习惯',
+  `other` text COMMENT '其他说明：',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员生活信息' AUTO_INCREMENT=7 ;
+
+--
+-- 转存表中的数据 `app_member_life`
+--
+
+INSERT INTO `app_member_life` (`id`, `member_base_id`, `like_food`, `not_like_food`, `hobby`, `taste`, `like_broth`, `like_fruits`, `like_drink`, `liek_flower`, `like_liquor_brand`, `like_color`, `exercise`, `other`, `status`) VALUES
+(5, 10, '喜爱的食物', '忌口的食物', '个人爱好', '{"qd":"清淡","x":"咸","s":"酸","qt":"其他"}', '喜欢的汤品', '喜欢的水果', '喜欢的饮品', '喜欢的鲜花', '喜欢的酒类品牌', '喜欢的颜色', '是否有室内运动的习惯', '其他说明其他说明其他说明其他说明', 0),
+(6, 6, '喜爱的食物', '忌口的食物', '个人爱好', '{"qd":"清淡","s":"酸","qt":"ad"}', '喜欢的汤品', '喜欢的水果', '喜欢的饮品', '喜欢的鲜花', '喜欢的酒类品牌', '喜欢的颜色', '是否有室内运动的习惯', '其他说明1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_photo` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `member_base_id` int(10) unsigned NOT NULL COMMENT '基本信息ID',
+  `type` tinyint(2) unsigned NOT NULL COMMENT '图片类型',
+  `url` varchar(30) NOT NULL COMMENT '图片地址',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员照片' AUTO_INCREMENT=57 ;
+
+--
+-- 转存表中的数据 `app_member_photo`
+--
+
+INSERT INTO `app_member_photo` (`id`, `member_base_id`, `type`, `url`, `status`) VALUES
+(39, 6, 3, '20131027/526d250e43ee1.png', 0),
+(38, 6, 3, '20131027/526d250e3b4b2.png', 0),
+(37, 6, 2, '20131027/526d24f6a65b9.png', 0),
+(36, 6, 2, '20131027/526d24f69dfba.png', 0),
+(35, 6, 2, '20131027/526d24f69578c.png', 0),
+(34, 6, 2, '20131027/526d24f68f566.png', 0),
+(33, 6, 1, '20131027/526d24e297715.jpg', 0),
+(32, 6, 1, '20131027/526d24e28f266.jpg', 0),
+(31, 6, 1, '20131027/526d24e288985.jpg', 0),
+(30, 6, 1, '20131027/526d24e27ff07.jpg', 0),
+(40, 6, 3, '20131027/526d250e4a531.png', 0),
+(41, 6, 4, '20131027/526d251ea16c9.png', 0),
+(42, 6, 4, '20131027/526d251ea9dab.jpg', 0),
+(43, 6, 4, '20131027/526d251eb28b3.png', 0),
+(44, 6, 5, '20131027/526d2527d0f3b.png', 0),
+(45, 6, 5, '20131027/526d2527d93be.png', 0),
+(46, 6, 5, '20131027/526d2527df94c.jpg', 0),
+(47, 6, 6, '20131027/526d2530c28ac.png', 0),
+(48, 6, 6, '20131027/526d2530cb3cf.jpg', 0),
+(49, 6, 6, '20131027/526d2530d41b3.png', 0),
+(51, 8, 2, '20131027/526d31723ceb8.jpg', 0),
+(52, 8, 2, '20131027/526d317246919.jpg', 0),
+(53, 8, 2, '20131027/526d317250073.jpg', 0),
+(54, 8, 2, '20131027/526d31725949f.jpg', 0),
+(55, 6, 1, '20131031/52713bd95cab5.png', -2),
+(56, 13, 2, '20131031/52713d010f6c6.jpg', -2);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_rank`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_rank` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `identifying` char(20) NOT NULL COMMENT '会员类型',
+  `name` varchar(30) NOT NULL COMMENT '名称',
+  `content` varchar(255) DEFAULT NULL COMMENT '内容',
+  `sort` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `is_start` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否启用：0启用，1不启用',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员级别表' AUTO_INCREMENT=51 ;
+
+--
+-- 转存表中的数据 `app_member_rank`
+--
+
+INSERT INTO `app_member_rank` (`id`, `identifying`, `name`, `content`, `sort`, `is_start`, `status`) VALUES
+(1, 'E', '5万级别会员', '车神白领俱乐部', 2, 0, 0),
+(2, 'D', '10万级别会员', '车神精英俱乐部', 3, 0, 0),
+(3, 'C', '20万级别会员', '车神总裁俱乐部', 4, 0, 0),
+(4, 'B', '40万级别会员', '车神贵族俱乐部', 5, 0, 0),
+(5, 'A', '80万级别会员', '车神领袖俱乐部', 6, 0, 0),
+(6, 'youxuan', '优选会员', '', 8, 1, 0),
+(7, 'linshi', '临时会员', '', 9, 1, 0),
+(8, 'shijia', '试驾会员', '', 10, 1, 0),
+(9, 'gudong', '股东会员', '车神贵族俱乐部', 7, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_member_resource`
+--
+
+CREATE TABLE IF NOT EXISTS `app_member_resource` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `resource_type` tinyint(2) unsigned NOT NULL COMMENT '资源类型(1车辆资源)',
+  `resource_table` varchar(20) NOT NULL COMMENT '资源所属表',
+  `member_rank_id` smallint(5) unsigned NOT NULL COMMENT '会员级别ID',
+  `resource_id` smallint(5) NOT NULL COMMENT '资源ID',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态0正常,-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='会员等级对应可用资源表' AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `app_member_resource`
+--
+
+INSERT INTO `app_member_resource` (`id`, `resource_type`, `resource_table`, `member_rank_id`, `resource_id`, `status`) VALUES
+(1, 1, 'cars_grade', 1, 1, 0),
+(2, 1, 'cars_grade', 2, 2, 0),
+(3, 1, 'cars_grade', 3, 3, 0),
+(4, 1, 'cars_grade', 4, 4, 0),
+(5, 1, 'cars_grade', 5, 5, 0),
+(7, 1, 'cars_grade', 9, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -224,22 +682,22 @@ CREATE TABLE IF NOT EXISTS `app_node` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(6) unsigned NOT NULL COMMENT '父id',
   `name` char(20) NOT NULL COMMENT '名称',
-  `title` char(20) DEFAULT NULL,
-  `remark` char(255) DEFAULT NULL COMMENT '备注',
+  `title` varchar(20) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `sort` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `level` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '等级:1分组、2模块、3方法',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0启用1禁用',
   PRIMARY KEY (`id`),
   KEY `level` (`level`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='节点表(1项目、2模块、3方法)的关系' AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='节点表(1项目、2模块、3方法)的关系' AUTO_INCREMENT=41 ;
 
 --
 -- 转存表中的数据 `app_node`
 --
 
 INSERT INTO `app_node` (`id`, `pid`, `name`, `title`, `remark`, `sort`, `level`, `status`) VALUES
-(1, 0, 'Admin', '管理系统', NULL, 0, 1, 0),
+(1, 0, 'Admin', '车神OA系统', NULL, 0, 1, 0),
 (2, 0, 'Home', '前台系统', NULL, 0, 1, 0),
 (3, 0, 'Api', '接口系统', NULL, 0, 1, 0),
 (4, 1, 'Rbac', '管理系统-权限控制模块', NULL, 0, 2, 0),
@@ -273,7 +731,12 @@ INSERT INTO `app_node` (`id`, `pid`, `name`, `title`, `remark`, `sort`, `level`,
 (32, 25, 'staff_contract_edit', '管理系统-员工管理-合同信息编辑', NULL, 0, 3, 0),
 (33, 25, 'staff_salary_look', '管理系统-员工管理-薪资信息查看', NULL, 0, 3, 0),
 (34, 25, 'staff_salary_edit', '管理系统-员工管理-薪资信息编辑', NULL, 0, 3, 0),
-(35, 25, 'staff_edit', '管理系统-员工管理-员工编辑页面', NULL, 0, 3, 0);
+(35, 25, 'staff_edit', '管理系统-员工管理-员工编辑页面', NULL, 0, 3, 0),
+(36, 1, 'CarsCompany', '分公司区域车辆管理', NULL, 0, 2, 0),
+(37, 36, 'car_index', '车辆数据列表', NULL, 0, 3, 0),
+(38, 36, 'car_info', '车辆数据详细信息-及编辑', NULL, 0, 3, 0),
+(39, 1, 'CarsAll', '公司所有区域车辆管理', NULL, 0, 2, 0),
+(40, 39, 'index', '所有区域列表', NULL, 0, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -284,13 +747,13 @@ INSERT INTO `app_node` (`id`, `pid`, `name`, `title`, `remark`, `sort`, `level`,
 CREATE TABLE IF NOT EXISTS `app_occupation` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `department_id` smallint(5) unsigned NOT NULL COMMENT '部门id',
-  `name` char(32) NOT NULL COMMENT '职位描述',
+  `name` varchar(32) NOT NULL COMMENT '职位描述',
   `number` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT '编制人数',
   `remarks` text COMMENT '职位备注',
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：-2删除0正常',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='职位表' AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='职位表' AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `app_occupation`
@@ -299,7 +762,86 @@ CREATE TABLE IF NOT EXISTS `app_occupation` (
 INSERT INTO `app_occupation` (`id`, `department_id`, `name`, `number`, `remarks`, `create_time`, `status`) VALUES
 (1, 1, '职位一', 0, '职位一职位一1', 0, 0),
 (3, 1, '职位三', 0, '职位三', 1381478106, 0),
-(2, 2, '职位二', 0, '职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二', 0, 0);
+(2, 2, '职位二', 0, '职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二职位二', 0, 0),
+(7, 19, 'zzz', 0, 'zzz', 1382584836, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_order`
+--
+
+CREATE TABLE IF NOT EXISTS `app_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `order_num` char(20) NOT NULL COMMENT '订单号',
+  `member_base_id` int(10) NOT NULL COMMENT '申请会员',
+  `start` date NOT NULL COMMENT '用车开始时间',
+  `over` date DEFAULT NULL COMMENT '用车结束时间',
+  `length` smallint(5) unsigned NOT NULL COMMENT '用车时间',
+  `exceed_date` smallint(5) unsigned NOT NULL COMMENT '超过天数',
+  `cars_id` smallint(6) NOT NULL COMMENT '申请车辆ID',
+  `driver` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否需要司机0不需要，1需要',
+  `remarks` varchar(30) DEFAULT NULL COMMENT '备注',
+  `order_state` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '订单状态',
+  `give_back_state` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '车辆归还状态：0未归还，1已归还，2已归还但超时',
+  `time` int(11) unsigned NOT NULL COMMENT '下单时间',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0存在，-2删除',
+  PRIMARY KEY (`id`),
+  KEY `order_num` (`order_num`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='用车申请订单表' AUTO_INCREMENT=17 ;
+
+--
+-- 转存表中的数据 `app_order`
+--
+
+INSERT INTO `app_order` (`id`, `order_num`, `member_base_id`, `start`, `over`, `length`, `exceed_date`, `cars_id`, `driver`, `remarks`, `order_state`, `give_back_state`, `time`, `status`) VALUES
+(14, 'N2013110513314983603', 9, '2013-11-05', NULL, 0, 0, 10000, 1, '今天要用车今天要用车今天要用车今天要用车今天要用车今天要用车', 1, 0, 1383629509, 0),
+(15, 'N2013110515322771734', 9, '2013-11-21', NULL, 0, 0, 10000, 1, '无', 2, 0, 1383636747, 0),
+(16, 'N2013110516085063956', 9, '2014-11-03', NULL, 0, 0, 10001, 0, '', 0, 0, 1383638930, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_order_history`
+--
+
+CREATE TABLE IF NOT EXISTS `app_order_history` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `order_id` int(10) unsigned NOT NULL COMMENT '订单ID',
+  `users_id` int(10) NOT NULL COMMENT '系统操作用户',
+  `content` varchar(255) NOT NULL COMMENT '操作内容',
+  `time` int(11) unsigned NOT NULL COMMENT '操作时间',
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `order_id_2` (`order_id`),
+  KEY `order_id_3` (`order_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='订单操作历史记录' AUTO_INCREMENT=44 ;
+
+--
+-- 转存表中的数据 `app_order_history`
+--
+
+INSERT INTO `app_order_history` (`id`, `order_id`, `users_id`, `content`, `time`) VALUES
+(24, 14, 1, '提交申请订单', 1383629509),
+(25, 14, 1, '修改订单', 1383629541),
+(26, 14, 1, '修改订单', 1383629775),
+(27, 14, 1, '修改订单', 1383629813),
+(28, 14, 1, '修改订单', 1383629827),
+(29, 14, 1, '提交派车申请', 1383629837),
+(30, 14, 1, '派车申请通过。已向发送短信,发送状态为：发送失败！。短信内容为：', 1383629979),
+(31, 14, 1, '派车申请拒绝', 1383630897),
+(32, 14, 1, '派车申请通过', 1383630916),
+(33, 14, 1, '123123', 1383632865),
+(34, 14, 1, '123456789', 1383634510),
+(35, 14, 1, '发送短信，状态为：失败。', 1383634591),
+(36, 14, 1, '发送短信，状态为：成功。内容为qeqweqeq', 1383634612),
+(37, 14, 1, '派车申请拒绝', 1383635089),
+(38, 15, 1, '提交申请订单', 1383636747),
+(39, 15, 1, '修改订单', 1383636795),
+(40, 15, 1, '提交派车申请', 1383636818),
+(41, 16, 1, '提交申请订单', 1383638930),
+(42, 15, 1, '派车申请通过', 1383638987),
+(43, 15, 1, '发送短信，状态为：成功。内容为123465789', 1383638996);
 
 -- --------------------------------------------------------
 
@@ -3737,14 +4279,80 @@ INSERT INTO `app_region` (`region_id`, `parent_id`, `region_name`, `region_type`
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `app_reserve_talents`
+--
+
+CREATE TABLE IF NOT EXISTS `app_reserve_talents` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `jobs` varchar(20) NOT NULL COMMENT '应聘岗位',
+  `name` varchar(20) NOT NULL COMMENT '员工姓名',
+  `name_en` varchar(20) DEFAULT NULL COMMENT '英文名称',
+  `ethnic` varchar(10) DEFAULT NULL COMMENT '名族',
+  `identity` varchar(18) NOT NULL COMMENT '身份号码',
+  `identity_address` varchar(255) NOT NULL COMMENT '身份证件地址',
+  `dwell_address` varchar(255) DEFAULT NULL COMMENT '居住地址',
+  `sex` char(1) NOT NULL COMMENT '性别',
+  `blood` varchar(5) DEFAULT NULL COMMENT '血型',
+  `height` varchar(5) DEFAULT NULL COMMENT '身高',
+  `birthday` date NOT NULL COMMENT '生日',
+  `age` varchar(5) DEFAULT NULL COMMENT '年龄',
+  `education` varchar(10) NOT NULL COMMENT '学历',
+  `major` varchar(10) DEFAULT NULL COMMENT '专业',
+  `ancestral` varchar(20) DEFAULT NULL COMMENT '祖籍',
+  `politics` varchar(10) DEFAULT NULL COMMENT '政治面貌',
+  `email` varchar(20) DEFAULT NULL COMMENT '电子邮箱',
+  `phone` varchar(15) DEFAULT NULL COMMENT '电话号码',
+  `remarks` text COMMENT '备注',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='人才储备' AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `app_reserve_talents`
+--
+
+INSERT INTO `app_reserve_talents` (`id`, `jobs`, `name`, `name_en`, `ethnic`, `identity`, `identity_address`, `dwell_address`, `sex`, `blood`, `height`, `birthday`, `age`, `education`, `major`, `ancestral`, `politics`, `email`, `phone`, `remarks`, `status`) VALUES
+(1, '岗位1', '姓名1', '姓名EN1', '汉族', '12346578979898798', '身份证地址', '身份证住址', '男', '1', '1.75', '2013-11-06', '25', '学历', NULL, NULL, NULL, NULL, '123456789123', NULL, 0),
+(2, '应聘岗位', '姓名', '英文姓名', '民族', '342401199201208174', '身份证地址', '居住地址', '女', '血型', '身高', '1992-01-20', '年龄', '学历', '专业', '祖籍', '政治面貌', 'ucdchinalin@gmail.co', '电话号码', '备注', 0);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `app_staff_achievements`
+--
+
+CREATE TABLE IF NOT EXISTS `app_staff_achievements` (
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `base_id` int(10) unsigned NOT NULL COMMENT '基本信息id',
+  `users_id` int(10) unsigned NOT NULL COMMENT '操作人',
+  `month_pay` decimal(9,2) DEFAULT NULL COMMENT '月薪资',
+  `achievements_pay` decimal(9,2) DEFAULT NULL COMMENT '绩效奖金',
+  `issue_time` date DEFAULT NULL COMMENT '发放日期',
+  `result` varchar(255) DEFAULT NULL COMMENT '考核结果',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='工资政绩表' AUTO_INCREMENT=5 ;
+
+--
+-- 转存表中的数据 `app_staff_achievements`
+--
+
+INSERT INTO `app_staff_achievements` (`id`, `base_id`, `users_id`, `month_pay`, `achievements_pay`, `issue_time`, `result`, `remarks`, `status`) VALUES
+(1, 5, 1, '12.00', '123.00', '2013-11-13', '123', '123', 0),
+(2, 5, 1, '4561.00', '1232.00', '2013-11-29', '考核结果2', '备注3', 0);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `app_staff_alteration`
 --
 
 CREATE TABLE IF NOT EXISTS `app_staff_alteration` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) NOT NULL COMMENT '基本信息id',
-  `data_time` char(20) DEFAULT NULL COMMENT '日期',
-  `incident` char(255) DEFAULT NULL COMMENT '事件',
+  `data_time` varchar(20) DEFAULT NULL COMMENT '日期',
+  `incident` varchar(255) DEFAULT NULL COMMENT '事件',
   `bonus` decimal(9,2) DEFAULT NULL COMMENT '奖金',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
@@ -3766,30 +4374,30 @@ INSERT INTO `app_staff_alteration` (`id`, `base_id`, `data_time`, `incident`, `b
 CREATE TABLE IF NOT EXISTS `app_staff_base` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `serial` smallint(6) unsigned NOT NULL DEFAULT '0' COMMENT '员工编号',
-  `jobs` char(20) NOT NULL COMMENT '应聘岗位',
-  `name` char(50) NOT NULL COMMENT '员工姓名',
-  `name_en` char(50) DEFAULT NULL COMMENT '英文名称',
+  `jobs` varchar(20) NOT NULL COMMENT '应聘岗位',
+  `name` varchar(20) NOT NULL COMMENT '员工姓名',
+  `name_en` varchar(20) DEFAULT NULL COMMENT '英文名称',
   `company_id` smallint(5) unsigned NOT NULL COMMENT '隶属区域',
   `department_id` smallint(5) unsigned NOT NULL COMMENT '部门id',
   `occupation_id` smallint(6) unsigned NOT NULL COMMENT '职位id',
-  `ethnic` char(10) DEFAULT NULL COMMENT '名族',
-  `identity` char(18) NOT NULL COMMENT '身份号码',
-  `identity_address` char(255) NOT NULL COMMENT '身份证件地址',
-  `dwell_address` char(255) DEFAULT NULL COMMENT '居住地址',
+  `ethnic` varchar(10) DEFAULT NULL COMMENT '名族',
+  `identity` varchar(18) NOT NULL COMMENT '身份号码',
+  `identity_address` varchar(255) NOT NULL COMMENT '身份证件地址',
+  `dwell_address` varchar(255) DEFAULT NULL COMMENT '居住地址',
   `sex` char(1) NOT NULL COMMENT '性别',
-  `blood` char(5) DEFAULT NULL COMMENT '血型',
-  `height` char(10) DEFAULT NULL COMMENT '身高',
-  `marriage` char(10) NOT NULL COMMENT '婚姻状况',
+  `blood` varchar(5) DEFAULT NULL COMMENT '血型',
+  `height` varchar(5) DEFAULT NULL COMMENT '身高',
+  `marriage` varchar(5) NOT NULL COMMENT '婚姻状况',
   `birthday` date NOT NULL COMMENT '生日',
-  `education` char(20) NOT NULL COMMENT '学历',
-  `major` char(10) DEFAULT NULL COMMENT '专业',
-  `ancestral` char(50) DEFAULT NULL COMMENT '祖籍',
-  `politics` char(10) DEFAULT NULL COMMENT '政治面貌',
-  `email` char(30) DEFAULT NULL COMMENT '电子邮箱',
-  `social_num` char(20) DEFAULT NULL COMMENT '社保电脑号',
-  `phone` char(20) DEFAULT NULL COMMENT '电话号码',
-  `contact_person` char(20) DEFAULT NULL COMMENT '紧急联络人',
-  `contact_phone` char(20) DEFAULT NULL COMMENT '紧急联络人电话',
+  `education` varchar(10) NOT NULL COMMENT '学历',
+  `major` varchar(10) DEFAULT NULL COMMENT '专业',
+  `ancestral` varchar(20) DEFAULT NULL COMMENT '祖籍',
+  `politics` varchar(10) DEFAULT NULL COMMENT '政治面貌',
+  `email` varchar(20) DEFAULT NULL COMMENT '电子邮箱',
+  `social_num` varchar(20) DEFAULT NULL COMMENT '社保电脑号',
+  `phone` varchar(15) DEFAULT NULL COMMENT '电话号码',
+  `contact_person` varchar(20) DEFAULT NULL COMMENT '紧急联络人',
+  `contact_phone` varchar(20) DEFAULT NULL COMMENT '紧急联络人电话',
   `contact_relation` char(10) DEFAULT NULL COMMENT '联系人关系',
   `contact_company` char(30) DEFAULT NULL COMMENT '紧急联系人的单位',
   `open_bank` char(30) DEFAULT NULL COMMENT '开户银行',
@@ -3798,19 +4406,20 @@ CREATE TABLE IF NOT EXISTS `app_staff_base` (
   `remarks` text COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工基本信息表' AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工基本信息表' AUTO_INCREMENT=11 ;
 
 --
 -- 转存表中的数据 `app_staff_base`
 --
 
 INSERT INTO `app_staff_base` (`id`, `serial`, `jobs`, `name`, `name_en`, `company_id`, `department_id`, `occupation_id`, `ethnic`, `identity`, `identity_address`, `dwell_address`, `sex`, `blood`, `height`, `marriage`, `birthday`, `education`, `major`, `ancestral`, `politics`, `email`, `social_num`, `phone`, `contact_person`, `contact_phone`, `contact_relation`, `contact_company`, `open_bank`, `open_account`, `on_job`, `remarks`, `status`) VALUES
-(7, 1007, 'aaa', '员工1', 'cccc', 1, 1, 1, '', '130503670401001', '', '', '男', '', '', '', '1967-04-01', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '', 0),
-(6, 1006, 'qweqwe', '员工2', 'qweqwe', 1, 1, 1, '', '342401199201208174', '', '', '男', '', '', '未婚', '1992-01-20', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '123', 0),
-(5, 1005, '董事', '员工3', '英文姓名*', 1, 1, 3, '', '130503670401001', '', '', '男', '', '', '未婚', '1967-04-01', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '', 0),
+(7, 1007, 'aaa', '基本员工', 'cccc', 1, 1, 1, '', '130503670401001', '', '', '男', '', '', '', '1967-04-01', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '', 0),
+(6, 1006, 'qweqwe', '私有员工', 'qweqwe', 2, 1, 1, '', '342401199201208174', '', '', '男', '', '', '未婚', '1992-01-20', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '123', 0),
+(5, 1005, '董事', '主管用户', '英文姓名*', 1, 1, 3, '', '130503670401001', '', '', '男', '', '', '未婚', '1967-04-01', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, 0, '', 0),
 (1, 1001, '管理员', '管理员', 'admin', 1, 0, 0, NULL, '', '', NULL, '', NULL, NULL, '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, -2),
 (8, 1008, '保密', '奥秘', '保密', 0, 0, 0, NULL, '', '', NULL, '男', NULL, NULL, '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
-(9, 1009, '都是', '地方', '是的飞', 1, 1, 3, NULL, '', '', NULL, '男', NULL, NULL, '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
+(9, 1009, '都是', '地方', '是的飞', 1, 1, 3, NULL, '', '', NULL, '男', NULL, NULL, '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0),
+(10, 10010, '测试', '测试账号', '测试账号', 1, 1, 1, NULL, '', '', NULL, '男', NULL, NULL, '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -3821,11 +4430,11 @@ INSERT INTO `app_staff_base` (`id`, `serial`, `jobs`, `name`, `name_en`, `compan
 CREATE TABLE IF NOT EXISTS `app_staff_contract` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) unsigned NOT NULL COMMENT '基本信息id',
-  `entry_time` char(20) DEFAULT NULL COMMENT '入职日期',
-  `official_time` char(20) DEFAULT NULL COMMENT '转正日期',
-  `dimission_time` char(20) DEFAULT NULL COMMENT '离职日期',
-  `contract_start` char(20) DEFAULT NULL COMMENT '合同起始日期',
-  `contract_over` char(20) DEFAULT NULL COMMENT '合同结束日期',
+  `entry_time` varchar(20) DEFAULT NULL COMMENT '入职日期',
+  `official_time` varchar(20) DEFAULT NULL COMMENT '转正日期',
+  `dimission_time` varchar(20) DEFAULT NULL COMMENT '离职日期',
+  `contract_start` varchar(20) DEFAULT NULL COMMENT '合同起始日期',
+  `contract_over` varchar(20) DEFAULT NULL COMMENT '合同结束日期',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态:0正常，-2删除',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工合同信息' AUTO_INCREMENT=2 ;
@@ -3846,11 +4455,11 @@ INSERT INTO `app_staff_contract` (`id`, `base_id`, `entry_time`, `official_time`
 CREATE TABLE IF NOT EXISTS `app_staff_education` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) unsigned NOT NULL COMMENT '基本表id',
-  `school` char(50) DEFAULT NULL COMMENT '毕业学校',
-  `major` char(50) DEFAULT NULL COMMENT '专业-主修',
-  `data_time` char(50) DEFAULT NULL COMMENT '起止日期',
-  `certificate` char(50) DEFAULT NULL COMMENT '证书',
-  `witness` char(50) DEFAULT NULL COMMENT '证明人以及电话',
+  `school` varchar(50) DEFAULT NULL COMMENT '毕业学校',
+  `major` varchar(50) DEFAULT NULL COMMENT '专业-主修',
+  `data_time` varchar(50) DEFAULT NULL COMMENT '起止日期',
+  `certificate` varchar(50) DEFAULT NULL COMMENT '证书',
+  `witness` varchar(50) DEFAULT NULL COMMENT '证明人以及电话',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工教育经历表' AUTO_INCREMENT=4 ;
@@ -3873,10 +4482,10 @@ INSERT INTO `app_staff_education` (`id`, `base_id`, `school`, `major`, `data_tim
 CREATE TABLE IF NOT EXISTS `app_staff_family` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) unsigned NOT NULL COMMENT '基本信息id',
-  `relation` char(20) DEFAULT NULL COMMENT '关系',
-  `name` char(20) DEFAULT NULL COMMENT '姓名',
-  `company` char(50) DEFAULT NULL COMMENT '工作单位',
-  `address` char(50) DEFAULT NULL COMMENT '住址以及电话号码',
+  `relation` varchar(20) DEFAULT NULL COMMENT '关系',
+  `name` varchar(20) DEFAULT NULL COMMENT '姓名',
+  `company` varchar(50) DEFAULT NULL COMMENT '工作单位',
+  `address` varchar(50) DEFAULT NULL COMMENT '住址以及电话号码',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工家庭成员' AUTO_INCREMENT=2 ;
@@ -3897,22 +4506,23 @@ INSERT INTO `app_staff_family` (`id`, `base_id`, `relation`, `name`, `company`, 
 CREATE TABLE IF NOT EXISTS `app_staff_salary` (
   `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) unsigned NOT NULL COMMENT '基本信息id',
-  `open_bank` char(30) NOT NULL COMMENT '开户银行',
-  `open_account` char(50) NOT NULL COMMENT '银行账号',
-  `start_time` char(20) NOT NULL COMMENT '起始日期',
-  `stop_time` char(20) NOT NULL COMMENT '终止日期',
+  `open_bank` varchar(30) NOT NULL COMMENT '开户银行',
+  `open_account` varchar(50) NOT NULL COMMENT '银行账号',
+  `start_time` varchar(20) NOT NULL COMMENT '起始日期',
+  `stop_time` varchar(15) NOT NULL COMMENT '终止日期',
   `pay` decimal(9,2) NOT NULL COMMENT '工资',
-  `remarks` char(255) DEFAULT NULL COMMENT '备注',
+  `remarks` varchar(255) DEFAULT NULL COMMENT '备注',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='工资信息表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='工资信息表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `app_staff_salary`
 --
 
 INSERT INTO `app_staff_salary` (`id`, `base_id`, `open_bank`, `open_account`, `start_time`, `stop_time`, `pay`, `remarks`, `status`) VALUES
-(1, 6, '开户银行1', '银行账号2', '起始日期2', '结束日期3', '123.10', 'adsad3', -2);
+(1, 6, '开户银行1', '银行账号2', '起始日期2', '结束日期3', '123.10', 'adsad3', -2),
+(2, 5, '公司', '银行账号2', '2013-11-19', '2013-11-28', '123.00', 'sdfsdf', 0);
 
 -- --------------------------------------------------------
 
@@ -3923,13 +4533,13 @@ INSERT INTO `app_staff_salary` (`id`, `base_id`, `open_bank`, `open_account`, `s
 CREATE TABLE IF NOT EXISTS `app_staff_work` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `base_id` int(10) unsigned NOT NULL COMMENT '基本信息id',
-  `company` char(50) DEFAULT NULL COMMENT '公司',
-  `data_time` char(50) DEFAULT NULL COMMENT '起止日期',
-  `position` char(50) DEFAULT NULL COMMENT '职位',
-  `responsibility` char(50) DEFAULT NULL COMMENT '职责',
-  `salary` char(20) DEFAULT NULL COMMENT '工资',
-  `dimission` char(50) NOT NULL COMMENT '离职原因',
-  `witness` char(50) DEFAULT NULL COMMENT '证明人',
+  `company` varchar(50) DEFAULT NULL COMMENT '公司',
+  `data_time` varchar(50) DEFAULT NULL COMMENT '起止日期',
+  `position` varchar(50) DEFAULT NULL COMMENT '职位',
+  `responsibility` varchar(50) DEFAULT NULL COMMENT '职责',
+  `salary` varchar(20) DEFAULT NULL COMMENT '工资',
+  `dimission` varchar(50) NOT NULL COMMENT '离职原因',
+  `witness` varchar(50) DEFAULT NULL COMMENT '证明人',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态：0正常，-2删除',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='员工工作经历表' AUTO_INCREMENT=2 ;
@@ -3951,7 +4561,7 @@ CREATE TABLE IF NOT EXISTS `app_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `base_id` int(10) unsigned NOT NULL COMMENT '员工id',
   `account` char(11) NOT NULL,
-  `nickname` char(20) DEFAULT NULL COMMENT '称呢',
+  `nickname` varchar(20) DEFAULT NULL COMMENT '称呢',
   `password` char(32) NOT NULL,
   `last_login_time` int(11) unsigned NOT NULL DEFAULT '0',
   `last_login_ip` char(20) DEFAULT NULL,
@@ -3963,17 +4573,18 @@ CREATE TABLE IF NOT EXISTS `app_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   UNIQUE KEY `account` (`account`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用户账号表' AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='员工账号表' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `app_users`
 --
 
 INSERT INTO `app_users` (`id`, `base_id`, `account`, `nickname`, `password`, `last_login_time`, `last_login_ip`, `login_count`, `create_time`, `update_time`, `type`, `status`) VALUES
-(1, 1, 'admin', '管理员', 'e10adc3949ba59abbe56e057f20f883e', 1382075675, '192.168.1.100', 167, 1376561926, 1376561926, 0, 0),
-(2, 5, 'zhuguan', 'wade', 'e10adc3949ba59abbe56e057f20f883e', 1382070007, '192.168.1.100', 29, 1377506459, 1377506459, 1, 0),
-(3, 6, 'siyou', '', 'e10adc3949ba59abbe56e057f20f883e', 1381562821, '192.168.0.55', 12, 1377590474, 1377590474, 1, 0),
-(5, 7, 'jiben', '', 'e10adc3949ba59abbe56e057f20f883e', 1381562759, '192.168.0.55', 4, 1377847312, 1377847312, 1, 0);
+(1, 1, 'admin', '管理员', 'e10adc3949ba59abbe56e057f20f883e', 1383622352, '192.168.1.102', 194, 1376561926, 1376561926, 0, 0),
+(2, 5, 'zhuguan', 'wade', 'e10adc3949ba59abbe56e057f20f883e', 1383021625, '192.168.1.102', 35, 1377506459, 1377506459, 1, 0),
+(3, 6, 'siyou', '', 'e10adc3949ba59abbe56e057f20f883e', 1382111825, '192.168.1.100', 13, 1377590474, 1377590474, 1, 0),
+(5, 7, 'jiben', '', 'e10adc3949ba59abbe56e057f20f883e', 1383021894, '192.168.1.102', 8, 1377847312, 1377847312, 1, 0),
+(6, 10, '10010', NULL, 'e10adc3949ba59abbe56e057f20f883e', 1382113799, '192.168.1.100', 1, 1382113600, 1382113600, 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

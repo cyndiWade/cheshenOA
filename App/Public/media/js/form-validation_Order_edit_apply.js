@@ -24,7 +24,7 @@ var FormValidation = function () {
                     },
                     start : {
                         required: true,
-                         dateISO:true
+                        // dateISO:true
                      },	
                      
                      over : {
@@ -119,17 +119,17 @@ var FormValidation = function () {
             
             (function () {
 				/* 日期选择 */
-				var arr_date = $('.wade_date_custom');	
+				var arr_date = $('.bootstrap_date_fn');	
 				var start_date = arr_date.eq(0);						//日期
 				var over_date = $('#over_date');						//会员到期日期
 				
-				
+
 				/* 计算函数 */
 				var count = function (start,over) {
+			
+					var start_timestamp = fomat_date(start.val());
+					var over_timestamp = fomat_date(over.text());
 
-					var start_timestamp = Date.parse(start.val());
-					var over_timestamp = Date.parse(over.text());
-					
 					var empty_val = function (mes) {
 						alert(mes);
 						start.val('');
@@ -143,25 +143,10 @@ var FormValidation = function () {
 					
 				}
 				
-				var options = {
-						//attr 属性 ，更多格式参加书本
-					//	altField:'#otherField',			//同步元素日期到其他元素上
-						dateFormat:'yy-mm-dd',		//日期格式设置
-						minDate: new Date(),		//最小选择日期为今天
-						showButtonPanel:true,		//开启今天标示
-						changeYear:true,				//显示年份
-						changeMonth:true,				//显示月份
-						showMonthAfterYear:true,	//互换位置
-						
-						
-						//fn 执行函数
-						onSelect : function () {			//选择日期执行函数
-						},
-						onClose : function () {			//关闭窗口执行函数
-							count(start_date,over_date);
-						},
-				};	
-				arr_date.datepicker(options);
+				wade_bootstrap_date('.bootstrap_date_fn').bootstrap_date_fn(function () {
+					count(start_date,over_date);
+				});
+			
 			})();
 
         }

@@ -11,7 +11,7 @@ class AppBaseAction extends Action {
 	 */
 	public function __construct() {
 		parent:: __construct();			//重写父类构造方法
-
+		//G('begin'); 							// 记录开始标记位（运行开始）
 		$this->loading();
 	}
 

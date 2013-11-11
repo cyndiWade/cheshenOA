@@ -3,6 +3,9 @@
  * 公共函数库
  */
 
+/**
+ * 	echo G('begin','end',6);	//页面执行时间
+ */
 
 /*	判断是否为post提交
  * @$value  post提交的值
@@ -370,5 +373,49 @@ function arrar_insert_delete(&$arr_request,&$arr_have) {
 }
 
 
+/**
+ * 不足6小时则算一天，超过6小时，但在6小时内，算0.5天。6小时算一天。
+ * @param unknown_type $start		开始日期
+ * @param unknown_type $over		结束如期
+ */
+function sex_day ($start,$over) {
+	/* 转换日期为毫秒数 */
+	$hours = ($over - $start) / 60 / 60;			//计算相差的小时数
+	$sex_day = $hours  / 6;							//每6小时算一天
+
+	if(is_float($sex_day)) {						//超过6小时，但是还在6小时内，算0.5天
+		$length = floor($sex_day) + 0.5;			
+	} else {
+		$length = $sex_day;								//可以被整除的，算整除天数
+	}
+	
+	return $length;
+
+}
+
+
+
+/**
+ * 超过6小时算一天，但在6小时内，算0.5天。24小时算一天。
+ * @param int $start		开始日期
+ * @param int $over		结束如期
+ */
+function format_sex_day ($start,$over) {
+	$hours = ($over - $start) / 60 / 60;			//计算相差的小时数
+	
+	$days = $hours  / 24;							//计算一共多少天
+
+	$residue_hours = $hours % 24;			//剩余小时数
+
+	if ($residue_hours == 0) {
+		$length = $days;
+	} elseif ($residue_hours < 6) {
+		$length = floor($days) + 0.5;
+	} elseif ($residue_hours >= 6) {
+		$length = floor($days) +1;
+	}
+
+	return $length;
+}
 
 ?>

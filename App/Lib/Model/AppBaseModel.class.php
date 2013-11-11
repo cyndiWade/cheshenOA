@@ -41,21 +41,24 @@ class AppBaseModel extends Model {
 	 * @param Array $all			//数组
 	 * @param Array $fields			//字段如：array('create_time','update_time');
 	 */
-	protected function set_all_time(&$all,$fields) {
+	protected function set_all_time(&$all,$fields,$default = 'Y-m-d H:i:s') {
 		if (empty($all)) return false;
 		/* 多维数组 */
 		if (count($all[0]) >=1)  {
 			foreach ($all AS $key=>$val) {
 				for ($i=0;$i<count($fields);$i++) {
-					$all[$key][$fields[$i]] = date('Y-m-d H:i:s',$all[$key][$fields[$i]]);
+					if (empty($all[$key][$fields[$i]])) continue;
+					$all[$key][$fields[$i]] = date($default,$all[$key][$fields[$i]]);
 				}
 			}
 		/* 一维数组 */	
 		} else {
 			for ($i=0;$i<count($fields);$i++) {
-				$all[$fields[$i]] = date('Y-m-d H:i:s',$all[$fields[$i]]);
+				if (empty($all[$fields[$i]])) continue;
+				$all[$fields[$i]] = date($default,$all[$fields[$i]]);
 			}
 		}	
+		
 	}
 	
 	

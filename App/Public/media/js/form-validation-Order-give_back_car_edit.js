@@ -29,7 +29,7 @@ var FormValidation = function () {
                      
                      over : {
                          required: true,
-                          dateISO:true
+                       //   dateISO:true
                       },	
                       
                       length : {

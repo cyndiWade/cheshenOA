@@ -1,3 +1,43 @@
+/**
+ * 验证浏览器版本
+ */
+(function ($) {
+	var userAgent = window.navigator.userAgent.toLowerCase();
+	 
+	$.browser.msie10 = $.browser.msie && /msie 10\.0/i.test(userAgent);
+	$.browser.msie9 = $.browser.msie && /msie 9\.0/i.test(userAgent); 
+	$.browser.msie8 = $.browser.msie && /msie 8\.0/i.test(userAgent);
+	$.browser.msie7 = $.browser.msie && /msie 7\.0/i.test(userAgent);
+	$.browser.msie6 = !$.browser.msie8 && !$.browser.msie7 && $.browser.msie && /msie 6\.0/i.test(userAgent);
+
+	$.browser.mozilla = /firefox/.test(navigator.userAgent.toLowerCase());	//火狐
+	$.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());		//google
+	$.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());		//苹果浏览器
+	//$.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());		//IE
+	var check_browser = false;
+	var arr_browser = [
+			$.browser.msie10,
+			$.browser.msie9,
+			$.browser.msie8,
+			$.browser.mozilla,
+			$.browser.webkit,
+			$.browser.opera
+	]
+	for (var i in arr_browser) {
+		if (arr_browser[i] == true) {
+			check_browser = true;
+			break;
+		}
+	}
+	
+	if (check_browser == false) {
+		alert('亲爱的用户，您的浏览器版本太低，为了更好用户体验，请下载最新的浏览器');
+		window.location.href='http://www.google.com/intl/zh-CN/chrome/'	;
+	}
+	
+})(jQuery);
+
+
 //动弹导航样式
 	(function ($) {
 		//82
@@ -36,7 +76,10 @@
 
 	wade_jquery_date().init();
 	
+	wade_bootstrap_date('.bootstrap_date').bootstrap_date();
 	
+	
+
 	
 	
 	

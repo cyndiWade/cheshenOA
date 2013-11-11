@@ -3,8 +3,7 @@
  * 公司所有区域车辆管理
  */
 class CarsAllAction extends CarsBaseAction {
-	
-	
+
 	/**
 	 * 构造方法
 	 */
