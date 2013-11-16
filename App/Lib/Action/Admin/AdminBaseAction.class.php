@@ -12,7 +12,6 @@ class AdminBaseAction extends AppBaseAction {
 	
 	protected $global_tpl_view;			//全局模板变量
 	
-	
 
 	/**
 	 * 构造方法
@@ -34,14 +33,14 @@ class AdminBaseAction extends AppBaseAction {
 	
 	//初始化用户数据
 	private function admin_base_init() {
-		
+
 		/* SESSION信息验证保存 */
 		$session_userinfo = $_SESSION['user_info'];				//保存用户信息
+
 		if (!empty($session_userinfo)) {
 			$this->oUser = (object) $session_userinfo;					//转换成对象
 		}  		
 
-		
 		if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {
 			
 			$this->error('请先登录','?s=/Admin/Login/login');

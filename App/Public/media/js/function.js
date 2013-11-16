@@ -86,7 +86,7 @@ var wade_jquery_date = function () {
 			},
 			onClose : function () {			//关闭窗口执行函数
 				
-			},
+			}
 			
 	};	
 	

@@ -18,7 +18,6 @@
 	var arr_browser = [
 			$.browser.msie10,
 			$.browser.msie9,
-			$.browser.msie8,
 			$.browser.mozilla,
 			$.browser.webkit,
 			$.browser.opera

@@ -5,17 +5,32 @@
  */
 
 class RBAC { 
+	
+	/* 数据表配置 */
+	private static $table_prefix;					//数据库表前缀
+	private static $node_table;							//节点表（系统所有资源）
+	private static $group_table;							//组表
+	private static $group_node_table;				//组与节点关系表
+	private static $group_user_table;					//组与用户关系表
+	
 
 	private static $action;							//URL当前动作
-	private static $table_prefix;					//数据库表前缀
 	private static $not_auth_group;			//无需认证分组
-	private static $not_auth_module;		//无需认真模块
+	private static $not_auth_module;			//无需认真模块
 	private static $not_auth_action;			//无需认证操作
 	/**
 	 * 初始化
 	 */
 	static public function init($parameter) {
 		
+		/* 数据表 */
+		self::$table_prefix = $parameter->table_prefix;
+		self::$node_table = $parameter->node_table;//OK
+		self::$group_table = $parameter->group_table;
+		self::$group_node_table = $parameter->group_node_table;//OK
+		self::$group_user_table = $parameter->group_user_table;//OK
+		
+
 		/* 当前动作 */
 		self::$action = array(
 				1 => $parameter->group,
@@ -23,9 +38,7 @@ class RBAC {
 				3 => $parameter->action
 		);		
 		
-		/* 认证的表前缀 */
-		self::$table_prefix = $parameter->table_prefix;
-		
+
 		/* 无需认证过滤 */
 		self::$not_auth_group =  explode(',', $parameter->not_auth_group);				//无需认证分组
 		self::$not_auth_module = explode(',', $parameter->not_auth_module);			//无需认证模块
@@ -36,6 +49,7 @@ class RBAC {
 	
 	/**
 	 * 验证权限
+	 * $UID INT (用户表的主键ID)
 	 */
 	 static public function check ($uid) {
 		header('Content-Type:text/html;charset=utf-8');
@@ -50,9 +64,9 @@ class RBAC {
 		/* 获取用户存在的权限 */
 		$DB = M();
 		$rbac_list = $DB->field('gn.group_id,n.name,n.title,n.level')
-		->table(self::$table_prefix.'group_user AS gu')
-		->join(self::$table_prefix.'group_node AS gn ON gu.group_id = gn.group_id')
-		->join(self::$table_prefix.'node AS n ON gn.node_id = n.id')
+		->table(self::$table_prefix.self::$group_user_table.' AS gu')
+		->join(self::$table_prefix.self::$group_node_table.' AS gn ON gu.group_id = gn.group_id')
+		->join(self::$table_prefix.self::$node_table.' AS n ON gn.node_id = n.id')
 		->where(array('gu.user_id'=>$uid,'n.status'=>0))
 		->select();
 		
