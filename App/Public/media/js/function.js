@@ -119,6 +119,7 @@ function daysBetween(DateOne,DateTwo)
  * return 111111111111
  */
 function fomat_date ($date_string) {
+	if ($date_string == undefined || $date_string == '') return false;
 	return Date.parse($date_string.replace(/-/ig,'/'));
 }
 
@@ -133,7 +134,7 @@ var  wade_bootstrap_date = function (object) {
 		/* 有触发函数的 */
 		bootstrap_date_fn : function (fn) {	
 			var options = {
-			    format: 'yyyy-mm-dd HH:ii',
+			    format: 'yyyy-mm-dd hh:ii',
 				language:  'zh-CN',
 		        weekStart: 1,
 		        todayBtn:  1,
@@ -170,5 +171,22 @@ var  wade_bootstrap_date = function (object) {
 	
 };
 
+
+
+/**
+ * 同步模式AJAX提交
+ */
+var ajax_post_setup = function ($url,$data) {
+	$.ajaxSetup({
+		async: false,//async:false 同步请求  true为异步请求
+	});
+	var result = false;
+	//提交的地址，post传入的参数
+	$.post($url,$data,function(content){
+		result = content;
+	},'json');
+	
+	return result;
+}
 
 

@@ -26,7 +26,7 @@ class OrderModel extends AdminBaseModel {
 		->where($condition)
 		->order('o.time DESC')
 		->select();
-		parent::set_all_time($data, array('time','start','over'),'Y-m-d H:i');
+		parent::set_all_time($data, array('time','start','estimate_over','over'),'Y-m-d H:i');
 		parent::set_str_len($data, array('remarks'), 10);
 		return $data;
 	}
@@ -34,8 +34,20 @@ class OrderModel extends AdminBaseModel {
 	
 	public function seek_one_data($id) {
 		$data = parent::get_one_data(array('id'=>$id,'status'=>0));
-		parent::set_all_time($data, array('time','start','over'),'Y-m-d H:i');
+		parent::set_all_time($data, array('time','start','estimate_over','over'),'Y-m-d H:i');
 		return $data;
+	}
+	
+	
+	/**
+	 * 获取指定订单状态的记录条数
+	 * @param Array $parameter
+	 */
+	public function seek_order_count ($parameter) {
+		$condition = array('status'=>0);
+		array_add_to($condition,$parameter);
+		$count = $this->where($condition)->count();
+		return $count;
 	}
 	
 }

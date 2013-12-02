@@ -7,7 +7,7 @@
 class StaffBaseModel extends AdminBaseModel {
 	
 	
-	//获取职位数据列表
+	//获取所有职位数据列表
 	public function seek_data_list () {
 		$PREFIX = C('DB_PREFIX');
 		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2')
@@ -20,7 +20,7 @@ class StaffBaseModel extends AdminBaseModel {
 	}
 	
 
-	//获取职位数据列表
+	//获取指定职位数据列表
 	public function seek_spe_list ($where) {
 		$PREFIX = C('DB_PREFIX');
 		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2')
@@ -44,6 +44,18 @@ class StaffBaseModel extends AdminBaseModel {
 	public function add_one_data () {
 		$this->create_time = time();
 		return $this->add();
+	}
+	
+	//获取可用司机列表
+	public function seek_usable_driver_list ($occupation_id) {
+		$PREFIX = $this->prefix;
+		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2')
+		->table($PREFIX.'staff_base AS s')
+		->join($PREFIX.'department AS d ON s.department_id=d.id')
+		->join($PREFIX.'occupation AS o ON s.occupation_id=o.id')
+		->where(array('s.occupation_id'=>$occupation_id,'s.status'=>0,'s.on_job'=>0,'s.driver_status'=>0))
+		->select();
+		return $data;
 	}
 	
 	

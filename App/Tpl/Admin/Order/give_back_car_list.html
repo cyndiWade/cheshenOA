@@ -60,7 +60,7 @@
 											<th>订单号</th>
 											<th class="hidden-480">来源</th>
 											<th class="hidden-480">用户姓名</th>											<th class="hidden-480">驾龄</th>
-											<th class="hidden-480">开始日期</th>											<th class="hidden-480">归还日期</th>											<th class="hidden-480">总用车天数</th>											<th class="hidden-480">超过天数</th>											<th class="hidden-480">申请车辆</th>											<th class="hidden-480">是否需要司机</th>											<th class="hidden-480">备注</th>											<th class="hidden-480">订单提交时间</th>											<th class="hidden-480">订单状态</th>
+											<th class="hidden-480">开始日期</th>											<th class="hidden-480">预计还车</th>											<th class="hidden-480">归还日期</th>											<th class="hidden-480">总用车天数</th>											<th class="hidden-480">超过天数</th>											<th class="hidden-480">申请车辆</th>											<th class="hidden-480">是否需要司机</th>											<th class="hidden-480">备注</th>											<th class="hidden-480">订单状态</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -68,7 +68,7 @@
 										<tr class="odd gradeX">
 											<td>{$vo.order_num}</td>
 											<td class="hidden-480">{$vo.order_from}</td>											<td class="center hidden-480">{$vo.name}</td>											<td class="center hidden-480">{$vo.driving_years}</td>
-											<td class="center hidden-480">{$vo.start}</td>											<td class="center hidden-480">{$vo.over}</td>											<td class="center hidden-480">{$vo.length}</td>											<td class="center hidden-480">{$vo.exceed_date}</td>											<td class="center hidden-480">{$vo.brand}</td>											<td class="center hidden-480">{$vo.driver}</td>											<td class="center hidden-480">{$vo.remarks}</td>												<td class="center hidden-480">{$vo.time}</td>											<td class="center hidden-480">{$vo.order_state_explain} - {$vo.give_back_state_explain}</td>
+											<td class="center hidden-480">{$vo.start}</td>											<td class="center hidden-480">{$vo.estimate_over}</td>											<td class="center hidden-480">{$vo.over}</td>											<td class="center hidden-480">{$vo.length}</td>											<td class="center hidden-480">{$vo.exceed_date}</td>											<td class="center hidden-480">{$vo.brand}</td>											<td class="center hidden-480">{$vo.is_need_driver}</td>											<td class="center hidden-480">{$vo.remarks}</td>												<td class="center hidden-480">{$vo.order_state_explain} - {$vo.give_back_state_explain}</td>
 											<td >												<if condition="($vo['give_back_state'] eq $give_back_state[0]['status_num']) ">													<a href="?s=/Admin/Order/give_back_car_edit/id/{$vo.id}.html" class="check">填写还车信息</a> | 												<else /> 																									</if>																		<a href="?s=/Admin/Order/order_history_list/order_id/{$vo.id}.html">跟进记录</a>											<!-- 	| <a href="?s=/Admin/CarsAudit/edit/act/delete/id/{$vo.id}.html" class="check">删除</a>											-->											</td>
 										</tr>										</volist>
 									</tbody>

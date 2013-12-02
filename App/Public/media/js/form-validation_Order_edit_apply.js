@@ -27,6 +27,11 @@ var FormValidation = function () {
                         // dateISO:true
                      },	
                      
+                     estimate_over : {
+                    	 required: true,
+                       //  dateISO:true
+                     },
+                     
                      over : {
                          required: true,
                           dateISO:true
@@ -118,34 +123,88 @@ var FormValidation = function () {
             
             
             (function () {
-				/* 日期选择 */
-				var arr_date = $('.bootstrap_date_fn');	
-				var start_date = arr_date.eq(0);						//日期
-				var over_date = $('#over_date');						//会员到期日期
 				
+				/* 日期选择 */	
+				var start_date_obj = $('input[name=start]')										//用车开始日期日期
+				var estimate_over_obj = $('input[name=estimate_over]');				//预计还车日期
+				var member_base_obj = $('input[name=member_base_id]');		//会员ID
+				var over_date_obj = $('#over_date');												//会员到期日期
+				var available_cars_container_obj = $('#available_cars_container');
 
 				/* 计算函数 */
-				var count = function (start,over) {
-			
-					var start_timestamp = fomat_date(start.val());
-					var over_timestamp = fomat_date(over.text());
+				var demand_usable_cars = function (start_date,estimate_over,over_date) {
 
-					var empty_val = function (mes) {
-						alert(mes);
-						start.val('');
-					}
-					
+					var start_timestamp = fomat_date(start_date);					//开始用车日期
+					var estimate_timestamp = fomat_date(estimate_over);		//预计结束用车日期
+					var over_timestamp = fomat_date(over_date);					//会员到期日期
+
 					//用车日期大于会员过期日期
 					if (start_timestamp > over_timestamp) {
-						empty_val('用车日期不得大于会员的截止日期')
 						return false;	
-					} 
+					} ;
+					var result = ajax_post_setup('?s=/Admin/CarsSchedule/AJAX_Get_Usable_Cars',{
+						'member_base_id' : member_base_obj.val(),
+						'start_schedule_time' : start_date,
+						'over_schedule_time' : estimate_over
+						}
+					);
 					
-				}
+					return result;
+					
+				};
+			
+				
+				/* 点击查询车辆 */
+				$('.demand').click(function () {
+			        var btn = $(this)
+			      //  btn.button('loading');
+
+			        var result = demand_usable_cars(start_date_obj.val(),estimate_over_obj.val(),over_date_obj.text());
+			      //  alert(result);
+			     //   return false;
+			       // console.log(result.data);
+			        
+			        if (result == false) {
+						alert('服务器连接超时');
+						btn.button('reset')
+					
+					} else if (result.status == 0) {
+						available_cars_container_obj.empty();
+						for (var obj in result.data) {
+							available_cars_container_obj.append(
+								'<label class="radio line">'+
+								'<input type="radio" name="cars_id" value='+result.data[obj].id+' />' +
+								'车辆品牌('+result.data[obj].brand+')<span class="required"> | </span>' + 
+								'车辆类型('+result.data[obj].type+')<span class="required"> | </span>' + 
+								'车辆颜色('+result.data[obj].color+')<span class="required"> | </span>' + 		
+								'座位数('+result.data[obj].seat_num+')<span class="required"> | </span>' +
+								'初始公里数('+result.data[obj].initial_km+')' +
+								
+								'</label>'	
+							);
+						}	
+						App.init();
+						btn.button('reset');
+					} else {
+						available_cars_container_obj.empty();
+						alert(result.msg);
+						btn.button('reset');
+
+					}
+			        
+			        
+			        
+			   	});
+			
+			
 				
 				wade_bootstrap_date('.bootstrap_date_fn').bootstrap_date_fn(function () {
-					count(start_date,over_date);
+					
 				});
+				
+			
+				
+				
 			
 			})();
 

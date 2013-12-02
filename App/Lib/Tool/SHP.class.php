@@ -30,7 +30,7 @@ class SHP {
 		$string = @file_get_contents($url);		//获取服务器发送的状态：结果为：（num=2&success=1393710***4,1393710***5&faile=&err=发送成功&errid=0 ）
 
 		/* 对数据进行数组处理 */
-		$arr1 = explode('&',$string);			
+		$arr1 = explode('&',$string);		
 		$arr2 = array();
 		foreach ($arr1 AS $key=>$val) {
 			$tmp_arr = explode('=',$val);

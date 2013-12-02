@@ -112,6 +112,7 @@ class MemberAction extends AdminBaseAction {
 	 * 所有会员信息--用于客服查看
 	 */
 	public function all_user_info () {
+		
 		$MemberBase = D('MemberBase');	//会员基本信息表
 		
 		/* 获取相应会员数据 */

@@ -253,7 +253,7 @@ function passport_key($txt, $encrypt_key) {
 /**
  * 搜素字符串
  * @param STRING $find		//搜索源
- * @param STRING $str		//要搜索的字符串
+ * @param STRING $str			//要搜索的字符串
  */
 function find_string ($find,$str) {
 	if (strpos($find,$str) ===false) {
@@ -353,7 +353,7 @@ function quickSort(&$array,$field){
 
 
 /**
- * 比较二个数组，计算出需要插入和删除的数据，确保一直
+ * 比较二个数组，计算出需要插入和删除的数据
  * @param $Array $arr_request		//请求的数据
  * @param $Array $arr_have			//原本已存在的数组，如数据库中的数据
  * @return $Array								//需要插入和删除的数组
@@ -375,8 +375,8 @@ function arrar_insert_delete(&$arr_request,&$arr_have) {
 
 /**
  * 不足6小时则算一天，超过6小时，但在6小时内，算0.5天。6小时算一天。
- * @param unknown_type $start		开始日期
- * @param unknown_type $over		结束如期
+ * @param INT $start		开始日期
+ * @param INT $over		结束如期
  */
 function sex_day ($start,$over) {
 	/* 转换日期为毫秒数 */

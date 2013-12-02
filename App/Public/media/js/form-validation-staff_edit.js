@@ -25,7 +25,7 @@ var FormValidation = function () {
                 	return result;
                 }
                 
-                /* AJAX请求 */
+                /* AJAX权限请求 */
                 var tab = $('#wade_tab li');
                 var base_url = '?s=/Admin/Staff/';
                 var arr_content = $('')

@@ -31,7 +31,7 @@ class MemberResourceModel extends AdminBaseModel {
 	 * @param INT $resource_type						//资源类型
 	 */
 	public function seek_member_resource($member_rank_id,$resource_type) {
-		
+
 		$data = $this->field('zyb.*')
 		->table($this->prefix.'member_resource AS mr')
 		->join('RIGHT JOIN '.$this->prefix.$this->resource_type[$resource_type].' AS zyb ON mr.resource_id=zyb.id')

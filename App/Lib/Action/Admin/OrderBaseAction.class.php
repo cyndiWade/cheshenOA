@@ -6,6 +6,10 @@ class OrderBaseAction extends CarsBaseAction {
 	
 	protected $MODULE = '订单管理';
 
+	/* 区域司机ID */
+	private $occupation_driver_id = 8;
+		
+	
 	/**
 	 * 订单来源
 	 */
@@ -15,8 +19,8 @@ class OrderBaseAction extends CarsBaseAction {
 		'A' => 'APP客户端'		
 	);		
 
-	/* 司机 */
-	protected $driver = array(
+	/* 是否需要司机 */
+	protected $is_need_driver = array(
 		0 => array(		//
 				'id'	=>0,
 				'name' => '不需要'
@@ -27,41 +31,9 @@ class OrderBaseAction extends CarsBaseAction {
 		)
 	);
 	
-	/* 订单提交状态 */
-	protected $order_state = array(
-		0 => array(
-			'order_status'	=>0,							
-			'order_explain' => '用车申请'
-		),
-		1 => array(
-			'order_status'	=>1,
-			'order_explain' => '派车申请'
-		),
-		2 => array(
-			'order_status'	=>2,
-			'order_explain' => '派车申请通过'
-		),
-		3 => array(
-			'order_status'	=>3,
-			'order_explain' => '派车申请拒绝'
-		)
-	);
+	/* 司机列表--数据库读取 */
+	protected $driver_id = array();
 	
-	/* 订单车辆归还状态 */
-	protected $give_back_state = array(
-		0 => array(
-			'status_num'	=>0,							
-			'status_explain' => '未归还'
-		),
-		1 => array(
-			'status_num'	=>1,
-			'status_explain' => '已归还'
-		),				
-		2 => array(
-			'status_num'	=>2,
-			'status_explain' => '已归还,超出'
-		),					
-	);
 	
 	
 
@@ -72,9 +44,18 @@ class OrderBaseAction extends CarsBaseAction {
 		
 		parent::__construct();
 
+		$this->get_driver_list();
+		
 		$this->assign('MODULE_NAME',$this->MODULE);
 
 	}
+	
+	
+	//获取可用司机列表
+	protected function get_driver_list () {
+		$this->driver_id = D('StaffBase')->seek_usable_driver_list($this->occupation_driver_id);
+	}
+	
 		
 	/**
 	 * 生成订单号

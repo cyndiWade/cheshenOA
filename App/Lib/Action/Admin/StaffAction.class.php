@@ -30,7 +30,8 @@ class StaffAction extends AdminBaseAction {
 		}
 		
 		$this->assign('staff_list',$staff_list);
-		$this->assign('ACTION_NAME','员工管理');
+		$this->assign('ACTION_NAME','人员管理');
+		$this->assign('TITLE_NAME','数据列表');
 		$this->display();
 	}
      
@@ -95,7 +96,7 @@ class StaffAction extends AdminBaseAction {
 		$this->assign('staff_salary_list',$staff_salary_list);
 		$this->assign('staff_achievements_list',$staff_achievements_list);
 		$this->assign('staff_alteration_list',$staff_alteration_list);
-		
+
 		if ($act == 'add') {
 			$this->display('staff_add');		//添加的模板
 		} elseif ($act == 'update') {	
@@ -123,7 +124,7 @@ class StaffAction extends AdminBaseAction {
 			$DB = D($table);									//实例请求的模型表
 			
 			//获取数据
-			$data_list = $DB->get_spe_data(array($fiels[$table]=>$id),'id,name');
+			$data_list = $DB->get_spe_data(array($fiels[$table]=>$id,'status'=>0),'id,name');
 			empty($data_list) ? parent::callback(C('STATUS_NOT_DATA'),'无数据') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$data_list);
 		} else {
 			parent::callback(C('STATUS_OTHER'),'非法访问');
@@ -149,20 +150,25 @@ class StaffAction extends AdminBaseAction {
 		
 		if ($act == 'add') {
 			if ($this->isPost()) {
+				if (empty($_POST['company_id']) || empty($_POST['department_id']) || empty($_POST['occupation_id']) ) {
+					$this->error('所属：区域、部门、职位不得为空');
+				}
+				
 				$StaffBase->create();
-				$add_id = $StaffBase->add();
+				$add_id = $StaffBase->add();		//添加员工数据
 				if ($add_id) {
 					$serial = $add_id + 10000;		//生成员工编号
 					$StaffBase->serial = $serial;
 					$StaffBase->where(array('id'=>$add_id))->save();
 					
 					//生成一条待审核，系统用户数据
-					$Users->base_id = $add_id;
-					$Users->account = $serial;
-					$Users->password = 123456;
-					$Users->status = 1;
-					$Users->add_account(1);
-					$this->success('添加成功');
+// 					$Users->base_id = $add_id;
+// 					$Users->account = $serial;
+// 					$Users->password = 123456;
+// 					$Users->status = 1;
+//					$Users->add_account(1);
+
+					$this->success('添加成功',U('Admin/Staff/staff_edit',array('act'=>'update','id'=>$add_id)));
 				} else {
 					$this->error('添加失败，请重新尝试');
 				}
@@ -170,7 +176,9 @@ class StaffAction extends AdminBaseAction {
 			}
 			
 		} elseif ($act == 'update') {
+
 			if ($this->isPost()) {
+				
 				$StaffBase->create();
 				
 				/* 区域数据处理，不选择，则不修改 */
@@ -182,7 +190,7 @@ class StaffAction extends AdminBaseAction {
 				if (!empty($occupation_id_tmp)) $StaffBase->occupation_id = $occupation_id_tmp;
 				
 				/* 修改数据 */
-				$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功') : $this->error('没有数据被修改');
+				$StaffBase->where(array('id'=>$id))->save() ? $this->success('修改成功',$this->global_tpl_view['button']['prve']) : $this->error('没有数据被修改');
 				exit;  
 			}
 			

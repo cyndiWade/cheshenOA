@@ -4,19 +4,13 @@
  */
 class OrderAction extends OrderBaseAction {
 	
-	/* 资源类型 */
-	private $resource_type = array(
-		'1' => 1 ,		//表示车辆资源
-	//	 '2' => 2,		
-	);
-	
 	/**
 	 * 构造方法
 	 */
 	public function __construct() {
 		
 		parent::__construct();
-		
+
 		import("@.Tool.Validate");							//验证类
 	}
 	
@@ -24,6 +18,8 @@ class OrderAction extends OrderBaseAction {
 		//数据过滤
 		if (Validate::checkNull($_POST['cars_id'])) $this->error('车辆资源为空');
 		if (Validate::checkNull($_POST['start'])) $this->error('用车开始时间为空');
+		if (Validate::checkNull($_POST['estimate_over'])) $this->error('预计还车时间为空');
+		
 		
 	}
 	
@@ -31,17 +27,19 @@ class OrderAction extends OrderBaseAction {
 	
 	/* 申请订单列表 */
 	public function apply () {
+		
+		
 		$Order = D('Order');													//车辆资源表
-		$html_list = $Order->seek_user_order();
+		/* 获取申请订单列表 */
+		$html_list = $Order->seek_user_order(array('o.order_state'=>$this->order_state[0]['order_status']));	
 
 		if ($html_list) {
 			foreach ($html_list AS $key=>$val) {
 				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];		//获取订单来源
 				$html_list[$key]['order_explain'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
-				$html_list[$key]['driver'] = $this->driver[$val['driver']]['name'];		//司机
+				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
 			}
 		}
-		//dump($html_list);
 
 		$this->assign('ACTION_NAME','用车申请');
 		$this->assign('TITILE_NAME','用车申请列表');
@@ -50,19 +48,14 @@ class OrderAction extends OrderBaseAction {
 		$this->display();
 	}
 	
-	
-	//订单规则
-	private function order_rules() {
-		
-	}
-	
+
 	
 	/**
 	 * 添加用车申请
 	 */
 	public function edit_apply () {
 		$act = $this->_get('act');														//用户动作
-		$member_base_id = $this->_get('member_base_id');		//会员基础信息ID
+		$member_base_id = $this->_get('member_base_id');			//会员基础信息ID
 		$id = $this->_get('id');															//订单ID
 		if (empty($member_base_id)) $this->error('非法操作！');
 		
@@ -77,8 +70,8 @@ class OrderAction extends OrderBaseAction {
 		
 		$member_rank_id = $member_info['member_rank_id'];			//会员级别ID
 		$use_car_number = $member_info['use_car_number'];			//会员已使用天数
-		$member_name = $member_info['name'];								//会员姓名
-		$over_date  = $member_info['over_date'];								//会员到期日期
+		$member_name = $member_info['name'];									//会员姓名
+		$over_date  = $member_info['over_date'];									//会员到期日期
 
 
 		switch ($act) {
@@ -89,7 +82,8 @@ class OrderAction extends OrderBaseAction {
 					
 					/* 转换日期为时间戳 */
 					$start = strtotime($this->_post('start'));		
-					$over_date = strtotime($over_date);
+					$estimate_over = strtotime($this->_post('estimate_over'));
+					$over_date = strtotime($over_date);		
 					if ($start > $over_date)  {		
 						$this->error('用车日期不得大于会员的截止日期');
 					}
@@ -104,6 +98,7 @@ class OrderAction extends OrderBaseAction {
 					$Order->order_num = $order_num;
 					$Order->member_base_id = $member_base_id;
 					$Order->start = $start;
+					$Order->estimate_over = $estimate_over;
 					$Order->order_state	= $this->order_state[0]['order_status'];	//申请订单
 					$order_id = $Order->add_order_data ();
 					if ($order_id) {
@@ -122,6 +117,7 @@ class OrderAction extends OrderBaseAction {
 					
 					/* 转换日期为时间戳 */
 					$start = strtotime($this->_post('start'));
+					$estimate_over = strtotime($this->_post('estimate_over'));		//预计还车日期
 					$over_date = strtotime($over_date);
 					if ($start > $over_date)  {
 						$this->error('用车日期不得大于会员的截止日期');
@@ -129,6 +125,7 @@ class OrderAction extends OrderBaseAction {
 					
 					$Order->create();
 					$Order->start = $start;
+					$Order->estimate_over = $estimate_over;
 					if ($Order->save_one_data(array('id'=>$id))) {
 						parent::order_history($id,'修改订单');
 						$this->success('修改成功！');
@@ -142,7 +139,6 @@ class OrderAction extends OrderBaseAction {
 				$html_info = $Order->seek_one_data($id);
 				if (empty($html_info)) $this->error('此订单不存在');
 
-				$this->assign('html_info',$html_info);
 				break;
 		
 			case 'delete':
@@ -158,21 +154,24 @@ class OrderAction extends OrderBaseAction {
 		/* 按照会员级别，获取会员享有资源类型(如车辆资源) */
 		$resource_detail = $MemberResource->seek_member_resource($member_rank_id,$this->resource_type[1]);
 		$resource_detail = $resource_detail[0];
+		$car_number = $resource_detail['car_number'];		//车辆资源可使用天数
 
 		$html_radio = '';		//可用车辆资源的HTML
-				
+
+		
+		/**
 		if ($resource_detail) {
 			$cars_grade_id = $resource_detail['id'];					//车辆资源级别ID
 			$car_number = $resource_detail['car_number'];		//车辆资源可使用天数
 			$company_id = 1;														//车辆所属区域，目前业务暂时只在深圳
 			
-			/* 获取当前类型下，会员可享受的车辆资源列表 */
-			$cars_list = $Cars->seek_cars_list($cars_grade_id,$company_id);	
-			
+			// 获取当前类型下，会员可享受的车辆资源列表
+			$cars_list = $Cars->seek_cars_list($cars_grade_id,$company_id,$this->cars_disabled);	
+
 			if ($cars_list) {
 				foreach ($cars_list AS $key=>$val) {
 					$cars_list[$key]['car_status_name']  = $this->car_status[$val['car_status']];
-					/* 对不能使用的车辆静止选择 */
+					//对不能使用的车辆禁止选择
 					if (in_array($val['car_status'],$this->cars_disabled)) $disabled = 'disabled="disabled"';
 					$html_radio .= '
 					<label class="radio line">
@@ -189,18 +188,25 @@ class OrderAction extends OrderBaseAction {
 		} else {
 			$html_radio = '此级别的会员没有可分配的车辆资源';
 		}
+		*/
 
 		/* 计算过会员使用天数信息 */
 		$count_day['sum'] = $car_number;	//总天数
 		$count_day['use'] = $use_car_number;		//已使用
 		$count_day['residue'] = $count_day['sum'] - $count_day['use']; 	//剩余天数
 		
+		
+
 		$this->assign('ACTION_NAME','订单处理');
 		$this->assign('TITILE_NAME',$member_name.'--订单处理');
-		$this->assign('html_radio',$html_radio);
+
 		$this->assign('count_day',$count_day);
 		$this->assign('over_date',$over_date);
-		$this->assign('select_driver',$this->driver);
+		
+		$this->assign('is_need_driver',$this->is_need_driver);
+		
+		$html_info['member_base_id'] = $member_base_id;
+		$this->assign('html_info',$html_info);
 		$this->display();
 	}
 	
@@ -242,7 +248,7 @@ class OrderAction extends OrderBaseAction {
 			foreach ($html_list AS $key=>$val) {
 				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];
 				$html_list[$key]['order_explain'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
-				$html_list[$key]['driver'] = $this->driver[$val['driver']]['name'];		//司机
+				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
 			}
 		}
 		
@@ -261,15 +267,53 @@ class OrderAction extends OrderBaseAction {
 		$Order = D('Order');													//订单表
 		$Cars = D('Cars');														//车辆资源表
 		$MemberBase = D('MemberBase');							//会员基本信息表
+		$StaffBase = D('StaffBase');										//员工基本信息表
 		$id = $this->_get('id');												//订单ID
 				
 		//获取订单数据
 		$html_info = $Order->seek_one_data($id);
 		if (empty($html_info)) $this->error('此订单不存在');
 		$cars_id = $html_info['cars_id'];		//车辆ID
-
+		
+		/**
+		 * 当需要司机时进行html处理
+		 */
+		if ($html_info['is_need_driver'] == $this->is_need_driver[1]['id']) {
+			parent::get_driver_list();	//写入司机列表
+			
+			$html_tmp  = '<div class="control-group">
+							<label class="control-label">选择司机<span class="required">*</span></label>
+							<div class="controls">
+								<select class="small m-wrap" tabindex="1" name="driver_id">';
+								if (empty($this->driver_id)) {
+									$html_tmp .= '<option value="">暂无可用司机</option>';
+								} else {
+									foreach ($this->driver_id AS $key=>$val) {
+										$html_tmp .= '<option value='.$val['id'].'>'.$val['name'].'</option>';
+									}
+								}		
+			$html_tmp .= '</select>
+							</div>
+						</div>';		
+			$html_info['driver_id'] = $html_tmp;
+		}
+		
+		/**
+		 * 修改订单
+		 */
 		if ($this->isPost()) {
 			$Order->create();
+			
+			/* 当订单审核通过时 */
+			if ($_POST['order_state'] == $this->order_state[2]['order_status']) {
+				/* 如果需要司机时，修改司机的状态为已出车。 */
+				$driver_id = $this->_post('driver_id') ;
+				if (!empty($driver_id)) $StaffBase->where(array('id'=>$driver_id))->save(array('driver_status'=>1));
+			} else {
+				$Order->driver_id = null;
+			}
+			
+			/* 更新订单状态 */
 			$save_status = $Order->where(array('id'=>$id))->save();		//修改订单状态
 			if ($save_status) {
 				$order_state = $_POST['order_state'];		//处理状态
@@ -289,7 +333,7 @@ class OrderAction extends OrderBaseAction {
 		}
 		
 		
-		$html_info['driver'] = $this->driver[$html_info['driver']]['name'] ;
+		$html_info['is_need_driver'] = $this->is_need_driver[$html_info['is_need_driver']]['name'] ;		//司机
 		$mobile_phone = $MemberBase->get_one_data(array('id'=>$html_info['member_base_id']),'mobile_phone');
 		$html_info['mobile_phone'] = $mobile_phone['mobile_phone'];	
 		$this->assign('ACTION_NAME','派车申请');
@@ -320,11 +364,9 @@ class OrderAction extends OrderBaseAction {
 				$html_list[$key]['order_state_explain'] = $this->order_state[$val['order_state']]['order_explain'];
 				/* 车辆归还状态说明 */
 				$html_list[$key]['give_back_state_explain'] = $this->give_back_state[$val['give_back_state']]['status_explain'];
-				$html_list[$key]['driver'] = $this->driver[$val['driver']]['name'];		//司机
+				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
 			}
 		}
-		
-		//dump($html_list);
 
 		
 		$this->assign('ACTION_NAME','还车管理');
@@ -344,6 +386,7 @@ class OrderAction extends OrderBaseAction {
 		$Cars= D('Cars');														//车辆资源表
 		$MemberBase = D('MemberBase');							//会员基本信息表
 		$MemberResource = D('MemberResource');			// 会员等级对应可用资源表（会员）	
+		$StaffBase = D('StaffBase');										//员工基本信息
 		$id = $this->_get('id');												//订单ID
 		
 		/* 获取订单数据 */
@@ -380,7 +423,7 @@ class OrderAction extends OrderBaseAction {
 			/* 初始化参数，都是时间戳 */
 			$start = strtotime($html_info['start']);							//开始用车日期
 			$over = strtotime($this->_post('over'));						//归还日期
-			$over_date = strtotime($over_date);							//会员日期员过期日期
+			$over_date = strtotime($over_date);							//会员过期日期
 			
 			/* 归还日期，不得小于，用车日期 */
 			if ($over < $start ) {
@@ -427,8 +470,8 @@ class OrderAction extends OrderBaseAction {
 			
 			/* 更新到数据库中 */
 			$Order->startTrans() ;											//开启事物		
-			$Order->over = $over;											//用车日期
-			$Order->length = $length;										//用车日期
+			$Order->over = $over;											//用车结束日期
+			$Order->length = $length;										//用车时长
 			$Order->exceed_date = $exceed_date;				//超出天数用车日期
 			if ($exceed_date > 0) {						//当超出时
 				$Order->give_back_state = $this->give_back_state[2]['status_num'];		//归还状态；
@@ -442,6 +485,12 @@ class OrderAction extends OrderBaseAction {
 				/* 累加用户使用次数 */
 				$member_status =  $MemberBase->where(array('id'=>$member_info['id']))->setInc('use_car_number',$length);
 				$Cars->where(array('id'=>$cars_id))->save(array('car_status'=>0)) ;			//更新车辆状态
+				
+				/* 更新司机状态为可用 */
+				if ($html_info['is_need_driver'] == $this->is_need_driver[1]['id']) {
+					$StaffBase->where(array('id'=>$html_info['driver_id']))->save(array('driver_status'=>0));
+				}
+				
 				if ($member_status == false) {
 					$Order->rollback();		//事务回滚
 				}
@@ -471,15 +520,23 @@ class OrderAction extends OrderBaseAction {
 	public function order_send_msg () {
 		$Order = D('Order');													//车辆资源表
 		$MemberBase = D('MemberBase');							//会员基本信息表
+		$StaffBase = D('StaffBase');										//员工基本信息表
 		$id = $this->_get('id');												//订单ID
 		
 		if ($this->isPost()) {
-			$mobile_phone = $_POST['mobile_phone'];		//发送手机号码
+			$mobile_phone = $_POST['mobile_phone'];		//客人手机号码
+			$driver_phone = $_POST['driver_phone'];			//司机手机号码
 			$mobile_phone_message = $_POST['mobile_phone_message'];		//发送内容
 			//$state_content =  $this->order_state[$_POST['order_state']]['order_explain'];		//操作状态
 				
 			/* 发送短信 */
-			$send_result = parent::send_shp($mobile_phone, $mobile_phone_message);	
+			if (!empty($driver_phone)) {
+				$phones_string = implode(',',array($mobile_phone,$driver_phone));
+			} else {
+				$phones_string = $mobile_phone;
+			}
+			
+			$send_result = parent::send_shp($phones_string, $mobile_phone_message);	
 			
 			if ($send_result['status'] == true) {
 				
@@ -503,7 +560,14 @@ class OrderAction extends OrderBaseAction {
 		$mobile_phone = $MemberBase->get_one_data(array('id'=>$html_info['member_base_id'],'status'=>0),'mobile_phone');
 		$html_info['mobile_phone'] = $mobile_phone['mobile_phone'];
 		$html_info['auth_code'] = mt_rand(1000, 9999);	//生成提车码
-
+		
+		/* 当需要司机时显示司机手机号码。*/
+		if ($html_info['is_need_driver'] == 1) {
+			$driver_phone = $StaffBase->get_one_data(array('id'=>$html_info['driver_id']),'phone');
+			$html_info['driver_phone'] = $driver_phone['phone'];
+		}
+	
+	
 		$this->assign('ACTION_NAME','发送短信');
 		$this->assign('TITILE_NAME','订单号：'.$html_info['order_num']);
 		$this->assign('html_info',$html_info);

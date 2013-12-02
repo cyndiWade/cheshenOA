@@ -175,7 +175,7 @@
 					</ul>
 				</li>
 				
-				<!--
+				
 				<li class="">
 
 					<a href="javascript:;">
@@ -189,7 +189,7 @@
 					</a>
 
 					<ul class="sub-menu">
-
+						<!-- 
 						<li >
 							<a href="?s=/Admin/Company/index">
 
@@ -198,7 +198,7 @@
 							区域管理</a>
 
 						</li>
-						
+						-->
 						<li >
 							<a href="?s=/Admin/Personnel/department">
 							</i>
@@ -215,6 +215,7 @@
 							员工管理</a>
 
 						</li>
+						<!-- 
 						<li >
 							<a href="{:U('Admin/ReserveTalents/index')}">
 
@@ -223,10 +224,10 @@
 							人才储备</a>
 
 						</li>
-
+						-->
 					</ul>
 				</li>
-				 -->
+				 
 				 
 				 <!-- 
 				<li class="">
@@ -317,8 +318,8 @@
 						</li>
 						<li >
 
-							<a href="#login.html">
-							司机管理</a>
+							<a href="{:U('Admin/Staff/index',array('occupation_id'=>8))}">
+							司机数据</a>
 						</li>
 
 					</ul>
@@ -345,15 +346,15 @@
 						</li>
 						<li >
 							<a href="{:U('Admin/Order/apply')}">
-							用车申请</a>
+							用车申请({$global_tpl_view.sidebar.order_count.apply})</a>
 						</li>
 						<li >
 							<a href="{:U('Admin/Order/cars_arrange_list')}">
-							派车管理</a>
+							派车申请({$global_tpl_view.sidebar.order_count.cars_arrange})</a>
 						</li>
 						<li >
 							<a href="{:U('Admin/Order/give_back_car_list')}">
-							还车管理</a>
+							还车管理({$global_tpl_view.sidebar.order_count.give_back})</a>
 						</li>
 					
 					</ul>

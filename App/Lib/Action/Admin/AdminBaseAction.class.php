@@ -12,6 +12,43 @@ class AdminBaseAction extends AppBaseAction {
 	
 	protected $global_tpl_view;			//全局模板变量
 	
+	
+	/* 订单提交状态 */
+	protected $order_state = array(
+			0 => array(
+					'order_status'	=>0,
+					'order_explain' => '用车申请'
+			),
+			1 => array(
+					'order_status'	=>1,
+					'order_explain' => '派车申请'
+			),
+			2 => array(
+					'order_status'	=>2,
+					'order_explain' => '派车申请通过'
+			),
+			3 => array(
+					'order_status'	=>3,
+					'order_explain' => '派车申请拒绝'
+			)
+	);
+	
+	/* 订单车辆归还状态 */
+	protected $give_back_state = array(
+			0 => array(
+					'status_num'	=>0,
+					'status_explain' => '未归还'
+			),
+			1 => array(
+					'status_num'	=>1,
+					'status_explain' => '已归还'
+			),
+			2 => array(
+					'status_num'	=>2,
+					'status_explain' => '已归还,超出'
+			),
+	);
+	
 
 	/**
 	 * 构造方法
@@ -119,6 +156,28 @@ class AdminBaseAction extends AppBaseAction {
 		/* 车辆导航$this->global_tpl_view['sidebar']['cars'] */
 		$this->global_tpl_view['sidebar']['cars'] =  $this->global_system['member_rank']; 	//获取所有会员级别信息
 		
+		/**
+		$first['status'] = 0;
+		$first['_logic'] = 'AND';
+		$first['order_state'] = array('in',array(0,1));
+ 		$second['_complex'] = $first;
+		$second['_logic'] = 'OR';
+		$second['give_back_state'] = array('eq',0);
+		*/
+
+		/* 获取订单条数 */
+		$Order = D('Order');
+		//用车申请
+		$this->global_tpl_view['sidebar']['order_count']['apply'] = $Order->seek_order_count(array('order_state'=>$this->order_state[0]['order_status']));
+		//派车申请
+		$this->global_tpl_view['sidebar']['order_count']['cars_arrange'] = $Order->seek_order_count(array('order_state'=>$this->order_state[1]['order_status']));
+		//还车
+		$this->global_tpl_view['sidebar']['order_count']['give_back'] = $Order->seek_order_count(array('order_state'=>$this->order_state[2]['order_status']));
+		
+		//上一页地址
+		$this->global_tpl_view['button']['prve'] = C('PREV_URL');
+
+		//写入模板
 		$this->assign('global_tpl_view',$this->global_tpl_view);
 	}
 	
