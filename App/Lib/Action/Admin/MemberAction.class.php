@@ -24,7 +24,7 @@ class MemberAction extends AdminBaseAction {
 		if ($act == 'add') {
 			/* 账号验证 */
 			if (Validate::checkNull($_POST['account'])) $this->error('账号不得为空');
-			if (!Validate::checkAccount($_POST['account'])) $this->error('账号必须以字母开头,只能是字符与数字组成,不得超过30位');
+			//if (!Validate::checkAccount($_POST['account'])) $this->error('账号必须以字母开头,只能是字符与数字组成,不得超过30位');
 				
 			if (Validate::checkNull($_POST['password'])) $this->error('昵称不得为空');
 			if (!Validate::checkEquals($_POST['password'],$_POST['password_affirm'])) $this->error('二次输入的密码不相同');
