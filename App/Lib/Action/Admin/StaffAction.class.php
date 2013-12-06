@@ -162,11 +162,11 @@ class StaffAction extends AdminBaseAction {
 					$StaffBase->where(array('id'=>$add_id))->save();
 					
 					//生成一条待审核，系统用户数据
-// 					$Users->base_id = $add_id;
-// 					$Users->account = $serial;
-// 					$Users->password = 123456;
-// 					$Users->status = 1;
-//					$Users->add_account(1);
+					$Users->base_id = $add_id;
+					$Users->account = $serial;
+					$Users->password = 123456;
+					$Users->status = 1;
+					$Users->add_account(1);
 
 					$this->success('添加成功',U('Admin/Staff/staff_edit',array('act'=>'update','id'=>$add_id)));
 				} else {

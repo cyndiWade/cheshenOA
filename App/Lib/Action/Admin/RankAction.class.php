@@ -21,6 +21,7 @@ class RankAction extends AdminBaseAction {
 			1 => '文华（期）',
 			2 => '推荐（推荐方账号）',
 			3 => '自主报名（信息来源）',
+			4 => '其他',
 	);
 	
 	/* 当前会员级别说明 */
@@ -37,6 +38,9 @@ class RankAction extends AdminBaseAction {
 		6 => '信用卡复印件'	,		
 	);
 	
+	/* 语言 */
+	private $Lang;
+	
 	/**
 	 * 构造方法
 	 */
@@ -48,7 +52,21 @@ class RankAction extends AdminBaseAction {
 
 		$this->member_rank_id = $this->_get('member_rank_id');	//初始化会员级别ID
 		
+		/* 语言设置 */
+		$this->Lang($this->member_rank_id);
 	}
+	
+	
+	private function Lang($member_rank_id) {
+
+		if ($this->member_rank_id == 9) {		//股东
+			$this->Lang = L('shareholder');
+		} else {
+			$this->Lang = L('member');
+		}
+		$this->assign('Lang',$this->Lang);		//会员类型级别说明
+	}
+
 	
 	
 	/* 初始化与验证会员信息 */
@@ -68,25 +86,7 @@ class RankAction extends AdminBaseAction {
 		$this->assign('member_rank_id',$this->member_rank_id);
 	}
 	
-
-	/* AJAX查询用户数据 */
-	public function ajax_search_account () {
 	
-		if ($this->isPost()) {
-			$Member = D('Member');
-			$account = $this->_post('account');
-			
-			/* 组合查询条件 */
-			$map['account'] =  array('like',"%$account%");
-			$map['status'] = 0;
-			$result = $Member->get_spe_data($map,'id,account,nickname');
-	
-			empty($result) ? parent::callback(C('STATUS_NOT_DATA'),'没有数据') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$result);
-		} else {
-			parent::callback(C('STATUS_ACCESS'),'非法访问！');
-		}
-	}
-
 	/**
 	 * 验证提交日期
 	 */
@@ -99,9 +99,30 @@ class RankAction extends AdminBaseAction {
 			$result['count_days']['info'] = '到期日期不得小于入会日期';
 		}
 		return $result;
-	}	
+	}
 	
+
+	/* AJAX查询用户数据 */
+	public function ajax_search_account () {
 	
+		if ($this->isPost()) {
+			$Member = D('Member');
+			$account = $this->_post('account');
+			
+			/* 组合查询条件 */
+			$map['account'] =  array('like',"%$account%");
+			$map['status'] = 0;
+			$map['is_rank'] = 0;			//表示没有注册的用户
+			$result = $Member->get_spe_data($map,'id,account,nickname');
+	
+			empty($result) ? parent::callback(C('STATUS_NOT_DATA'),'没有数据') : parent::callback(C('STATUS_SUCCESS'),'获取成功',$result);
+		} else {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+	}
+
+	
+
 	/**
 	 * 会员列表
 	 */
@@ -132,8 +153,12 @@ class RankAction extends AdminBaseAction {
 
 		$this->check_rank();											//验证会员等级信息
 		
+		$MemberBase = D('MemberBase');					//会员基本信息表
+		$Card = D('Card');												//会员卡片
+		$Member = D('Member');									//注册账号表
+
 		if ($this->isPost()) {
-			
+
 			/* 数据验证 */
 			$check_result = $this->check_post_data();
 			if (!empty($check_result)) {
@@ -144,30 +169,38 @@ class RankAction extends AdminBaseAction {
 					}	
 				}
 			}
-
-			$Card = D('Card');			//会员卡片
-			/* 验证会员卡是否存在 */
+			//注册账号ID
+			$member_id = $this->_post('member_id');
 			
+			/* 验证会员卡是否存在 */
 			if ($this->member_rank_id == 9) {	//股东会员处理
 				$card_number = $this->_post('card_number');
 				$Card->type = 'G';
 			} else {
-				$card_number = implode('',$_POST['card_number']).$_POST['card_number_over'];
-				$Card->type = $_POST['card_number']['type'];
+				$card_number = $this->_post('card_number');
+				$Card->type = 'H';
+				//$card_number = implode('',$_POST['card_number']).$_POST['card_number_over'];
+				//$Card->type = $_POST['card_number']['type'];
 			}
-			
 			$is_have=$Card->seek_card_one($card_number);
 			if ($is_have) $this->error('此会员卡已存在！');
 			
-			$MemberBase = D('MemberBase');			//会员基本信息表
+			/* 写入数据库 */
+			
 			$MemberBase->create();
 			$MemberBase->property = implode(',',$MemberBase->property);
 			$member_base_id = $MemberBase->add();
 			
 			if ($member_base_id) {
+				//添加卡号
 				$Card->member_base_id = $member_base_id;
 				$Card->card_number = $card_number;	
 				$Card->add();
+				
+				//修改注册账号为会员
+				$Member->is_rank = 1;		//账号变成会员
+				$Member->update_user_info($member_id);
+
 				 $this->success('添加成功！') ;
 			} else {
 				$this->error('添加失败！');
@@ -175,6 +208,8 @@ class RankAction extends AdminBaseAction {
 			
 			exit;
 		}
+		
+
 
 		/* 区别会员类型 */
 		$this->assign('ACTION_NAME','添加基本信息');
@@ -214,7 +249,7 @@ class RankAction extends AdminBaseAction {
 			/* 数据验证 */
 			$check_result = $this->check_post_data();
 			if (!empty($check_result)) {
-				foreach ($check_result AS $key=>$val) {
+				foreach ($check_result as $key=>$val) {
 					if ($val['status'] == false) {
 						$this->error($val['info']);
 						break;
@@ -222,10 +257,23 @@ class RankAction extends AdminBaseAction {
 				}
 			}
 			
-			$Card->where(array('member_base_id'=>$id))->data(array('card_number',$_POST['card_number']))->save();
+			$card_number= $this->_post('card_number');	//会员卡号
+			$card_number_db = $this->_post('card_number_db');		//数据库中会员卡号
+			
+			//当提交的会员卡号与数据库卡号不一致时
+			if ($card_number != $card_number_db) {		
+				$is_have=$Card->seek_card_one($card_number);		//验证会员卡号是否存在
+				if (empty($is_have)) {
+					$Card->where(array('member_base_id'=>$id))->data(array('card_number'=>$card_number))->save();
+				} else {
+					$this->error('此会员卡已存在！');
+				}
+			} 
+			
+			
 			$MemberBase->create();
 			$MemberBase->property = implode(',',$MemberBase->property);
-			$MemberBase->save_one_data(array('id'=>$id)) ? $this->success('更新成功！') : $this->error('没有数据被修改！');
+			$MemberBase->save_one_data(array('id'=>$id)) ? $this->success('更新成功！') : $this->error('已修改！');
 			exit;
 		}
 			
@@ -236,9 +284,9 @@ class RankAction extends AdminBaseAction {
 		/* 获取用户账号数据 */
 		$base_info['member_info'] = $Member->get_one_data(array('id'=>$base_info['member_id']),'account,nickname');
 
-		/* 获取会员卡号 */
-		$card_number = $Card->get_one_data(array('member_base_id'=>$base_info['id']),'card_number');
-		$base_info['card_number'] = $card_number['card_number'];
+		/* 获取数据库会员卡号 */
+		$data_card_number = $Card->get_one_data(array('member_base_id'=>$base_info['id']),'card_number');
+		$base_info['card_number'] = $data_card_number['card_number'];
 
 
 		/* 区别会员类型 */

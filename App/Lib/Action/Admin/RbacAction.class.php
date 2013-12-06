@@ -239,8 +239,10 @@ class RbacAction extends AdminBaseAction {
 	public function group_node_update () {
 		$group_id = $this->_post('group_id');				//组ID
 		$auto_node = $this->_post('node');					//请求的节点
-		$have_node = $this->_post('have_node');		//已有的节点数据
+		$have_node = $this->_post('have_node');			//已有的节点数据
 			
+		//$have_node = $_POST['have_node'];
+
 		$GroupNode = D('GroupNode');				//组与节点关系表
 	
 		/* 计算需要插入与删除的节点ID */

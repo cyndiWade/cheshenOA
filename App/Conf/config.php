@@ -58,7 +58,7 @@ $system  = array(
 		
 
 		//语言包
-		'LANG_SWITCH_ON'=> false,				//开启语言包功能
+		'LANG_SWITCH_ON'=> true,				//开启语言包功能
 		'LANG_AUTO_DETECT'=> false,			//是否自动检测语言
 		'DEFAULT_LANG'=>'zh-cn',						//默认语言的文件夹是zh-cn
 		'LANG_LIST'        => 'zh-cn,en-us',			 //允许切换的语言列表 用逗号分隔

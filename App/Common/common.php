@@ -359,6 +359,8 @@ function quickSort(&$array,$field){
  * @return $Array								//需要插入和删除的数组
  */
 function arrar_insert_delete(&$arr_request,&$arr_have) {
+	if (empty($arr_request)) $arr_request = array();
+	if (empty($arr_have)) $arr_have = array();
 	//计算需要插入的数据 (二个数组不同的地方)
 	$insert_arr = array_diff($arr_request,$arr_have);
 

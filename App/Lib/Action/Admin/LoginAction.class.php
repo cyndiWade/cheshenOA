@@ -66,7 +66,7 @@ class LoginAction extends AdminBaseAction {
     			$_SESSION['user_info'] = $tmp_arr;		//写入session
     			//更新用户信息
     			$Users->up_login_info($user_info['id']);
-    			$this->redirect('/Admin/Member/all_user_info');
+    			$this->redirect('/Admin/User/personal');
     		}
     	} else {
     		$this->redirect('/Admin/Login/login');
