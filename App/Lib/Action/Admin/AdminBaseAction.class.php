@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 后台核心类--所有后台方法必须继承此类
+ * 后台核心类--所有后台方法必须继承此类aAA
  */
 class AdminBaseAction extends AppBaseAction {
 	
