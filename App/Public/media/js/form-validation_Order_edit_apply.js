@@ -176,10 +176,11 @@ var FormValidation = function () {
 								'<input type="radio" name="cars_id" value='+result.data[obj].id+' />' +
 								'车辆品牌('+result.data[obj].brand+')<span class="required"> | </span>' + 
 								'车辆类型('+result.data[obj].type+')<span class="required"> | </span>' + 
+								'车辆型号('+result.data[obj].model+')<span class="required"> | </span>' + 
 								'车辆颜色('+result.data[obj].color+')<span class="required"> | </span>' + 		
 								'座位数('+result.data[obj].seat_num+')<span class="required"> | </span>' +
+								'耗油量[升/百公里]('+result.data[obj].consumption+')<span class="required"> | </span>' +
 								'初始公里数('+result.data[obj].initial_km+')' +
-								
 								'</label>'	
 							);
 						}	

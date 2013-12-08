@@ -299,46 +299,48 @@ class OrderAction extends OrderBaseAction {
 			$html_info['driver_id'] = $html_tmp;
 		}
 		
+		//dump($html_info);
+	//	exit;
 		/**
 		 * 修改订单
 		 */
 		if ($this->isPost()) {
-			$check_start = strtotime($this->_post('check_start'));
-			$check_estimate_over = strtotime($this->_post('check_estimate_over'));
-
-			/* 写入数据库 */
 			
-// 			$CarsSchedule->create();
-// 			$CarsSchedule->cars_id
-// 			$CarsSchedule->start_schedule_time
-// 			$CarsSchedule->over_schedule_time
-// 			$id = $CarsSchedule->add_one_schedule();
+			$check_cars_id = $this->_post('check_cars_id');		//车辆ID
+			$check_start = $this->_post('check_start');	//用车开始时间
+			$check_estimate_over = $this->_post('check_estimate_over');		//用车结束时间
+			$driver_id = $this->_post('driver_id') ;			//司机ID
+			$order_state = $this->_post('order_state');		//处理状态
 
-			exit;
+			
 			$Order->create();
-			
 			/* 当订单审核通过时 */
-			if ($_POST['order_state'] == $this->order_state[2]['order_status']) {
+			if ($order_state == $this->order_state[2]['order_status']) {
 				/* 如果需要司机时，修改司机的状态为已出车。 */
-				$driver_id = $this->_post('driver_id') ;
-			//	if (!empty($driver_id)) $StaffBase->where(array('id'=>$driver_id))->save(array('driver_status'=>1));
+				if (!empty($driver_id)) $StaffBase->where(array('id'=>$driver_id))->save(array('driver_status'=>1));
 			} else {
 				$Order->driver_id = null;
 			}
 			
-	
-			
 			/* 更新订单状态 */
 			$save_status = $Order->where(array('id'=>$id))->save();		//修改订单状态
 			if ($save_status) {
-				$order_state = $_POST['order_state'];		//处理状态
+				
 				$state_content =  $this->order_state[$order_state]['order_explain'];		//操作状态
 				
-				/* 派车申请通过时，改变车辆 */
+				/* 派车申请通过时*/
 				if ($order_state == $this->order_state[2]['order_status']) {
-					$Cars->where(array('id'=>$cars_id))->save(array('car_status'=>3));						//修改车辆状态为已租用
+					//修改车辆状态为已租用
+					$Cars->where(array('id'=>$cars_id))->save(array('car_status'=>3));				
+							
+					/* 写入日程数据到数据库中 */
+					$CarsSchedule->cars_id = $check_cars_id;
+					$CarsSchedule->title = '用车';
+					$CarsSchedule->start_schedule_time = $check_start;
+					$CarsSchedule->over_schedule_time = $check_estimate_over;
+					$CarsSchedule->add_one_schedule();
 				}
-				
+					
 				parent::order_history($id,$state_content);
 				$this->success('提交成功,请填写短息内容',U('Admin/Order/order_send_msg',array('id'=>$id)));
 			} else {
