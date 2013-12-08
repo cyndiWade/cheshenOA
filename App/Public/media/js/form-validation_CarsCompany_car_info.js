@@ -33,11 +33,22 @@ var FormValidation = function () {
                         minlength: 2,
                         maxlength:20
                     },
+                    model : {
+                        required: true,
+                        minlength: 2,
+                        maxlength:20
+                    },
 					 color : {
                         required: true,
                         minlength: 2,
                         maxlength:10
                     },
+                    consumption : {
+                        required: true,
+                        digits:true,
+                        minlength: 1,
+                        maxlength:10
+                    },  
 					 master : {
                         required: true,
                         minlength: 2,

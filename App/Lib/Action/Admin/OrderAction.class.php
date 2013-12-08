@@ -268,6 +268,7 @@ class OrderAction extends OrderBaseAction {
 		$Cars = D('Cars');														//车辆资源表
 		$MemberBase = D('MemberBase');							//会员基本信息表
 		$StaffBase = D('StaffBase');										//员工基本信息表
+		$CarsSchedule = D('CarsSchedule');						//车辆日程表
 		$id = $this->_get('id');												//订单ID
 				
 		//获取订单数据
@@ -302,16 +303,30 @@ class OrderAction extends OrderBaseAction {
 		 * 修改订单
 		 */
 		if ($this->isPost()) {
+			$check_start = strtotime($this->_post('check_start'));
+			$check_estimate_over = strtotime($this->_post('check_estimate_over'));
+
+			/* 写入数据库 */
+			
+// 			$CarsSchedule->create();
+// 			$CarsSchedule->cars_id
+// 			$CarsSchedule->start_schedule_time
+// 			$CarsSchedule->over_schedule_time
+// 			$id = $CarsSchedule->add_one_schedule();
+
+			exit;
 			$Order->create();
 			
 			/* 当订单审核通过时 */
 			if ($_POST['order_state'] == $this->order_state[2]['order_status']) {
 				/* 如果需要司机时，修改司机的状态为已出车。 */
 				$driver_id = $this->_post('driver_id') ;
-				if (!empty($driver_id)) $StaffBase->where(array('id'=>$driver_id))->save(array('driver_status'=>1));
+			//	if (!empty($driver_id)) $StaffBase->where(array('id'=>$driver_id))->save(array('driver_status'=>1));
 			} else {
 				$Order->driver_id = null;
 			}
+			
+	
 			
 			/* 更新订单状态 */
 			$save_status = $Order->where(array('id'=>$id))->save();		//修改订单状态
