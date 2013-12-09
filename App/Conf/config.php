@@ -5,7 +5,7 @@ if (!defined('THINK_PATH'))exit();
 $system  = array(
 		
 		/* 数据库设置 */
-	    'DB_TYPE'               => 'mysql',     // 数据库类型a
+	    'DB_TYPE'               => 'mysql',     // 数据库类型aaa
 	    'DB_HOST'               => 'localhost', // 服务器地址
 	    'DB_NAME'               => 'cheshenoa',          // 数据库名
 	    'DB_USER'               => 'cheshenoa',      // 用户名
