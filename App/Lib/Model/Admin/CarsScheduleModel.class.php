@@ -20,7 +20,7 @@ class CarsScheduleModel extends AdminBaseModel {
 	
 	/* 获取指定记录 */
 	public function Seek_All_Schedule ($cars_id) {
-		$data =  $this->field('cars_id,title,start_schedule_time,over_schedule_time')->where(array('cars_id'=>$cars_id,'status'=>0))->order('id ASC')->select();
+		$data =  $this->field('id,cars_id,title,start_schedule_time,over_schedule_time')->where(array('cars_id'=>$cars_id,'status'=>0))->order('id ASC')->select();
 		parent::set_all_time($data, array('start_schedule_time','over_schedule_time'),'Y-m-d H:i');
 		return $data;
 	}

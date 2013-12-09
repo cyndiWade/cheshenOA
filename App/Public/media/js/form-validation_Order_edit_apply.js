@@ -126,10 +126,12 @@ var FormValidation = function () {
 				
 				/* 日期选择 */	
 				var start_date_obj = $('input[name=start]')										//用车开始日期日期
-				var estimate_over_obj = $('input[name=estimate_over]');				//预计还车日期
-				var member_base_obj = $('input[name=member_base_id]');		//会员ID
-				var over_date_obj = $('#over_date');												//会员到期日期
-				var available_cars_container_obj = $('#available_cars_container');
+				var estimate_over_obj = $('input[name=estimate_over]');					//预计还车日期
+				var member_base_obj = $('input[name=member_base_id]');				//会员ID
+				var over_date_obj = $('#over_date');													//会员到期日期
+				var available_cars_container_obj = $('#available_cars_container');	//可用车型容器
+				var driver_price_obj = $('#driver_price');											//司机价格
+				var ipt_need_driver = $('#ipt_need_driver');										//是否需要司机选择框
 
 				/* 计算函数 */
 				var demand_usable_cars = function (start_date,estimate_over,over_date) {
@@ -148,7 +150,6 @@ var FormValidation = function () {
 						'over_schedule_time' : estimate_over
 						}
 					);
-					
 					return result;
 					
 				};
@@ -190,14 +191,29 @@ var FormValidation = function () {
 						available_cars_container_obj.empty();
 						alert(result.msg);
 						btn.button('reset');
-
 					}
-			        
-			        
-			        
 			   	});
 			
+				
+				driver_price_set = function (obj) {
+					if (obj.val() > 0) {		//需要
+						driver_price_obj.css({'display':'block'});
+					} else {							//不需要
+						driver_price_obj.find('select').val(0);		//不需要时重置价格为0
+						driver_price_obj.css({'display':'none'});
+					}
+				}
 			
+				//初始化
+				driver_price_init = function () {
+					driver_price_set(ipt_need_driver)
+				}();
+				
+				/* 选择司机价格 */
+				ipt_need_driver.change(function () {
+					driver_price_set(ipt_need_driver);
+				});
+					
 				
 				wade_bootstrap_date('.bootstrap_date_fn').bootstrap_date_fn(function () {
 					

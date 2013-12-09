@@ -32,11 +32,31 @@ class OrderBaseAction extends CarsBaseAction {
 	);
 	
 	/* 司机列表--数据库读取 */
-	protected $driver_id = array();
-	
-	
-	
+	protected $driver_id = array();	
 
+	/* 司机价格 */
+	protected $driver_price = array(
+		0 => array(
+			'price' => 0,
+		),
+		200 => array(
+			'price' => 200,
+		),
+		400 => array(
+			'price' => 400,
+		),
+		600 => array(
+			'price' => 600,
+		),
+		800 => array(
+			'price' => 800,
+		),
+		1000 => array(
+			'price' => 1000,
+		),
+	);
+	
+	
 	/**
 	 * 构造方法
 	 */
@@ -53,8 +73,15 @@ class OrderBaseAction extends CarsBaseAction {
 	
 	//获取可用司机列表
 	protected function get_driver_list () {
+		
 		$this->driver_id = D('StaffBase')->seek_usable_driver_list($this->occupation_driver_id);
 	}
+	
+	
+	//司机价格
+// 	protected function init_driver_price () {
+// 		$this->driver_price = array();
+// 	}
 	
 		
 	/**
@@ -82,3 +109,6 @@ class OrderBaseAction extends CarsBaseAction {
 	
 	
 }
+
+
+?>
