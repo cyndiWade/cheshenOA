@@ -1,0 +1,1645 @@
+[ 2013-11-21T12:25:09+08:00 ] 192.168.1.102 /cheshenOA/
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000936s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000893s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002034s ]
+NOTIC: [8] Undefined index: user_info C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 75 行.
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.018056s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018167s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000657s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000637s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000518s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000719s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002750s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000766s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000845s ]
+
+[ 2013-11-21T12:25:12+08:00 ] 192.168.1.102 /cheshenOA/?s=/Admin/Login/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001992s ]
+INFO: [ route_check ] --END-- [ RunTime:0.002226s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001333s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001306s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002991s ]
+NOTIC: [8] Undefined index: user_info C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 75 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 91 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 94 行.
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.026181s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000431s ]
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 154 行.
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.041717s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000540s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000308s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000300s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.036706s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036933s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001184s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001057s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000861s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001221s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004810s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001484s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001669s ]
+
+[ 2013-11-21T12:32:02+08:00 ] 192.168.1.102 /cheshenOA/?s=/Admin/Login/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000836s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000952s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000569s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001312s ]
+NOTIC: [8] Undefined index: user_info C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 75 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 91 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 94 行.
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.004354s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000450s ]
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 154 行.
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002843s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000264s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000168s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000191s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012404s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012577s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000575s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000478s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000396s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000569s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002243s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000619s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000705s ]
+
+[ 2013-11-21T12:32:37+08:00 ] 192.168.1.102 /cheshenOA/?s=/Admin/Login/login
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001013s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001143s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000914s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001038s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002154s ]
+NOTIC: [8] Undefined index: user_info C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 75 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 91 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 94 行.
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003217s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000411s ]
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 154 行.
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002771s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000285s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000976s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000403s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.012545s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012685s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000790s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000752s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000595s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000772s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003210s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000779s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000872s ]
+
+[ 2013-11-21T12:53:39+08:00 ] 192.168.1.102 /cheshenOA/?s=/Admin/Login/check_login/
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001288s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001451s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001300s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001003s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002802s ]
+NOTIC: [8] Undefined index: user_info C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 75 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 91 行.
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 94 行.
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003325s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000370s ]
+NOTIC: [8] Trying to get property of non-object C:\wamp\www\cheshenOA\App\Lib\Action\Admin\AdminBaseAction.class.php 第 154 行.
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003149s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000597s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000290s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000266s ]
+SQL: SHOW COLUMNS FROM `app_users` [ RunTime:0.157828s ]
+SQL: SHOW COLUMNS FROM `app_staff_base` [ RunTime:0.030347s ]
+SQL: SELECT * FROM `app_users` WHERE ( `account` = 'admin' ) AND ( `status` = 0 ) LIMIT 1   [ RunTime:0.000562s ]
+SQL: SELECT `serial`,`jobs`,`name`,`name_en`,`company_id`,`department_id`,`occupation_id` FROM `app_staff_base` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.036065s ]
+SQL: UPDATE `app_users` SET `id`=1,`base_id`=1,`account`='admin',`nickname`='管理员',`password`='e10adc3949ba59abbe56e057f20f883e',`last_login_time`=1385009619,`last_login_ip`='192.168.1.102',`login_count`=215,`create_time`=1376561926,`update_time`=1376561926,`type`=0,`status`=0 WHERE ( `id` = 1 ) [ RunTime:0.116623s ]
+
+[ 2013-11-21T12:53:39+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Member/all_user_info.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001587s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001812s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001242s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001593s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003207s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003308s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000331s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003136s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000346s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000298s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.003795s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.030569s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `status` = 0 )  [ RunTime:0.000611s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.041689s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041826s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001025s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000768s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000612s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000875s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003537s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000944s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001039s ]
+
+[ 2013-11-21T12:53:44+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/give_back_car_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000878s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001017s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000586s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000596s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001364s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.017962s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000333s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003040s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000284s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000165s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.043441s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000727s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( (o.order_state = 2)  ) ORDER BY o.time DESC  [ RunTime:0.020860s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.054513s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.054671s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000992s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000837s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000797s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000949s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004210s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001022s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001175s ]
+
+[ 2013-11-21T12:53:50+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/cars_arrange_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000965s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001169s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000708s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000910s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001833s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002914s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000402s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002908s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000439s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000229s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000194s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002327s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000234s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( o.order_state IN (1,2,3) ) ORDER BY o.time DESC  [ RunTime:0.000490s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024279s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024430s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000915s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000527s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000365s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000551s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002583s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000576s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2013-11-21T12:53:51+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/cars_arrange_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000990s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001185s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.001064s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000761s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002046s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003410s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000483s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003125s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000422s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000232s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000172s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003595s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000385s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( o.order_state IN (1,2,3) ) ORDER BY o.time DESC  [ RunTime:0.002578s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024840s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024955s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000705s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000473s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000352s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000634s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002385s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000595s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000677s ]
+
+[ 2013-11-21T12:53:51+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/apply.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001607s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001789s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000904s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000766s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001882s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003044s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000517s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002580s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000332s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000219s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000349s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003168s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000698s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( o.order_state = 0 ) ORDER BY o.time DESC  [ RunTime:0.000620s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025150s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025473s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000804s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000700s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000508s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000696s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003005s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000946s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001045s ]
+
+[ 2013-11-21T12:53:52+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/give_back_car_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001262s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001446s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000888s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000973s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002153s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002548s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000284s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003302s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000497s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000215s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000176s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002700s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000444s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( (o.order_state = 2)  ) ORDER BY o.time DESC  [ RunTime:0.000421s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.026552s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026693s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000831s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000759s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000482s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000673s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003070s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000736s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000831s ]
+
+[ 2013-11-21T12:53:53+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/cars_arrange_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001087s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001230s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000811s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000850s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001994s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002477s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000276s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002762s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000263s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000168s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002262s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000211s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( o.order_state IN (1,2,3) ) ORDER BY o.time DESC  [ RunTime:0.000409s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025900s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026013s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000821s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000540s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000438s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000666s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002709s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000752s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000856s ]
+
+[ 2013-11-21T12:53:54+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/give_back_car_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000836s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000967s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000599s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001421s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003046s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000777s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002743s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000252s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000148s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.018298s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002506s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000273s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( (o.order_state = 2)  ) ORDER BY o.time DESC  [ RunTime:0.000402s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024899s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025011s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000729s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000520s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000411s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000597s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002473s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000649s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000731s ]
+
+[ 2013-11-21T12:53:57+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/order_history_list/order_id/31.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001028s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001205s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000695s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001482s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002764s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000458s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.004625s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000792s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000469s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000364s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002982s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000404s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_order_history` [ RunTime:0.046478s ]
+SQL: SELECT u.account,h.users_id,h.content,h.time FROM app_order_history AS h LEFT JOIN app_users AS u 
+				ON h.users_id = u.id WHERE ( h.order_id = '31' )  [ RunTime:0.000587s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.048110s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048296s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001023s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000786s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000566s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000877s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003568s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000742s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000830s ]
+
+[ 2013-11-21T13:07:30+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Order/give_back_car_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000963s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001108s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000771s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000942s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001951s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003303s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000328s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002980s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000433s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000210s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000199s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003456s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000323s ]
+SQL: SELECT m.id AS member_base_id,m.name,m.driving_years,o.*,c.brand FROM app_order AS o LEFT JOIN app_member_base AS m
+					 ON o.member_base_id=m.id LEFT JOIN app_cars AS c 
+					ON o.cars_id = c.id WHERE ( o.status = 0 ) AND ( (o.order_state = 2)  ) ORDER BY o.time DESC  [ RunTime:0.002075s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.026041s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026156s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000904s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000550s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000407s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000579s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002659s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000604s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000683s ]
+
+[ 2013-11-21T14:44:44+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Member/all_user_info.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001047s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001184s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000717s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000800s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001678s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.004296s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000334s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003220s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000323s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.010132s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000219s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004197s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `status` = 0 )  [ RunTime:0.000418s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.032811s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032969s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001549s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000879s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000620s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000938s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004289s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000792s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000875s ]
+
+[ 2013-11-21T14:44:46+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000907s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001048s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000737s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000653s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001573s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002705s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000284s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002505s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000265s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000166s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003898s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000345s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.032980s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.076406s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.053619s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053784s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000956s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000780s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000567s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000828s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003437s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000871s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000963s ]
+
+[ 2013-11-21T14:44:47+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000707s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000526s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000518s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001192s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002557s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000290s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002493s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000264s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000237s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000252s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003033s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000257s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002259s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000230s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.003630s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000264s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.028999s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029136s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000748s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000508s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000404s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000605s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002503s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000591s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000673s ]
+
+[ 2013-11-21T14:44:48+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001004s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001218s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000623s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000742s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001576s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002472s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000297s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002534s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000276s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000171s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000162s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002758s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000242s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002160s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.000276s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022780s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022905s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000878s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000543s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000406s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000720s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002803s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000696s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000786s ]
+
+[ 2013-11-21T14:44:53+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000822s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000960s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000641s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001427s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002695s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000295s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002620s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000471s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000205s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000199s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002545s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000232s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002716s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.000887s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.023104s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023244s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001056s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000600s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000426s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000625s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002990s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000648s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000730s ]
+
+[ 2013-11-21T14:44:53+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000836s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000986s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000511s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000458s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001117s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002257s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000286s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003254s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000348s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000196s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000299s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002889s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000297s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002411s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000203s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.003139s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000258s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022874s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022987s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000678s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000473s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000357s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000548s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002293s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000554s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000631s ]
+
+[ 2013-11-21T14:44:55+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_info/act/update/company_id/1/id/10000.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000983s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001107s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000510s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000582s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001254s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003712s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000615s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003048s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000690s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000282s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000246s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003208s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000483s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: 建议使用I方法替代_get
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002521s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000302s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.002720s ]
+SQL: SELECT * FROM `app_cars` WHERE ( `id` = 10000 ) AND ( `status` = 0 ) LIMIT 1   [ RunTime:0.000479s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.035807s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035926s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000716s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000482s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000357s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000557s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002348s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000563s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000642s ]
+
+[ 2013-11-21T14:44:58+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index/company_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000867s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001060s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000619s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000657s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001467s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.004722s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000467s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003703s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000678s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000294s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000188s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002677s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000268s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002883s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000275s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.003075s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000349s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024404s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024521s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000735s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000628s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000402s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000665s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002689s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000764s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000894s ]
+
+[ 2013-11-21T14:45:01+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAudit/index/cars_id/10000.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000918s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001073s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000547s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000472s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001169s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003028s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000909s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002811s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000270s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000164s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000163s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003574s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000253s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_cars_audit` [ RunTime:0.024657s ]
+SQL: SELECT * FROM `app_cars_audit` WHERE ( `cars_id` = 10000 ) AND ( `status` = 0 )  [ RunTime:0.000766s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.063625s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.063870s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001647s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.001232s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000983s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001204s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005572s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000815s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000920s ]
+
+[ 2013-11-21T14:45:05+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001238s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001423s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000537s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001255s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002641s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000280s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002652s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000465s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000295s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000301s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002973s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000263s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.009182s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000278s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.003129s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000253s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.023767s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.023900s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000842s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000644s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000549s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000747s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003057s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000717s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000807s ]
+
+[ 2013-11-21T14:45:06+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsInsurance/index/cars_id/10000.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000731s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000850s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000501s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001119s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003135s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000269s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002642s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000402s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000611s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000309s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003399s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000709s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_cars_insurance` [ RunTime:0.056604s ]
+SQL: SELECT * FROM `app_cars_insurance` WHERE ( `cars_id` = 10000 ) AND ( `status` = 0 )  [ RunTime:0.000363s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.055316s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.055471s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000902s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000706s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000491s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.001046s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003438s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000722s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000802s ]
+
+[ 2013-11-21T14:45:08+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000748s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000875s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000711s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000713s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001604s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003151s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000318s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003274s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000391s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000312s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000220s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002877s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000339s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002632s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000233s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.003306s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000353s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024747s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024899s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000807s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000515s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000365s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000561s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002510s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000839s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000953s ]
+
+[ 2013-11-21T14:45:09+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000932s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001086s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000946s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000612s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001742s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002715s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000286s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002467s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000262s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000172s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002799s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000255s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002360s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.000283s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022842s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022952s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000693s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000561s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000500s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000726s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002781s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000804s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000888s ]
+
+[ 2013-11-21T14:45:11+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index/company_id/2.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000785s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000919s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000576s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000570s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001317s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002454s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000314s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002566s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000267s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000167s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000209s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003057s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000289s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002557s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000236s ]
+NOTIC: [8] Undefined property: stdClass::$node_table C:\wamp\www\cheshenOA\App\Lib\Tool\RBAC.class.php 第 28 行.
+NOTIC: [8] Undefined property: stdClass::$group_table C:\wamp\www\cheshenOA\App\Lib\Tool\RBAC.class.php 第 29 行.
+NOTIC: [8] Undefined property: stdClass::$group_node_table C:\wamp\www\cheshenOA\App\Lib\Tool\RBAC.class.php 第 30 行.
+NOTIC: [8] Undefined property: stdClass::$group_user_table C:\wamp\www\cheshenOA\App\Lib\Tool\RBAC.class.php 第 31 行.
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.002571s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 2 ) AND ( `status` = 0 )  [ RunTime:0.000261s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022813s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022969s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001037s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000643s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000449s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000660s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003061s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000651s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000734s ]
+
+[ 2013-11-21T14:45:13+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000919s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001074s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000691s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000606s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001502s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003050s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000338s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003320s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000389s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000201s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000141s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002930s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000413s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002603s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.000401s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.022092s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.022226s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000679s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000483s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000356s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000572s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002322s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000576s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000656s ]
+
+[ 2013-11-21T14:45:14+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000852s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000999s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000646s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000843s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001739s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002947s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000340s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002603s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000262s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000163s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.002502s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000223s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.002458s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000251s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.002569s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000244s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.027373s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027488s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000738s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000524s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000403s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000723s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002629s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000646s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000727s ]
+
+[ 2013-11-21T14:47:44+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Member/member_list.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001170s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001340s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000852s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000935s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001952s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002429s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000263s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002453s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000263s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000146s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.008056s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.021502s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000331s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.048145s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048257s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000933s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000719s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000625s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000879s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003394s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000820s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000903s ]
+
+[ 2013-11-21T14:47:45+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Member/member_edit/act/add
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000680s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000790s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000491s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000464s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001095s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002862s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000391s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003097s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000405s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000320s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000185s ]
+NOTIC: 建议使用I方法替代_get
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.003843s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: setName C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\c6be3099bfd57fc064f8bd2fe0c590e6.php 第 1148 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.034109s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034245s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000989s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000858s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000463s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000621s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003229s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000636s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000717s ]
+
+[ 2013-11-21T14:47:46+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Member/member_list
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000755s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000903s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000562s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000736s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001464s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003464s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000304s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002705s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000266s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000166s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000325s ]
+SQL: SHOW COLUMNS FROM `app_member` [ RunTime:0.003426s ]
+SQL: SELECT * FROM `app_member` WHERE ( `status` = 0 )  [ RunTime:0.000380s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.023948s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024063s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000720s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000493s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000438s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000613s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002485s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000618s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000699s ]
+
+[ 2013-11-21T14:47:48+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000855s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000993s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000524s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000488s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001159s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002520s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000304s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002569s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000333s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000202s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000189s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000267s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003279s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000440s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.042736s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042851s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000701s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000524s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000409s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000604s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002477s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000610s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000688s ]
+
+[ 2013-11-21T14:47:48+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/member_base_add/member_rank_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000751s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000875s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000683s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000615s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001457s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002655s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000466s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002550s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000272s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000201s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000179s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000237s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.054595s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.054730s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000983s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000670s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000415s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000584s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002938s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000689s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000773s ]
+
+[ 2013-11-21T14:47:57+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/2.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000977s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001142s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000646s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001506s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002880s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000330s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003498s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000489s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000329s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000228s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000304s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003880s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 2 ) AND ( `status` = 0 )  [ RunTime:0.000361s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.026581s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026715s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000912s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000661s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000530s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000951s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003368s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000661s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000748s ]
+
+[ 2013-11-21T14:47:58+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/member_base_add/member_rank_id/2.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000864s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001010s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000571s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000597s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001360s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003403s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000332s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003813s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000586s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000291s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000270s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000342s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.032518s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032649s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000986s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000688s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000470s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000677s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003116s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000656s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000744s ]
+
+[ 2013-11-21T14:48:00+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/3.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000902s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001034s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000591s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000516s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001261s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003399s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000411s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002755s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000250s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000149s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000146s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000208s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003196s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 3 ) AND ( `status` = 0 )  [ RunTime:0.000459s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024630s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024749s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000872s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000524s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000354s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000561s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002559s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000945s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001036s ]
+
+[ 2013-11-21T14:48:02+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/4.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000720s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000836s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000565s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000504s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001228s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.005955s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000517s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003174s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000418s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000270s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000232s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000306s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003222s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 4 ) AND ( `status` = 0 )  [ RunTime:0.000400s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025669s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025811s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000844s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000544s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000371s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000562s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002583s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000573s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000651s ]
+
+[ 2013-11-21T14:48:03+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/5.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001013s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001329s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000494s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000484s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001121s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003229s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000341s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000396s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000211s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000184s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000278s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003769s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 5 ) AND ( `status` = 0 )  [ RunTime:0.000537s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025322s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025437s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000676s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000476s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000358s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000558s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002303s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000580s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2013-11-21T14:48:04+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/9.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000805s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000933s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000558s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001239s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002777s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000374s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003595s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000295s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000163s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000155s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000235s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.003452s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 9 ) AND ( `status` = 0 )  [ RunTime:0.000456s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.027991s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028117s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000930s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000648s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000494s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000680s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003020s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000653s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000743s ]
+
+[ 2013-11-21T14:48:05+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/4.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001402s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001683s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000779s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000685s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001683s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003404s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000442s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002656s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000376s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000281s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000376s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000333s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004028s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 4 ) AND ( `status` = 0 )  [ RunTime:0.000481s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.026268s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.026389s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000828s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000569s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000372s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000580s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002600s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000632s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000712s ]
+
+[ 2013-11-21T14:48:06+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/3.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001149s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001280s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000855s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001739s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002840s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000333s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003227s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000269s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000151s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000147s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000216s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004422s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 3 ) AND ( `status` = 0 )  [ RunTime:0.000393s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024334s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024448s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000710s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000530s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000376s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000607s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002459s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000609s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000690s ]
+
+[ 2013-11-21T14:48:07+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/member_base_add/member_rank_id/3.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000814s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000975s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000622s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001537s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003610s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000302s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003959s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000351s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000283s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000494s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000310s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.029717s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029836s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001153s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000601s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000414s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000602s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003038s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000578s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000659s ]
+
+[ 2013-11-21T14:48:09+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000679s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000793s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000491s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001109s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002980s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000363s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002840s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000519s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000204s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000169s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000254s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004046s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.000555s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.024768s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.024890s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000720s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000504s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000380s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000697s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002596s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000800s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000928s ]
+
+[ 2013-11-21T14:48:10+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/member_base_add/member_rank_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000930s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001078s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000867s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000876s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002066s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.002848s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000509s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.002977s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000270s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000173s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000171s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000215s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.029438s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.029569s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000828s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000489s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000359s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000574s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002488s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000586s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000664s ]
+
+[ 2013-11-21T16:24:33+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/member_base_add/member_rank_id/1.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.007230s ]
+INFO: [ route_check ] --END-- [ RunTime:0.007418s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.024661s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.001393s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.026243s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.100311s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.025314s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.082556s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.022795s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000321s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000243s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000555s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+NOTIC: [8] Undefined variable: rank C:\wamp\www\cheshenOA\App\Runtime\Cache\Admin\5bd57a44e3c484ccbc73e526d74b2d1d.php 第 1244 行.
+INFO: ParseTemplate Behavior ::run [ RunTime:0.197952s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.198310s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.002123s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.031222s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.048202s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.030786s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.113181s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.006933s ]
+INFO: [ view_end ] --END-- [ RunTime:0.007158s ]
+
+[ 2013-11-21T16:24:35+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/3.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.000815s ]
+INFO: [ route_check ] --END-- [ RunTime:0.000947s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000764s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000536s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001457s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003539s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000260s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.004909s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000760s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000280s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000632s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000691s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.032141s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 3 ) AND ( `status` = 0 )  [ RunTime:0.000834s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.033289s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033413s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000688s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000519s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000359s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000622s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002436s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000665s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000757s ]
+
+[ 2013-11-21T16:24:36+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/Rank/rank_list/member_rank_id/5.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001201s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001386s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000907s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000658s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001766s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.004066s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.003413s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000349s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000464s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000217s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000289s ]
+SQL: SHOW COLUMNS FROM `app_member_base` [ RunTime:0.004365s ]
+SQL: SELECT * FROM `app_member_base` WHERE ( `member_rank_id` = 5 ) AND ( `status` = 0 )  [ RunTime:0.000365s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.025133s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025259s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000961s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000744s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000510s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000719s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003250s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000692s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000786s ]
+
+[ 2013-11-21T16:24:37+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsAll/index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001183s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001326s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000785s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000622s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001598s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.003336s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.002548s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.004551s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000285s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000170s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.035147s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000313s ]
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.038352s ]
+SQL: SELECT c.*,r.region_name FROM app_company AS c LEFT JOIN app_region AS r ON c.region_id = r.region_id WHERE ( c.status = 0 )  [ RunTime:0.054463s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.039631s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039788s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000783s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000598s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000448s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000807s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002882s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000727s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000808s ]
+
+[ 2013-11-21T16:24:38+08:00 ] 192.168.1.102 /cheshenOA/index.php?s=/Admin/CarsCompany/car_index.html
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001232s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001380s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000539s ]
+INFO: CheckLang Behavior ::run [ RunTime:0.000486s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001177s ]
+SQL: SHOW COLUMNS FROM `app_member_rank` [ RunTime:0.004746s ]
+SQL: SELECT `id`,`identifying`,`name`,`content`,`is_start` FROM `app_member_rank` WHERE ( `status` = 0 ) ORDER BY sort ASC  [ RunTime:0.000420s ]
+SQL: SHOW COLUMNS FROM `app_order` [ RunTime:0.004074s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 0 ) LIMIT 1   [ RunTime:0.000257s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 1 ) LIMIT 1   [ RunTime:0.000172s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `app_order` WHERE ( `status` = 0 ) AND ( `order_state` = 2 ) LIMIT 1   [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `app_cars_grade` [ RunTime:0.003686s ]
+SQL: SELECT `id`,`identifying`,`name` FROM `app_cars_grade` WHERE ( `status` = 0 )  [ RunTime:0.000589s ]
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `app_company` [ RunTime:0.015079s ]
+SQL: SELECT `id`,`name` FROM `app_company` WHERE ( `status` = 0 )  [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `app_cars` [ RunTime:0.027152s ]
+SQL: SELECT `id`,`company_id`,`cars_grade_id`,`brand`,`car_num`,`type`,`car_status` FROM `app_cars` WHERE ( `company_id` = 1 ) AND ( `status` = 0 )  [ RunTime:0.001059s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.079288s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.079574s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001066s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000655s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000458s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000662s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003150s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000632s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000719s ]
+

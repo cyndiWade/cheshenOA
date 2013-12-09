@@ -1,0 +1,1237 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<!-- 全局样式 -->		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	<title>管理系统</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<meta content="" name="description" />
+
+	<meta content="" name="author" />
+
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/datetimepicker.css" rel="stylesheet" type="text/css" />
+
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+	<link rel="shortcut icon" href="<?php echo (APP_PATH); ?>Public/media/image/favicon.ico" />
+	
+	<style type="text/css">
+		.required {
+			color:red;
+		}
+	</style>
+	
+
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/jquery.fancybox.css" rel="stylesheet" />
+	<link href="<?php echo (APP_PATH); ?>Public/media/css/chosen.css" rel="stylesheet" type="text/css"/>		<!-- 上传插件样式 -->	<link type="text/css"  href="<?php echo (APP_PATH); ?>Public/media/plugins/fineuploader/fineuploader-3.4.1.css" rel="stylesheet"  />
+	<!-- END PAGE LEVEL STYLES -->   	<style type="text/css">		div.row-fluid div.span3 {			margin-left:0;			margin-right:20px;		}	</style>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">			<!-- BEGIN  头部-->
+	<div class="header navbar navbar-inverse navbar-fixed-top">
+
+		<!-- BEGIN TOP NAVIGATION BAR -->
+
+		<div class="navbar-inner">
+
+			<div class="container-fluid">
+
+				<!-- BEGIN LOGO -->
+
+				<a class="brand" href="javascript:;">
+
+				<img src="<?php echo (APP_PATH); ?>Public/media/image/logo.png" alt="logo"/>
+
+				</a>
+
+				<!-- END LOGO -->
+
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+				<img src="<?php echo (APP_PATH); ?>Public/media/image/menu-toggler.png" alt="" />
+
+				</a>          
+
+				<!-- END RESPONSIVE MENU TOGGLER -->            
+
+				<!-- BEGIN TOP NAVIGATION MENU -->              
+
+				<ul class="nav pull-right">
+
+					<!-- BEGIN NOTIFICATION DROPDOWN -->   
+					<!-- 
+					<li class="dropdown" id="header_notification_bar">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<i class="icon-warning-sign"></i>
+
+						<span class="badge">6</span>
+
+						</a>
+
+						<ul class="dropdown-menu extended notification">
+
+							<li>
+
+								<p>You have 14 new notifications</p>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-success"><i class="icon-plus"></i></span>
+
+								New user registered. 
+
+								<span class="time">Just now</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-important"><i class="icon-bolt"></i></span>
+
+								Server #12 overloaded. 
+
+								<span class="time">15 mins</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-warning"><i class="icon-bell"></i></span>
+
+								Server #2 not respoding.
+
+								<span class="time">22 mins</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-info"><i class="icon-bullhorn"></i></span>
+
+								Application error.
+
+								<span class="time">40 mins</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-important"><i class="icon-bolt"></i></span>
+
+								Database overloaded 68%. 
+
+								<span class="time">2 hrs</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="label label-important"><i class="icon-bolt"></i></span>
+
+								2 user IP blocked.
+
+								<span class="time">5 hrs</span>
+
+								</a>
+
+							</li>
+
+							<li class="external">
+
+								<a href="#">See all notifications <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					</li>
+					-->
+					<!-- END NOTIFICATION DROPDOWN -->
+					
+					
+					<!-- BEGIN INBOX DROPDOWN -->
+<!-- 
+					<li class="dropdown" id="header_inbox_bar">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<i class="icon-envelope"></i>
+
+						<span class="badge">5</span>
+
+						</a>
+
+						<ul class="dropdown-menu extended inbox">
+
+							<li>
+
+								<p>你有12条新的系统消息</p>
+
+							</li>
+
+							<li>
+
+								<a href="#inbox.html?a=view">
+
+								<span class="photo"><img src="<?php echo (APP_PATH); ?>Public/media/image/avatar2.jpg" alt="" /></span>
+
+								<span class="subject">
+
+								<span class="from">Lisa Wong</span>
+
+								<span class="time">Just Now</span>
+
+								</span>
+
+								<span class="message">
+
+								Vivamus sed auctor nibh congue nibh. auctor nibh
+
+								auctor nibh...
+
+								</span>  
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#inbox.html?a=view">
+
+								<span class="photo"><img src="<?php echo (APP_PATH); ?>Public/media/image/avatar3.jpg" alt="" /></span>
+
+								<span class="subject">
+
+								<span class="from">Richard Doe</span>
+
+								<span class="time">16 mins</span>
+
+								</span>
+
+								<span class="message">
+
+								Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+
+								auctor nibh...
+
+								</span>  
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#inbox.html?a=view">
+
+								<span class="photo"><img src="<?php echo (APP_PATH); ?>Public/media/image/avatar1.jpg" alt="" /></span>
+
+								<span class="subject">
+
+								<span class="from">Bob Nilson</span>
+
+								<span class="time">2 hrs</span>
+
+								</span>
+
+								<span class="message">
+
+								Vivamus sed nibh auctor nibh congue nibh. auctor nibh
+
+								auctor nibh...
+
+								</span>  
+
+								</a>
+
+							</li>
+
+							<li class="external">
+
+								<a href="#inbox.html">See all messages <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					</li>
+-->
+					<!-- END INBOX DROPDOWN -->
+
+					<!-- BEGIN TODO DROPDOWN -->
+<!--
+					<li class="dropdown" id="header_task_bar">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<i class="icon-tasks"></i>
+
+						<span class="badge">5</span>
+
+						</a>
+
+						<ul class="dropdown-menu extended tasks">
+
+							<li>
+
+								<p>You have 12 pending tasks</p>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">New release v1.2</span>
+
+								<span class="percent">30%</span>
+
+								</span>
+
+								<span class="progress progress-success ">
+
+								<span style="width: 30%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">Application deployment</span>
+
+								<span class="percent">65%</span>
+
+								</span>
+
+								<span class="progress progress-danger progress-striped active">
+
+								<span style="width: 65%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">Mobile app release</span>
+
+								<span class="percent">98%</span>
+
+								</span>
+
+								<span class="progress progress-success">
+
+								<span style="width: 98%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">Database migration</span>
+
+								<span class="percent">10%</span>
+
+								</span>
+
+								<span class="progress progress-warning progress-striped">
+
+								<span style="width: 10%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">Web server upgrade</span>
+
+								<span class="percent">58%</span>
+
+								</span>
+
+								<span class="progress progress-info">
+
+								<span style="width: 58%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li>
+
+								<a href="#">
+
+								<span class="task">
+
+								<span class="desc">Mobile development</span>
+
+								<span class="percent">85%</span>
+
+								</span>
+
+								<span class="progress progress-success">
+
+								<span style="width: 85%;" class="bar"></span>
+
+								</span>
+
+								</a>
+
+							</li>
+
+							<li class="external">
+
+								<a href="#">See all tasks <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					</li>
+-->
+					<!-- END TODO DROPDOWN -->
+
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+
+					<li class="dropdown user">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+						<img alt="" src="<?php echo (APP_PATH); ?>Public/media/image/avatar1_small.jpg" />
+
+						<span class="username"><?php echo ($global_tpl_view["user_info"]["nickname"]); ?></span>
+
+						<i class="icon-angle-down"></i>
+
+						</a>
+
+						<ul class="dropdown-menu">
+							<!-- 
+							<li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
+
+							<li><a href="page_calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
+
+							<li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox(3)</a></li>
+
+							<li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
+
+							<li class="divider"></li>
+
+							<li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
+							-->
+							<li><a href="<?php echo U('Admin/Login/logout');?>"><i class="icon-key"></i>退出登陆</a></li>
+							
+
+						</ul>
+
+					</li>
+
+					<!-- END USER LOGIN DROPDOWN -->
+
+				</ul>
+
+				<!-- END TOP NAVIGATION MENU --> 
+
+			</div>
+
+		</div>
+
+		<!-- END TOP NAVIGATION BAR -->
+
+	</div>
+	<!-- END 头部 -->	
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<!-- 左侧导航 -->		<!-- BEGIN SIDEBAR -->
+
+		<div class="page-sidebar nav-collapse collapse">
+
+			<!-- BEGIN SIDEBAR MENU -->        
+
+			<ul class="page-sidebar-menu wade_menu">
+
+				<li>
+
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+					<div class="sidebar-toggler hidden-phone"></div>
+  
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+				</li>
+				<!--
+				<li class="start">
+					<a href="?s=/Admin/Index/index">
+					<i class="icon-home"></i> 
+					<span class="title">公司公告</span>
+					<span class="selected"></span>
+					</a>
+				</li>
+				 -->
+				 <!-- 
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-home"></i> 
+
+					<span class="title">公告通知</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="?s=/Admin/Index/index">
+
+							公司通知</a>
+
+						</li>
+						<li >
+
+							<a href="#layout_horizontal_sidebar_menu.html">
+
+							部门通知</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+				
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-comments"></i> 
+
+					<span class="title">企业论坛</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="#layout_horizontal_sidebar_menu.html">
+
+							公司论坛</a>
+
+						</li>
+						<li >
+
+							<a href="#layout_horizontal_sidebar_menu.html">
+
+							部门论坛</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+				
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-file-text"></i> 
+					
+
+					<span class="title">文档下载</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="#form_layout.html">
+
+							员工手册</a>
+
+						</li>
+						<li >
+
+							<a href="#form_layout.html">
+
+							财务表单</a>
+
+						</li>
+						
+						<li >
+
+							<a href="#form_layout.html">
+
+							车神VI</a>
+
+						</li>
+						
+						<li >
+
+							<a href="#form_layout.html">
+
+							技术资料</a>
+
+						</li>
+						<li >
+
+							<a href="#form_layout.html">
+
+							我的文档</a>
+
+						</li>
+					
+					</ul>
+
+				</li>
+				-->
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-user"></i> 
+
+					<span class="title">个人中心</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+						<li >
+							<a href="<?php echo U('Admin/User/personal');?>">
+
+							</i>
+
+							个人信息</a>
+
+						</li>
+
+					</ul>
+				</li>
+				
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-user"></i> 
+
+					<span class="title">人事管理</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+						<!-- 
+						<li >
+							<a href="?s=/Admin/Company/index">
+
+							</i>
+
+							区域管理</a>
+
+						</li>
+						-->
+						<li >
+							<a href="?s=/Admin/Personnel/department">
+							</i>
+
+							部门管理</a>
+
+						</li>
+						
+						<li >
+							<a href="?s=/Admin/Staff/index">
+
+							</i>
+
+							员工管理</a>
+
+						</li>
+						<!-- 
+						<li >
+							<a href="<?php echo U('Admin/ReserveTalents/index');?>">
+
+							</i>
+
+							人才储备</a>
+
+						</li>
+						-->
+					</ul>
+				</li>
+				 
+				 
+				 <!-- 
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-calendar"></i> 
+
+					<span class="title">工作日志</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="#extra_profile.html">
+
+							公司日志</a>
+
+						</li>
+						
+						<li >
+
+							<a href="#extra_profile.html">
+
+							我的日志</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+				-->	
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-group"></i> 
+
+					<span class="title">会员管理</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">	
+						<li >
+							<a href="<?php echo U('Admin/Member/member_list');?>">
+							新注册用户</a>
+						</li>
+						<?php if(is_array($global_tpl_view['sidebar']['cars'])): $i = 0; $__LIST__ = $global_tpl_view['sidebar']['cars'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li >
+							<a href="?s=/Admin/Rank/rank_list/member_rank_id/<?php echo ($vo["id"]); ?>.html">
+							<?php echo ($vo["name"]); ?></a>
+						</li><?php endforeach; endif; else: echo "" ;endif; ?>
+					
+					</ul>
+
+				</li>
+				
+
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-map-marker"></i> 
+
+					<span class="title">车辆管理</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+							<a href="<?php echo U('Admin/CarsAll/index');?>">
+							车辆分布</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/CarsCompany/car_index');?>">
+							地区车辆</a>
+						</li>
+						<li >
+
+							<a href="<?php echo U('Admin/Staff/index',array('occupation_id'=>8));?>">
+							司机数据</a>
+						</li>
+
+					</ul>
+
+				</li>
+				
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-hospital"></i> 
+
+					<span class="title">订单管理</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+						<li >
+							<a href="<?php echo U('Admin/Member/all_user_info');?>">
+							查询所有会员</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/Order/apply');?>">
+							用车申请(<?php echo ($global_tpl_view["sidebar"]["order_count"]["apply"]); ?>)</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/Order/cars_arrange_list');?>">
+							派车申请(<?php echo ($global_tpl_view["sidebar"]["order_count"]["cars_arrange"]); ?>)</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/Order/give_back_car_list');?>">
+							还车管理(<?php echo ($global_tpl_view["sidebar"]["order_count"]["give_back"]); ?>)</a>
+						</li>
+					
+					</ul>
+
+				</li>
+				
+				<!-- 
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-table"></i> 
+
+					<span class="title">车神生发</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="#portlet_general.html">
+
+							金点子</a>
+
+						</li>
+						<li >
+
+							<a href="#portlet_general.html">
+
+							合作伙伴资源</a>
+
+						</li>
+						<li >
+
+							<a href="#portlet_general.html">
+
+							供应商资源</a>
+
+						</li>
+						<li >
+
+							<a href="#portlet_general.html">
+
+							其他资源</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+				
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-sitemap"></i> 
+
+					<span class="title">企业相册</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="#portlet_general.html">
+
+							集体活动</a>
+
+						</li>
+						<li >
+
+							<a href="#portlet_general.html">
+
+							车神大家庭</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+				-->
+					
+				<li class="">
+					<a href="javascript:;">
+					<i class="icon-cogs"></i>
+					<span class="title">系统管理</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li >
+							<a href="<?php echo U('Admin/User/index');?>">
+							用户管理</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/Rbac/rbac_node',array('pid'=>0));?>">
+							节点管理</a>
+						</li>
+						<li >
+							<a href="<?php echo U('Admin/Rbac/group');?>">
+							分配管理</a>
+						</li>
+						<!--
+						<li >
+							<a href="<?php echo U('Admin/Rbac/group_node');?>">
+							组权限</a>
+						</li>
+						 -->
+					</ul>
+				</li>
+				
+				<!--
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-th"></i> 
+
+					<span class="title">数据表</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="?s=/Admin/Table/table_basic.html">
+
+							基本表</a>
+
+						</li>
+
+						<li >
+
+							<a href="?s=/Admin/Table/table_responsive.html">
+
+							响应表</a>
+
+						</li>
+
+						<li >
+
+							<a href="?s=/Admin/Table/table_managed.html">
+
+							管理表</a>
+
+						</li>
+
+						<li >
+
+							<a href="?s=/Admin/Table/table_editable.html">
+
+							可编辑表格</a>
+
+						</li>
+
+						<li >
+
+							<a href="?s=/Admin/Table/table_advanced.html">
+
+							高级表</a>
+
+						</li>
+
+					</ul>
+		
+				</li>
+				 -->
+
+			</ul>
+
+			
+		<!-- END SIDEBAR MENU -->
+		</div>
+
+		<!-- END SIDEBAR -->			<!-- BEGIN PAGE -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+						<h3 class="page-title">
+							<?php echo ($MODULE_NAME); ?> <small><?php echo ($ACTION_NAME); ?></small>
+						</h3>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN GALLERY MANAGER PORTLET-->
+						<div class="portlet box purple">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i><?php echo ($ACTION_NAME); ?></div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+							<div class="portlet-body">
+								<!-- BEGIN GALLERY MANAGER PANEL-->
+								<div class="row-fluid">
+									<div class="span4">
+										<h4>选择文件上传，一次最多选择5张</h4>										<!-- 上传按钮 -->										<div id="thumbnail-fine-uploader"></div>		
+									</div>
+									<div class="span8">
+										<div class="pull-right">																																	<div class="controls">												<select  id="type" tabindex="1" class="medium m-wrap">														<option value="">---请选择图片类型---</option>													<?php if(is_array($member_photo_select)): foreach($member_photo_select as $key=>$vo): ?><option value="<?php echo ($key); ?>"><?php echo ($vo); ?></option><?php endforeach; endif; ?>												</select>											</div>										
+											<div class="clearfix space5"></div>																<div id="triggerUpload" class="btn btn-primary" style="margin-top: 10px;">											  <i class="icon-upload icon-white">选择完成后"点我"上传</i>											</div>										<!-- 
+											<a href="" class="btn pull-right green"><i class="icon-plus"></i> 上传</a>										-->
+										</div>
+									</div>
+								</div>
+								<!-- END GALLERY MANAGER PANEL-->
+								<hr class="clearfix" />
+								<!-- BEGIN GALLERY MANAGER LISTING-->								<p>个人生活照及艺术照各一张（高像素）:</p>
+								<div class="row-fluid">																		<?php if(is_array($photo_type_list['1'])): $i = 0; $__LIST__ = $photo_type_list['1'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">
+										<div class="item">
+											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">
+												<div class="zoom">
+													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    
+													<div class="zoom-icon"></div>
+												</div>
+											</a>
+											<div class="details">
+												<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    
+											</div>
+										</div>
+									</div><?php endforeach; endif; else: echo "" ;endif; ?>
+															</div>								<div class="space10"></div>								<p>身份证正反复印件：</p>
+								<div class="row-fluid">																		<?php if(is_array($photo_type_list['2'])): $i = 0; $__LIST__ = $photo_type_list['2'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">										<div class="item">											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">												<div class="zoom">													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    													<div class="zoom-icon"></div>												</div>											</a>											<div class="details">												<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    											</div>										</div>									</div><?php endforeach; endif; else: echo "" ;endif; ?>															</div>								<div class="space10"></div>								<p>护照复印件：</p>								<div class="row-fluid">																		<?php if(is_array($photo_type_list['3'])): $i = 0; $__LIST__ = $photo_type_list['3'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">										<div class="item">											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">												<div class="zoom">													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    													<div class="zoom-icon"></div>												</div>											</a>											<div class="details">												<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    											</div>										</div>									</div><?php endforeach; endif; else: echo "" ;endif; ?>															</div>								<div class="space10"></div>								<p>驾驶证复印件：</p>								<div class="row-fluid">																		<?php if(is_array($photo_type_list['4'])): $i = 0; $__LIST__ = $photo_type_list['4'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">										<div class="item">											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">												<div class="zoom">													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    													<div class="zoom-icon"></div>												</div>											</a>											<div class="details">																								<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    											</div>										</div>									</div><?php endforeach; endif; else: echo "" ;endif; ?>															</div>								<div class="space10"></div>								<p>行车本复印件：</p>								<div class="row-fluid">																		<?php if(is_array($photo_type_list['5'])): $i = 0; $__LIST__ = $photo_type_list['5'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">										<div class="item">											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">												<div class="zoom">													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    													<div class="zoom-icon"></div>												</div>											</a>											<div class="details">																								<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    											</div>										</div>									</div><?php endforeach; endif; else: echo "" ;endif; ?>															</div>								<div class="space10"></div>								<p>信用卡复印件：</p>								<div class="row-fluid">																		<?php if(is_array($photo_type_list['6'])): $i = 0; $__LIST__ = $photo_type_list['6'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="span3">										<div class="item">											<a class="fancybox-button" data-rel="fancybox-button" title="Photo" href="<?php echo ($vo["url"]); ?>">												<div class="zoom">													<img src="<?php echo ($vo["url"]); ?>" alt="Photo" />                    													<div class="zoom-icon"></div>												</div>											</a>											<div class="details">												<a href="javascript:;" class="icon"><i class="icon-remove" data-id="<?php echo ($vo["id"]); ?>"></i></a>    											</div>										</div>									</div><?php endforeach; endif; else: echo "" ;endif; ?>															</div>								<div class="space10"></div>																				<!-- END GALLERY MANAGER LISTING-->
+							</div>
+						</div>
+						<!-- END GALLERY MANAGER PORTLET-->
+					</div>
+				</div>
+				<!-- END PAGE CONTENT-->
+			</div>
+			<!-- END PAGE CONTAINER-->       
+		</div>
+		<!-- END PAGE -->    
+	</div>		<!-- BEGIN FOOTER -->
+
+	<div class="footer">
+
+		<div class="footer-inner">
+<!-- 
+			2013 车神OA管理系统
+-->
+		</div>
+
+		<div class="footer-tools">
+
+			<span class="go-top">
+
+			<i class="icon-angle-up"></i>
+
+			</span>
+
+		</div>
+
+	</div>
+
+	<!-- END FOOTER -->	<!-- 核心插件 -->	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+	<!-- BEGIN 核心级别插件 -->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/dc.js" type="text/javascript"></script>  
+	<!-- 
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	-->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery-1.9.1.js" type="text/javascript"></script>
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--[if lt IE 9]>
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/excanvas.min.js"></script>
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/respond.min.js"></script>  
+
+	<![endif]-->   
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+
+	<!-- 日期插件 -->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/bootstrap-datetimepicker.js" type="text/javascript" ></script>
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" ></script>
+	
+	<!-- 扩展函数库 -->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/function.js" type="text/javascript" ></script>
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/wade_Date.js" type="text/javascript" ></script>
+	
+	
+	<!-- 扩展jQuery插件 -->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/jquery-ui-1.0.0.wade.js" type="text/javascript" ></script>
+	
+	<!-- 扩展运行 -->
+	<script src="<?php echo (APP_PATH); ?>Public/media/js/run.js" type="text/javascript" ></script>
+	
+	<!-- END 核心级别插件 -->
+
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="<?php echo (APP_PATH); ?>Public/media/js/jquery.fancybox.pack.js"></script>   
+	<script type="text/javascript" src="<?php echo (APP_PATH); ?>Public/media/js/chosen.jquery.min.js"></script>	<!-- 上传插件JS -->	<script type="text/javascript" src="<?php echo (APP_PATH); ?>Public/media/plugins/fineuploader/fineuploader-3.4.1.js"></script>	
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script type="text/javascript" src="<?php echo (APP_PATH); ?>Public/media/js/app.js"></script>   
+	<script type="text/javascript" src="<?php echo (APP_PATH); ?>Public/media/js/gallery.js"></script>  		<!-- END PAGE LEVEL SCRIPTS -->
+	<script type="text/javascript">
+		jQuery(document).ready(function() {       
+		   // initiate layout and plugins
+		   App.init();
+		   Gallery.init();
+		});
+	</script>			<script type="text/javascript">					(function () {				var member_base_id = <?php echo ($member_base_id); ?>;		//ID		var member_rank_id = "<?php echo ($member_rank_id); ?>";		//会员ID		var type = $('#type');				var options = {		      //上传配置			  debug: false,			  element: $('#thumbnail-fine-uploader')[0],	//上传按钮对象			  validation: {		        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],		//上传文件后缀，留空不限制		      	sizeLimit: 512000,								// 50 kB = 50 * 1024 字节				        itemLimit : 5										//最多选中文件数		       },				  multiple: true,					//是否允许多文件上传  			  autoUpload: false,			//是否选中文件直接上传	(如果为false，则需要定义一个上传按钮)		      maxConnections: 3,			//上传列队数					//服务器配置：			  request: {		         endpoint: '?s=/Admin/Rank/ajax_photo_upload/',			         params: {										//POST附带参数			         	'member_base_id' : member_base_id,					'type' : ''				 },		         inputName: 'member_photo',			//$_FIFLE['字段名']		         uuidName: 'qquuid',							//交互id		         totalFileSizeName: 'qqtotalfilesize'		      },				     //按钮类型文本设置				 text: {		        uploadButton: '<i class="icon-plus icon-white"></i> 选择文件',				 cancelButton: '取消',		     },				  //上传回调函数		      callbacks: {			  	//上传成功回调函数		        onComplete: function(id, fileName, responseJSON) {		         // if (responseJSON.success) {		       //     $('#thumbnail-fine-uploader').append('<img src="img/success.jpg" alt="' + fileName + '">');		       //   }		        },						      },			  			  //报错文字			  messages: {		            typeError: "{file}上传文件类型错误 {extensions}.",		            sizeError: "{file} 文件太大 {sizeLimit}.",		            minSizeError: "{file} 文件太小 {minSizeLimit}.",		            emptyError: "{file} is empty, please select files again without it.",		            noFilesError: "没有上传文件，请选择.",		            tooManyItemsError: "您选择了 ({netItems}) 个文件.  一次只能选择 {itemLimit} 个.",		            retryFailTooManyItems: "Retry failed - you have reached your file limit.",		            onLeave: "文件被上传，如果你现在离开上传将被取消."		        }						   };				/* 选择上传文件类型 */		type.change(function () {			var _this = $(this);			if (_this.val() == '') {				alert('请选择上传文件类型');				return false;			}						options.request.params.type = _this.val();			//实例类		    var thumbnailuploader = new qq.FineUploader(options);		  			//设置手动上传文件		    $('#triggerUpload').click(function() {		      thumbnailuploader.uploadStoredFiles();	//手动上传函数		    });		});						/* 删除图片 */		var icon_remove = $('.icon-remove');		icon_remove.click(function () {			var _this = $(this);			var check = confirm('确定删除？');			if (check == true) {				//提交的地址，post传入的参数				$.post('?s=/Admin/Rank/ajax_photo_remove/',{					'id' : _this.data('id')				},function(result){					if (result.status == 0) {						alert(result.msg);						window.location.href='?s=/Admin/Rank/member_photo/member_rank_id/'+member_rank_id+'/member_base_id/'+member_base_id+'.html';					} else {						alert(result.msg);					}				},'json');			}					});			})();							</script>
+	<!-- END JAVASCRIPTS -->
+
+<!-- END BODY -->
+</html>
