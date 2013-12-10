@@ -91,7 +91,7 @@ class CarsScheduleAction extends CarsBaseAction {
 	
 	/* 获取可用车辆资源 */
 	public function AJAX_Get_Usable_Cars () {
-		$MemberResource = D('MemberResource');		// 会员等级对应可用资源表（会员）
+		$MemberResource = D('MemberResource');			// 会员等级对应可用资源表（会员）
 		$MemberBase = D('MemberBase');						//会员基本信息表
 		$Cars = D('Cars');													//车辆资源表
 		$CarsSchedule = D('CarsSchedule');					//车辆日程表
@@ -171,7 +171,25 @@ class CarsScheduleAction extends CarsBaseAction {
 
 	}
 	
-
+	
+	
+	
+	//车辆调度安排
+	public function AJAX_Get_All_Schedule() {
+	
+		if ($this->isPost()) {
+			$CarsSchedule = D('CarsSchedule');
+			$cars_id = $_POST['cars_id'];
+			if (empty($cars_id)) {
+				parent::callback(C('STATUS_NOT_DATA'),'请求的车辆不得为空！');
+			}
+			$data_list = $CarsSchedule->Seek_All_Schedule($cars_id);
+			$data_list ?  parent::callback(C('STATUS_SUCCESS'),'添加成功！',$data_list) : parent::callback(C('STATUS_NOT_DATA'),'暂无数据！') ;
+		} else {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+	
+	}
 	
 
 	
