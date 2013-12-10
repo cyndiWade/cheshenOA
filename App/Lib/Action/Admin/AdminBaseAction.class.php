@@ -8,10 +8,11 @@ class AdminBaseAction extends AppBaseAction {
 	/* 保存用户信息，供全局调用 */
 	protected $global_system;			//全局系统变量
 	
-	protected $oUser;						//全局身份数据
+	protected $oUser;						//全局身份标示
 	
 	protected $global_tpl_view;			//全局模板变量
 	
+	protected $db = array();				//数据库对象
 	
 	/* 订单提交状态 */
 	protected $order_state = array(
@@ -56,6 +57,9 @@ class AdminBaseAction extends AppBaseAction {
 	public function __construct() {
 		parent:: __construct();			//重写父类构造方法
 		
+		//初始化数据库连接
+		$this->db_init();
+		
 		//初始化
 		$this->admin_base_init();
 		
@@ -67,6 +71,13 @@ class AdminBaseAction extends AppBaseAction {
 	}
 	
 	
+	//初始化DB连接
+	private function db_init() {
+		foreach ($this->db as $key=>$val) {
+			if (empty($val)) continue;
+			$this->db[$key] = D($val);
+		}
+	}
 	
 	//初始化用户数据
 	private function admin_base_init() {
@@ -143,6 +154,8 @@ class AdminBaseAction extends AppBaseAction {
 	private function global_system () {
 		$this->global_system['member_rank'] = D('MemberRank')->seek_all_data();
 	}
+	
+	
 	
 
 	/**

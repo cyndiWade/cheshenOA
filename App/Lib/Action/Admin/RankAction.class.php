@@ -17,7 +17,7 @@ class RankAction extends AdminBaseAction {
 	
 	
 	/* 会员来源 */
-	private $source_select = array(
+	public $source_select = array(
 			1 => '文华（期）',
 			2 => '推荐（推荐方账号）',
 			3 => '自主报名（信息来源）',
@@ -54,6 +54,8 @@ class RankAction extends AdminBaseAction {
 		
 		/* 语言设置 */
 		$this->Lang($this->member_rank_id);
+		
+		
 	}
 	
 	
@@ -70,7 +72,7 @@ class RankAction extends AdminBaseAction {
 	
 	
 	/* 初始化与验证会员信息 */
-	private function check_rank() {
+	public function check_rank() {
 		
 		/* 组合会员类型 */
 		$MemberRankInfo =  D('MemberRank')->seek_all_data(); 	//获取所有会员级别信息
@@ -79,11 +81,14 @@ class RankAction extends AdminBaseAction {
 			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
 		}
 
+
 		/* 全局保持会员属性 */
 		$this->member_rank_name = $this->member_rank[$this->member_rank_id];		//会员名称
 		if (empty($this->member_rank_name)) $this->error('此类型的会员不存在！');
 		
 		$this->assign('member_rank_id',$this->member_rank_id);
+		
+		return $this->member_rank;
 	}
 	
 	
@@ -272,7 +277,7 @@ class RankAction extends AdminBaseAction {
 			
 			
 			$MemberBase->create();
-			$MemberBase->property = implode(',',$MemberBase->property);
+			$MemberBase->property = implode(',',$MemberBase->property);	//经营组织/在职公司类型字段处理
 			$MemberBase->save_one_data(array('id'=>$id)) ? $this->success('更新成功！') : $this->error('已修改！');
 			exit;
 		}
