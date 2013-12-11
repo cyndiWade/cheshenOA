@@ -92,6 +92,23 @@ class CarsScheduleModel extends AdminBaseModel {
 	
 	}
 	
+
+	/**
+	 * 获取指定级别车辆日程
+	 * @param String $identifying		//车辆级别标识 .如，400,800
+	 */
+	public function seek_cars_grade_schedule($identifying) {
+		$map['cs.status'] = 0;
+		$map['identifying'] = array('in',$identifying);
+		$data = $this->field('cg.name,c.brand,c.color,cs.start_schedule_time,cs.over_schedule_time,cs.id')
+		->table($this->prefix.'cars_grade AS cg')
+		->join($this->prefix.'cars AS c ON cg.id=c.cars_grade_id')
+		->join('RIGHT JOIN '.$this->prefix.'cars_schedule AS cs ON c.id=cs.cars_id')
+		->where($map)
+		->select();
+		return $data;
+	}
+	
 }
 
 ?>

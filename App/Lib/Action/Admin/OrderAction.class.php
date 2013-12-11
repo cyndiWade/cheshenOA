@@ -149,6 +149,7 @@ class OrderAction extends OrderBaseAction {
 		/* 按照会员级别，获取会员享有资源类型(如车辆资源) */
 		$resource_detail = $MemberResource->seek_member_resource($member_rank_id,$this->resource_type[1]);
 		$resource_detail = $resource_detail[0];
+
 		$car_number = $resource_detail['car_number'];		//车辆资源可使用天数
 
 		$html_radio = '';		//可用车辆资源的HTML
@@ -200,6 +201,7 @@ class OrderAction extends OrderBaseAction {
 		$this->assign('driver_price',$this->driver_price);
 
 		$html_info['member_base_id'] = $member_base_id;
+		$html_info['identifying'] = U('Admin/CarsSchedule/cars_schedule_show',array('identifying'=>$resource_detail['identifying']));
 		$this->assign('html_info',$html_info);
 		$this->display();
 	}

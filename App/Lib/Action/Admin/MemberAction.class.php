@@ -137,8 +137,11 @@ class MemberAction extends AdminBaseAction {
      
 	
 	
-
-
+	//获取推荐会员列表
+	public function recommend_member () {
+		
+	}
+	
 	
 	
 	
@@ -154,3 +157,5 @@ class MemberAction extends AdminBaseAction {
 
 	
 }
+
+?>

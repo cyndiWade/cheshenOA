@@ -93,7 +93,12 @@
 			//history.back();			//返回		
 			history.go(-2);			//返回上一页刷新
 		} else {
-			window.location.href = _this.data('url');
+			if (_this.data('target') != '') {
+				 window.open(_this.data('url'), _this.data('target'), '');				
+			} else {
+				window.location.href = _this.data('url');
+			}
+			
 		}
 	});
 	
