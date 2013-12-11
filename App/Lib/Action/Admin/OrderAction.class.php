@@ -236,10 +236,16 @@ class OrderAction extends OrderBaseAction {
 				$send_result = parent::send_shp(implode(',', $phones), '有新订单，请及时处理！');
 			}
 			
-			$this->success('成功！');
-		} else {
-			$this->error('失败！');
+			if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
+				parent::order_history($id,'提交派车申请');		
+	
+				$this->success('成功！');
+			} else {
+				$this->error('失败！');
+			}
+		
 		}
+	
 	}
 	
 	
@@ -273,6 +279,7 @@ class OrderAction extends OrderBaseAction {
 		$this->assign('order_state',$this->order_state);
 		$this->display();
 	}
+	
 	
 	
 	/**

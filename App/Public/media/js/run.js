@@ -93,6 +93,7 @@
 			//history.back();			//返回		
 			history.go(-2);			//返回上一页刷新
 		} else {
+
 			if (_this.data('target') != undefined) {
 				 window.open(_this.data('url'), _this.data('target'), '');				
 			} else {
