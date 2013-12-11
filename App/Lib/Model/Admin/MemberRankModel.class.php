@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 会员类型表
+ * 会员类型表阿
  */
 
 class MemberRankModel extends AdminBaseModel {
