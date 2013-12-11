@@ -86,8 +86,21 @@
 	
 	wade_bootstrap_date('.bootstrap_date').bootstrap_date();
 	
-	
-
+	//点击返回
+	$('.btn_bak').click(function () {
+		var _this = $(this);
+		if (_this.data('url') == undefined) {
+			//history.back();			//返回		
+			history.go(-2);			//返回上一页刷新
+		} else {
+			if (_this.data('target') != undefined) {
+				 window.open(_this.data('url'), _this.data('target'), '');				
+			} else {
+				window.location.href = _this.data('url');
+			}
+			
+		}
+	});
 	
 	
 	

@@ -49,7 +49,7 @@ class StaffBaseModel extends AdminBaseModel {
 	//获取可用司机列表
 	public function seek_usable_driver_list ($occupation_id) {
 		$PREFIX = $this->prefix;
-		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2')
+		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2,phone')
 		->table($PREFIX.'staff_base AS s')
 		->join($PREFIX.'department AS d ON s.department_id=d.id')
 		->join($PREFIX.'occupation AS o ON s.occupation_id=o.id')

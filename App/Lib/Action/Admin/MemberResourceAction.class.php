@@ -12,3 +12,6 @@ class MemberResourceAction extends AdminBaseAction {
 	
 	
 }
+
+
+?>

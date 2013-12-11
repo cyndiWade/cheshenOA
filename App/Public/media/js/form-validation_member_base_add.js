@@ -95,6 +95,9 @@ var FormValidation = function () {
 					website : {
 						url:true
 					},
+					driving_years : {
+						digits:true
+					},
 					date : {
 	                       required: true,
 	                       dateISO:true
@@ -135,30 +138,14 @@ var FormValidation = function () {
                 submitHandler: function (form) {
                     success1.show();
                     error1.hide();
+          //          var result = ajax_post_setup('?s=/Admin/CarsSchedule/AJAX_Get_Schedule',{'cars_id':cars_id});
+			//		var event_data = [];
+				//	if (result.status == 0) {
                     form.submit();		//提交表单
                 }
             });
 
-            //Sample 2
-            $('#form_2_select2').select2({
-                placeholder: "Select an Option",
-                allowClear: true
-            });
-
-            var form2 = $('#form_sample_2');
-            var error2 = $('.alert-error', form2);
-            var success2 = $('.alert-success', form2);
-
-           
-            //apply validation on chosen dropdown value change, this only needed for chosen dropdown integration.
-            $('.chosen, .chosen-with-diselect', form2).change(function () {
-                form2.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-            });
-
-             //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
-            $('.select2', form2).change(function () {
-                form2.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input
-            });
+     
 			
 			
 			//搜索用户

@@ -4,6 +4,11 @@
  */
 class CarsScheduleAction extends CarsBaseAction {
 	
+	//初始化数据库连接
+	protected  $db = array(
+		'CarsSchedule' => 'CarsSchedule',
+	);
+	
 	
 	/**
 	 * 构造方法
@@ -14,12 +19,14 @@ class CarsScheduleAction extends CarsBaseAction {
 
 	}
 	
-
+	/**
+	 * 车辆日程安排
+	 */
 	public function index() {
 		/* 初始化数据 */
 		$cars_id =  $this->_get('cars_id');				//车辆ID
 		if (empty($cars_id)) $this->error('非法操作！');
-		$CarsSchedule = D('CarsSchedule');
+		//$CarsSchedule = D('CarsSchedule');
 
 		$html_info['cars_id'] = $cars_id;
 		$this->assign('ACTION_NAME','车辆日程安排');
@@ -28,7 +35,7 @@ class CarsScheduleAction extends CarsBaseAction {
 		$this->display();
 	}
 	
-	
+
 	/**
 	 * 添加日程Api
 	 */
@@ -42,7 +49,7 @@ class CarsScheduleAction extends CarsBaseAction {
 				}
 			}
 			/* 写入数据库 */
-			$CarsSchedule = D('CarsSchedule');
+			$CarsSchedule = $this->db['CarsSchedule'];
 			$CarsSchedule->create();
 			$id = $CarsSchedule->add_one_schedule();
 			$id ? parent::callback(C('STATUS_SUCCESS'),'添加成功！',array('id'=>$id)) : parent::callback(C('STATUS_UPDATE_DATA'),'添加失败！');
@@ -58,7 +65,7 @@ class CarsScheduleAction extends CarsBaseAction {
 	public function AJAX_Get_Schedule() {
 		
 		if ($this->isPost()) {
-			$CarsSchedule = D('CarsSchedule');
+			$CarsSchedule = $this->db['CarsSchedule'];
 			$cars_id = $_POST['cars_id'];
 			if (empty($cars_id)) {
 				parent::callback(C('STATUS_NOT_DATA'),'请求的车辆不得为空！');
@@ -76,7 +83,7 @@ class CarsScheduleAction extends CarsBaseAction {
 	 */
 	public function AJAX_DEL_Schedule () {
 		if ($this->isPost()) {
-			$CarsSchedule = D('CarsSchedule');
+			$CarsSchedule = $this->db['CarsSchedule'];
 			$id = $_POST['id'];
 			if (empty($id)) {
 				parent::callback(C('STATUS_NOT_DATA'),'非法操作！');
@@ -91,10 +98,10 @@ class CarsScheduleAction extends CarsBaseAction {
 	
 	/* 获取可用车辆资源 */
 	public function AJAX_Get_Usable_Cars () {
-		$MemberResource = D('MemberResource');		// 会员等级对应可用资源表（会员）
+		$MemberResource = D('MemberResource');			// 会员等级对应可用资源表（会员）
 		$MemberBase = D('MemberBase');						//会员基本信息表
 		$Cars = D('Cars');													//车辆资源表
-		$CarsSchedule = D('CarsSchedule');					//车辆日程表
+		$CarsSchedule = $this->db['CarsSchedule'];		//车辆日程表
 		
 		/* 初始参数 */
 // 		$member_base_id = $this->_get('member_base_id');
@@ -171,7 +178,48 @@ class CarsScheduleAction extends CarsBaseAction {
 
 	}
 	
+	
+	
 
+	
+	/**
+	 * 显示指定车辆安排信息
+	 */
+	public function cars_schedule_show () {
+	
+		$identifying = $this->_get('identifying');		//车辆级别标识
+		
+		//echo $this->db['CarsSchedule']->getLastSql();
+		//dump($list);
+		$html['identifying'] = $identifying;
+		$this->assign('html',$html);
+		$this->display();
+	}
+	
+	
+
+	//车辆调度安排
+	public function AJAX_Cars_Grade_Schedule() {
+		
+		if ($this->isPost()) {
+			$CarsSchedule = $this->db['CarsSchedule'];
+			$identifying = $_POST['identifying'];
+			
+			if (empty($identifying)) {
+				parent::callback(C('STATUS_NOT_DATA'),'请求车辆级别不得为空！');
+			}
+		//	$data_list = $CarsSchedule->Seek_All_Schedule($cars_id);
+			$data_list = $this->db['CarsSchedule']->seek_cars_grade_schedule($identifying);
+			$data_list ?  parent::callback(C('STATUS_SUCCESS'),'添加成功！',$data_list) : parent::callback(C('STATUS_NOT_DATA'),'暂无数据！') ;
+		} else {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+	
+	}
+	
+	
+	
+		
 	
 
 	

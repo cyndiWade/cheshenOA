@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>	<!-- 全局样式 -->	<include file="Public:top" />
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="{$Think.const.APP_PATH}Public/media/css/select2_metro.css" />
+	<link rel="stylesheet" href="{$Think.const.APP_PATH}Public/media/css/DT_bootstrap.css" />
+	<!-- END PAGE LEVEL STYLES -->	<style type="text/css">					</style>	
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-header-fixed">
+	<include file="Public:header" />
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container row-fluid">
+		<!-- 左侧导航 -->		<include file="Public:sidebar" />
+		<!-- BEGIN PAGE -->
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->        
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->
+				<div class="row-fluid">
+					<div class="span12">
+					
+						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+						<h3 class="page-title">
+							{$MODULE_NAME}<small> {$ACTION_NAME}</small>
+						</h3>
+						<!-- END PAGE TITLE & BREADCRUMB-->
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-globe"></i>{$TITILE_NAME}</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>									
+									<a href="javascript:;" class="reload"></a>			
+								</div>
+							</div>
+							<div class="portlet-body">
+
+								<table class="table table-striped table-bordered table-hover sample_1">
+									<thead>
+										<tr>
+											<th>订单号</th>
+											<th class="hidden-480">来源</th>
+											<th class="hidden-480">用户姓名</th>											<th class="hidden-480">驾龄</th>
+											<th class="hidden-480">开始日期</th>											<th class="hidden-480">预计还车</th>											<th class="hidden-480">归还日期</th>											<th class="hidden-480">总用车天数</th>											<th class="hidden-480">超过天数</th>											<th class="hidden-480">申请车辆</th>											<th class="hidden-480">是否需要司机</th>											<th class="hidden-480">备注</th>											<th class="hidden-480">订单状态</th>
+											<th >操作</th>
+										</tr>
+									</thead>
+									<tbody>																		<volist name="html_list" id="vo" key="i">
+										<tr class="odd gradeX">
+											<td>{$vo.order_num}</td>
+											<td class="hidden-480">{$vo.order_from}</td>											<td class="center hidden-480">{$vo.name}</td>											<td class="center hidden-480">{$vo.driving_years}</td>
+											<td class="center hidden-480">{$vo.start}</td>											<td class="center hidden-480">{$vo.estimate_over}</td>											<td class="center hidden-480">{$vo.over}</td>											<td class="center hidden-480">{$vo.length}</td>											<td class="center hidden-480">{$vo.exceed_date}</td>											<td class="center hidden-480">{$vo.brand}</td>											<td class="center hidden-480">{$vo.is_need_driver}</td>											<td class="center hidden-480">{$vo.remarks}</td>												<td class="center hidden-480">{$vo.order_state_explain} - {$vo.give_back_state_explain}</td>
+											<td >												<if condition="($vo['give_back_state'] eq $give_back_state[0]['status_num']) ">													<a href="?s=/Admin/Order/give_back_car_edit/id/{$vo.id}.html" class="check">填写还车信息</a> | 												<else /> 																									</if>																		<a href="?s=/Admin/Order/order_history_list/order_id/{$vo.id}.html">跟进记录</a>											<!-- 	| <a href="?s=/Admin/CarsAudit/edit/act/delete/id/{$vo.id}.html" class="check">删除</a>											-->											</td>
+										</tr>										</volist>
+									</tbody>
+								</table>
+							</div>	
+						</div>
+						<!-- END EXAMPLE TABLE PORTLET-->
+					</div>
+				</div>				<!-- END PAGE CONTENT-->
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->
+	</div>
+	<!-- END CONTAINER -->
+	<!-- 页脚 -->	<include file="Public:foot" />	<!-- 核心插件 -->	<include file="Public:bottom" />
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/select2.min.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/DT_bootstrap.js"></script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/app.js"></script>	<script type="text/javascript" src="{$Think.const.APP_PATH}Public/media/js/table-managed-Order-give_back_car_list.js"></script>    
+	<script type="text/javascript">
+		jQuery(document).ready(function() {       
+		   App.init();
+		   TableManaged.init();
+		});
+	</script>	</body>
+
+<!-- END BODY -->
+</html>

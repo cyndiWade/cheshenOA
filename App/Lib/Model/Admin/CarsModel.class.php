@@ -29,6 +29,12 @@ class CarsModel extends AdminBaseModel {
 	}
 	
 	
+	//获取所有车辆数据
+	public function seek_all_data () {
+		return $this->where(array('status'=>0))->select();
+	}
+	
+	
 }
 
 ?>

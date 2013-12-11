@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- 
+<link type="text/css"  href="{$Think.const.APP_PATH}Public/media/plugins/fineuploader/fineuploader-3.4.1.css" rel="stylesheet"  />
+
+<link href='../fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='../fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../lib/jquery.min.js'></script>
+<script src='../lib/jquery-ui.custom.min.js'></script>
+<script src='../fullcalendar/fullcalendar.min.js'></script>
+body {
+	  background: url('{$Think.const.APP_PATH}Public/media/image/bg2.png') repeat;
+	}
+
+-->
+
+<link href="{$Think.const.APP_PATH}Public/media/css/fullcalendar.css" rel="stylesheet" />
+	
+<style type="text/css">
+	
+	body {
+		height: 100%;
+		margin-top: 40px;
+		text-align: center;
+		font-size: 14px;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		}
+		
+	#loading {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		}
+
+	#calendar {
+		width: 900px;
+		margin: 0 auto;
+		}
+
+</style>
+</head>
+<body>
+<h2>车辆调度信息查看</h2>
+<div id='loading' style='display:none'>loading...</div>
+<div id='calendar'></div>
+<input type="hidden" id="identifying" value="{$html.identifying}"/>
+<!--  插件 -->
+<include file="Public:bottom" />
+	
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{$Think.const.APP_PATH}Public/media/js/fullcalendar.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		var identifying = $('#identifying');
+	
+		var calendar = $('#calendar');
+		calendar.fullCalendar({
+			monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],  
+       	 	monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],  
+         	dayNames: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],  
+         	dayNamesShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"],  
+        	today: ["今天"],  
+       		buttonText: {  
+        		today: '今天',  
+     			month: '月',  
+  			    week: '周',  
+   				day: '日'
+			},
+			
+		//	defaultView:'agendaWeek',
+			
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			
+			firstDay:1,
+			weekends:true,	
+			axisFormat:'HH(:mm)',
+			timeFormat :'HH:mm{ - HH:mm}',
+			slotMinutes : 5,	
+
+			editable: false,
+			
+			
+		/* 加载以后日程数据 */
+			events : function (start, end, callback) {
+				var result = ajax_post_setup('?s=/Admin/CarsSchedule/AJAX_Cars_Grade_Schedule',{'identifying':identifying.val()});
+				var event_data = [];
+				if (result.status == 0) {
+					for (var obj in result.data) {
+						event_data.push({
+							id : result.data[obj].id,
+		                	title : result.data[obj].brand,
+		                	start: result.data[obj].start_schedule_time,
+							end : result.data[obj].over_schedule_time,
+							//backgroundColor:'cccc',
+							allDay: false
+			               });
+					}	
+					//日程写入到日历中
+	                callback(event_data);
+				}
+					 
+			},
+			
+			loading: function(bool) {
+				if (bool) {
+					$('#loading').show();
+				} else {
+					$('#loading').hide();
+				}
+			}
+			
+		});
+		
+	});
+
+</script>
+
+</body>
+</html>
