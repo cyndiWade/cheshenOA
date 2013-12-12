@@ -23,7 +23,7 @@ var FormValidation = function () {
                         required: true
                     },
                     nickname: {
-						minlength: 4,
+						minlength: 2,
                         required: true
                     }
 
