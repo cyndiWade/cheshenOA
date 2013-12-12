@@ -53,6 +53,11 @@ class PersonnelAction extends AdminBaseAction {
     	$act = $this->_get('act');									//动作
     	$id = $this->_get('id');										//id
     	$company_id = $this->_get('company_id');		//区域ID
+    	
+    	if ($company_id == '') {	//为空时
+    		$company_id = $this->oUser->company_id;
+    	}
+    	
     	$Department = D('Department');						//部门模型表
     	
     	switch ($act) {
@@ -82,6 +87,7 @@ class PersonnelAction extends AdminBaseAction {
     			$this->error('非法操作');					
     	}	
     	
+ 
     	$this->assign('company_id',$company_id);
     	$this->assign('ACTION_NAME','编辑部门');
     	$this->display();
@@ -133,7 +139,8 @@ class PersonnelAction extends AdminBaseAction {
     				exit;
     			}
     			$occupation_info = $Occupation->seek_one_data(array('status'=>0,'id'=>$id));
-    			$this->assign('department_id',$id);
+    			
+    			$this->assign('department_id',$occupation_info['department_id']);
     			$this->assign('occupation_info',$occupation_info);
     			break;
     		case 'add' :
