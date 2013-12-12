@@ -198,7 +198,7 @@ class RbacAction extends AdminBaseAction {
 		$node_group = $Node->get_spe_data(array('status'=>0,'level'=>1)); 												//一级节点(分组节点)
 		$node_module = $Node->get_spe_data(array('status'=>0,'level'=>2,'pid'=>$module_pid)); 			//二级节点	(模块节点)
 		$node_action = $Node->get_spe_data(array('status'=>0,'level'=>3,'pid'=>$action_pid)); 				//三级节点	(方法节点)
-
+		
 		/* 当前组下已有的节点数据 */
 		$node_list = $GroupNode->get_spe_data(array('group_id'=>$group_id));		//当前组下所有的节点数据
 		$have_node = getArrayByField($node_list,'node_id');		//获取所有节点ID
