@@ -33,6 +33,9 @@ class ReserveTalentsAction extends AdminBaseAction {
 	}
      
 	
+	/**
+	 * 人才储备编辑
+	 */
 	public function edit () {
 		$id = $this->_get('id');								//员工基本信息表id
 		$act = $this->_get('act');							//当前动作

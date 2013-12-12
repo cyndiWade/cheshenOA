@@ -109,6 +109,19 @@ class RankAction extends AdminBaseAction {
 		$this->assign('Lang',$this->Lang);		//会员类型级别说明
 	}
 
+	/**
+	 * 验证提交日期
+	 */
+	private function check_post_data () {
+		import("@.Tool.Validate");							//验证类
+		$result = array();
+		$count_days = Validate::count_days($_POST['date'],$_POST['over_date']);
+		if ($count_days <= 0 ) {
+			$result['count_days']['status'] = false;
+			$result['count_days']['info'] = '到期日期不得小于入会日期';
+		}
+		return $result;
+	}
 	
 	
 	/* 初始化与验证会员信息 */
@@ -128,21 +141,6 @@ class RankAction extends AdminBaseAction {
 		$this->assign('member_rank_id',$this->member_rank_id);
 		
 		return $this->member_rank;
-	}
-	
-	
-	/**
-	 * 验证提交日期
-	 */
-	private function check_post_data () {
-		import("@.Tool.Validate");							//验证类
-		$result = array();
-		$count_days = Validate::count_days($_POST['date'],$_POST['over_date']);
-		if ($count_days <= 0 ) {
-			$result['count_days']['status'] = false;
-			$result['count_days']['info'] = '到期日期不得小于入会日期';
-		}
-		return $result;
 	}
 	
 
@@ -165,8 +163,6 @@ class RankAction extends AdminBaseAction {
 		}
 	}
 
-	
-	
 	
 
 	/**

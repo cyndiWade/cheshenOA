@@ -1,6 +1,6 @@
 <?php
 /**
- * 会员资源表
+ * 会员资源控制器
  */
 class MemberResourceAction extends AdminBaseAction {
 	

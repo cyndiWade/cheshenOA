@@ -1,6 +1,6 @@
 <?php
 /**
- * 用车申请处理类
+ * 用车申请订单处理类
  */
 class OrderAction extends OrderBaseAction {
 	
@@ -250,7 +250,7 @@ class OrderAction extends OrderBaseAction {
 	
 	
 	/**
-	 * 车辆调度处理
+	 * 车辆调度列表
 	 */
 	public function cars_arrange_list () {
 		$Order = D('Order');													//车辆资源表

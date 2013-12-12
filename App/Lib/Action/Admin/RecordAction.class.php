@@ -1,6 +1,6 @@
 <?php
 /**
- * 会员记录
+ * 会员用车记录控制器
  */
 class RecordAction extends OrderBaseAction {
 	

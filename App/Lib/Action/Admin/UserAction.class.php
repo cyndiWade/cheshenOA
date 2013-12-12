@@ -15,6 +15,7 @@ class UserAction extends AdminBaseAction {
 		$this->assign('MODULE_NAME',$this->MODULE);
 	}
 	
+	//用户列表
 	public function index () {
 		$Users = D('Users');
 		$user_status = C('ACCOUNT_STATUS');		//状态

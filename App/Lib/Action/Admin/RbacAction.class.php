@@ -344,12 +344,18 @@ class RbacAction extends AdminBaseAction {
 		if (empty($group_name)) $this->error('当前组不存在');
 
 		//所有用户列表
-		$userList = $Users->field('id,account,nickname')->where(array('status'=>0))->select();
+		$userList = $Users->field('u.id,u.account,u.nickname,sb.name')
+		->table(C('DB_PREFIX').'users AS u')
+		->join(C('DB_PREFIX')."staff_base AS sb ON u.base_id = sb.id")
+		->where(array('u.status'=>0))
+		->select();
+		
 		
 		//已有用户
-		$userYesList = $Db->field('u.id,u.account,g.user_id')
+		$userYesList = $Db->field('u.id,u.account,g.user_id,sb.name')
 		->table(C('DB_PREFIX').'group_user AS g')
 		->join(C('DB_PREFIX')."users AS u ON g.user_id=u.id")
+		->join(C('DB_PREFIX')."staff_base AS sb ON u.base_id = sb.id")
 		->where(array('g.group_id'=>$id,'u.status'=>0))
 		->select();
 
@@ -365,7 +371,7 @@ class RbacAction extends AdminBaseAction {
 				$htmlUser[] = $val;
 			}
 		}
-		
+
 		$this->assign('group_name',$group_name);
 		$this->assign('userYesList',$userYesList);
 		$this->assign('htmlUser',$htmlUser);

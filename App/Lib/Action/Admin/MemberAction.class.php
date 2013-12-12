@@ -146,7 +146,6 @@ class MemberAction extends RankAction {
 	//获取推荐会员列表
 	public function recommend_member () {
 		
-
 		$source = array_search($this->source_select[2], $this->source_select);		//推荐标识
 		$account = $this->_get('account');	//推荐账号
 		
@@ -173,19 +172,7 @@ class MemberAction extends RankAction {
 	}
 	
 	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 }
 
 ?>
