@@ -79,7 +79,7 @@ class UserAction extends AdminBaseAction {
 		$StaffBase = D('StaffBase');
 		
 		//获取个人详细资料
-		$personage_detail = $StaffBase->seek_personage_info($this->oUser->id);		
+		$personage_detail = $StaffBase->seek_personage_info($this->oUser->base_id);		
 		$html['personage'] = $personage_detail;
 		$html['personage']['account'] = $this->oUser->account;
 
