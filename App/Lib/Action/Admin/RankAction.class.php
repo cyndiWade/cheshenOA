@@ -6,11 +6,15 @@ class RankAction extends AdminBaseAction {
 	
 	private $MODULE = '会员管理';
 	
+	protected  $db = array(
+		'Member' => 'Member'		
+	);
+	
 	/* 会员级别ID */
 	private $member_rank_id;
 	
 	/* 会员类型 */
-	private $member_rank = array();
+	protected  $member_rank = array();
 	
 	/* 会员类型说明(俱乐部) */
 	private $member_content = array();
@@ -54,11 +58,47 @@ class RankAction extends AdminBaseAction {
 		
 		/* 语言设置 */
 		$this->Lang($this->member_rank_id);
-		
-		
 	}
 	
 	
+	/**
+	 * 推荐账号处理
+	 */
+	private function check_recommend_people () {
+		$source = $this->_post('source');										//来源
+		$source_content = $this->_post('source_content');		//推荐账号
+		$member_id = $this->_post('member_id');						//用户注册账号ID
+		$Member = $this->db['Member'];	
+		$result = array();
+		
+		//对推荐账号进行查找处理
+		if (array_search($this->source_select[2], $this->source_select) == $source) {
+
+			$info =  $Member->seek_base_info($source_content);		//查找账号所属的会员的ID
+
+			if ($member_id == $info['use_id']) {		//推荐账号是本身时
+				$result['status'] = false;							
+				$result['info'] = '推荐账号不能是您自己的账号';
+			} else {
+				if (!empty($info)) {
+					$result['status'] = true;				//表示找到用户信息
+					$result['info'] = $info[0]['id'];
+				} else {
+					$result['status'] = false;				//表示没有找到用户信息
+					$result['info'] = '对不起，系统没有找到推荐的用户账号，或者推荐的账号不是会员。';
+				}
+			}
+			return $result;
+		} else {
+			return false;	
+		}	
+	}
+	
+	
+	/**
+	 * 初始化语言环境
+	 * @param int $member_rank_id		//会员ID
+	 */
 	private function Lang($member_rank_id) {
 
 		if ($this->member_rank_id == 9) {		//股东
@@ -80,7 +120,6 @@ class RankAction extends AdminBaseAction {
 			$this->member_rank[$val['id']] = $val['name'];
 			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
 		}
-
 
 		/* 全局保持会员属性 */
 		$this->member_rank_name = $this->member_rank[$this->member_rank_id];		//会员名称
@@ -127,6 +166,8 @@ class RankAction extends AdminBaseAction {
 	}
 
 	
+	
+	
 
 	/**
 	 * 会员列表
@@ -138,6 +179,7 @@ class RankAction extends AdminBaseAction {
 
 		/* 获取相应会员数据 */
 		$member_base_list = $MemberBase->seek_rank_data($this->member_rank_id);
+
 		if ($member_base_list) {
 			foreach ($member_base_list AS $key=>$val) {
 				$member_base_list[$key]['rank_name'] = $this->member_rank[$val['member_rank_id']];		//会员类型
@@ -155,7 +197,7 @@ class RankAction extends AdminBaseAction {
 	 * 添加指定级别的会员
 	 */
 	public function member_base_add () {
-
+		
 		$this->check_rank();											//验证会员等级信息
 		
 		$MemberBase = D('MemberBase');					//会员基本信息表
@@ -163,7 +205,7 @@ class RankAction extends AdminBaseAction {
 		$Member = D('Member');									//注册账号表
 
 		if ($this->isPost()) {
-
+			
 			/* 数据验证 */
 			$check_result = $this->check_post_data();
 			if (!empty($check_result)) {
@@ -190,8 +232,16 @@ class RankAction extends AdminBaseAction {
 			$is_have=$Card->seek_card_one($card_number);
 			if ($is_have) $this->error('此会员卡已存在！');
 			
-			/* 写入数据库 */
 			
+			/* 会员来源数据处理 */
+			$check_source_result =$this->check_recommend_people();
+			if ($check_source_result != false) {
+				if ($check_source_result['status'] == false) {
+					$this->error($check_source_result['info']);
+				} 
+			}
+	
+			/* 写入数据库 */			
 			$MemberBase->create();
 			$MemberBase->property = implode(',',$MemberBase->property);
 			$member_base_id = $MemberBase->add();
@@ -274,6 +324,14 @@ class RankAction extends AdminBaseAction {
 					$this->error('此会员卡已存在！');
 				}
 			} 
+			
+			/* 会员来源数据处理 */
+			$check_source_result =$this->check_recommend_people();
+			if ($check_source_result != false) {
+				if ($check_source_result['status'] == false) {
+					$this->error($check_source_result['info']);
+				}
+			}
 			
 			
 			$MemberBase->create();

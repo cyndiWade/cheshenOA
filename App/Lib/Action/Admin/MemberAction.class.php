@@ -2,10 +2,16 @@
 /**
  * 车神用户管理模块
  */
-class MemberAction extends AdminBaseAction {
+class MemberAction extends RankAction {
 	
 	
-	private $MODULE = '会员管理';
+//	private $MODULE = '会员管理';
+	
+	/* 初始化数据库连接 */
+	protected $db = array(
+		'MemberBase' => 'MemberBase',
+		'MemberRank' => 'MemberRank'
+	);
 	
 	
 	/**
@@ -13,7 +19,7 @@ class MemberAction extends AdminBaseAction {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->assign('MODULE_NAME',$this->MODULE);
+	//	$this->assign('MODULE_NAME',$this->MODULE);
 
 	}
 	
@@ -140,6 +146,30 @@ class MemberAction extends AdminBaseAction {
 	//获取推荐会员列表
 	public function recommend_member () {
 		
+
+		$source = array_search($this->source_select[2], $this->source_select);		//推荐标识
+		$account = $this->_get('account');	//推荐账号
+		
+		//获取推荐用户数据
+		$member_base_list = $this->db['MemberBase']->seek_recommend_member($source,$account);
+		
+		/* 组合会员类型 */
+		$MemberRankInfo =  $this->db['MemberRank']->seek_all_data(); 	//获取所有会员级别信息
+	
+		foreach ($MemberRankInfo AS $key=>$val) {
+			$this->member_rank[$val['id']] = $val['name'];
+			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
+		}
+		
+		if ($member_base_list) {
+			foreach ($member_base_list AS $key=>$val) {
+				$member_base_list[$key]['rank_name'] = $this->member_rank[$val['member_rank_id']];		//会员类型
+			}
+		}
+
+		$this->assign('member_base_list',$member_base_list);
+		$this->display();
+
 	}
 	
 	

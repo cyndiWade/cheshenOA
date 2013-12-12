@@ -8,6 +8,9 @@ class OrderBaseAction extends CarsBaseAction {
 
 	/* 区域司机ID */
 	private $occupation_driver_id = 8;
+	
+	/* 车辆管理部门职位ID */
+	protected $occupation_cars_id = 10;		
 		
 	
 	/**

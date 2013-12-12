@@ -1,6 +1,6 @@
 <?php
 /**
- * 会员用车记录
+ * 会员记录
  */
 class RecordAction extends OrderBaseAction {
 	
@@ -54,6 +54,8 @@ class RecordAction extends OrderBaseAction {
 		
 		
 	}
+	
+
 
 	
 }

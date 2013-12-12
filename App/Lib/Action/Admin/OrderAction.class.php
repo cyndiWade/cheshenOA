@@ -4,6 +4,11 @@
  */
 class OrderAction extends OrderBaseAction {
 	
+	protected  $db = array(
+		'StaffBase' => 'StaffBase'	
+	);
+	
+	
 	/**
 	 * 构造方法
 	 */
@@ -215,12 +220,32 @@ class OrderAction extends OrderBaseAction {
 		$order_state = $this->_get('order_state');	//订单状态
 		$Order = D('Order');												//订单模型表;
 		
-		if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
-			parent::order_history($id,'提交派车申请');		
-			$this->success('成功！');
-		} else {
-			$this->error('失败！');
+		if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {		
+			parent::order_history($id,'提交派车申请');	
+		
+			//派车申请的时候，发送短信给车辆管理部门的所有人
+			if ($order_state == $this->order_state[1]['order_status']) {
+					
+				$list = $this->db['StaffBase']->seek_usable_driver_list($this->occupation_cars_id);
+				$phones = array();
+				if ($list) {
+					foreach ($list AS $key=>$val) {
+						array_push($phones, $val['phone']);
+					}
+				}
+				$send_result = parent::send_shp(implode(',', $phones), '有新订单，请及时处理！');
+			}
+			
+			if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
+				parent::order_history($id,'提交派车申请');		
+	
+				$this->success('成功！');
+			} else {
+				$this->error('失败！');
+			}
+		
 		}
+	
 	}
 	
 	
@@ -254,6 +279,7 @@ class OrderAction extends OrderBaseAction {
 		$this->assign('order_state',$this->order_state);
 		$this->display();
 	}
+	
 	
 	
 	/**
