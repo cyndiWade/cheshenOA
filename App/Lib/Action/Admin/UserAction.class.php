@@ -15,7 +15,7 @@ class UserAction extends AdminBaseAction {
 		$this->assign('MODULE_NAME',$this->MODULE);
 	}
 	
-	//用户列表
+	//用户列表	
 	public function index () {
 		$Users = D('Users');
 		$user_status = C('ACCOUNT_STATUS');		//状态
@@ -71,25 +71,19 @@ class UserAction extends AdminBaseAction {
 		} 
 	}
 	
+	
 	/**
 	 * 个人中心模块
 	 */
 	public function personal () {
-		/**$Users = D('Users');
 		$StaffBase = D('StaffBase');
-		$Department=D('Department');
-		$Occupation=D('Occupation');
-								
-		$user_info = $Users->get_user_info(array('account'=>$_SESSION['user_info']['account'],'status'=>0));
 		
-		//查找对应的员工信息
-    	$user_base = $StaffBase->seek_detail_data($user_info['base_id'],'serial,name,name_en,sex,department_id,occupation_id,email,phone,dwell_address,contact_phone,remarks');
-    	$department=$Department->seek_name($user_base['department_id']);
-    	$occupation=$Occupation->seek_name($user_base['occupation_id']);
-    	$user_base['department']=$department;
-    	$user_base['occupation']=$occupation;
-    	
-    	*/
+		//获取个人详细资料
+		$personage_detail = $StaffBase->seek_personage_info($this->oUser->id);		
+		$html['personage'] = $personage_detail;
+		$html['personage']['account'] = $this->oUser->account;
+
+    	$this->assign('html',$html);
 		$this->display();
 	}
 
