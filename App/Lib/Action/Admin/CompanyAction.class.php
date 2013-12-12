@@ -1,6 +1,6 @@
 <?php
 /**
- * 公司区域管理
+ * 公司区域管理控制器
  */
 class CompanyAction extends AdminBaseAction {
 	
@@ -14,6 +14,7 @@ class CompanyAction extends AdminBaseAction {
 		$this->assign('MODULE_NAME',$this->MODULE);
 	}
 	
+	//公司区域列表
 	public function index() {
 		$Company = D('Company');		//公司区域表
 		
@@ -25,7 +26,7 @@ class CompanyAction extends AdminBaseAction {
 		$this->display();
 	}
     
-	
+	//编辑区域
 	public function edit() {
 		$id = $this->_get('id');				//id
 		$act = $this->_get('act');			//动作

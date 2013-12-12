@@ -117,7 +117,7 @@ var FormValidation = function () {
                         maxlength:50   
                     },
                     identity: {
-                    	required: true,
+                    	//required: true,
                     	minlength:15, 
                     	maxlength:18
                     },

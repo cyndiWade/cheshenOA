@@ -34,7 +34,7 @@ class CarsInsuranceAction extends CarsBaseAction {
 	}
 	
 	/**
-	 * 车辆管理列表
+	 * 年审编辑
 	 */
 	public function edit() {
 		/* 初始化数据 */
