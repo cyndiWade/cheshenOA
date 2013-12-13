@@ -134,6 +134,9 @@ class RankAction extends AdminBaseAction {
 			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
 		}
 
+		//dump($this->member_rank);
+		//exit;
+		
 		/* 全局保持会员属性 */
 		$this->member_rank_name = $this->member_rank[$this->member_rank_id];		//会员名称
 		if (empty($this->member_rank_name)) $this->error('此类型的会员不存在！');
