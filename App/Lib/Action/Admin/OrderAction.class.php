@@ -1,6 +1,6 @@
 <?php
 /**
- * 用车申请处理类
+ * 用车申请订单处理类
  */
 class OrderAction extends OrderBaseAction {
 	
@@ -236,21 +236,24 @@ class OrderAction extends OrderBaseAction {
 				$send_result = parent::send_shp(implode(',', $phones), '有新订单，请及时处理！');
 			}
 			
-			if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
-				parent::order_history($id,'提交派车申请');		
+// 			if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
+// 				parent::order_history($id,'提交派车申请');		
 	
-				$this->success('成功！');
-			} else {
-				$this->error('失败！');
-			}
+// 				
+// 			} else {
+// 				
+// 			}
+			$this->success('成功！');
 		
+		} else {
+			$this->error('失败！');
 		}
 	
 	}
 	
 	
 	/**
-	 * 车辆调度处理
+	 * 车辆调度列表
 	 */
 	public function cars_arrange_list () {
 		$Order = D('Order');													//车辆资源表

@@ -251,7 +251,6 @@ class StaffAction extends AdminBaseAction {
 		$id = $this->_get('id');								//工作经历id
 		$StaffWork = D('StaffWork');					//员工工作经历表
 		
-		
 		switch ($act) {
 			case 'add' :
 				if ($this->isPost()) {

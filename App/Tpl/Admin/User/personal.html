@@ -35,69 +35,11 @@
 			<div class="container-fluid">
 				<!-- BEGIN PAGE HEADER-->
 				<div class="row-fluid">
-					<div class="span12">
-						<!-- BEGIN STYLE CUSTOMIZER -->
-						<div class="color-panel hidden-phone">
-							<div class="color-mode-icons icon-color"></div>
-							<div class="color-mode-icons icon-color-close"></div>
-							<div class="color-mode">
-								<p>THEME COLOR</p>
-								<ul class="inline">
-									<li class="color-black current color-default" data-style="default"></li>
-									<li class="color-blue" data-style="blue"></li>
-									<li class="color-brown" data-style="brown"></li>
-									<li class="color-purple" data-style="purple"></li>
-									<li class="color-grey" data-style="grey"></li>
-									<li class="color-white color-light" data-style="light"></li>
-								</ul>
-								<label>
-									<span>Layout</span>
-									<select class="layout-option m-wrap small">
-										<option value="fluid" selected>Fluid</option>
-										<option value="boxed">Boxed</option>
-									</select>
-								</label>
-								<label>
-									<span>Header</span>
-									<select class="header-option m-wrap small">
-										<option value="fixed" selected>Fixed</option>
-										<option value="default">Default</option>
-									</select>
-								</label>
-								<label>
-									<span>Sidebar</span>
-									<select class="sidebar-option m-wrap small">
-										<option value="fixed">Fixed</option>
-										<option value="default" selected>Default</option>
-									</select>
-								</label>
-								<label>
-									<span>Footer</span>
-									<select class="footer-option m-wrap small">
-										<option value="fixed">Fixed</option>
-										<option value="default" selected>Default</option>
-									</select>
-								</label>
-							</div>
-						</div>
-						<!-- END BEGIN STYLE CUSTOMIZER --> 
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+					<div class="span12">					
 						<h3 class="page-title">
 							用户信息 <small>用户信息显示</small>
 						</h3>
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home"></i>
-								<a href="__APP__/Admin/Index/index">首页</a> 
-								<i class="icon-angle-right"></i>
-							</li>
-							<!--<li>
-								<a href="#">Extra</a>
-								<i class="icon-angle-right"></i>
-							</li>-->
-							<li><a href="#">用户信息</a></li>
-						</ul>
-						<!-- END PAGE TITLE & BREADCRUMB-->
+						
 					</div>
 				</div>
 				<!-- END PAGE HEADER-->
@@ -116,7 +58,7 @@
 							<div class="tab-content">
 								<div class="tab-pane row-fluid " id="tab_1_2">
 									<ul class="unstyled profile-nav span3">
-										<li><img src="{$Think.const.APP_PATH}Public/media/image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></li>
+										<li><img src="{$Think.const.APP_PATH}Public/media/image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></li>										
 										<li><a href="#">Projects</a></li>
 										<li><a href="#">Messages <span>3</span></a></li>
 										<li><a href="#">Friends</a></li>
@@ -655,18 +597,17 @@
 								<!--end tab-pane-->
 								<div class="tab-pane   profile-classic row-fluid  active" id="tab_1_1">
 									<div class="span2"><img src="{$Think.const.APP_PATH}Public/media/image/profile-img.png" alt="" /> <a href="#" class="profile-edit">edit</a></div>
-									<ul class="unstyled span10">										<li><span>编号:</span> JDuser</li>
-										<li><span>用户名:</span> JDuser</li>
-										<li><span>英文名称:</span> John</li>																				<li><span>性别:</span> 男</li>
+									<ul class="unstyled span10">										<li><span>编号:</span> {$html.personage.serial}</li>
+										<li><span>用户名:</span> {$html.personage.account}</li>
+										<li><span>英文名称:</span> {$html.personage.name_en}</li>																				<li><span>性别:</span> {$html.personage.sex}</li>
 										<!--<li><span>Last Name:</span> Doe</li>
 										<li><span>Counrty:</span> Spain</li>-->
-										<li><span>部门:</span> 18 Jan 1982</li>
-										<li><span>职位:</span> Web Developer</li>
-										<li><span>Email:</span> <a href="#">john@mywebsite.com</a></li>
-										<li><span>电话:</span> 11111111</li>
-										<li><span>居住地:</span> ######</li>
-										<li><span>紧急联系电话:</span> +1 646 580 DEMO (6284)</li>
-										<li><span>备注:</span> ######.</li>
+										<li><span>部门:</span> {$html.personage.name1}</li>
+										<li><span>职位:</span> {$html.personage.name2}</li>
+										<li><span>Email:</span> <a href="#">{$html.personage.email}</a></li>
+										<li><span>电话:</span> {$html.personage.phone}</li>
+										<li><span>紧急联系电话:</span> {$html.personage.contact_phone}</li>
+										<li><span>备注:</span> {$html.personage.remarks}</li>
 									</ul>
 								</div>
 								<!--tab_1_2-->
@@ -674,22 +615,22 @@
 									<div class="row-fluid">
 										<div class="span12">
 											<div class="span3">
-												<ul class="ver-inline-menu tabbable margin-bottom-10">
+												<ul class="ver-inline-menu tabbable margin-bottom-10">																										<!-- 
 													<li class="active">
 														<a data-toggle="tab" href="#tab_1-1">
 														<i class="icon-cog"></i> 
 														个人信息
 														</a> 
 														<span class="after"></span>                                    
-													</li>
-													<li class=""><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> 更换头像</a></li>
+													</li>												
+													<li class=""><a data-toggle="tab" href="#tab_2-2"><i class="icon-picture"></i> 更换头像</a></li>													-->
 													<li class=""><a data-toggle="tab" href="#tab_3-3"><i class="icon-lock"></i> 修改密码</a></li>
-													<!-- <li class=""><a data-toggle="tab" href="#tab_4-4"><i class="icon-eye-open"></i> Privacity Settings</a></li> -->
+													<!-- <li class=""><a data-toggle="tab" href="#tab_4-4"><i class="icon-eye-open"></i> Privacity Settings</a></li> -->						
 												</ul>
 											</div>
 											<div class="span9">
 												<div class="tab-content">
-													<div id="tab_1-1" class="tab-pane active">
+													<div id="tab_1-1" class="tab-pane">														
 														<div style="height: auto;" id="accordion1-1" class="accordion collapse">
 															<form action="#">
 																<label class="control-label">用户名</label>
@@ -749,7 +690,7 @@
 															</form>
 														</div>
 													</div>
-													<div id="tab_3-3" class="tab-pane">
+													<div id="tab_3-3" class="tab-pane active">
 														<div style="height: auto;" id="accordion3-3" class="accordion collapse">
 															<form method="post" name="passwordform" action="__APP__/Admin/User/modifi_password">
 																<label class="control-label">原密码</label>
@@ -760,7 +701,7 @@
 																<input type="password" class="m-wrap span8" name="re_new_password"/>
 																<div class="submit-btn">
 																	<a href="javascript:document.passwordform.submit();" class="btn green">修改密码</a>
-																	<a href="javascript:document.passwordform.reset();" class="btn">取消</a>
+																	<a href="javascript:document.passwordform.reset();" class="btn">重置</a>
 																</div>
 															</form>
 														</div>

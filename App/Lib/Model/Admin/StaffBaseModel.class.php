@@ -59,6 +59,18 @@ class StaffBaseModel extends AdminBaseModel {
 	}
 	
 	
+	//获取个人详细信息
+	public function seek_personage_info ($use_id) {
+		$PREFIX = C('DB_PREFIX');
+		$data = $this->field('s.*,d.name AS name1,o.name AS name2')
+		->table($PREFIX.'staff_base AS s')
+		->join($PREFIX.'department AS d ON s.department_id=d.id')
+		->join($PREFIX.'occupation AS o ON s.occupation_id=o.id')
+		->where(array('s.id'=>$use_id))
+		->find();
+		return $data;
+	}
+	
 }
 
 ?>
