@@ -31,6 +31,7 @@ class StatementAction extends AdminBaseAction {
 	 * @param String $content		//内容
 	 */
 	private function set_excel($name,$content) {
+		
 		header('Content-Type:text/html;charset=utf-8');
 		header("Content-Type: application/force-download");
 		header("Content-Type: text/csv");					//CSV文件
@@ -39,6 +40,7 @@ class StatementAction extends AdminBaseAction {
 		header('Expires:0');
 		header('Pragma:public');
 
+		$content = (iconv( "UTF-8","gbk",$content)).',';
 		echo $content;
 		exit;
 	}
