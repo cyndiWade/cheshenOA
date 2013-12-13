@@ -31,7 +31,9 @@ class OrderAction extends OrderBaseAction {
 	public function apply () {
 		$Order = D('Order');													//车辆资源表
 		/* 获取申请订单列表 */
-		$html_list = $Order->seek_user_order(array('o.order_state'=>$this->order_state[0]['order_status']));	
+		$map['o.order_state'] = array('in',array($this->order_state[0]['order_status'],$this->order_state[-2]['order_status']));
+		$html_list = $Order->seek_user_order($map);
+		//$html_list = $Order->seek_user_order(array('o.order_state'=>$this->order_state[0]['order_status']));	
 
 		if ($html_list) {
 			foreach ($html_list AS $key=>$val) {
@@ -45,6 +47,7 @@ class OrderAction extends OrderBaseAction {
 		$this->assign('TITILE_NAME','用车申请列表');
 		$this->assign('html_list',$html_list);
 		$this->assign('order_state',$this->order_state);
+		$this->assign('is_cancel',$this->is_cancel);
 		$this->display();
 	}
 	
@@ -213,7 +216,7 @@ class OrderAction extends OrderBaseAction {
 	
 	
 	/**
-	 * 派车申请
+	 * 派车申请、订单取消等操作
 	 */
 	public function set_order_state () {
 		$id = $this->_get('id');
@@ -221,11 +224,15 @@ class OrderAction extends OrderBaseAction {
 		$Order = D('Order');												//订单模型表;
 		
 		if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {		
-			parent::order_history($id,'提交派车申请');	
-		
-			//派车申请的时候，发送短信给车辆管理部门的所有人
-			if ($order_state == $this->order_state[1]['order_status']) {
-					
+			
+			//取消订单时
+			if ($this->order_state[-2]['order_status'] == $order_state) {
+				parent::order_history($id,'订单取消！');
+			//派车申请时	
+			} elseif ($this->order_state[1]['order_status'] == $order_state) {
+				parent::order_history($id,'提交派车申请！');
+				
+				//派车申请的时候，发送短信给车辆管理部门的所有人
 				$list = $this->db['StaffBase']->seek_usable_driver_list($this->occupation_cars_id);
 				$phones = array();
 				if ($list) {
@@ -236,13 +243,6 @@ class OrderAction extends OrderBaseAction {
 				$send_result = parent::send_shp(implode(',', $phones), '有新订单，请及时处理！');
 			}
 			
-// 			if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {			
-// 				parent::order_history($id,'提交派车申请');		
-	
-// 				
-// 			} else {
-// 				
-// 			}
 			$this->success('成功！');
 		
 		} else {
@@ -251,7 +251,7 @@ class OrderAction extends OrderBaseAction {
 	
 	}
 	
-	
+
 	/**
 	 * 车辆调度列表
 	 */

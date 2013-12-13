@@ -16,6 +16,11 @@ class AdminBaseAction extends AppBaseAction {
 	
 	/* 订单提交状态 */
 	protected $order_state = array(
+			-2 => array(
+					'order_status'	=>-2,
+					'order_explain' => '取消订单'
+			),
+			
 			0 => array(
 					'order_status'	=>0,
 					'order_explain' => '用车申请'
@@ -49,6 +54,21 @@ class AdminBaseAction extends AppBaseAction {
 					'status_explain' => '已归还,超出'
 			),
 	);
+	
+	
+	/* 取消订单状态 */
+	protected $is_cancel = array(
+			0 => array(		
+					'status_num'	=>0,
+					'status_explain' => '正常'
+			),
+			1 => array(
+					'status_num'	=>1,
+					'status_explain' => '取消'
+			)
+	);
+	
+	
 	
 
 	/**
