@@ -23,7 +23,13 @@ class SHP {
 	 * @param string $time				定时发送，格式：YYYYMMDDHHMM
 	 */
 	public function send($phone,$msg,$time='') {
-
+		
+		if (is_array($phone)) {
+			$phone = implode(',',$phone);
+		}
+		
+		if (!empty($time)) $time = date('YYYYMMDDHHMM',$time);
+		
 		$msg = urlencode(@iconv('UTF-8', 'GB2312', $msg));		//字体编码转换
 		//请求地址
 		$url = "http://203.81.21.34/send/gsend.asp?name=$this->name&pwd=$this->pwd&dst=$phone&msg=$msg&time=$time";
@@ -40,11 +46,13 @@ class SHP {
 		/* 处理返回状态 */
 		if ($arr2['num'] > 0) {
 			$result['status'] = true;
-			$result['info']['success'] = $arr2['success'];		//成功的是偶记haom
-			$result['info']['faile'] = $arr2['faile'];
+			$result['info']['success'] = $arr2['success'];		//成功的号码
+			$result['info']['faile'] = $arr2['faile'];					//失败的号码
+			$result['msg'] = "短信发送成功！";
 		} else {
 			$result['status'] = false;
-			$result['info'] = $arr2['faile'];
+			$result['info'] = $arr2['faile'];								//失败的号码
+			$result['msg'] = "发送失败，请重新尝试！";
 		}
 		return $result;
 	}

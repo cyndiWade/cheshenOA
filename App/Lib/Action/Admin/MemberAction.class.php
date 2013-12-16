@@ -119,7 +119,7 @@ class MemberAction extends RankAction {
 	 */
 	public function all_user_info () {
 		
-		$MemberBase = D('MemberBase');	//会员基本信息表
+		$MemberBase = $this->db['MemberBase'];	//会员基本信息表
 		
 		/* 获取相应会员数据 */
 		$member_base_list = $MemberBase->get_spe_data(array('status'=>0));

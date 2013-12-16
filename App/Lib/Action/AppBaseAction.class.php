@@ -4,7 +4,7 @@
  * 	项目---核心类
  *	 所有此项目分组的基础类，都必须继承此类
  */
-class AppBaseAction extends Action {
+class AppBaseAction extends GlobalParameterAction {
 	
 	/**
 	 * 构造方法
@@ -49,17 +49,39 @@ class AppBaseAction extends Action {
 	
 	/**
 	 * 短信发送类
-	 * @param String $telephone
-	 * @param String $msg
+	 * @param String $telephone  电话号码
+	 * @param String $msg			短信内容
+	 * @return Array  						$result[status]：Boole发送状态    $result[info]：ARRAY短信发送后的详细信息 	$result[msg]：String提示内容
 	 */
+// 	protected function send_shp ($telephone,$msg) {
+// 		//执行发送短信
+// 		import("@.Tool.SHP");	//SHP短信发送类
+// 		$SHP = new SHP(C('SHP.NAME'),C('SHP.PWD'));			//账号信息
+// 		$send = $SHP->send($telephone,$msg);		//执行发送
+// 		return $send;
+// 	}
 	protected function send_shp ($telephone,$msg) {
-		//执行发送短信
-		import("@.Tool.SHP");	//SHP短信发送类
-		$SHP = new SHP(C('SHP.NAME'),C('SHP.PWD'));			//账号信息
-		$send = $SHP->send($telephone,$msg);		//执行发送
+
+		$shp_type = C('SHP.TYPE');
+		$shp_name = C('SHP.NAME');
+		$shp_password = C('SHP.PWD');
+		switch ($shp_type) {
+			case 'SHP' :
+				import("@.Tool.SHP");				//SHP短信发送类
+				$SHP = new SHP($shp_name,$shp_password);			//账号信息
+				$send = $SHP->send($telephone,$msg);		//执行发送
+				break;
+			case 'RD_SHP'	 :
+				import("@.Tool.RD_SHP");		//RD_SHP短信发送类
+				$SHP = new RD_SHP($shp_name,$shp_password);			//账号信息
+				$send = $SHP->send($telephone,$msg);		//执行发送
+				break;
+			default:
+				exit('illegal operation！');	
+		}
+
 		return $send;
 	}
-	
 	
 	/**
 	 * 统一数据返回
@@ -78,7 +100,7 @@ class AppBaseAction extends Action {
 		header('Content-Type:text/html;charset=utf-8');
 	
 		//die(json_encode($return));
-		die(JSON($return));
+		exit(JSON($return));
 	}
 	
 

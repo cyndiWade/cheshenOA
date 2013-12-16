@@ -5,7 +5,11 @@
 class OrderAction extends OrderBaseAction {
 	
 	protected  $db = array(
-		'StaffBase' => 'StaffBase'	
+		'StaffBase' => 'StaffBase',
+		'MemberBase' => 'MemberBase'	,
+		'Cars' => 'Cars',
+		'StaffBase' => 'StaffBase',
+		'Order' => 'Order'
 	);
 	
 	
@@ -220,9 +224,10 @@ class OrderAction extends OrderBaseAction {
 	 */
 	public function set_order_state () {
 		$id = $this->_get('id');
-		$order_state = $this->_get('order_state');	//订单状态
+		$order_state = $this->_get('order_state');			//订单状态
 		$Order = D('Order');												//订单模型表;
 		
+		//修改订单状态为派车社情
 		if ($Order->where(array('id'=>$id))->data(array('order_state'=>$order_state))->save()) {		
 			
 			//取消订单时
@@ -232,15 +237,16 @@ class OrderAction extends OrderBaseAction {
 			} elseif ($this->order_state[1]['order_status'] == $order_state) {
 				parent::order_history($id,'提交派车申请！');
 				
-				//派车申请的时候，发送短信给车辆管理部门的所有人
+				//派车申请的时候，发送短信给车辆管理部门的指定职位的人员
 				$list = $this->db['StaffBase']->seek_usable_driver_list($this->occupation_cars_id);
-				$phones = array();
 				if ($list) {
+					$phones = array();
 					foreach ($list AS $key=>$val) {
 						array_push($phones, $val['phone']);
 					}
+					$send_result = parent::send_shp($phones, '有新订单，请及时处理！');		//发送短信
 				}
-				$send_result = parent::send_shp(implode(',', $phones), '有新订单，请及时处理！');
+				
 			}
 			
 			$this->success('成功！');
@@ -266,6 +272,9 @@ class OrderAction extends OrderBaseAction {
 					$this->order_state[3]['order_status'],	//派车申请拒绝
 			)
 		);
+		$map['o.give_back_state'] = $this->give_back_state[0]['status_num'];		//车辆状态为，未归还
+	
+		
 		$html_list = $Order->seek_user_order($map);
 		
 		if ($html_list) {
@@ -575,27 +584,26 @@ class OrderAction extends OrderBaseAction {
 				
 			/* 发送短信 */
 			if (!empty($driver_phone)) {
-				$phones_string = implode(',',array($mobile_phone,$driver_phone));
+				$phones_string = array($mobile_phone,$driver_phone);
 			} else {
 				$phones_string = $mobile_phone;
 			}
-			
+
+			//执行发送短信
 			$send_result = parent::send_shp($phones_string, $mobile_phone_message);	
 			
 			if ($send_result['status'] == true) {
 				
-				//$auth_code = $this->_post('auth_code');	//更新订单的提车码	
-				//	$Order->where(array('id'=>$id))->save(array('auth_code'=>$auth_code));
 				$Order->create();
 				$Order->where(array('id'=>$id))->save();
 				
 				parent::order_history($id,'发送短信，状态为：成功。短信内容：'. $mobile_phone_message);
 				
 		//		$this->success('短信发送成功！',U('Admin/Order/cars_arrange_list'));
-				$this->success('短信发送成功！');
+				$this->success($send_result['msg']);
 			} else {
 				parent::order_history($id,'发送短信，状态为：失败。');
-				$this->error('短信发送失败！');
+				$this->error($send_result['msg']);
 			}
 			exit;
 		}
@@ -615,9 +623,8 @@ class OrderAction extends OrderBaseAction {
 		}
 	
 		
-		
-		$html_info['now_state'] = $html_info['order_state'];		;					//当前订单状态
-		$html_info['order_state'] = $this->order_state;		//订单状态说明
+		$html_info['now_state'] = $html_info['order_state'];							//当前订单状态
+		$html_info['order_state'] = $this->order_state;							//订单状态说明
 			
 		$html_info['now_give_back_state'] = $html_info['give_back_state'];		//当前还车状态;		
 		$html_info['give_back_state'] = $this->give_back_state;			//还车状态说明
@@ -643,6 +650,93 @@ class OrderAction extends OrderBaseAction {
 		$this->display();
 	}
 	
+	
+	
+	/**
+	 * 补订单
+	 */
+	public function order_supplement () {
+		$act = $this->_get('act');		//动作
+		$MemberBase = $this->db['MemberBase'];
+		$Cars = $this->db['Cars'];
+		$StaffBase = $this->db['StaffBase'];
+		$Order = $this->db['Order'];
+
+		switch ($act) {
+			case 'add':
+				
+				if ($this->isPost()) {
+					$member_base_id = $this->_post('member_base_id');		//会员ID
+					
+					$start = strtotime($this->_post('start'));							//开始用车日期
+					$over = strtotime($this->_post('over'));						//归还日期
+					if ($start > $over) $this->error('开始日期不得大于用车日期');	//
+
+					$length = $this->_post('length');			//使用天数
+					
+					$driver_id = $this->_post('driver_id');
+					if (!empty($driver_id)) {
+						$is_need_driver = 1;
+					} else {
+						$is_need_driver = 0;
+					}
+					
+					$order_state = $this->order_state[2]['order_status'];
+					$give_back_state = $this->give_back_state[1]['status_num'];
+					
+					/* 生成订单号 */
+					$create_order =  parent::create_order_num('S');
+					if ($create_order['status'] == false) $this->error($create_order['info']);
+					$order_num = $create_order['info'];
+					
+					//写入数据库
+					$Order->create();
+					$Order->order_num  = $order_num;
+					$Order->start  = $start;
+					$Order->over  = $over;
+					$Order->driver_id  = $driver_id;
+					$Order->is_need_driver  = $is_need_driver;
+					$Order->order_state  = $order_state;
+					$Order->give_back_state  = $give_back_state;
+					$order_id = $Order->add_order_data();
+					if ($order_id) {
+						$MemberBase->where(array('id'=>$member_base_id))->setInc('use_car_number',$length); //累加用户使用天数
+						parent::order_history($order_id,'手补订单！');
+						$this->success('添加成功！');
+					} else {
+						$this->error('添加失败请重新尝试！');
+					}					
+					/* 计算总用车天数 = 借车日期 - 还车日期 */
+				//	$count_days = format_sex_day($start,$over);
+						
+					/* 起租天数，满6小时为1天，不满6小时也为1天。 */
+				//	$count_days < 1 ? $length = 1 : $length = $count_days;
+					
+					exit;
+				}
+				
+				break;
+			default:
+				$this->error('非法操作！');	
+		}
+		
+		//获取会员数据
+		$member_base_list = $MemberBase->get_spe_data(array('status'=>0),'id,name');
+		
+		//获取车辆数据
+		$cars_list = $Cars->get_spe_data(array('status'=>0),'id,brand,car_num');
+		
+		//获取司机数据
+		$driver_list = $StaffBase->get_spe_data(array('occupation_id'=>$this->occupation_driver_id),'id,name');
+		
+		$html['member_base_list'] = $member_base_list;
+		$html['cars_list'] = $cars_list;
+		$html['driver_list'] = $driver_list;
+		$this->assign('html',$html);
+		$this->assign('ACTION_NAME','添加会员用车记录');
+		$this->assign('TITILE_NAME','补订单');
+		$this->display();
+	}
 	
 	
 }

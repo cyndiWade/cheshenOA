@@ -6,8 +6,8 @@ class OrderBaseAction extends CarsBaseAction {
 	
 	protected $MODULE = '订单管理';
 
-	/* 区域司机ID */
-	private $occupation_driver_id = 8;
+	/* 职位司机ID */
+	protected $occupation_driver_id = 8;
 	
 	/* 车辆管理部门职位ID */
 	protected $occupation_cars_id = 10;		
@@ -19,7 +19,8 @@ class OrderBaseAction extends CarsBaseAction {
 	protected $order_from = array(
 		'N' => '电话预定',
 		'W' => '网站预定',
-		'A' => 'APP客户端'		
+		'A' => 'APP客户端',
+		'S' => '往期订单(手补)'
 	);		
 
 	/* 是否需要司机 */
