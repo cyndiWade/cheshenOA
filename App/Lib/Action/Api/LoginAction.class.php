@@ -6,6 +6,11 @@
 class LoginAction extends ApiBaseAction {
 	
 
+	public function index () {
+		echo 123;
+	}
+	
+	
 	//登录验证
 	public function login () {
 
