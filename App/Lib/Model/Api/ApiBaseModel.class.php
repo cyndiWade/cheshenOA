@@ -6,6 +6,8 @@
 
 class ApiBaseModel extends AppBaseModel {
 	
-	
+	public function __construct() {
+		parent::__construct();
+	}
 }
 ?>

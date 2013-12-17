@@ -6,8 +6,17 @@
 
 class AppBaseModel extends Model {
 	
+	protected $prefix;		//表前缀
+	
 	public function __construct() {
 		parent::__construct();
+		
+		$this->admin_base_init();
+	}
+	
+	//初始话表前缀
+	private function admin_base_init () {
+		$this->prefix = C('DB_PREFIX');
 	}
 
 	//删除方法

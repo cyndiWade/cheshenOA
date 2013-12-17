@@ -5,6 +5,9 @@
  */
 class VerifyModel extends ApiBaseModel {
 	
+	public function __construct() {
+		parent::__construct();
+	}
 	
 	//查找短信验证码
 	public function seek_verify_data ($telephone,$type) {

@@ -36,12 +36,19 @@ class UsersModel extends AdminBaseModel {
 	
 	//更新登录信息
 	public function up_login_info ($uid) {
+		
 		$time = time();
-		$this->last_login_time = $time;
-		$this->last_login_ip = get_client_ip();
-		$this->login_count = $this->login_count + 1; 
+		$con['last_login_time'] = $time;
+		$con['last_login_ip'] = get_client_ip();
+		$con['login_count'] = array('exp','login_count+1');
+		return $this->where(array('id'=>$uid))->save($con);
+
+// 		$time = time();
+// 		$this->last_login_time = $time;
+// 		$this->last_login_ip = get_client_ip();
+// 		$this->login_count = $this->login_count + 1; 
 			
-		$this->where(array('id'=>$uid))->save();
+// 		$this->where(array('id'=>$uid))->save();
 	
 	}
 	

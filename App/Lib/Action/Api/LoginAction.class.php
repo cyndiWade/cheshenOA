@@ -5,18 +5,25 @@
  */
 class LoginAction extends ApiBaseAction {
 	
-
-	public function index () {
-		echo 123;
+	protected $add_db = array(
+		'Member' => 'Member',
+	);
+	
+	/* 需要身份验证的方法名 */
+	protected $Verify = array();
+	
+	
+	public function __construct() {
+		parent:: __construct();			//重写父类构造方法
 	}
+	
 	
 	
 	//登录验证
 	public function login () {
 
-		
 		if ($this->isPost()) {
-			$Users = D('Users');									//用户表模型
+			$Member = $this->db['Member'];					//会员用户模型表
 			
 			$account = $_POST['account'];					//用户账号
 			$password = md5($_POST['password']);	//用户密码
@@ -24,7 +31,8 @@ class LoginAction extends ApiBaseAction {
 			$this->check_me();									//验证提交数据
 			
 			//数据库验证用户信息
-			$user_info = $Users->get_user_info(array('account'=>$account,'status'=>0));
+			$user_info = $Member->get_user_info($account);
+
 			if (empty($user_info)) {
 				parent::callback(C('STATUS_NOT_DATA'),'此用户不存在，或已被禁用');
 			} else {
@@ -37,15 +45,14 @@ class LoginAction extends ApiBaseAction {
 					$identity_encryption = passport_encrypt($encryption,C('UNLOCAKING_KEY'));	//生成加密字符串,给客户端
 					
 					//更新用户登录信息
-					$Users->up_login_info($user_info['id']);
+					$Member->up_login_info($user_info['id']);
 						
 					//返回给客户端数据
 					parent::callback(C('STATUS_SUCCESS'),'登录成功',
 						array(
 							'user_key'=>$identity_encryption,
 							'account'=>$user_info['account'],
-							'nickname'=>$user_info['nickname'],
-							'type'=>$user_info['type']
+							'nickname'=>$user_info['nickname']
 						)
 					);
 				}	
@@ -55,8 +62,10 @@ class LoginAction extends ApiBaseAction {
 	}
 	
 	
+	
 	//用户注册	
 	public function register () {	
+
 		if ($this->isPost()) {		
 			//初始化数据
 			//验证提交数据
@@ -73,19 +82,19 @@ class LoginAction extends ApiBaseAction {
 			parent::check_verify($account,1);			//验证类型1为注册验证
 			
 			//数据库验证
-			$Users = D('Users');							//用户表模型	
+			$Member = $this->db['Member'];						//用户表模型	
 			
 			//账号验证、数据写入模块
-			$is_have = $Users->account_is_have($account);		//查看账号是否存在
+			$is_have = $Member->account_is_have($account);		//查看账号是否存在
 			if ($is_have) {
 				parent::callback(C('STATUS_OTHER'),'此账号已存在');
 			} else {		//添加注册用户
-				$Users->create();
-				$Users->add_account(C('ACCOUNT_TYPE.USER')) ? parent::callback(C('STATUS_SUCCESS'),'注册成功') : parent::callback(C('STATUS_UPDATE_DATA'),'注册失败');
+				$Member->create();
+				$Member->add_account(C('ACCOUNT_TYPE.USER')) ? parent::callback(C('STATUS_SUCCESS'),'注册成功') : parent::callback(C('STATUS_UPDATE_DATA'),'注册失败');
 			}
 		} 
 			
-		//$this->display('Login:register');
+		$this->display('Login:register');
 	}
 	
 

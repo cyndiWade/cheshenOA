@@ -4,26 +4,72 @@
  * Api接口--基础类
  */
 class ApiBaseAction extends AppBaseAction {
-	
-	/**
-	 * 保存用户信息，供全局调用
-	 */
-	protected $oUser;					//用户数据
-	
 
+	protected $db = array(
+		'Verify'=>'Verify'		
+	);
+	
+	protected $Verify = array();	//需要验证的方法名
+
+	
 	/**
 	 * 构造方法
 	 */
 	public function __construct() {
-		parent:: __construct();			//重写父类构造方法
+
+		$this->Add_to_db();
+		
+		$this->Api_loading();
 		
 		//初始化
-		$this->_init();
+		$this->Api_init();
+
+		parent:: __construct();			//重写父类构造方法
+	}
+	
+	
+	
+	/**
+	 * 追加数据库链接
+	 */
+	private function Add_to_db() {
+
+		if ($this->add_db) {
+			foreach ($this->add_db AS $key=>$val) {
+				$this->db[$key] = $val;
+			}
+		}	
+	}
+	
+	
+	
+	//记载RBAC权限控制类库
+	private function Api_loading() {
+		import("@.Tool.RBAC"); 				//权限控制类库
+		/* 初始化数据 */
+		$ApiConf = new stdClass();
+	
+		/* 数据表配置 */
+		$ApiConf->table_prefix =  C('DB_PREFIX');
+		$ApiConf->node_table = C('RBAC_NODE_TABLE');
+		$ApiConf->group_table = C('RBAC_GROUP_TABLE');
+		$ApiConf->group_node_table = C('RBAC_GROUP_NODE_TABLE');
+		$ApiConf->group_user_table = C('RBAC_GROUP_USER_TABLE');
+	
+		/* 方法配置 */
+		$ApiConf->group = GROUP_NAME;					//当前分组
+		$Combination->module = MODULE_NAME;				//当前模块
+		$ApiConf->action = ACTION_NAME;					//当前方法
+		$ApiConf->not_auth_group = C('NOT_AUTH_GROUP');			//无需认证分组
+		$ApiConf->not_auth_module = C('NOT_AUTH_MODULE');		//无需认证模块
+		$ApiConf->not_auth_action = C('NOT_AUTH_ACTION');			//无需认证操作
+	
+		RBAC::init($ApiConf);		//初始化数据
 	}
 	
 	
 	//初始化用户数据
-	private function _init() {
+	private function Api_init() {
 		
 // 		$demo = array(
 // 			'id'=>'2',
@@ -32,19 +78,28 @@ class ApiBaseAction extends AppBaseAction {
 // 		) ;
 // 		 $this->oUser = (object) $demo;
 		 
-		 /* 身份标识验证验证 */
-		 if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {
-		 	$this->deciphering_user_info();
-		 }
-
-		 /* RBAC权限系统开启 */
+		
+		//验证需要登录，有身份标识的模块
+		if (in_array(ACTION_NAME,$this->Verify)) {
+			if (empty($this->oUser)) {
+				$this->deciphering_user_info();
+			}
+		}
+		
+		/* 身份标识验证验证 
+		if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {
+			$this->deciphering_user_info();
+		}*/
+		
+		 /* RBAC权限系统验证 */
 		 if (C('USER_AUTH_ON') == true) {
 		 
 		 	/* 对于不是管理员的用户进行权限验证 */
 		 	if (!in_array($this->oUser->account,explode(',',C('ADMIN_AUTH_KEY')))) {
-	
+
 		 		/* 权限验证 */
 		 		$check_result = RBAC::check($this->oUser->id);
+
 		 		if ($check_result['status'] == false) {
 		 			parent::callback(C('STATUS_NOT_LOGIN'),$check_result['message']);
 		 		}
@@ -53,13 +108,15 @@ class ApiBaseAction extends AppBaseAction {
 	}
 	
 	
+	
 	/**
 	 * 解密客户端秘钥，获取用户数据
 	 */
 	private function deciphering_user_info() {
 		//获取加密身份标示
-		$identity_encryption = $this->_post('user_key');		
-		//$identity_encryption = 'UWEJPVUxADRXM1NiCmUAYQsyWzFXNlxjAWQFaQEyVWBXZFtmUSlWYABjVX8OYF8y';
+		$identity_encryption = $this->_post('user_key');	
+		//$identity_encryption = $this->_get('user_key');
+		//$identity_encryption = 'AzUMOlJiDGoFNVJtWzYFYgw/XDhQPFw4UGxXPwdgXzMMM1J4Vm8BZVB+AjQMZg==';
 		
 		//解密获取用户数据
 		$decrypt = passport_decrypt($identity_encryption,C('UNLOCAKING_KEY'));	
@@ -73,7 +130,7 @@ class ApiBaseAction extends AppBaseAction {
 		if (countDays($date,date('Y-m-d'),1) >= 30 ) $this->callback(C('STATUS_NOT_LOGIN'),'登录已过期，请重新登录');		//钥匙过期时间为30天
 
 		//去数据库获取用户数据
-		$user_data = D('Users')->field('id,account,nickname,type')->where(array('id'=>$uid,'status'=>0))->find();
+		$user_data = $this->db['Member']->field('id,account,nickname,type')->where(array('id'=>$uid,'status'=>0))->find();
 
 		if ($user_data ==  false) {
 			parent::callback(C('STATUS_NOT_DATA'),'此用户不存在，或被禁用');
@@ -115,6 +172,7 @@ class ApiBaseAction extends AppBaseAction {
 	}
 	
 	
+	
 	/**
 	 * 城市映射，通过城市名，获取城市id
 	 * @param String $city_name		//市级城市名
@@ -132,13 +190,16 @@ class ApiBaseAction extends AppBaseAction {
 	}
 	
 	
+	
 	/**
 	 * 短信验证模块
 	 * @param String $telephone		//验证的手机号码
 	 * @param Number $type				//验证类型：1为注册验证，2为商铺验证
 	 */
 	protected function check_verify ($telephone,$type) {
-		$Verify = D('Verify');							//短信表
+	
+	//	$Verify = D('Verify');							//短信表
+		$Verify = $this->db['Verify'];		
 		$verify_code = $_POST['verify'];		//短信验证码
 		
 		$shp_info = $Verify->seek_verify_data($telephone,$type);

@@ -10,43 +10,26 @@ class AppBaseAction extends GlobalParameterAction {
 	 * 构造方法
 	 */
 	public function __construct() {
-		parent:: __construct();			//重写父类构造方法
+	
 		//G('begin'); 							// 记录开始标记位（运行开始）
-		$this->loading();
+		
+		//初始化数据库连接
+		$this->db_init();	
+		
+		parent::__construct();
 	}
 
-	/**
-	 * 加载类各种类库
-	 */
-	private function loading() {
-		
-		/**
-		 *  权限控制
-		 */
-		import("@.Tool.RBAC"); 	//权限控制类库
-		/* 初始化数据 */
-		$Combination = new stdClass();
-		
-		/* 数据表配置 */
-		$Combination->table_prefix =  C('DB_PREFIX');		
-		$Combination->node_table = C('RBAC_NODE_TABLE');		
-		$Combination->group_table = C('RBAC_GROUP_TABLE');
-		$Combination->group_node_table = C('RBAC_GROUP_NODE_TABLE');
-		$Combination->group_user_table = C('RBAC_GROUP_USER_TABLE');
-		
-		/* 方法配置 */
-		$Combination->group = GROUP_NAME;					//当前分组
-		$Combination->module = MODULE_NAME;				//当前模块
-		$Combination->action = ACTION_NAME;					//当前方法
-		$Combination->not_auth_group = C('NOT_AUTH_GROUP');			//无需认证分组
-		$Combination->not_auth_module = C('NOT_AUTH_MODULE');		//无需认证模块
-		$Combination->not_auth_action = C('NOT_AUTH_ACTION');			//无需认证操作
-
-		RBAC::init($Combination);		//初始化数据
+	
+	//初始化DB连接
+	private function db_init() {
+		foreach ($this->db as $key=>$val) {
+			if (empty($val)) continue;
+			$this->db[$key] = D($val);
+		}
 		
 	}
 	
-	
+
 	/**
 	 * 短信发送类
 	 * @param String $telephone  电话号码
@@ -61,7 +44,6 @@ class AppBaseAction extends GlobalParameterAction {
 // 		return $send;
 // 	}
 	protected function send_shp ($telephone,$msg) {
-
 		$shp_type = C('SHP.TYPE');
 		$shp_name = C('SHP.NAME');
 		$shp_password = C('SHP.PWD');
@@ -79,10 +61,11 @@ class AppBaseAction extends GlobalParameterAction {
 			default:
 				exit('illegal operation！');	
 		}
-
 		return $send;
 	}
 	
+	
+		
 	/**
 	 * 统一数据返回
 	 * @param unknown_type $status
@@ -95,10 +78,8 @@ class AppBaseAction extends GlobalParameterAction {
 				'msg' => $msg,
 				'data' => $data,
 				'num' => count($data),
-		);
-	
-		header('Content-Type:text/html;charset=utf-8');
-	
+		);	
+		header('Content-Type:text/html;charset=utf-8');	
 		//die(json_encode($return));
 		exit(JSON($return));
 	}

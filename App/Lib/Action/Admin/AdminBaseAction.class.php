@@ -7,16 +7,13 @@ class AdminBaseAction extends AppBaseAction {
 
 	protected $global_tpl_view;		//全局模板变量
 	
-	/**
-	 * 构造方法
-	 */
+	//构造方法
 	public function __construct() {
 		parent:: __construct();			//重写父类构造方法
 		
-		//初始化数据库连接
-		$this->db_init();
+		$this->Admin_loading();		//RBAC权限控制类库
 		
-		//初始化
+		//初始化用户数据
 		$this->admin_base_init();
 		
 		//全局系统变量
@@ -27,45 +24,31 @@ class AdminBaseAction extends AppBaseAction {
 	}
 	
 	
-	//初始化DB连接
-	private function db_init() {
-		foreach ($this->db as $key=>$val) {
-			if (empty($val)) continue;
-			$this->db[$key] = D($val);
-		}
+	
+	//记载RBAC权限控制类库
+	private function Admin_loading() {	
+		import("@.Tool.RBAC"); 	//权限控制类库
+		/* 初始化数据 */
+		$Combination = new stdClass();
+	
+		/* 数据表配置 */
+		$Combination->table_prefix =  C('DB_PREFIX');
+		$Combination->node_table = C('RBAC_NODE_TABLE');
+		$Combination->group_table = C('RBAC_GROUP_TABLE');
+		$Combination->group_node_table = C('RBAC_GROUP_NODE_TABLE');
+		$Combination->group_user_table = C('RBAC_GROUP_USER_TABLE');
+	
+		/* 方法配置 */
+		$Combination->group = GROUP_NAME;					//当前分组
+		$Combination->module = MODULE_NAME;				//当前模块
+		$Combination->action = ACTION_NAME;					//当前方法
+		$Combination->not_auth_group = C('NOT_AUTH_GROUP');			//无需认证分组
+		$Combination->not_auth_module = C('NOT_AUTH_MODULE');		//无需认证模块
+		$Combination->not_auth_action = C('NOT_AUTH_ACTION');			//无需认证操作
+	
+		RBAC::init($Combination);		//初始化数据
 	}
 	
-	//初始化用户数据
-	private function admin_base_init() {
-
-		/* SESSION信息验证保存 */
-		$session_userinfo = $_SESSION['user_info'];				//保存用户信息
-
-		if (!empty($session_userinfo)) {
-			$this->oUser = (object) $session_userinfo;					//转换成对象
-		}  		
-
-		if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {
-			
-			$this->error('请先登录','?s=/Admin/Login/login');
-			exit;
-		}
-	
-		/* RBAC权限系统开启 */
-		if (C('USER_AUTH_ON') == true) {
-
-			/* 对于不是管理员的用户进行权限验证 */
-			if (!in_array($this->oUser->account,explode(',',C('ADMIN_AUTH_KEY')))) {
-			
-				/* RBAC权限验证 */
-				$check_result = RBAC::check($this->oUser->id);			
-				if ($check_result['status'] == false) $this->error($check_result['message']);
-			}
-		}
-
-	}
-	
-
 	/**
 	 * 手动验证当前用户权限
 	 * @param String $module		//验证模块名
@@ -82,27 +65,49 @@ class AdminBaseAction extends AppBaseAction {
 		$assign->not_auth_module = C('NOT_AUTH_MODULE');		//无需认证模块
 		$assign->not_auth_action = C('NOT_AUTH_ACTION');			//无需认证操作
 		RBAC::init($assign);		//初始化数据
-		
+	
 		/* RBAC权限系统开启 */
 		if (C('USER_AUTH_ON') == true) {
-		
 			/* 对于不是管理员的用户进行权限验证 */
 			if (!in_array($this->oUser->account,explode(',',C('ADMIN_AUTH_KEY')))) {
-					
 				/* RBAC权限验证 */
 				$check_result = RBAC::check($this->oUser->id);
 				return array('status'=>$check_result['status'],'message'=>$check_result['message']);
-				
 			} else {
 				return array('status'=>true,'message'=>'放行，管理员账号无需验证。');
 			}
-			
 		} else {
 			return array('status'=>true,'message'=>'放行，权限验证已关闭。');
+		}
+	}
+	
+
+	//初始化用户数据
+	private function admin_base_init() {
+		/* SESSION信息验证保存 */
+		$session_userinfo = $_SESSION['user_info'];				//保存用户信息
+		if (!empty($session_userinfo)) {
+			$this->oUser = (object) $session_userinfo;					//转换成对象
+		}  		
+
+		if (empty($this->oUser) && !in_array(MODULE_NAME,explode(',',C('NOT_AUTH_MODULE')))) {		
+			$this->error('请先登录','?s=/Admin/Login/login');
+			exit;
+		}
+	
+		/* RBAC权限系统开启 */
+		if (C('USER_AUTH_ON') == true) {
+			/* 对于不是管理员的用户进行权限验证 */
+			if (!in_array($this->oUser->account,explode(',',C('ADMIN_AUTH_KEY')))) {	
+				/* RBAC权限验证 */
+				$check_result = RBAC::check($this->oUser->id);			
+				if ($check_result['status'] == false) $this->error($check_result['message']);
+			}
 		}
 
 	}
 	
+
 	
 	/**
 	 * 全局系统用到的数据
@@ -110,7 +115,6 @@ class AdminBaseAction extends AppBaseAction {
 	private function global_system () {
 		$this->global_system['member_rank'] = D('MemberRank')->seek_all_data();
 	}
-	
 	
 	
 
@@ -151,6 +155,7 @@ class AdminBaseAction extends AppBaseAction {
 		//写入模板
 		$this->assign('global_tpl_view',$this->global_tpl_view);
 	}
+	
 	
 
 	/**

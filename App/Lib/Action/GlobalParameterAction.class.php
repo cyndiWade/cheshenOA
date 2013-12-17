@@ -10,6 +10,8 @@ class GlobalParameterAction extends Action {
 	
 	protected $oUser;						//全局身份标示
 	
+	protected $add_db = array();
+	
 	protected $db = array();				//数据库对象
 	
 	
