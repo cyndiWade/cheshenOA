@@ -46,7 +46,10 @@ class StaffBaseModel extends AdminBaseModel {
 		return $this->add();
 	}
 	
-	//获取可用司机列表
+	/**
+	 * 获取可用司机列表、也可以获取可用职位列表
+	 * @param INT $occupation_id		//职位ID
+	 */
 	public function seek_usable_driver_list ($occupation_id) {
 		$PREFIX = $this->prefix;
 		$data = $this->field('s.id,s.name,s.sex,d.name AS name1,o.name AS name2,phone')

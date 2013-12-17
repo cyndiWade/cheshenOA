@@ -316,9 +316,10 @@
 							地区车辆</a>
 						</li>
 						<li >
-
+							<!--
 							<a href="{:U('Admin/Staff/index',array('occupation_id'=>8))}">
 							司机数据</a>
+							-->
 						</li>
 
 					</ul>
@@ -355,7 +356,10 @@
 							<a href="{:U('Admin/Order/give_back_car_list')}">
 							还车管理({$global_tpl_view.sidebar.order_count.give_back})</a>
 						</li>
-					
+						<li >
+							<a href="{:U('Admin/Order/order_supplement',array(act=>add))}">
+							补充用车记录</a>
+						</li>
 					</ul>
 
 				</li>

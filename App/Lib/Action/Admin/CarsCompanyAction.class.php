@@ -38,12 +38,15 @@ class CarsCompanyAction extends CarsBaseAction {
 		$Cars = D('Cars');		//车辆数据表
 		$html_list = $Cars->seek_car_info($company_id);
 
+		
 		if ($html_list) {
 			foreach ($html_list AS $key=>$val) {
 				$html_list[$key]['car_status'] = $this->car_status[$val['car_status']];
+				$html_list[$key]['cars_grade_id'] = $this->car_grade[$val['cars_grade_id']];
 			}
 		}
 		
+
 		$this->assign('ACTION_NAME','车辆信息列表');
 		$this->assign('TITILE_NAME',$this->company_name.'--车辆信息列表');
 		$this->assign('company_id',$company_id);
