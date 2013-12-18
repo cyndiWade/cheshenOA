@@ -5,8 +5,13 @@
  */
 class LoginAction extends ApiBaseAction {
 	
+	/**
+	 * 追加使用的数据表对象
+	 * @var Array  当访问时，$this->db['Member']->query();
+	 */
 	protected $add_db = array(
 		'Member' => 'Member',
+		'Verify'=>'Verify'
 	);
 	
 	/* 需要身份验证的方法名 */

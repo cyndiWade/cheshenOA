@@ -11,6 +11,11 @@ class SendAction extends ApiBaseAction {
 	private $date;					//发送时间
 	private $send_status;		//发送状态
 
+	
+	/**
+	 * 追加使用的数据表对象
+	 * @var Array  当访问时，$this->db['Member']->query();
+	 */
 	protected $add_db = array(
 		'Member' => 'Member',
 	);
@@ -73,7 +78,7 @@ class SendAction extends ApiBaseAction {
 	
 	//注册发送短信
 	public function register_send () {
-		dump($this->db);
+
 		//手机号码
 		if ($this->isPost()) {
 			$this->telephone = $this->_post('telephone');		//电话号码
@@ -82,8 +87,8 @@ class SendAction extends ApiBaseAction {
 			exit;
 		}
 		
-	//	$this->assign('name','telephone');
-	//	$this->display('Login:sendSHP');
+		$this->assign('name','telephone');
+		$this->display('Login:sendSHP');
 	}
 	
 	

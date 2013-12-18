@@ -5,8 +5,12 @@
  */
 class ApiBaseAction extends AppBaseAction {
 
+	/**
+	 * 数据表对象
+	 * @var Array   访问如：$this->db['Verify']->where(id=10)->save();
+	 */
 	protected $db = array(
-		'Verify'=>'Verify'		
+		
 	);
 	
 	protected $Verify = array();	//需要验证的方法名
@@ -33,8 +37,7 @@ class ApiBaseAction extends AppBaseAction {
 	 * 追加数据库链接
 	 */
 	private function Add_to_db() {
-
-		if ($this->add_db) {
+		if (!empty($this->add_db)) {
 			foreach ($this->add_db AS $key=>$val) {
 				$this->db[$key] = $val;
 			}
@@ -194,7 +197,7 @@ class ApiBaseAction extends AppBaseAction {
 	/**
 	 * 短信验证模块
 	 * @param String $telephone		//验证的手机号码
-	 * @param Number $type				//验证类型：1为注册验证，2为商铺验证
+	 * @param Number $type				//验证类型：1为注册验毒啊您
 	 */
 	protected function check_verify ($telephone,$type) {
 	
