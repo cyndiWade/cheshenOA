@@ -1,3 +1,4 @@
+_bak/
 App/Runtime
 config.inc.php
 data
@@ -5,4 +6,3 @@ data
 .buildpath
 .zfproject.xml
 .settings
-_bak
