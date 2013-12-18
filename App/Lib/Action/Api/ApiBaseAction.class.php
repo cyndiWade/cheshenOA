@@ -15,14 +15,20 @@ class ApiBaseAction extends AppBaseAction {
 	
 	protected $Verify = array();	//需要验证的方法名
 
+	protected $request;					//获取请求的数据
+	
 	
 	/**
 	 * 构造方法
 	 */
 	public function __construct() {
 
+		$this->Init_Request();		//初始化数据
+		
+		//追加的表模型
 		$this->Add_to_db();
 		
+		//加载
 		$this->Api_loading();
 		
 		//初始化
@@ -30,6 +36,17 @@ class ApiBaseAction extends AppBaseAction {
 
 		parent:: __construct();			//重写父类构造方法
 	}
+	
+	
+	
+	/**
+	 * 初始化
+	 */
+	private function Init_Request () {
+		$this->request['user_key'] = $this->_post('user_key');		//身份验证的user_key
+		$this->request['verify'] = $this->_post('verify');					//短信验证码
+	}
+	
 	
 	
 	
@@ -111,13 +128,12 @@ class ApiBaseAction extends AppBaseAction {
 	}
 	
 	
-	
 	/**
 	 * 解密客户端秘钥，获取用户数据
 	 */
 	private function deciphering_user_info() {
 		//获取加密身份标示
-		$identity_encryption = $this->_post('user_key');	
+		$identity_encryption = $this->request['user_key'];	
 		//$identity_encryption = $this->_get('user_key');
 		//$identity_encryption = 'AzUMOlJiDGoFNVJtWzYFYgw/XDhQPFw4UGxXPwdgXzMMM1J4Vm8BZVB+AjQMZg==';
 		
@@ -203,7 +219,7 @@ class ApiBaseAction extends AppBaseAction {
 	
 	//	$Verify = D('Verify');							//短信表
 		$Verify = $this->db['Verify'];		
-		$verify_code = $_POST['verify'];		//短信验证码
+		$verify_code = $this->request['verify'];		//短信验证码
 		
 		$shp_info = $Verify->seek_verify_data($telephone,$type);
 

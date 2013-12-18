@@ -19,19 +19,27 @@ class LoginAction extends ApiBaseAction {
 	
 	
 	public function __construct() {
+		
 		parent:: __construct();			//重写父类构造方法
+		
+		$this->request['account'] = $_POST['account'];							//用户账号
+		$this->request['password'] = $_POST['password'];					//用户密码
+		$this->request['password_confirm'] = $_POST['password'];		//确认密码
+		
+		
 	}
 	
 	
 	
 	//登录验证
 	public function login () {
+	//	dump($this->request);
 
 		if ($this->isPost()) {
 			$Member = $this->db['Member'];					//会员用户模型表
 			
-			$account = $_POST['account'];					//用户账号
-			$password = md5($_POST['password']);	//用户密码
+			$account = $this->request['account'];					//用户账号
+			$password = md5($this->request['password']);	//用户密码
 			
 			$this->check_me();									//验证提交数据
 			
@@ -75,9 +83,9 @@ class LoginAction extends ApiBaseAction {
 			//初始化数据
 			//验证提交数据
 			$this->check_me();		
-			$account = $_POST['account'];										//注册账号	
-			$password = $_POST['password'];								//密码
-			$password_confirm = $_POST['password_confirm'];		//密码确认
+			$account = $this->request['account'];										//注册账号	
+			$password = $this->request['password'];								//密码
+			$password_confirm = $this->request['password_confirm'];		//密码确认
 			//密码确认验证
 			if ($password != $password_confirm) {
 				parent::callback(C('STATUS_OTHER'),'二次密码输入不一致');
@@ -107,11 +115,11 @@ class LoginAction extends ApiBaseAction {
 	private function check_me() {
 		import("@.Tool.Validate");							//验证类
 		//数据验证
-		if (Validate::checkNull($_POST['account'])) parent::callback(C('STATUS_OTHER'),'账号为空');
-		if ($_POST['account'] != 'admin') {
-			if (!Validate::checkPhone($_POST['account'])) parent::callback(C('STATUS_OTHER'),'账号必须为11位的手机号码');
+		if (Validate::checkNull($this->request['account'])) parent::callback(C('STATUS_OTHER'),'账号为空');
+		if ($this->request['account'] != 'admin') {
+			if (!Validate::checkPhone($this->request['account'])) parent::callback(C('STATUS_OTHER'),'账号必须为11位的手机号码');
 		}
-		if (Validate::checkNull($_POST['password'])) parent::callback(C('STATUS_OTHER'),'密码为空');		
+		if (Validate::checkNull($this->request['password'])) parent::callback(C('STATUS_OTHER'),'密码为空');		
 	}
 	
 	
