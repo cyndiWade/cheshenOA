@@ -109,9 +109,9 @@ class CarsScheduleAction extends CarsBaseAction {
 // 		$estimate_over = strtotime('2013-12-1 21:00');		//1385902800		
  
 		
- 		$member_base_id = $this->_post('member_base_id');
- 		$start = strtotime($this->_post('start_schedule_time'));
- 		$estimate_over = strtotime($this->_post('over_schedule_time'));
+ 		$member_base_id = $this->_post('member_base_id');		//会员ID
+ 		$start = strtotime($this->_post('start_schedule_time'));			//开始用车日期
+ 		$estimate_over = strtotime($this->_post('over_schedule_time'));		//预计还车日期
 
  		/* 参数验证 */
  		if (empty($member_base_id)) parent::callback(C('STATUS_NOT_DATA'),'会员标识不存在');

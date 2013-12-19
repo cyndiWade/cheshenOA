@@ -13,6 +13,7 @@ class LoginAction extends ApiBaseAction {
 		'Member' => 'Member',
 		'Verify'=>'Verify'
 	);
+
 	
 	/* 需要身份验证的方法名 */
 	protected $Verify = array();
