@@ -25,9 +25,7 @@ class LoginAction extends ApiBaseAction {
 		
 		$this->request['account'] = $_POST['account'];							//用户账号
 		$this->request['password'] = $_POST['password'];					//用户密码
-		$this->request['password_confirm'] = $_POST['password'];		//确认密码
-		
-		
+		$this->request['password_confirm'] = $_POST['password_confirm'];		//确认密码
 	}
 	
 	

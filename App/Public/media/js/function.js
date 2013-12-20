@@ -25,6 +25,7 @@ Cookie.prototype.delCookie = function(name) {//删除cookie
 	if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
 
+
 /**
  * 获取数据类型
  */

@@ -10,7 +10,7 @@ class OrderAction extends ApiBaseAction {
 	 * @var Array  当访问时，$this->db['Member']->query();
 	 */
 	protected $add_db = array(
-		'Member'=>'Member',
+		'Member'=>'Member',									//用户账号表
 		'MemberResource' => 'MemberResource',		//会员享有资源表
 		'MemberBase' => 'MemberBase',					//会员基本信息表
 		'CarsSchedule' => 'CarsSchedule',					//车辆日程表
@@ -33,25 +33,28 @@ class OrderAction extends ApiBaseAction {
 	
 	//车辆预定接口	
 	public function apply () {
-		$MemberResource = $this->db['MemberResource'];		// 会员等级对应可用资源表（会员）
-		$MemberBase = $this->db['MemberBase'];						//会员基本信息表
+		$MemberResource = $this->db['MemberResource'];				// 会员等级对应可用资源表（会员）
+		$Member = $this->db['Member'];											//会员用户表
+		$MemberBase = $this->db['MemberBase'];							//会员基本信息表
 		$Cars = $this->db['Cars'];														//车辆资源表
 		$CarsSchedule = $this->db['CarsSchedule'];						//车辆日程表
+	
 		
-
-		exit;
 		
-		$member_base_id = $this->_get('member_base_id');
-		$start = strtotime('2013-11-26 00:10');
-		$estimate_over = strtotime('2013-12-1 21:00');		//1385902800		
+	//	$member_base_id = $this->_get('member_base_id');
+		$start = strtotime('2013-12-25 00:10');
+		$estimate_over = strtotime('2014-1-20 21:00');		//1385902800		
  
+		$ids = $MemberBase->seek_base_info($this->oUser->account);		//通过用户账号，获取会员ID
+		$member_id = $ids['use_id'];					//账号ID
+		$member_base_id = $ids['id'];				//会员ID
 		
- 		$member_base_id = $this->_post('member_base_id');		//会员ID
- 		$start = strtotime($this->_post('start_schedule_time'));			//开始用车日期
- 		$estimate_over = strtotime($this->_post('over_schedule_time'));		//预计还车日期
+ 		//$start = strtotime($this->_post('start_schedule_time'));			//开始用车日期
+ 		//$estimate_over = strtotime($this->_post('over_schedule_time'));		//预计还车日期
+
 
  		/* 参数验证 */
- 		if (empty($member_base_id)) parent::callback(C('STATUS_NOT_DATA'),'会员标识不存在');
+ 		if (empty($member_base_id)) parent::callback(C('STATUS_NOT_DATA'),'车辆只对车神会员开放');
  		if (empty($start)) parent::callback(C('STATUS_NOT_DATA'),'用车开始时间不得为空');
  		if (empty($estimate_over)) parent::callback(C('STATUS_NOT_DATA'),'预计还车时间还车时间不得为空');
 		if ($start > $estimate_over) parent::callback(C('STATUS_OTHER'),'开始日期不得大于结束日期');
