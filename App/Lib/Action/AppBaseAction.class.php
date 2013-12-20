@@ -10,13 +10,13 @@ class AppBaseAction extends GlobalParameterAction {
 	 * 构造方法
 	 */
 	public function __construct() {
-	
 		//G('begin'); 							// 记录开始标记位（运行开始）
 		
 		//初始化数据库连接
 		$this->db_init();	
 		
 		parent::__construct();
+
 	}
 
 	
@@ -79,7 +79,10 @@ class AppBaseAction extends GlobalParameterAction {
 				'data' => $data,
 				'num' => count($data),
 		);	
-		header('Content-Type:text/html;charset=utf-8');	
+		
+		header('Content-Type:application/json;charset=utf-8');
+	//	header("Content-type: text/xml;charset=utf-8");
+		//header('charset=utf-8');	
 		//die(json_encode($return));
 		exit(JSON($return));
 	}
@@ -90,7 +93,7 @@ class AppBaseAction extends GlobalParameterAction {
 	 * 组合图片外部访问地址
 	 * @param Array $arr								//要组合地址的数组
 	 * @param String Or Array	 $field			//组合的字段key  如：pic 或  array('pic','head')
-	 * @param String $dir_type						//目录类型  如：/images
+	 * @param String $dir_type						//目录类型  如：images/
 	 */
 	protected function public_file_dir (Array &$arr,$field,$dir_type) {
 		$public_file_dir =  C('PUBLIC_VISIT.domain').C('PUBLIC_VISIT.dir').$dir_type;			//域名、文件目录

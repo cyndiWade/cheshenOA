@@ -33,7 +33,7 @@ class SendAction extends ApiBaseAction {
 		$this->verify =  mt_rand(111111,999999);		//生成随机验证码
 		$this->date = date('Y-m-d H:i');						//日期
 		
-		
+		$this->request['telephone'] = $this->_post('telephone');
 	}
 	
 	
@@ -81,7 +81,7 @@ class SendAction extends ApiBaseAction {
 
 		//手机号码
 		if ($this->isPost()) {
-			$this->telephone = $this->_post('telephone');		//电话号码
+			$this->telephone = $this->request['telephone'];		//电话号码
 			$this->msg = $this->verify.'，为您的账号注册验证码，请在10分钟内完成注册，如非本人注册，请忽略；'.$this->date.'。';
 			$this->_add_data(1);
 			exit;

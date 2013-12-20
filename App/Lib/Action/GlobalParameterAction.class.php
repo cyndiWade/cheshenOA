@@ -70,6 +70,8 @@ class GlobalParameterAction extends Action {
 	);
 	
 	
+	protected  $company_id = 1;					//车辆所属区域，目前业务暂时只在深圳(暂时用到的地方为：CarsSchedule)
+	
 	/**
 	 * 构造方法
 	 */

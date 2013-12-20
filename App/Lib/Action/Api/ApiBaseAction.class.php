@@ -15,21 +15,34 @@ class ApiBaseAction extends AppBaseAction {
 	
 	protected $Verify = array();	//需要验证的方法名
 
+	protected $request;					//获取请求的数据
+	
 	
 	/**
 	 * 构造方法
 	 */
 	public function __construct() {
-
-		$this->Add_to_db();
-		
-		$this->Api_loading();
-		
-		//初始化
-		$this->Api_init();
-
+		$this->Init_Request();		//初始化数据		
+		$this->Add_to_db();			//追加的表模型
 		parent:: __construct();			//重写父类构造方法
+	
+		$this->Api_loading();			//加载	
+		$this->Api_init();					//初始化
+
+		
 	}
+	
+	
+	
+	/**
+	 * 初始化
+	 */
+	private function Init_Request () {
+	//	$this->request['user_key'] = $this->_post('user_key');		//身份验证的user_key
+		$this->request['user_key'] = "V20CM1JgB2AHN1JtCWYDbAQ0Vj9dOVI6VGBRPQNuD2AMMAcxBT4MdwIwBTAIeFI3DTk=";
+		$this->request['verify'] = $this->_post('verify');					//短信验证码
+	}
+	
 	
 	
 	
@@ -111,13 +124,12 @@ class ApiBaseAction extends AppBaseAction {
 	}
 	
 	
-	
 	/**
 	 * 解密客户端秘钥，获取用户数据
 	 */
 	private function deciphering_user_info() {
 		//获取加密身份标示
-		$identity_encryption = $this->_post('user_key');	
+		$identity_encryption = $this->request['user_key'];	
 		//$identity_encryption = $this->_get('user_key');
 		//$identity_encryption = 'AzUMOlJiDGoFNVJtWzYFYgw/XDhQPFw4UGxXPwdgXzMMM1J4Vm8BZVB+AjQMZg==';
 		
@@ -133,7 +145,7 @@ class ApiBaseAction extends AppBaseAction {
 		if (countDays($date,date('Y-m-d'),1) >= 30 ) $this->callback(C('STATUS_NOT_LOGIN'),'登录已过期，请重新登录');		//钥匙过期时间为30天
 
 		//去数据库获取用户数据
-		$user_data = $this->db['Member']->field('id,account,nickname,type')->where(array('id'=>$uid,'status'=>0))->find();
+		$user_data = $this->db['Member']->field('id,account,nickname')->where(array('id'=>$uid,'status'=>0))->find();
 
 		if ($user_data ==  false) {
 			parent::callback(C('STATUS_NOT_DATA'),'此用户不存在，或被禁用');
@@ -197,13 +209,13 @@ class ApiBaseAction extends AppBaseAction {
 	/**
 	 * 短信验证模块
 	 * @param String $telephone		//验证的手机号码
-	 * @param Number $type				//验证类型：1为注册验毒啊您
+	 * @param Number $type				//验证类型：1为注册验证
 	 */
 	protected function check_verify ($telephone,$type) {
 	
 	//	$Verify = D('Verify');							//短信表
 		$Verify = $this->db['Verify'];		
-		$verify_code = $_POST['verify'];		//短信验证码
+		$verify_code = $this->request['verify'];		//短信验证码
 		
 		$shp_info = $Verify->seek_verify_data($telephone,$type);
 
