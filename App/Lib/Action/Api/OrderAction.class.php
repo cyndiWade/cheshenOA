@@ -37,7 +37,7 @@ class OrderAction extends ApiBaseAction {
 		$MemberBase = $this->db['MemberBase'];						//会员基本信息表
 		$Cars = $this->db['Cars'];														//车辆资源表
 		$CarsSchedule = $this->db['CarsSchedule'];						//车辆日程表
-		
+		echo 123;
 
 		exit;
 		
