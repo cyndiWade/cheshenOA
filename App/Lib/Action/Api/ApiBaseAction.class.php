@@ -147,7 +147,7 @@ class ApiBaseAction extends AppBaseAction {
 		//去数据库获取用户数据
 		$user_data = $this->db['Member']->field('id,account,nickname')->where(array('id'=>$uid,'status'=>0))->find();
 
-		if ($user_data ==  false) {
+		if ($user_data ==  false || $account != $user_data['account']) {
 			parent::callback(C('STATUS_NOT_DATA'),'此用户不存在，或被禁用');
 		} else {
 			$this->oUser = (object) $user_data;	
