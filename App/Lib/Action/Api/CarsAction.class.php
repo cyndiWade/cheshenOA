@@ -16,13 +16,7 @@ class CarsAction extends ApiBaseAction {
 	
 	/* 需要身份验证的方法名 */
 	protected $Verify = array();
-	
-	
-	//不可使用车辆状态与$car_status对应关系
-	protected $cars_disabled = array(	
-		1,2
-	);		
-	
+		
 	
 	public function __construct() {
 		

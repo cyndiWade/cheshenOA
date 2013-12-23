@@ -15,6 +15,12 @@ class GlobalParameterAction extends Action {
 	protected $db = array();				//数据库对象
 	
 	
+	/* 资源类型 */
+	protected $resource_type = array(
+			'1' => 1 ,		//表示车辆资源
+			//	 '2' => 2,
+	);
+	
 	/* 订单提交状态 */
 	protected $order_state = array(
 			-2 => array(
@@ -69,8 +75,17 @@ class GlobalParameterAction extends Action {
 			)
 	);
 	
+	//不可使用车辆状态与$car_status对应关系
+	protected $cars_disabled = array(
+			//1,2,3
+			1,2
+	);
 	
-	protected  $company_id = 1;					//车辆所属区域，目前业务暂时只在深圳(暂时用到的地方为：CarsSchedule)
+	//车辆所属区域，目前业务暂时只在深圳(暂时用到的地方为：CarsSchedule)
+	protected  $company_id = array(
+		'shenzhen' => 1,	
+			
+	);			
 	
 	/**
 	 * 构造方法

@@ -39,8 +39,7 @@ class OrderAction extends ApiBaseAction {
 		$Cars = $this->db['Cars'];														//车辆资源表
 		$CarsSchedule = $this->db['CarsSchedule'];						//车辆日程表
 	
-		
-		
+
 	//	$member_base_id = $this->_get('member_base_id');
 		$start = strtotime('2013-12-25 00:10');
 		$estimate_over = strtotime('2014-1-20 21:00');		//1385902800		
@@ -49,11 +48,12 @@ class OrderAction extends ApiBaseAction {
 		$member_id = $ids['use_id'];					//账号ID
 		$member_base_id = $ids['id'];				//会员ID
 		
+
  		//$start = strtotime($this->_post('start_schedule_time'));			//开始用车日期
  		//$estimate_over = strtotime($this->_post('over_schedule_time'));		//预计还车日期
 
-
  		/* 参数验证 */
+		if (empty($member_id)) parent::callback(C('STATUS_NOT_DATA'),'用户不存在！');
  		if (empty($member_base_id)) parent::callback(C('STATUS_NOT_DATA'),'车辆只对车神会员开放');
  		if (empty($start)) parent::callback(C('STATUS_NOT_DATA'),'用车开始时间不得为空');
  		if (empty($estimate_over)) parent::callback(C('STATUS_NOT_DATA'),'预计还车时间还车时间不得为空');
@@ -63,7 +63,7 @@ class OrderAction extends ApiBaseAction {
 		
 		/* 通过会员ID，找到会员对应的会员信息，以及会员级别 */
 		$member_info = $MemberBase->get_one_data(array('status'=>0,'id'=>$member_base_id),'member_rank_id,use_car_number,name,over_date');
-		if (empty($member_info)) parent::callback(C('STATUS_NOT_DATA'),'此会员不存在！');
+		if (empty($member_info)) parent::callback(C('STATUS_NOT_DATA'),'此会员不存在或已被删除！');
 
 		/* 按照会员级别，获取会员享有资源类型(如车辆资源) */
 		$resource_detail = $MemberResource->seek_member_resource($member_info['member_rank_id'],$this->resource_type[1]);
@@ -72,13 +72,14 @@ class OrderAction extends ApiBaseAction {
 		if ($resource_detail) {
 			$cars_grade_id = $resource_detail['id'];					//车辆资源级别ID
 			$car_number = $resource_detail['car_number'];		//车辆资源可使用天数
-			$company_id = 1;														//车辆所属区域，目前业务暂时只在深圳
-				
+			$company_id = $this->company_id['shenzhen'];														//车辆所属区域，目前业务暂时只在深圳
+
 			//获取当前类型下，会员可享受的车辆资源列表
 			$cars_list = $Cars->seek_cars_list($cars_grade_id,$company_id,$this->cars_disabled);
+			
 			if (empty($cars_list)) parent::callback(C('STATUS_NOT_DATA'),'暂无可用车辆资源！');
 			
-			//获取可用车辆日程信息
+			//获取可用车辆日程信息12033841
 			$cars_ids = getArrayByField($cars_list,'id');		//可用车辆ID集
 			//车辆日程内可用信息
 			$available_cars_list = $CarsSchedule->Seek_Usable_Cars($cars_ids,$start,$estimate_over);		

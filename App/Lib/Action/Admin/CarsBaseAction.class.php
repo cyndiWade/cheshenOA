@@ -2,7 +2,7 @@
 /**
  * 车辆管理基础类
  */
-class CarsBaseAction extends MemberResourceAction {
+class CarsBaseAction extends AdminBaseAction {
 	
 	protected $MODULE = '车辆管理';
 	
@@ -22,13 +22,7 @@ class CarsBaseAction extends MemberResourceAction {
 		2 => '报废',
 		3 => '租用中',		
 	);	
-	//不可使用车辆状态与$car_status对应关系
-	protected $cars_disabled = array(
-		//1,2,3		
-		1,2
-	);		
 	
-
 	
 	/**
 	 * 构造方法
