@@ -75,6 +75,29 @@ class GlobalParameterAction extends Action {
 			)
 	);
 	
+	
+	/**
+	 * 订单来源
+	 */
+	protected $order_from = array(
+			'N' => '电话预定',
+			'W' => '网站预定',
+			'A' => 'APP客户端',
+			'S' => '往期订单(手补)'
+	);
+	
+	/* 是否需要司机 */
+	protected $is_need_driver = array(
+			0 => array(		//
+					'id'	=>0,
+					'name' => '不需要'
+			),
+			1 => array(
+					'id'	=>1,
+					'name' => '需要'
+			)
+	);
+	
 	//不可使用车辆状态与$car_status对应关系
 	protected $cars_disabled = array(
 			//1,2,3
@@ -86,6 +109,8 @@ class GlobalParameterAction extends Action {
 		'shenzhen' => 1,	
 			
 	);			
+	
+	
 	
 	/**
 	 * 构造方法

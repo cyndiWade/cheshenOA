@@ -11,23 +11,45 @@ class CarsAction extends ApiBaseAction {
 	 */
 	protected $add_db = array(
 		'Cars' => 'Cars',
-		'CarsPhoto' => 'CarsPhoto'
+		'CarsPhoto' => 'CarsPhoto',
+		'CarsGrade' => 'CarsGrade'
 	);
 	
 	/* 需要身份验证的方法名 */
 	protected $Verify = array();
 		
 	
+	private $car_grade = array();
+	
 	public function __construct() {
 		
 		parent:: __construct();			//重写父类构造方法
-
+		
+		$this->init_car_grade();
+	}
+	
+	
+	/**
+	 * 初始化车辆级别数据
+	 */
+	private function init_car_grade() {
+		/* 组合车辆级别 */
+		$CarsGradeInfo = $this->db['CarsGrade']->seek_all_data(); 	//获取车辆级别数据
+		
+		foreach ($CarsGradeInfo AS $key=>$val) {
+			$this->car_grade[$val['id']] = $val['identifying'];
+		}
 	}
 	
 	
 	
 	//获取车辆列表
 	public function cars_list () {
+		
+		if ($this->isPost() == false) {
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		}
+		
 		//可用车辆数据
 		$cars_list = $this->db['Cars']->seek_all_cars($this->cars_disabled);
 
@@ -35,9 +57,10 @@ class CarsAction extends ApiBaseAction {
 			//车辆照片
 			$cars_ids = getArrayByField($cars_list,'id');
 			$cars_ids = implode(',',$cars_ids);
-			$cars_photo = $this->db['CarsPhoto']->seek_car_photos($cars_ids);		//查询车辆照片
+			$cars_photo = $this->db['CarsPhoto']->seek_car_photos($cars_ids);			//查询车辆照片
+			
 			if ($cars_photo) {
-				parent::public_file_dir($cars_photo, 'url', 'images/');		//组合URL地址
+				parent::public_file_dir($cars_photo, 'url', 'images/');			//组合URL地址
 				$cars_cars_photo = regroupKey($cars_photo,cars_id) ;	//按照车辆ID，重组数组
 				
 				foreach ($cars_list AS $key=>$val) {
@@ -48,29 +71,21 @@ class CarsAction extends ApiBaseAction {
 					}			
 				}
 			}
-			parent::callback(C('STATUS_SUCCESS'),'获取成功！',$cars_list);
+			
+			//按照车辆级别重新组合车辆
+			foreach ($cars_list AS $key=>$val) {
+				$cars_list[$key]['cars_grade'] = $this->car_grade[$val['cars_grade_id']];
+				unset($cars_list[$key]['cars_grade_id']);
+			}
+			$new_cars_list = regroupKey($cars_list,'cars_grade');
+
+			parent::callback(C('STATUS_SUCCESS'),'获取成功！',$new_cars_list);
 		} else {
 			parent::callback(C('STATUS_NOT_DATA'),'没有数据！');
 		}
  		
 	}
 	
-	
-
-
-	//验证提交数据
-	private function check_me() {
-		import("@.Tool.Validate");							//验证类
-		//数据验证
-		if (Validate::checkNull($this->request['account'])) parent::callback(C('STATUS_OTHER'),'账号为空');
-		if ($this->request['account'] != 'admin') {
-			if (!Validate::checkPhone($this->request['account'])) parent::callback(C('STATUS_OTHER'),'账号必须为11位的手机号码');
-		}
-		if (Validate::checkNull($this->request['password'])) parent::callback(C('STATUS_OTHER'),'密码为空');		
-	}
-	
-	
-
 
 	
 }

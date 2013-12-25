@@ -246,7 +246,6 @@ class OrderAction extends OrderBaseAction {
 					}
 					$send_result = parent::send_shp($phones, '有新订单，请及时处理！');		//发送短信
 				}
-				
 			}
 			
 			$this->success('成功！');

@@ -231,7 +231,14 @@ class ApiBaseAction extends AppBaseAction {
 		$Verify->save_verify_status($shp_info['id']);
 	}
 	
-	
+	/**
+	 * 记录订单操作历史
+	 * @param INT $order_id
+	 * @param STRING $content
+	 */
+	protected function order_history ($order_id,$content) {
+		return $this->db['OrderHistory']->add_order_history($order_id,0,$content);	//表示用户自己
+	}
 	
 	
 }

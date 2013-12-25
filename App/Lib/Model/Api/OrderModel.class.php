@@ -11,7 +11,7 @@ class OrderModel extends ApiBaseModel {
 		parent::__construct();
 	}
 
-	
+
 	//获取账号数据
 	public function seek_all_cars ($car_status) {
 		$con['status'] = 0;
@@ -20,10 +20,16 @@ class OrderModel extends ApiBaseModel {
 		$data = $this->field('id,brand,car_num,type,model,color,consumption,seat_num')
 		->where($con)
 		->select();
-
 		return $data;
 	}
 
+	
+	//添加订单
+	public function add_order_data () {
+		$this->time = time();
+		return $this->add();
+	}
+	
 	
 	
 	
