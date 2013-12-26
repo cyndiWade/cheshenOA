@@ -11,7 +11,8 @@ class LoginAction extends ApiBaseAction {
 	 */
 	protected $add_db = array(
 		'Member' => 'Member',
-		'Verify'=>'Verify'
+		'Verify'=>'Verify',
+		'MemberBase' => 'MemberBase'
 	);
 
 	
@@ -35,7 +36,8 @@ class LoginAction extends ApiBaseAction {
 	//	dump($this->request);
 
 		if ($this->isPost()) {
-			$Member = $this->db['Member'];					//会员用户模型表
+			$Member = $this->db['Member'];						//用户模型表
+			$MemberBase = $this->db['MemberBase'];		//会员模型表
 			
 			$account = $this->request['account'];					//用户账号
 			$password = md5($this->request['password']);	//用户密码
@@ -58,13 +60,19 @@ class LoginAction extends ApiBaseAction {
 					
 					//更新用户登录信息
 					$Member->up_login_info($user_info['id']);
-						
+					
+					//会员信息
+					$member_base_info = $MemberBase->seek_member_one_data($user_info['id']);
+
+					dump($member_base_info);
+					exit;
 					//返回给客户端数据
 					parent::callback(C('STATUS_SUCCESS'),'登录成功',
 						array(
 							'user_key'=>$identity_encryption,
 							'account'=>$user_info['account'],
-							'nickname'=>$user_info['nickname']
+							'nickname'=>$user_info['nickname'],
+							
 						)
 					);
 				}	

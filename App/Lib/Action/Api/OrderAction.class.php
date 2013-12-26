@@ -21,7 +21,9 @@ class OrderAction extends ApiBaseAction {
 	
 	/* 需要身份验证的方法名 */
 	protected $Verify = array(
-			'apply'
+			'apply',
+			'get_user_orders',
+			'cancel_order'
 	);
 	
 	
@@ -29,7 +31,14 @@ class OrderAction extends ApiBaseAction {
 	public function __construct() {
 		
 		parent:: __construct();			//重写父类构造方法
-
+		
+		$this->request['start_schedule_time'] = $this->_post('start_schedule_time');					//开始用车日期
+		$this->request['over_schedule_time'] = $this->_post('over_schedule_time');					//预计还车日期
+		$this->request['cars_id'] = $this->_post('cars_id');															//车辆ID		
+		$this->request['is_need_driver'] = $this->_post('is_need_driver');									//是否需要司机
+		$this->request['order_id'] = $this->_post('order_id');														//订单ID
+		//$this->request['order_id'] = $this->_get('order_id');													
+	
 	}
 	
 	
@@ -48,10 +57,15 @@ class OrderAction extends ApiBaseAction {
 		$Order = $this->db['Order'];													//订单表
 
 		//请求参数
-		$start = strtotime($this->_post('start_schedule_time'));					//开始用车日期
-		$estimate_over = strtotime($this->_post('over_schedule_time'));	//预计还车日期
-		$cars_id = $this->_post('cars_id');													//车辆ID		
-		$is_need_driver = $this->_post('is_need_driver');							//是否需要司机
+		$start = strtotime($this->request['start_schedule_time']);					//开始用车日期
+		$estimate_over = strtotime($this->request['over_schedule_time']);		//预计还车日期
+		$cars_id = $this->request['cars_id'];													//车辆ID
+		$is_need_driver = $this->request['is_need_driver'];							//是否需要司机
+		
+// 		$start = strtotime($this->_post('start_schedule_time'));					//开始用车日期
+// 		$estimate_over = strtotime($this->_post('over_schedule_time'));	//预计还车日期
+// 		$cars_id = $this->_post('cars_id');													//车辆ID		
+// 		$is_need_driver = $this->_post('is_need_driver');							//是否需要司机
 		
 		//$start = strtotime('2013-12-27 00:10');
 		//$estimate_over = strtotime('2014-1-20 21:00');		//1385902800		
@@ -173,6 +187,75 @@ class OrderAction extends ApiBaseAction {
 	//parent::callback(C('STATUS_NOT_DATA'),'没有数据！');
 	
 
+	
+	/**
+	 * 获取用户订单
+	 */
+	public function get_user_orders() {
+		$MemberBase = $this->db['MemberBase'];
+		$Order = $this->db['Order'];
+	
+		$user_info = $MemberBase->seek_base_info($this->oUser->account);
+		$member_id = $user_info['use_id'];					//账号ID
+		$member_base_id = $user_info['id'];					//会员ID
+		
+		/* 参数验证 */
+		if (empty($member_id)) parent::callback(C('STATUS_NOT_DATA'),'用户不存在！');
+		if (empty($member_base_id)) parent::callback(C('STATUS_NOT_DATA'),'你还不是会员，请联系我们加入会员');
+		
+		//查找会员订单
+		$con['o.member_base_id'] = $member_base_id;
+		$order_list = $Order->seek_user_order($con);
+		
+		if ($order_list == true) {
+			foreach ($order_list AS $key=>$val) {
+				//	$order_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];		//获取订单来源
+				$order_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
+				$order_list[$key]['order_state_name'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
+				$order_list[$key]['give_back_state_name'] = $this->give_back_state[$val['give_back_state']]['status_explain'];		//司机
+			}
+			parent::callback(C('STATUS_SUCCESS'),'获取成功！',$order_list);
+		} else {
+			parent::callback(C('STATUS_NOT_DATA'),'暂无订单数据！');
+		}
+
+	}
+	
+	
+	
+	/**
+	 * 订单取消
+	 */
+	public function cancel_order() {
+		$Order = $this->db['Order'];
+		$order_id = $this->request['order_id'];		//订单ID
+
+		//获取订单数据
+		$order_status = $Order->get_one_data(array('id'=>$order_id),'order_state');
+		if ($order_status == false) parent::callback(C('STATUS_NOT_DATA'),'无此订单信息！'); 
+		$order_status = $order_status['order_state'];
+		
+		//可以取消的订单状态
+		$cannot_cancel_status = array(
+				$this->order_state[-2]['order_status'],
+				$this->order_state[0]['order_status'],
+				$this->order_state[1]['order_status'],
+		);
+		if (in_array($order_status,$cannot_cancel_status) == true) {
+			$Order->order_state = $this->order_state[-2]['order_status'];		//修改订单状态为取消
+			$Order->save_one_data(array('id'=>$order_id));		//执行修改
+			parent::order_history($order_id, '取消订单！');				//写入日志
+			parent::callback(C('STATUS_SUCCESS'),'取消成功！');
+		} else {
+			parent::callback(C('STATUS_UPDATE_DATA'),'您的订单已通过审核，无法取消！');
+		}
+		
+		
+	}
+	
+	
+	
+	
 }
 
 ?>
