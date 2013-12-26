@@ -20,8 +20,11 @@ var TableManaged = function () {
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"] // change per page values here
                 ],
+				 "aaSorting": [			//排序的表格
+					[ 3, "desc" ]
+				],
                 // set the initial value
-                "iDisplayLength": 10,
+                "iDisplayLength": 100,
                 "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
                 "sPaginationType": "bootstrap",
                 "oLanguage": {

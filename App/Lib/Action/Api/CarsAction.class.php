@@ -47,7 +47,7 @@ class CarsAction extends ApiBaseAction {
 	public function cars_list () {
 		
 		if ($this->isPost() == false) {
-			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+		//	parent::callback(C('STATUS_ACCESS'),'非法访问！');
 		}
 		
 		//可用车辆数据

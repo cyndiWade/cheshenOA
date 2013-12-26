@@ -12,20 +12,21 @@ var TableManaged = function () {
             // begin first table
             $('.sample_1').dataTable({
                 "aoColumns": [
-                  { "bSortable": false },
-                  { "bSortable": false },
+                  { "bSortable": true },
+                  { "bSortable": true },
+				  { "bSortable": true },
 				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
-				  { "bSortable": false },
+				  { "bSortable": true },
+				  { "bSortable": true },
 				  { "bSortable": true },
 				  { "bSortable": false },
 				  { "bSortable": false },
-				   { "bSortable": false }
+				  { "bSortable": true },
+				  { "bSortable": true },
+				  { "bSortable": false },
+				  { "bSortable": false },
+				   { "bSortable": true },
+				    { "bSortable": false }
 
                 ],
                 "aLengthMenu": [

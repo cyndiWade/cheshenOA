@@ -33,7 +33,7 @@ class OrderAction extends OrderBaseAction {
 
 	/* 申请订单列表 */
 	public function apply () {
-		$Order = D('Order');													//车辆资源表
+		$Order = $this->db['Order'];													//车辆资源表
 		/* 获取申请订单列表 */
 		$map['o.order_state'] = array('in',array($this->order_state[0]['order_status'],$this->order_state[-2]['order_status']));
 		$html_list = $Order->seek_user_order($map);
@@ -643,6 +643,15 @@ class OrderAction extends OrderBaseAction {
 		$order_id = $this->_get('order_id');
 		$html_list = D('OrderHistory')->get_order_history($order_id);
 
+		if ($html_list == true) {
+			foreach ($html_list AS $key=>$val) {
+				if ($val['users_id'] == 0) {
+					$html_list[$key]['account'] = '客人';
+				}
+			}
+		}
+
+		
 		$this->assign('html_list',$html_list);	
 		$this->assign('ACTION_NAME','操作历史');
 		$this->assign('TITILE_NAME','操作历史列表');
