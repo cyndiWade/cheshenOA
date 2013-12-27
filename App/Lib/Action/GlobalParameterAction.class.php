@@ -15,6 +15,12 @@ class GlobalParameterAction extends Action {
 	protected $db = array();				//数据库对象
 	
 	
+	/* 资源类型 */
+	protected $resource_type = array(
+			1 => 1 ,		//表示车辆资源
+			//	 '2' => 2,
+	);
+	
 	/* 订单提交状态 */
 	protected $order_state = array(
 			-2 => array(
@@ -70,7 +76,49 @@ class GlobalParameterAction extends Action {
 	);
 	
 	
-	protected  $company_id = 1;					//车辆所属区域，目前业务暂时只在深圳(暂时用到的地方为：CarsSchedule)
+	/**
+	 * 订单来源
+	 */
+	protected $order_from = array(
+			'N' => '电话预定',
+			'W' => '网站预定',
+			'A' => 'APP客户端',
+			'S' => '往期订单(手补)'
+	);
+	
+	/* 是否需要司机 */
+	protected $is_need_driver = array(
+			0 => array(		//
+					'id'	=>0,
+					'name' => '不需要'
+			),
+			1 => array(
+					'id'	=>1,
+					'name' => '需要'
+			)
+	);
+	
+	
+	//不可使用车辆状态与$car_status对应关系
+	protected $cars_disabled = array(
+			//1,2,3
+			1,2
+	);
+	
+	//车辆所属区域，目前业务暂时只在深圳(暂时用到的地方为：CarsSchedule)
+	protected  $company_id = array(
+		'shenzhen' => 1,	
+			
+	);			
+	
+
+	//车辆状态
+	protected $car_status = array(
+			0 => '正常',
+			1 => '维修中',
+			2 => '报废',
+			3 => '租用中',
+	);
 	
 	/**
 	 * 构造方法

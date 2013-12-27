@@ -5,12 +5,7 @@
  */
 
 class MemberBaseModel extends ApiBaseModel {
-	
-	
-	/**/
-	
-	
-	
+
 	
 	/**
 	 *	通过用户账号，获取相应的会员ID信息
@@ -24,10 +19,7 @@ class MemberBaseModel extends ApiBaseModel {
 		->find();
 	}
 	
-	
-	//------------
-	
-	
+
 	//获取指定会员数据
 	public function seek_rank_data ($member_rank_id) {
 		$data = $this->field('mb.*,m.account')
@@ -38,6 +30,17 @@ class MemberBaseModel extends ApiBaseModel {
 		return $data;
 	//	return $this->where(array('member_rank_id'=>$member_rank_id,'status'=>0))->select();
 	}
+	
+	
+	//获取指定会员数据
+	public function seek_member_one_data ($member_id) {
+		$data = $this->field('member_rank_id,area,name,date,over_date,use_car_number')
+		->where(array('member_id'=>$member_id,'status'=>0))
+		->find();
+		return $data;
+		//	return $this->where(array('member_rank_id'=>$member_rank_id,'status'=>0))->select();
+	}
+	
 	
 	//获取所有会员数据
 	public function seek_all_data() {
