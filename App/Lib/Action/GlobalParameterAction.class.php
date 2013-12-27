@@ -17,7 +17,7 @@ class GlobalParameterAction extends Action {
 	
 	/* 资源类型 */
 	protected $resource_type = array(
-			'1' => 1 ,		//表示车辆资源
+			1 => 1 ,		//表示车辆资源
 			//	 '2' => 2,
 	);
 	
@@ -98,6 +98,7 @@ class GlobalParameterAction extends Action {
 			)
 	);
 	
+	
 	//不可使用车辆状态与$car_status对应关系
 	protected $cars_disabled = array(
 			//1,2,3
@@ -110,7 +111,14 @@ class GlobalParameterAction extends Action {
 			
 	);			
 	
-	
+
+	//车辆状态
+	protected $car_status = array(
+			0 => '正常',
+			1 => '维修中',
+			2 => '报废',
+			3 => '租用中',
+	);
 	
 	/**
 	 * 构造方法

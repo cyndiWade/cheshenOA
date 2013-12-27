@@ -7,7 +7,7 @@
 class MemberResourceModel extends ApiBaseModel {
 	
 	/**
-	 * 会员与资源类型映射
+	 * 会员与资源表映射
 	 */
 	private $resource_type = array();
 	
@@ -32,14 +32,25 @@ class MemberResourceModel extends ApiBaseModel {
 	 */
 	public function seek_member_resource($member_rank_id,$resource_type) {
 
-		$data = $this->field('zyb.*')
+		$data = $this->field('mr.resource_type,zyb.*')
 		->table($this->prefix.'member_resource AS mr')
 		->join('RIGHT JOIN '.$this->prefix.$this->resource_type[$resource_type].' AS zyb ON mr.resource_id=zyb.id')
 		->where(array('mr.member_rank_id'=>$member_rank_id,'zyb.status'=>0))
 		->select();
+		//$data = regroupKey($data,'resource_type',true);
 		
 		return $data;
 	}
+	
+	
+// 	public function seek_member_resource_list ($member_rank_id) {
+// 		//$member_resource_relation = $this->field('*')->where(array('member_rank_id'=>$member_rank_id,'status'=>0))->select();
+		
+
+// 		$data = $this->field('*')
+// 		->table($this->prefix.'member_resource AS mr')
+// 		->join('');
+// 	}
 	
 	
 }

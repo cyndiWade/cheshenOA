@@ -12,18 +12,7 @@ class CarsBaseAction extends AdminBaseAction {
 	
 	protected $company_id;					//当前区域ID
 	
-	//车辆级别
-	protected $car_grade= array();		
-	
-	//车辆状态
-	protected $car_status = array(			
-		0 => '正常',
-		1 => '维修中',
-		2 => '报废',
-		3 => '租用中',		
-	);	
-	
-	
+
 	/**
 	 * 构造方法
 	 */

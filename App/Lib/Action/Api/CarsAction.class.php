@@ -18,8 +18,9 @@ class CarsAction extends ApiBaseAction {
 	/* 需要身份验证的方法名 */
 	protected $Verify = array();
 		
+	private $car_grade = array();		//车辆级别标识
 	
-	private $car_grade = array();
+	private $car_grade_explain = array();		//车辆级别explain
 	
 	public function __construct() {
 		
@@ -38,6 +39,7 @@ class CarsAction extends ApiBaseAction {
 		
 		foreach ($CarsGradeInfo AS $key=>$val) {
 			$this->car_grade[$val['id']] = $val['identifying'];
+			$this->car_grade_explain[$val['id']] = $val['name'];
 		}
 	}
 	
@@ -58,7 +60,7 @@ class CarsAction extends ApiBaseAction {
 			$cars_ids = getArrayByField($cars_list,'id');
 			$cars_ids = implode(',',$cars_ids);
 			$cars_photo = $this->db['CarsPhoto']->seek_car_photos($cars_ids);			//查询车辆照片
-			
+
 			if ($cars_photo) {
 				parent::public_file_dir($cars_photo, 'url', 'images/');			//组合URL地址
 				$cars_cars_photo = regroupKey($cars_photo,cars_id) ;	//按照车辆ID，重组数组
@@ -74,10 +76,12 @@ class CarsAction extends ApiBaseAction {
 			
 			//按照车辆级别重新组合车辆
 			foreach ($cars_list AS $key=>$val) {
-				$cars_list[$key]['cars_grade'] = $this->car_grade[$val['cars_grade_id']];
+				$cars_list[$key]['cars_grade'] = $this->car_grade[$val['cars_grade_id']];		//车辆级别标识
+				$cars_list[$key]['cars_grade_explain'] = $this->car_grade_explain[$val['cars_grade_id']];		//车辆级别说明
+				$cars_list[$key]['car_status'] = $this->car_status[$val['car_status']];		//车辆级别说明
 				unset($cars_list[$key]['cars_grade_id']);
 			}
-			$new_cars_list = regroupKey($cars_list,'cars_grade');
+			$new_cars_list = regroupKey($cars_list,'cars_grade');		//按照车辆级别，归类排序好车辆
 
 			parent::callback(C('STATUS_SUCCESS'),'获取成功！',$new_cars_list);
 		} else {

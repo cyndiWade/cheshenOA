@@ -10,12 +10,14 @@ class ApiBaseAction extends AppBaseAction {
 	 * @var Array   访问如：$this->db['Verify']->where(id=10)->save();
 	 */
 	protected $db = array(
-		
+		'MemberRank' => 'MemberRank'
 	);
 	
 	protected $Verify = array();	//需要验证的方法名
 
 	protected $request;					//获取请求的数据
+	
+	protected $member_rank;		//会员级别
 	
 	
 	/**
@@ -28,7 +30,7 @@ class ApiBaseAction extends AppBaseAction {
 	
 		$this->Api_loading();			//加载	
 		$this->Api_init();					//初始化
-
+		$this->set_member_rank();		//这是会员级别
 		
 	}
 	
@@ -156,6 +158,15 @@ class ApiBaseAction extends AppBaseAction {
 
 	}
 	
+	private function set_member_rank () {
+		$MemberRank = $this->db['MemberRank'];
+		/* 组合会员类型 */
+		$MemberRankInfo =  $MemberRank->seek_all_data(); 	//获取所有会员级别信息
+		foreach ($MemberRankInfo AS $key=>$val) {
+			$this->member_rank[$val['id']] = $val['name'];
+			if ($val['is_start'] == 0) $this->member_content[$val['identifying']] = $val['content'];
+		}
+	}
 	
 	
 	/**
@@ -240,6 +251,9 @@ class ApiBaseAction extends AppBaseAction {
 	protected function order_history ($order_id,$content) {
 		return $this->db['OrderHistory']->add_order_history($order_id,0,$content);	//表示用户自己
 	}
+	
+	
+	
 	
 	
 }

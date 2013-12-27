@@ -12,7 +12,8 @@ class LoginAction extends ApiBaseAction {
 	protected $add_db = array(
 		'Member' => 'Member',
 		'Verify'=>'Verify',
-		'MemberBase' => 'MemberBase'
+		'MemberBase' => 'MemberBase',
+		'MemberResource' => 'MemberResource',
 	);
 
 	
@@ -33,11 +34,13 @@ class LoginAction extends ApiBaseAction {
 	
 	//登录验证
 	public function login () {
-	//	dump($this->request);
+		
 
 		if ($this->isPost()) {
 			$Member = $this->db['Member'];						//用户模型表
 			$MemberBase = $this->db['MemberBase'];		//会员模型表
+			$MemberResource = $this->db['MemberResource'];		//资源关系表
+			
 			
 			$account = $this->request['account'];					//用户账号
 			$password = md5($this->request['password']);	//用户密码
@@ -61,20 +64,40 @@ class LoginAction extends ApiBaseAction {
 					//更新用户登录信息
 					$Member->up_login_info($user_info['id']);
 					
-					//会员信息
+					//查找会员信息
 					$member_base_info = $MemberBase->seek_member_one_data($user_info['id']);
 
-					dump($member_base_info);
-					exit;
-					//返回给客户端数据
-					parent::callback(C('STATUS_SUCCESS'),'登录成功',
-						array(
+					//会员登录时
+					if ($member_base_info) {
+						$resource_detail = $MemberResource->seek_member_resource($member_base_info['member_rank_id'],$this->resource_type[1]);
+						$resource_detail = $resource_detail[0];
+						$car_number = $resource_detail['car_number'];			//车辆资源总天数
+						
+						$user_data = array(
+								'user_key'=>$identity_encryption,
+								'account'=>$user_info['account'],
+								'nickname'=>$user_info['nickname'],
+								'memeber_info' => array(
+									'name'=>$member_base_info['name'],
+									'date' =>$member_base_info['date'],
+									'over_date' =>$member_base_info['over_date'],
+									'member_rank'	=> $this->member_rank[$member_base_info['member_rank_id']],
+									'use_car_number' => $member_base_info['use_car_number'],
+									'car_number' => $car_number		
+								)
+						);
+						
+					//普通用户登录时	
+					} else {
+						$user_data = array(
 							'user_key'=>$identity_encryption,
 							'account'=>$user_info['account'],
 							'nickname'=>$user_info['nickname'],
-							
-						)
-					);
+						);
+					}
+
+					//返回给客户端数据
+					parent::callback(C('STATUS_SUCCESS'),'登录成功',$user_data);
 				}	
 			}
 		}
