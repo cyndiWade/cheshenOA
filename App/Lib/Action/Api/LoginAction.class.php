@@ -101,7 +101,7 @@ class LoginAction extends ApiBaseAction {
 				}	
 			}
 		}
-		$this->display('register');
+	//	$this->display('register');
 	}
 	
 	
@@ -137,7 +137,7 @@ class LoginAction extends ApiBaseAction {
 			}
 		} 
 			
-		$this->display('Login:register');
+	//	$this->display('Login:register');
 	}
 	
 
