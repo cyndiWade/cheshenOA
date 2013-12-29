@@ -30,10 +30,8 @@ class ApiBaseAction extends AppBaseAction {
 	
 		$this->Api_loading();			//加载	
 		$this->Api_init();					//初始化
-		$this->set_member_rank();		//这是会员级别
-		
+		$this->set_member_rank();		//这是会员级别	
 	}
-	
 	
 	
 	/**
@@ -42,9 +40,9 @@ class ApiBaseAction extends AppBaseAction {
 	private function Init_Request () {
 		$this->request['user_key'] = $this->_post('user_key');		//身份验证的user_key
 		//$this->request['user_key'] = "BT4MO1VnBjQDZVc9XW9RPAM1XTEHYgRrBS5ROgJnC3sCPAU0";
+	//	$this->request['user_key'] = "BD5SYlFjA2RQYFdnWjEDZVRpBm9SNwZtVmNVO1A9WDcAPFdhBzwHfAAyATQBcVE0Aj8=";
 		$this->request['verify'] = $this->_post('verify');					//短信验证码
 	}
-	
 	
 	
 	
@@ -132,8 +130,6 @@ class ApiBaseAction extends AppBaseAction {
 	private function deciphering_user_info() {
 		//获取加密身份标示
 		$identity_encryption = $this->request['user_key'];	
-		//$identity_encryption = $this->_get('user_key');
-		//$identity_encryption = 'AzUMOlJiDGoFNVJtWzYFYgw/XDhQPFw4UGxXPwdgXzMMM1J4Vm8BZVB+AjQMZg==';
 		
 		//解密获取用户数据
 		$decrypt = passport_decrypt($identity_encryption,C('UNLOCAKING_KEY'));	
