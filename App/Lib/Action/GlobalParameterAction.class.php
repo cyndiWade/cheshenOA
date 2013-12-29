@@ -20,6 +20,8 @@ class GlobalParameterAction extends Action {
 			1 => 1 ,		//表示车辆资源
 			//	 '2' => 2,
 	);
+
+	protected $car_grade = array();
 	
 	/* 订单提交状态 */
 	protected $order_state = array(
