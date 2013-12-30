@@ -18,7 +18,7 @@ class CarsAction extends ApiBaseAction {
 	/* 需要身份验证的方法名 */
 	protected $Verify = array();
 		
-	private $car_grade = array();		//车辆级别标识
+	//private $car_grade = array();		//车辆级别标识
 	
 	private $car_grade_explain = array();		//车辆级别explain
 	
@@ -41,6 +41,7 @@ class CarsAction extends ApiBaseAction {
 			$this->car_grade[$val['id']] = $val['identifying'];
 			$this->car_grade_explain[$val['id']] = $val['name'];
 		}
+		
 	}
 	
 	
