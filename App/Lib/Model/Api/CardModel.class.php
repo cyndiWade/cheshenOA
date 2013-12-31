@@ -4,7 +4,7 @@
  * 会员卡表
  */
 
-class CardModel extends AdminBaseModel {
+class CardModel extends ApiBaseModel {
 	
 	
 	/**

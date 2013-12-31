@@ -12,6 +12,7 @@ class MemberAction extends ApiBaseAction {
 	protected $add_db = array(
 		'Member' => 'Member',
 		'Verify'=>'Verify',
+	//	'MemberRank' => 'MemberRank',
 		'MemberBase' => 'MemberBase',
 		'MemberResource' => 'MemberResource',
 		'Card' => 'Card'
@@ -20,17 +21,76 @@ class MemberAction extends ApiBaseAction {
 	
 	/* 需要身份验证的方法名 */
 	protected $Verify = array(
-		'get_member_info'
+		'get_member_info',
 	);
 	
 	
+	
 	public function __construct() {
-		
 		parent:: __construct();			//重写父类构造方法
 		
-		$this->request['member_id'] = $this->_post('member_id');			//会员ID
-		$this->request['card_number'] = $this->_post('card_number');	//会员卡号
+		//请求参数
+		$this->request['account'] = $this->_post('account');								//会员账号
+		$this->request['name'] = $this->_post('name');										//会员姓名
+		$this->request['identity_number'] = $this->_post('identity_number');		//身份证号码
+		$this->request['area'] = $this->_post('area');											//投资区域
+		$this->request['member_rank_id'] = $this->_post('member_rank_id');	//申请会员级别
+	//	$this->request['card_number'] = $this->_post('card_number');				//会员卡号
+		$this->request['date'] = $this->_post('date');											//入会日期
+		$this->request['over_date'] = $this->_post('over_date');							//结束日期
+		$this->request['source'] =  $this->_post('source');									//来源
+		$this->request['source_content'] =  $this->_post('source_content');		//推荐账号
+		
+//  		$this->request['account'] = 13761951734;								//会员账号
+//  		$this->request['name'] = 'wade';
+//  		$this->request['identity_number'] = '123456789';
+// 		$this->request['area'] = '上海';
+//  		$this->request['member_rank_id'] = 9;									//申请会员级别
+//  	//	$this->request['card_number'] = 'aaaaaaa';							//会员卡号
+// 		$this->request['date'] = '2013-12-15';										//入会日期
+//  		$this->request['over_date'] = '2014-1-16';								//结束日期
+//  		$this->request['source'] =  1;													//来源
+//  		$this->request['source_content'] =  13761951734;					//推荐账号
 	}
+	
+	
+	/**
+	 * 验证会员来源
+	 * @param INT $source			来源类型
+	 * @param String $source_content		来源内容
+	 * @param INT $member_id		用户ID
+	 */
+	private function check_member_source ($source,$source_content,$member_id) {
+		//会员来源数据处理
+		$result = array();
+		if (array_key_exists($source,$this->source_select) == false) {
+			$result['status'] = false;
+			$result['info'] = '来源填写错误！';
+			return $result;
+		}
+		if (array_search($this->source_select[2], $this->source_select) == $source) {			//对推荐账号进行查找处理
+			$info =  $this->db['Member']->seek_base_info($source_content);		//查找账号所属的会员的ID
+			if ($member_id == $info['use_id']) {		//推荐账号是本身时
+				$result['status'] = false;
+				$result['info'] = '推荐账号不能是您自己的账号';
+			} else {
+				if (!empty($info)) {
+					$result['status'] = true;				//表示找到用户信息
+					$result['info'] = $info[0]['id'];
+				} else {
+					$result['status'] = false;				//表示没有找到用户信息
+					$result['info'] = '对不起，系统没有找到推荐的用户账号，或者推荐的账号不是会员。';
+				}
+			}
+			return $result;
+		} else {
+			return false;	
+		}	
+		
+		
+		
+	}
+	
 	
 	
 	/**
@@ -70,60 +130,99 @@ class MemberAction extends ApiBaseAction {
 	 * 会员注册接口
 	 */
 	public function member_register() {
-		$MemberBase = $this->db['MemberBase'];		//会员基本信息表
-		$Card = $this->db['Card'];									//会员卡片
-		$Member = $this->db['Member'];						//注册账号表
 
-		if ($this->isPost()) {	
-			/* 数据验证 */
-			$check_result = $this->check_post_data();
-			if (!empty($check_result)) {
-				foreach ($check_result AS $key=>$val) {
-					if ($val['status'] == false) {
-						$this->error($val['info']);
-						break;
-					}	
-				}
-			}
-			//注册账号ID
-			$member_id = $this->request['member_id'];
-			$card_number = $this->request['card_number'];
+		
+		
+		if ($this->isPost() == false) {	
+			import("@.Tool.Validate");		//验证类
 			
-			/* 验证会员卡是否存在 */
-			if ($this->member_rank_id == 9) {	//股东会员处理
+			$MemberBase = $this->db['MemberBase'];		//会员基本信息表
+			$Card = $this->db['Card'];									//会员卡片
+			$Member = $this->db['Member'];						//注册账号表
+			
+			//注册账号
+			$account = $this->request['account'];								
+			$name = $this->request['name'];		
+			$identity_number = $this->request['identity_number'];
+			$area = $this->request['area'];
+			$source = $this->request['source'];								
+			$source_content = $this->request['source_content'];				
+			$member_rank_id = $this->request['member_rank_id'];
+		//	$card_number = $this->request['card_number'];
+			$date = $this->request['date'];
+			$over_date = $this->request['over_date'];
+			
+			//验证
+			if (empty($account)) parent::callback(C('STATUS_OTHER'),'账号不得为空！');
+			if (empty($name)) parent::callback(C('STATUS_OTHER'),'姓名不得为空！');
+			if (empty($identity_number)) parent::callback(C('STATUS_OTHER'),'身份证不得为空！');
+			if (empty($area)) parent::callback(C('STATUS_OTHER'),'区域不得为空！');
+			if (empty($source)) parent::callback(C('STATUS_OTHER'),'会员来源不得为空！');
+			if (empty($source_content)) parent::callback(C('STATUS_OTHER'),'来源内容不得为空！');
+			if (empty($member_rank_id)) parent::callback(C('STATUS_OTHER'),'会员界别不得为空！');
+			if (empty($date)) parent::callback(C('STATUS_OTHER'),'会员开始日期不得为空！');
+			if (empty($over_date)) parent::callback(C('STATUS_OTHER'),'会员结束日期不得为空！');
+			
+			//当注册成为会员时，账号存在是，用原账号，不存在时，为用户创建一个账号
+			$is_have = $Member->account_is_have($account);		//查看账号是否存在
+			if ($is_have) {
+				$member_id = $is_have;
+			} else {		//添加注册用户
+				$Member->account = $account;
+				$Member->password = md5($account);
+				$member_id = $Member->add_account(C('ACCOUNT_TYPE.USER'));		//添加会员账号
+			}
+			
+			
+			//会员级别范围验证
+			if (!array_key_exists($member_rank_id, $this->member_rank)) {
+				parent::callback(C('STATUS_OTHER'),'申请会员级别错误！');
+			}
+	
+			
+			//验证会员，入会与离会日期
+			$count_days = Validate::count_days($date,$over_date);
+			if ($count_days <= 0) parent::callback(C('STATUS_OTHER'),'会员入会日期不得大于离会日期');
+				
+			/*
+			//验证会员卡是否存在
+			if ($member_rank_id == $this->shareholder_id) {	//股东会员处理
 				$Card->type = 'G';
 			} else {
 				$Card->type = 'H';
-			}
+			}	
 			$is_have=$Card->seek_card_one($card_number);
-			if ($is_have) $this->error('此会员卡已存在！');
+			if ($is_have) parent::callback(C('STATUS_OTHER'),'此会员卡已存在');
+			*/
 			
-			/* 会员来源数据处理 */
-			$check_source_result =$this->check_recommend_people();
+			//会员来源为推荐账号时，进行的处理
+			$check_source_result = $this->check_member_source($source,$source_content,$member_id);
 			if ($check_source_result != false) {
 				if ($check_source_result['status'] == false) {
-					$this->error($check_source_result['info']);
-				} 
+					parent::callback(C('STATUS_OTHER'),$check_source_result['info']);
+				}  
 			}
-	
-			/* 写入数据库 */			
-			$MemberBase->create();
-			$MemberBase->property = implode(',',$MemberBase->property);
-			$member_base_id = $MemberBase->add();
 			
+	
+			/* 写入数据库 */		
+			$MemberBase->member_id = $member_id;						//用户ID
+			$MemberBase->name = $name;										//股东名称
+			$MemberBase->member_rank_id = $member_rank_id;		//会员级别
+			$MemberBase->source = $source;									//用户来源
+			$MemberBase->source_content = $source_content;			//来源内容
+			$MemberBase->area = $area;											//投资区域
+			$MemberBase->mobile_phone = $account;						//手机号码
+			$MemberBase->identity_number = $identity_number;		//身份证号码
+			$MemberBase->date = $date;											//入会日期
+			$MemberBase->over_date = $over_date;							//离会日期
+			$member_base_id = $MemberBase->add();	
 			if ($member_base_id) {
-				//添加卡号
-				$Card->member_base_id = $member_base_id;
-				$Card->card_number = $card_number;	
-				$Card->add();
-				
 				//修改注册账号为会员
-				$Member->is_rank = 1;		//账号变成会员
+				$Member->is_rank = 1;				//账号变成会员
 				$Member->update_user_info($member_id);
-
-				 $this->success('添加成功！') ;
+				parent::callback(C('STATUS_OTHER'),'添加成功！');
 			} else {
-				$this->error('添加失败！');
+				parent::callback(C('STATUS_UPDATE_DATA'),'添加失败！');
 			}
 			
 		}
