@@ -20,14 +20,6 @@ class RankAction extends AdminBaseAction {
 	private $member_content = array();
 	
 	
-	/* 会员来源 */
-	public $source_select = array(
-			1 => '文华（期）',
-			2 => '推荐（推荐方账号）',
-			3 => '自主报名（信息来源）',
-			4 => '其他',
-	);
-	
 	/* 当前会员级别说明 */
 	private $member_rank_name;	
 	
@@ -101,7 +93,7 @@ class RankAction extends AdminBaseAction {
 	 */
 	private function Lang($member_rank_id) {
 
-		if ($this->member_rank_id == 9) {		//股东
+		if ($this->member_rank_id == $this->shareholder_id) {		//股东
 			$this->Lang = L('shareholder');
 		} else {
 			$this->Lang = L('member');
@@ -219,14 +211,12 @@ class RankAction extends AdminBaseAction {
 			$member_id = $this->_post('member_id');
 			
 			/* 验证会员卡是否存在 */
-			if ($this->member_rank_id == 9) {	//股东会员处理
+			if ($this->member_rank_id == $this->shareholder_id) {	//股东会员处理
 				$card_number = $this->_post('card_number');
 				$Card->type = 'G';
 			} else {
 				$card_number = $this->_post('card_number');
 				$Card->type = 'H';
-				//$card_number = implode('',$_POST['card_number']).$_POST['card_number_over'];
-				//$Card->type = $_POST['card_number']['type'];
 			}
 			$is_have=$Card->seek_card_one($card_number);
 			if ($is_have) $this->error('此会员卡已存在！');

@@ -5,16 +5,25 @@
  */
 class GlobalParameterAction extends Action {
 	
+	protected $add_db = array();		//追加的DB对象
+	
+	protected $db = array();				//数据库对象
+	
 	/* 保存用户信息，供全局调用 */
 	protected $global_system;			//全局系统变量
 	
 	protected $oUser;						//全局身份标示
 	
-	protected $add_db = array();		//追加的DB对象
+	protected $shareholder_id = 9;	//股东ID
 	
-	protected $db = array();				//数据库对象
-	
-	
+	/* 会员来源 */
+	public $source_select = array(
+			1 => '文华（期）',
+			2 => '推荐（推荐方账号）',
+			3 => '自主报名（信息来源）',
+			4 => '其他',
+	);
+	   
 	/* 资源类型 */
 	protected $resource_type = array(
 			1 => 1 ,		//表示车辆资源
@@ -111,7 +120,7 @@ class GlobalParameterAction extends Action {
 	protected  $company_id = array(
 		'shenzhen' => 1,	
 			
-	);			
+	);	
 	
 
 	//车辆状态

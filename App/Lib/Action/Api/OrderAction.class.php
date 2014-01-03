@@ -38,6 +38,7 @@ class OrderAction extends ApiBaseAction {
 		$this->request['is_need_driver'] = $this->_post('is_need_driver');									//是否需要司机
 		$this->request['order_id'] = $this->_post('order_id');														//订单ID
 		//$this->request['order_id'] = $this->_get('order_id');													
+		$this->request['remarks'] = $this->_post('remarks');														//备注
 	
 	}
 	
@@ -61,6 +62,7 @@ class OrderAction extends ApiBaseAction {
 		$estimate_over = strtotime($this->request['over_schedule_time']);		//预计还车日期
 		$cars_id = $this->request['cars_id'];													//车辆ID
 		$is_need_driver = $this->request['is_need_driver'];							//是否需要司机
+		$remarks = $this->request['remarks'];												//备注
 		
 // 		$start = strtotime($this->_post('start_schedule_time'));					//开始用车日期
 // 		$estimate_over = strtotime($this->_post('over_schedule_time'));	//预计还车日期
@@ -158,6 +160,8 @@ class OrderAction extends ApiBaseAction {
 						$Order->is_need_driver = 1;
 						$Order->driver_price = 200;
 					}
+					$Order->remarks = $remarks;		//备注
+					
 					$order_id = $Order->add_order_data();		//写入数据库
 					
 					if ($order_id) {

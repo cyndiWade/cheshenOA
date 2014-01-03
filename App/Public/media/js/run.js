@@ -86,17 +86,26 @@
 	
 	wade_bootstrap_date('.bootstrap_date').bootstrap_date();
 	
+	
+	
 	//点击返回
 	$('.btn_bak').click(function () {
 		var _this = $(this);
 		if (_this.data('url') == undefined) {
 			//history.back();			//返回		
-			history.go(-2);			//返回上一页刷新
-		} else {
+			var go_num = _this.data('go'); 		//返回层次
 
+			if (go_num == undefined) {
+				history.go(-1);			//返回上一页刷新
+			} else {
+				history.go(go_num);			//返回指定层级页面
+			}
+			
+		} else {
+			//打开新页面
 			if (_this.data('target') != undefined) {
 				 window.open(_this.data('url'), _this.data('target'), '');				
-			} else {
+			} else {		//跳转到指定页面
 				window.location.href = _this.data('url');
 			}
 			

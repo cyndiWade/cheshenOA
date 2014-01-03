@@ -72,6 +72,17 @@ class MemberModel extends ApiBaseModel {
 	}
 	
 	
+	/**
+	 *	通过用户账号，获取相应的会员ID信息
+	 * @param String $account
+	 */
+	public function seek_base_info ($account) {
+		return $this->field('m.id AS use_id,mb.id')
+		->table($this->prefix.'member AS m')
+		->join($this->prefix.'member_base AS mb ON m.id=mb.member_id')
+		->where(array('m.account'=>$account,'m.status'=>0,'mb.status'=>0))
+		->find();
+	}
 	
 	
 	
