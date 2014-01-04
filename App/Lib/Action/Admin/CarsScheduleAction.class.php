@@ -31,6 +31,7 @@ class CarsScheduleAction extends CarsBaseAction {
 		$html_info['cars_id'] = $cars_id;
 		$this->assign('ACTION_NAME','车辆日程安排');
 		$this->assign('TITILE_NAME','车辆日程安排');
+		$this->assign('cars_id',$cars_id);
 		$this->assign('html_info',$html_info);
 		$this->display();
 	}
