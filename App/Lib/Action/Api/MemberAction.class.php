@@ -37,9 +37,11 @@ class MemberAction extends ApiBaseAction {
 		$this->request['member_rank_id'] = $this->_post('member_rank_id');	//申请会员级别
 	//	$this->request['card_number'] = $this->_post('card_number');				//会员卡号
 		$this->request['date'] = $this->_post('date');											//入会日期
-		$this->request['over_date'] = $this->_post('over_date');							//结束日期
+		$this->request['over_date'] = $this->_post('over_date');						//结束日期
 		$this->request['source'] =  $this->_post('source');									//来源
 		$this->request['source_content'] =  $this->_post('source_content');		//推荐账号
+		$this->request['remarks'] =  $this->_post('remarks');								//备注内容
+		
 		
 //  		$this->request['account'] = 13761951734;								//会员账号
 //  		$this->request['name'] = 'wade';
@@ -131,8 +133,6 @@ class MemberAction extends ApiBaseAction {
 	 */
 	public function member_register() {
 
-		
-		
 		if ($this->isPost() == false) {	
 			import("@.Tool.Validate");		//验证类
 			
@@ -147,10 +147,11 @@ class MemberAction extends ApiBaseAction {
 			$area = $this->request['area'];
 			$source = $this->request['source'];								
 			$source_content = $this->request['source_content'];				
-			$member_rank_id = $this->request['member_rank_id'];
+		//	$member_rank_id = $this->request['member_rank_id'];
 		//	$card_number = $this->request['card_number'];
 			$date = $this->request['date'];
 			$over_date = $this->request['over_date'];
+			$remarks = $this->request['remarks'];
 			
 			//验证
 			if (empty($account)) parent::callback(C('STATUS_OTHER'),'账号不得为空！');
@@ -159,9 +160,10 @@ class MemberAction extends ApiBaseAction {
 			if (empty($area)) parent::callback(C('STATUS_OTHER'),'区域不得为空！');
 			if (empty($source)) parent::callback(C('STATUS_OTHER'),'会员来源不得为空！');
 			if (empty($source_content)) parent::callback(C('STATUS_OTHER'),'来源内容不得为空！');
-			if (empty($member_rank_id)) parent::callback(C('STATUS_OTHER'),'会员界别不得为空！');
+			//if (empty($member_rank_id)) parent::callback(C('STATUS_OTHER'),'会员界别不得为空！');
 			if (empty($date)) parent::callback(C('STATUS_OTHER'),'会员开始日期不得为空！');
 			if (empty($over_date)) parent::callback(C('STATUS_OTHER'),'会员结束日期不得为空！');
+			if (empty($remarks)) parent::callback(C('STATUS_OTHER'),'备注内容不得为空！');
 			
 			//当注册成为会员时，账号存在是，用原账号，不存在时，为用户创建一个账号
 			$is_have = $Member->account_is_have($account);		//查看账号是否存在
@@ -207,14 +209,16 @@ class MemberAction extends ApiBaseAction {
 			/* 写入数据库 */		
 			$MemberBase->member_id = $member_id;						//用户ID
 			$MemberBase->name = $name;										//股东名称
-			$MemberBase->member_rank_id = $member_rank_id;		//会员级别
+			//$MemberBase->member_rank_id = $member_rank_id;		//会员级别
+			$MemberBase->member_rank_id = $this->check_rank_id;		//待审核会员类型
 			$MemberBase->source = $source;									//用户来源
-			$MemberBase->source_content = $source_content;			//来源内容
+			$MemberBase->source_content = $source_content;	//来源内容
 			$MemberBase->area = $area;											//投资区域
-			$MemberBase->mobile_phone = $account;						//手机号码
-			$MemberBase->identity_number = $identity_number;		//身份证号码
+			$MemberBase->mobile_phone = $account;					//手机号码
+			$MemberBase->identity_number = $identity_number;	//身份证号码
 			$MemberBase->date = $date;											//入会日期
-			$MemberBase->over_date = $over_date;							//离会日期
+			$MemberBase->over_date = $over_date;						//离会日期
+			$MemberBase->remarks = $remarks;								//离会日期
 			$member_base_id = $MemberBase->add();	
 			if ($member_base_id) {
 				//修改注册账号为会员
