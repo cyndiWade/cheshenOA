@@ -14,7 +14,9 @@ class GlobalParameterAction extends Action {
 	
 	protected $oUser;						//全局身份标示
 	
-	protected $shareholder_id = 9;	//股东ID
+	protected $shareholder_id = 9;	//股东会员类型ID
+	
+	protected $check_rank_id = 51;			//待审核会员类型ID
 	
 	/* 会员来源 */
 	public $source_select = array(
@@ -22,6 +24,8 @@ class GlobalParameterAction extends Action {
 			2 => '推荐（推荐方账号）',
 			3 => '自主报名（信息来源）',
 			4 => '其他',
+			5 => '微信',
+			6 => 'APP客户端'
 	);
 	   
 	/* 资源类型 */

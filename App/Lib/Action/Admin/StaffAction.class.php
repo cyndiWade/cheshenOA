@@ -26,6 +26,7 @@ class StaffAction extends AdminBaseAction {
 		if (empty($occupation_id)) {
 			$staff_list = $StaffBase->seek_data_list();
 		} else {
+			$this->assign('occupation_id',$occupation_id);
 			$staff_list = $StaffBase->seek_spe_list(array('s.status'=>0,'s.occupation_id'=>$occupation_id));
 		}
 		
@@ -33,6 +34,7 @@ class StaffAction extends AdminBaseAction {
 		$this->assign('ACTION_NAME','人员管理');
 		$this->assign('TITLE_NAME','数据列表');
 		$this->display();
+
 	}
      
 	

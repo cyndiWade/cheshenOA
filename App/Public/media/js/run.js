@@ -82,35 +82,79 @@
 	})(jQuery);
 	
 
-	wade_jquery_date().init();
+	//日历
+	(function () {
+		wade_jquery_date().init();
+		
+		wade_bootstrap_date('.bootstrap_date').bootstrap_date();
+	})();
 	
-	wade_bootstrap_date('.bootstrap_date').bootstrap_date();
 	
-	
-	
-	//点击返回
-	$('.btn_bak').click(function () {
-		var _this = $(this);
-		if (_this.data('url') == undefined) {
-			//history.back();			//返回		
-			var go_num = _this.data('go'); 		//返回层次
+	//返回方法处理
+	(function ($) {
+		
+		
+		//点击返回
+		$('.btn_bak').click(function () {
+			var _this = $(this);
+			var go_num = _this.data('go');		//返回次数的条数
+			var url = _this.data('url');				//需要跳转的URL
+			var target = _this.data('target');			//打开新页面
+			var record_prev = _this.data('record_prev');			//记录上一页地址
+			var return_prev = _this.data('return_prev');		//返回上一页标识
+			var cookie = new Cookie();
 
-			if (go_num == undefined) {
-				history.go(-1);			//返回上一页刷新
-			} else {
+			//记录上一页地址
+			if (record_prev != undefined) cookie.setCookie('prev',window.location);
+			
+			//返回上一页地址
+			if (return_prev != undefined) {
+				window.location.href = cookie.getCookie('prev');
+			} else if (url != undefined) {	//跳转到指定的页面
+				if (target != undefined) {
+					 window.open(url, target, '');				
+				} else {		//跳转到指定页面
+					window.location.href = url;
+				}
+			} else if (go_num !=undefined) {		//返回到指定的页面
 				history.go(go_num);			//返回指定层级页面
 			}
 			
-		} else {
-			//打开新页面
-			if (_this.data('target') != undefined) {
-				 window.open(_this.data('url'), _this.data('target'), '');				
-			} else {		//跳转到指定页面
-				window.location.href = _this.data('url');
+			
+		/*	
+			//记录上一页地址
+			if (record_prev != undefined) {
+				cookie.setCookie('prev',window.location);
+			}
+			//返回上一页地址
+			if (return_prev != undefined) {
+				window.location.href = cookie.getCookie('prev');
+				return false;
 			}
 			
-		}
-	});
+			if (url == undefined) {
+				//history.back();			//返回	
+				if (go_num == undefined) {
+					history.go(-1);			//返回上一页刷新
+				} else {
+					history.go(go_num);			//返回指定层级页面
+				}
+				
+			} else {
+				//打开新页面
+				if (target != undefined) {
+					 window.open(url, target, '');				
+				} else {		//跳转到指定页面
+					window.location.href = url;
+				}
+				
+			}
+			*/
+			
+			
+		});
+		
+	})(jQuery);
 	
 	
 	

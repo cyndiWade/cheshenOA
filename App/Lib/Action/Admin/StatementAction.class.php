@@ -12,7 +12,8 @@ class StatementAction extends AdminBaseAction {
 		'Cars' => 'Cars',
 		'MemberRank' => 'MemberRank',
 		'CarsGrade' => 'CarsGrade',
-		'Company' => 'Company'	
+		'Company' => 'Company',
+		'Order' => 'Order'
 	);
 	
 	/**
@@ -146,6 +147,46 @@ class StatementAction extends AdminBaseAction {
 		$this->set_excel('车辆报表',$title.$str);
    }
 
+   
+   /**
+    * 订单用车记录报表
+    */
+   public function orders () {
+ 	  	header('Content-Type:text/html;charset=utf-8');
+ 	  	$Order = $this->db['Order'];
+ 	  	$order_list = $Order->seek_user_order();
+ 	  	
+ 	  	$title .= '订单号,来源,用车人,驾龄,开始日期,预计还车,归还日期,用车天数,超过天数,申请车辆,是否需要司机,司机价格(元/天),订单状态'."\n";
+ 	  	
+ 	  	if (!empty($order_list)) {
+ 	  			
+ 	  		foreach ($order_list as $key=>$val) {
+ 	  			$order_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];
+ 	  			$order_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
+				$order_list[$key]['order_state_name'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
+				$order_list[$key]['give_back_state_name'] = $this->give_back_state[$val['give_back_state']]['status_explain'];		//司机
+
+ 	  			$str .= $val['order_num'].',';
+ 	  			$str .= $order_list[$key]['order_from'].',';
+ 	  			$str .= $val['name'].',';
+ 	  			$str .= $val['driving_years'].',';
+ 	  			$str .= $val['start'].',';
+ 	  			$str .= $val['estimate_over'].',';
+ 	  			$str .= $val['over'].',';
+ 	  			$str .= $val['length'].',';
+ 	  			$str .= $val['exceed_date'].',';
+ 	  			$str .= $val['brand'].',';
+ 	  			$str .= $order_list[$key]['is_need_driver'].',';
+ 	  			$str .= $val['driver_price'].',';
+ 	  			$str .= $order_list[$key]['order_state_name'].'-'.$order_list[$key]['give_back_state_name'].',';
+ 	  			$str .= "\n";
+ 	  		}
+ 	  	
+ 	  	}
+		//dump($order_list);
+
+ 	  	$this->set_excel('用车记录报表',$title.$str);
+   }
 	
    
    
