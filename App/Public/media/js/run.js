@@ -111,7 +111,7 @@
 			if (return_prev != undefined) {
 				window.location.href = cookie.getCookie('prev');
 			} else if (url != undefined) {	//跳转到指定的页面
-				if (target != undefined) {
+				if (target != undefined) {	//重新打开窗口
 					 window.open(url, target, '');				
 				} else {		//跳转到指定页面
 					window.location.href = url;

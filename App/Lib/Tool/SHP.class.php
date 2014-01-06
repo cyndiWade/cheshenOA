@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * 商讯短信
  * 短信发送处理类
  * 网址：http://www.139000.com/index.asp
  * 接口文档地址：http://www.139000.com/mingshangtongAPI/index.asp
@@ -18,9 +19,10 @@ class SHP {
 	
 	/**
 	 * 发送接口
-	 * @param num(11) $phone		电话号码，多条用逗号分隔
+	 * @param num(11) $phone		电话号码。$phones= array(1371345678,18613245678);
 	 * @param string $msg				短信消息
 	 * @param string $time				定时发送，格式：YYYYMMDDHHMM
+	 * @return array		
 	 */
 	public function send($phone,$msg,$time='') {
 		
