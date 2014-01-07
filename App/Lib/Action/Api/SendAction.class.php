@@ -10,6 +10,7 @@ class SendAction extends ApiBaseAction {
 	private $msg;					//短信内容
 	private $date;					//发送时间
 	private $send_status;		//发送状态
+	private $expired_time = 30;		//分钟
 
 	
 	/**
@@ -64,8 +65,8 @@ class SendAction extends ApiBaseAction {
 			$Verify = M('Verify');										//短信表
 			$Verify->telephone = $this->telephone;			//电话号码
 			$Verify->verify = $this->verify;						//验证码
-			$Verify->expired = strtotime('+10 minute',time());				//过期时间设置为10分钟后
-			$Verify->type = $type;														//过期时间设置为10分钟后
+			$Verify->expired = strtotime('+'.$this->expired_time.' minute',time());				//过期时间设置为30分钟后
+			$Verify->type = $type;														//过期时间设置为30分钟后
 			//写入数据库
 			$Verify->add() ? parent::callback(C('STATUS_SUCCESS'),'发送成功') : parent::callback(C('STATUS_UPDATE_DATA'),'发送超时');
 			//失败处理
@@ -82,13 +83,13 @@ class SendAction extends ApiBaseAction {
 		//手机号码
 		if ($this->isPost()) {
 			$this->telephone = $this->request['telephone'];		//电话号码
-			$this->msg = $this->verify.'，为您的账号注册验证码，请在10分钟内完成注册，如非本人注册，请忽略；'.$this->date.'。';
+			$this->msg = $this->verify.'，为您的账号注册验证码，请在'.$this->expired_time.'分钟内完成注册，如非本人注册，请忽略；'.$this->date.'。';
 			$this->_add_data(1);
 			exit;
 		}
 		
-	//	$this->assign('name','telephone');
-		//$this->display('Login:sendSHP');
+		$this->assign('name','telephone');
+		$this->display('Login:sendSHP');
 	}
 	
 	

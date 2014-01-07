@@ -1,9 +1,10 @@
 <?php
 
 /**
+ * 荣大友信
  * 短信发送处理类
- * 网址：http://www.139000.com/index.asp
- * 接口文档地址：http://www.139000.com/mingshangtongAPI/index.asp
+ * 网址：http://www.rdsms.net/
+ * 接口文档地址：http://www.rdsms.net/view05.htm
  */
 
 class RD_SHP { 

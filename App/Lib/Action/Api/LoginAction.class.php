@@ -37,6 +37,7 @@ class LoginAction extends ApiBaseAction {
 		
 
 		if ($this->isPost()) {
+			
 			$Member = $this->db['Member'];						//用户模型表
 			$MemberBase = $this->db['MemberBase'];		//会员模型表
 			$MemberResource = $this->db['MemberResource'];		//资源关系表

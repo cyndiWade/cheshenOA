@@ -39,9 +39,6 @@ class ApiBaseAction extends AppBaseAction {
 	 */
 	private function Init_Request () {
 		$this->request['user_key'] = $this->_post('user_key');		//身份验证的user_key
-		$this->request['user_key'] = "BT9SbAMxB2ACMgs7XDcMalZrUjsGYwRvBzJbNVA9DGMHO1VjADsGfVBiAjdcLANnAjc=";
-		//$this->request['user_key'] = "BT4MO1VnBjQDZVc9XW9RPAM1XTEHYgRrBS5ROgJnC3sCPAU0";
-	//	$this->request['user_key'] = "BD5SYlFjA2RQYFdnWjEDZVRpBm9SNwZtVmNVO1A9WDcAPFdhBzwHfAAyATQBcVE0Aj8=";
 		$this->request['verify'] = $this->_post('verify');					//短信验证码
 	}
 	
