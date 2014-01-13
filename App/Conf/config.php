@@ -122,15 +122,15 @@ $custom= array (
 
 		//短信平台账号
 		'SHP' => array(
- 			'TYPE' => 'SHP',	//使用哪种短信接口
+			'TYPE' => 'SHP',	//使用哪种短信接口
  				'NAME'=>'cheshen_gd',
  				'PWD'=>'cheshen801'
 // 				'NAME'=>'rikee',
 // 				'PWD'=>'zyzylove2'	
 				
 // 			'TYPE' => 'RD_SHP',				//使用哪种短信接口
-	// 			'NAME'=>'shyqxx',
-	// 			'PWD'=>'cheshen818'
+// 				'NAME'=>'shyqxx',
+// 				'PWD'=>'cheshen818'
 
 		),
 		

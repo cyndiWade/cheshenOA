@@ -224,7 +224,7 @@ class MemberAction extends ApiBaseAction {
 				//修改注册账号为会员
 				$Member->is_rank = 1;				//账号变成会员
 				$Member->update_user_info($member_id);
-				parent::callback(C('STATUS_OTHER'),'添加成功！');
+				parent::callback(C('STATUS_SUCCESS'),'添加成功！');
 			} else {
 				parent::callback(C('STATUS_UPDATE_DATA'),'添加失败！');
 			}
