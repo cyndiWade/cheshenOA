@@ -94,7 +94,7 @@ class DriveAction extends ApiBaseAction {
 			if ($Drive->add_one_data()) {
 				parent::callback(C('STATUS_SUCCESS'),'提交试驾申请成功。');
 			} else {
-				parent::callback(C('STATUS_UPDATE_DATA'),'提交失败，请稍后重新尝试。');
+				parent::callback(C('STATUS_UPDATE_DATA'),'保存失败。');
 			}
 		}
 		
