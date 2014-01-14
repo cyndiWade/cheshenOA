@@ -27,7 +27,6 @@ class OrderAction extends ApiBaseAction {
 	);
 	
 	
-	
 	public function __construct() {
 		
 		parent:: __construct();			//重写父类构造方法
@@ -78,8 +77,6 @@ class OrderAction extends ApiBaseAction {
 		$ids = $MemberBase->seek_base_info($this->oUser->account);		
 		$member_id = $ids['use_id'];					//账号ID
 		$member_base_id = $ids['id'];				//会员ID	
-
-		//$member_base_id = 84;
 
  		/* 参数验证 */
 		if (empty($cars_id)) parent::callback(C('STATUS_NOT_DATA'),'申请车辆不得为空！');
@@ -167,7 +164,7 @@ class OrderAction extends ApiBaseAction {
 					if ($order_id) {
 						parent::order_history($order_id,'申请订单！');	
 						$send_result = parent::send_shp($mobile_phone, '亲爱的会员，您的订单已生成完毕，订单号为：'.$order_num.'。');
-						parent::callback(C('STATUS_SUCCESS'),'订单提交成功！');
+						parent::callback(C('STATUS_SUCCESS'),'订单提交成功！',array('order_num'=>$order_num));
 					} else {
 						parent::callback(C('STATUS_UPDATE_DATA'),'订单提交失败，请重新尝试！');
 					}
@@ -186,9 +183,6 @@ class OrderAction extends ApiBaseAction {
 		}
 
 	}
-	
-	//parent::callback(C('STATUS_SUCCESS'),'获取成功！',$cars_list);
-	//parent::callback(C('STATUS_NOT_DATA'),'没有数据！');
 	
 
 	

@@ -34,7 +34,7 @@ class MemberBaseModel extends ApiBaseModel {
 	
 	//获取指定会员数据
 	public function seek_member_one_data ($member_id) {
-		$data = $this->field('member_rank_id,area,name,date,over_date,use_car_number')
+		$data = $this->field('member_rank_id,area,name,date,mobile_phone,identity_number,over_date,use_car_number')
 		->where(array('member_id'=>$member_id,'status'=>0))
 		->find();
 		return $data;
@@ -66,7 +66,6 @@ class MemberBaseModel extends ApiBaseModel {
 		->select();
 		return $data;
 	}
-	
 	
 	
 	

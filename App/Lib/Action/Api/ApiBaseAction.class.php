@@ -39,6 +39,7 @@ class ApiBaseAction extends AppBaseAction {
 	 */
 	private function Init_Request () {
 		$this->request['user_key'] = $this->_post('user_key');		//身份验证的user_key
+		//$this->request['user_key'] = "UWRSbwgxBWsHNFVhAGUFYgUxA2gEaFUxAjxbO1E0CWRRbAY1BSBXMVdlUngNYVc0";
 		$this->request['verify'] = $this->_post('verify');					//短信验证码
 	}
 	
@@ -247,7 +248,6 @@ class ApiBaseAction extends AppBaseAction {
 	protected function order_history ($order_id,$content) {
 		return $this->db['OrderHistory']->add_order_history($order_id,0,$content);	//表示用户自己
 	}
-	
 	
 	
 	
