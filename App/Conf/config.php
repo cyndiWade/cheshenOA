@@ -122,18 +122,23 @@ $custom= array (
 
 		//短信平台账号
 		'SHP' => array(
- 			'TYPE' => 'SHP',	//使用哪种短信接口
- 			'NAME'=>'cheshen_gd',
- 			'PWD'=>'cheshen801'
+			'TYPE' => 'SHP',	//使用哪种短信接口
+ 				'NAME'=>'cheshen_gd',
+ 				'PWD'=>'cheshen801'
+				
+// 				'NAME'=>'rikee',
+// 				'PWD'=>'zyzylove2'	
+				
 // 			'TYPE' => 'RD_SHP',				//使用哪种短信接口
-// 			'NAME'=>'shyqxx',
-// 			'PWD'=>'cheshen818'			
+// 				'NAME'=>'shyqxx',
+// 				'PWD'=>'cheshen818'
 		),
 		
 		/* 错误类型 */
 		'STATUS_SUCCESS' => '0',					//没有错误
 		'STATUS_NOT_LOGIN'	=> '1002',			//未登录
 		'STATUS_UPDATE_DATA'	=> '2001',		//没有成功修改数据
+		'STATUS_HAVE_DATA' => '2002',			//数据已存在
 		'STATUS_NOT_DATA'	=> '2004',			//没有数据
 		'STATUS_RBAC' => '3001',					//RBAC权限不通过
 		'STATUS_ACCESS' => '4001',				//非法访问

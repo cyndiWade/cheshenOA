@@ -31,10 +31,8 @@ class LoginAction extends ApiBaseAction {
 	}
 	
 	
-	
 	//登录验证
 	public function login () {
-		
 
 		if ($this->isPost()) {
 			
@@ -102,7 +100,7 @@ class LoginAction extends ApiBaseAction {
 				}	
 			}
 		}
-		$this->display('register');
+		//$this->display('register');
 	}
 	
 	
@@ -134,11 +132,23 @@ class LoginAction extends ApiBaseAction {
 				parent::callback(C('STATUS_OTHER'),'此账号已存在');
 			} else {		//添加注册用户
 				$Member->create();
-				$Member->add_account(C('ACCOUNT_TYPE.USER')) ? parent::callback(C('STATUS_SUCCESS'),'注册成功') : parent::callback(C('STATUS_UPDATE_DATA'),'注册失败');
+				$id = $Member->add_account(C('ACCOUNT_TYPE.USER'));		//写入数据库
+				if ($id) {
+					
+					//生成秘钥
+					$encryption = $id.':'.$account.':'.date('Y-m-d');					//生成解密后的数据
+					$identity_encryption = passport_encrypt($encryption,C('UNLOCAKING_KEY'));	//生成加密字符串,给客户端
+					
+					//返回客户端
+					$return_data = array('user_key' => $identity_encryption);
+					parent::callback(C('STATUS_SUCCESS'),'注册成功',$return_data);
+				} else {
+					parent::callback(C('STATUS_UPDATE_DATA'),'注册失败');
+				}	
 			}
 		} 
 			
-	//	$this->display('Login:register');
+		//$this->display('Login:register');
 	}
 	
 

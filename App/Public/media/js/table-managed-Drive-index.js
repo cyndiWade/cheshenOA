@@ -12,26 +12,24 @@ var TableManaged = function () {
             // begin first table
             $('.sample_1').dataTable({
                 "aoColumns": [
-                  { "bSortable": true },
-                  { "bSortable": true },
-				  { "bSortable": true },
+                  { "bSortable": false },
+                  { "bSortable": false },
+				  { "bSortable": false },
+				  { "bSortable": false },
+				  { "bSortable": false },
+				  { "bSortable": false },
+				  { "bSortable": false },
+				  { "bSortable": false },
 				  { "bSortable": false },
 				  { "bSortable": true },
-				  { "bSortable": true },
-				  { "bSortable": true },
-				  { "bSortable": true },
-				  { "bSortable": true },
-				  { "bSortable": false },
-				  { "bSortable": true },
-				   { "bSortable": true },
-				    { "bSortable": false }
+				  { "bSortable": true }
                 ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"] // change per page values here
                 ],
                 "aaSorting": [
-					[ 10, "desc" ]
+					[ 0, "desc" ]
 				],
                 // set the initial value
                 "iDisplayLength": 20,
