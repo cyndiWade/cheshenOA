@@ -125,7 +125,10 @@ $custom= array (
 			'TYPE' => 'SHP',	//使用哪种短信接口
  				'NAME'=>'cheshen_gd',
  				'PWD'=>'cheshen801'
+<<<<<<< HEAD
 				
+=======
+>>>>>>> 5e4673e8e909eea8e3a6ce9a27009f1a1ace43ae
 // 				'NAME'=>'rikee',
 // 				'PWD'=>'zyzylove2'	
 				
