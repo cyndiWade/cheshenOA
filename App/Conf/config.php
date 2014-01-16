@@ -122,19 +122,16 @@ $custom= array (
 
 		//短信平台账号
 		'SHP' => array(
-			'TYPE' => 'SHP',	//使用哪种短信接口
- 				'NAME'=>'cheshen_gd',
- 				'PWD'=>'cheshen801'
-<<<<<<< HEAD
-				
-=======
->>>>>>> 5e4673e8e909eea8e3a6ce9a27009f1a1ace43ae
+// 			'TYPE' => 'SHP',	//使用哪种短信接口
+//  				'NAME'=>'cheshen_gd',
+//  				'PWD'=>'cheshen801'
+
 // 				'NAME'=>'rikee',
 // 				'PWD'=>'zyzylove2'	
 				
-// 			'TYPE' => 'RD_SHP',				//使用哪种短信接口
-// 				'NAME'=>'shyqxx',
-// 				'PWD'=>'cheshen818'
+			'TYPE' => 'RD_SHP',				//使用哪种短信接口
+				'NAME'=>'shyqxx',
+				'PWD'=>'cheshen818'
 		),
 		
 		/* 错误类型 */
