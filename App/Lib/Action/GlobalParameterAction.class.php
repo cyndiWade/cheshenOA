@@ -135,6 +135,19 @@ class GlobalParameterAction extends Action {
 			3 => '租用中',
 	);
 	
+	
+	//送车状态
+	protected $give_car = array(
+			0 => array(		
+					'type' =>0,
+					'name' => '不需要'
+			),
+			1 => array(
+					'type'	=>1,
+					'name' => '需要'
+			)
+	);
+	
 	/**
 	 * 构造方法
 	 */

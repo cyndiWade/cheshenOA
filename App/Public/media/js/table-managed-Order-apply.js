@@ -22,8 +22,9 @@ var TableManaged = function () {
 				  { "bSortable": true },
 				  { "bSortable": true },
 				  { "bSortable": false },
-				  { "bSortable": true },
+				  { "bSortable": false },
 				   { "bSortable": true },
+				    { "bSortable": true },
 				    { "bSortable": false }
                 ],
                 "aLengthMenu": [
@@ -31,7 +32,7 @@ var TableManaged = function () {
                     [5, 15, 20, "All"] // change per page values here
                 ],
                 "aaSorting": [
-					[ 10, "desc" ]
+					[ 11, "desc" ]
 				],
                 // set the initial value
                 "iDisplayLength": 20,

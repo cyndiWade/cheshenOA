@@ -39,13 +39,18 @@ class OrderAction extends OrderBaseAction {
 		$html_list = $Order->seek_user_order($map);
 		//$html_list = $Order->seek_user_order(array('o.order_state'=>$this->order_state[0]['order_status']));	
 
+			
 		if ($html_list) {
 			foreach ($html_list AS $key=>$val) {
 				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];		//获取订单来源
 				$html_list[$key]['order_explain'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
 				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
+				$html_list[$key]['give_car'] = $this->give_car[$val['give_car']]['name'];									//是否需要送车
+				$html_list[$key]['all_remarks'] = $val['remarks'];
 			}
+			set_str_len($html_list, array('remarks'), 10);		//字符长度限制
 		}
+
 
 		$this->assign('ACTION_NAME','用车申请');
 		$this->assign('TITILE_NAME','用车申请列表');
@@ -281,7 +286,10 @@ class OrderAction extends OrderBaseAction {
 				$html_list[$key]['order_from'] =  $this->order_from[mb_substr($val['order_num'], 0,1)];
 				$html_list[$key]['order_explain'] = $this->order_state[$val['order_state']]['order_explain'];		//订单状态
 				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
+				$html_list[$key]['give_car'] = $this->give_car[$val['give_car']]['name'];									//是否需要送车
+				$html_list[$key]['all_remarks'] = $val['remarks'];
 			}
+			set_str_len($html_list, array('remarks'), 10);		//字符长度限制
 		}
 		
 		$this->assign('ACTION_NAME','派车申请');
@@ -415,7 +423,9 @@ class OrderAction extends OrderBaseAction {
 				/* 车辆归还状态说明 */
 				$html_list[$key]['give_back_state_explain'] = $this->give_back_state[$val['give_back_state']]['status_explain'];
 				$html_list[$key]['is_need_driver'] = $this->is_need_driver[$val['is_need_driver']]['name'];		//司机
+				$html_list[$key]['all_remarks'] = $val['remarks'];
 			}
+			set_str_len($html_list, array('remarks'), 10);		//字符长度限制
 		}
 
 		

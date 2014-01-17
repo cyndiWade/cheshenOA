@@ -59,8 +59,8 @@
 										<tr>
 											<th>订单号</th>
 											<th class="hidden-480">来源</th>
-											<th class="hidden-480">用户姓名</th>											<th class="hidden-480">驾龄</th>
-											<th class="hidden-480">开始日期</th>											<th class="hidden-480">预计还车</th>											<th class="hidden-480">申请车辆</th>											<th class="hidden-480">是否需要司机</th>											<th class="hidden-480">司机价格</th>											<th class="hidden-480">备注</th>											<th class="hidden-480">订单提交时间</th>											<th class="hidden-480">订单状态</th>
+											<th class="hidden-480">姓名</th>											<th class="hidden-480">驾龄</th>
+											<th class="hidden-480">开始日期</th>											<th class="hidden-480">预计还车</th>											<th class="hidden-480">申请车辆</th>											<th class="hidden-480">司机</th>											<th class="hidden-480">司机价格(元/天)</th>											<th class="hidden-480">送车</th>											<th class="hidden-480">备注</th>											<th class="hidden-480">订单提交时间</th>											<th class="hidden-480">订单状态</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -68,7 +68,7 @@
 										<tr class="odd gradeX">
 											<td>{$vo.order_num}</td>
 											<td class="hidden-480">{$vo.order_from}</td>											<td class="center hidden-480">{$vo.name}</td>											<td class="center hidden-480">{$vo.driving_years}</td>
-											<td class="center hidden-480">{$vo.start}</td>											<td class="center hidden-480">{$vo.estimate_over}</td>											<td class="center hidden-480">{$vo.brand}</td>											<td class="center hidden-480">{$vo.is_need_driver}</td>											<td class="center hidden-480">{$vo.driver_price}</td>											<td class="center hidden-480">{$vo.remarks}</td>												<td class="center hidden-480">{$vo.time}</td>											<td class="center hidden-480">{$vo.order_explain}</td>
+											<td class="center hidden-480">{$vo.start}</td>											<td class="center hidden-480">{$vo.estimate_over}</td>											<td class="center hidden-480">{$vo.brand}</td>											<td class="center hidden-480">{$vo.is_need_driver}</td>											<td class="center hidden-480">{$vo.driver_price}</td>											<td class="center hidden-480">{$vo.give_car}</td>											<td class="center hidden-480" title="{$vo.all_remarks}">{$vo.remarks}</td>												<td class="center hidden-480">{$vo.time}</td>											<td class="center hidden-480">{$vo.order_explain}</td>
 											<td >												<if condition="($vo['order_state'] eq $order_state[1]['order_status']) ">													<a href="?s=/Admin/Order/cars_arrange_edit/id/{$vo.id}.html" class="check">处理</a> | 												<else /> 													<a href="?s=/Admin/Order/order_send_msg/id/{$vo.id}.html" class="check">发送短信</a> | 												</if>																		<a href="?s=/Admin/Order/order_history_list/order_id/{$vo.id}.html">跟进记录</a>											</td>
 										</tr>										</volist>
 									</tbody>
