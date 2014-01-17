@@ -138,7 +138,11 @@ class MemberAction extends ApiBaseAction {
 	public function member_register() {
 
 		if ($this->isPost() == false) {
+<<<<<<< HEAD
+			parent::callback(C('STATUS_ACCESS'),'非法访问！');
+=======
 	//		parent::callback(C('STATUS_ACCESS'),'非法访问！');
+>>>>>>> 5e4673e8e909eea8e3a6ce9a27009f1a1ace43ae
 		}
 		import("@.Tool.Validate");		//验证类
 		
