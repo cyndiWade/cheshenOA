@@ -58,16 +58,16 @@
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th class="hidden-480">车型</th>
-											<th class="hidden-480">称谓</th>											<th class="hidden-480">姓氏</th>
-											<th class="hidden-480">名字</th>											<th class="hidden-480">年龄</th>											<th class="hidden-480">手机号码</th>											<th class="hidden-480">邮箱地址</th>											<th class="hidden-480">卡号</th>											<th class="hidden-480">试驾日期</th>											<th class="hidden-480">申请日期</th>
+											<th class="hidden-480">车型</th>											<!-- 
+											<th class="hidden-480">称谓</th>											<th class="hidden-480">姓氏</th>											-->
+											<th class="hidden-480">名字</th>											<th class="hidden-480">驾龄</th>											<th class="hidden-480">手机号码</th>										<!--	<th class="hidden-480">邮箱地址</th> -->											<th class="hidden-480">拥有车型</th>											<th class="hidden-480">卡号</th>										<!--	<th class="hidden-480">试驾日期</th> -->											<th class="hidden-480">申请日期</th>
 										</tr>
 									</thead>
 									<tbody>																		<volist name="html['list']" id="vo" key="i">
 										<tr class="odd gradeX">
 											<td>{$vo.id}</td>
-											<td class="hidden-480">{$vo.models}</td>											<td class="center hidden-480">{$vo.appellation}</td>											<td class="center hidden-480">{$vo.surnames}</td>
-											<td class="center hidden-480">{$vo.name}</td>											<td class="center hidden-480">{$vo.age}</td>											<td class="center hidden-480">{$vo.phone}</td>											<td class="center hidden-480">{$vo.email}</td>											<td class="center hidden-480">{$vo.number}</td>											<td class="center hidden-480">{$vo.date_time}</td>											<td class="center hidden-480">{$vo.time}</td>
+											<td class="hidden-480">{$vo.models}</td>											<!-- 											<td class="center hidden-480">{$vo.appellation}</td>											<td class="center hidden-480">{$vo.surnames}</td>											-->
+											<td class="center hidden-480">{$vo.name}</td>											<td class="center hidden-480">{$vo.age}</td>											<td class="center hidden-480">{$vo.phone}</td>																				<!--	<td class="center hidden-480">{$vo.email}</td>-->											<td class="center hidden-480">{$vo.possess_vehicle}</td>											<td class="center hidden-480">{$vo.number}</td>												<!--	<td class="center hidden-480">{$vo.date_time}</td> -->											<td class="center hidden-480">{$vo.time}</td>
 										</tr>										</volist>
 									</tbody>
 								</table>

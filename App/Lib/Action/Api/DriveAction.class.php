@@ -81,6 +81,9 @@ class DriveAction extends ApiBaseAction {
 				'date_time' => array(
 						'empty' =>'试驾日期不得为空',
 				),
+				'possess_vehicle' => array (
+						'empty' =>'拥有车型不得为空',
+				)
 			);
 
 			foreach ($this->request as $key=>$val) {
