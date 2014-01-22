@@ -23,15 +23,16 @@ class DriveAction extends ApiBaseAction {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->request['models'] = $this->_post('models');						
-		$this->request['appellation'] = $this->_post('appellation');
-		$this->request['surnames'] = $this->_post('surnames');
-		$this->request['name'] = $this->_post('name');
-		$this->request['age'] = $this->_post('age');
-		$this->request['phone'] = $this->_post('phone');
-		$this->request['email'] = $this->_post('email');
+		$this->request['models'] = $this->_post('models');				//试驾车型	
+	//	$this->request['appellation'] = $this->_post('appellation');
+	//	$this->request['surnames'] = $this->_post('surnames');
+		$this->request['name'] = $this->_post('name');				//姓名
+		$this->request['phone'] = $this->_post('phone');			//手机号码
+		$this->request['age'] = $this->_post('age');					//目前驾龄
+		$this->request['possess_vehicle'] = $this->_post('possess_vehicle');			//拥有车型
+	//	$this->request['email'] = $this->_post('email');
 		$this->request['number'] = $this->_post('number');
-		$this->request['date_time'] = $this->_post('date_time');
+	//	$this->request['date_time'] = $this->_post('date_time');
 		
 // 		$this->request['models'] = '红色奥迪 R8';						
 // 		$this->request['appellation'] = '小姐';
@@ -83,6 +84,7 @@ class DriveAction extends ApiBaseAction {
 			);
 
 			foreach ($this->request as $key=>$val) {
+				if ($key == 'number') continue;
 				if ($key_error[$key] == true) {
 					if (empty($val)) {
 						parent::callback(C('STATUS_OTHER'),$key_error[$key	]);
