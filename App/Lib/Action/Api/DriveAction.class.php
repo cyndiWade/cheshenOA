@@ -23,7 +23,7 @@ class DriveAction extends ApiBaseAction {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->request['models'] = $this->_post('models');				//试驾车型	
+	//	$this->request['models'] = $this->_post('models');				//试驾车型	
 	//	$this->request['appellation'] = $this->_post('appellation');
 	//	$this->request['surnames'] = $this->_post('surnames');
 		$this->request['name'] = $this->_post('name');				//姓名
