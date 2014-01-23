@@ -13,7 +13,6 @@ var TableManaged = function () {
             $('.sample_1').dataTable({
                 "aoColumns": [
                   { "bSortable": false },
-                  { "bSortable": false },
 				  { "bSortable": false },
 				  { "bSortable": false },
 				  { "bSortable": false },
