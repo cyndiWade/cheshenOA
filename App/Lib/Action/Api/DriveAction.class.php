@@ -67,7 +67,7 @@ class DriveAction extends ApiBaseAction {
 						'empty' =>'名字不得为空',
 				),
 				'age' => array(
-						'empty' =>'年龄不得为空',
+						'empty' =>'驾龄不得为空',
 				),
 				'phone' => array(
 						'empty' =>'手机号码不得为空',
@@ -90,7 +90,7 @@ class DriveAction extends ApiBaseAction {
 				if ($key == 'number') continue;
 				if ($key_error[$key] == true) {
 					if (empty($val)) {
-						parent::callback(C('STATUS_OTHER'),$key_error[$key	]);
+						parent::callback(C('STATUS_OTHER'),$key_error[$key	]['empty']);
 					}
 				}
 			}
