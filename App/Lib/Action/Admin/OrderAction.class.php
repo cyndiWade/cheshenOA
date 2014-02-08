@@ -608,8 +608,15 @@ class OrderAction extends OrderBaseAction {
 				
 				parent::order_history($id,'发送短信，状态为：成功。短信内容：'. $mobile_phone_message);
 				
-		//		$this->success('短信发送成功！',U('Admin/Order/cars_arrange_list'));
-				$this->success($send_result['msg']);
+				//跳转动作处理。
+				$continue_member_base_id = $this->_post('continue_member_base_id');
+				if ($continue_member_base_id == true) {			//提交按钮为："发送并继续下单时"。
+					$this->success($send_result['msg'],U('Admin/Order/edit_apply/',array('act'=>'add','member_base_id'=>$continue_member_base_id)));
+				
+				} else {//提交按钮为："提交时"	
+					$this->success($send_result['msg']);
+				}
+				
 			} else {
 				parent::order_history($id,'发送短信，状态为：失败。');
 				$this->error($send_result['msg']);
@@ -619,7 +626,7 @@ class OrderAction extends OrderBaseAction {
 		
 		/* 获取订单信息 */
 		$html_info = $Order->get_one_data(array('id'=>$id,'status'=>0));
-		
+
 		if (empty($html_info)) $this->error('此订单不存在');
 		$mobile_phone = $MemberBase->get_one_data(array('id'=>$html_info['member_base_id'],'status'=>0),'mobile_phone');
 		$html_info['mobile_phone'] = $mobile_phone['mobile_phone'];
@@ -632,11 +639,12 @@ class OrderAction extends OrderBaseAction {
 		}
 	
 		
-		$html_info['now_state'] = $html_info['order_state'];							//当前订单状态
+		$html_info['now_state'] = $html_info['order_state'];					//当前订单状态
 		$html_info['order_state'] = $this->order_state;							//订单状态说明
-			
+		
 		$html_info['now_give_back_state'] = $html_info['give_back_state'];		//当前还车状态;		
 		$html_info['give_back_state'] = $this->give_back_state;			//还车状态说明
+
 
 		$this->assign('ACTION_NAME','发送短信');
 		$this->assign('TITILE_NAME','订单号：'.$html_info['order_num']);
