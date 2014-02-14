@@ -21,6 +21,12 @@ function isPost($value) {
 }
 
 
+/**
+ * 追加数组
+ * @param Array $old 		//数组
+ * @param Array $new		//新数组
+ * @return boolean
+ */
 function array_add_to (&$old,&$new) {
 	if (is_array($old) && is_array($new)) {
 		foreach ($new AS $key=>$val) {
