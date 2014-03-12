@@ -217,7 +217,9 @@ class MemberAction extends ApiBaseAction {
 
 		//会员存在时，进行提醒处理
 		if ($MemberBase->get_one_data(array('member_id'=>$member_id),'id') == true) {
-			parent::callback(C('STATUS_HAVE_DATA'),'会员已存在！');
+			//parent::callback(C('STATUS_HAVE_DATA'),'会员已存在！');
+			parent::callback(C('STATUS_HAVE_DATA'),'手机号码已经存在！');
+			
 		}
 		
 		/* 写入数据库 */		
