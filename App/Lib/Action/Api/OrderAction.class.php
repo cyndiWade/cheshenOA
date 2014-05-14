@@ -108,8 +108,8 @@ class OrderAction extends ApiBaseAction {
 			if (empty($cars_list)) parent::callback(C('STATUS_NOT_DATA'),'您的会员级别，暂无分配车辆资源');
 			
 			//当请求的车辆不在此会员享有的车辆下，提示错误
-			$cars_ids = getArrayByField($cars_list,'id');		//可用车辆ID集
-			if (in_array($cars_id,$cars_ids) == false) parent::callback(C('STATUS_NOT_DATA'),'您的会员级别不适用与此车辆');
+			//$cars_ids = getArrayByField($cars_list,'id');		//可用车辆ID集
+			//if (in_array($cars_id,$cars_ids) == false) parent::callback(C('STATUS_NOT_DATA'),'您的会员级别不适用与此车辆');
 	
 /*  以下是车辆的日程查看处理  */		
 			//车辆日程内可用信息
